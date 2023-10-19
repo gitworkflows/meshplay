@@ -1392,5 +1392,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(withRouter(withNotify(MeshplayAdapterPlayComponent))),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(withRouter(withNotify(MeshplayAdapterPlayComponent))),
 );
