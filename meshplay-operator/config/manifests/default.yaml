@@ -4,9 +4,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: brokers.meshery.layer5.io
+  name: brokers.meshplay.layer5.io
 spec:
-  group: meshery.layer5.io
+  group: meshplay.layer5.io
   names:
     kind: Broker
     listKind: BrokerList
@@ -95,9 +95,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: meshsyncs.meshery.layer5.io
+  name: meshsyncs.meshplay.layer5.io
 spec:
-  group: meshery.layer5.io
+  group: meshplay.layer5.io
   names:
     kind: MeshSync
     listKind: MeshSyncList
@@ -194,16 +194,16 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: meshery-leader-election-role
-  namespace: meshery
+  name: meshplay-leader-election-role
+  namespace: meshplay
 rules:
 - apiGroups:
   - ""
@@ -236,7 +236,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: meshery-controller-role
+  name: meshplay-controller-role
 rules:
 - apiGroups:
   - '*'
@@ -254,7 +254,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: meshery-metrics-reader
+  name: meshplay-metrics-reader
 rules:
 - nonResourceURLs:
   - /metrics
@@ -268,7 +268,7 @@ metadata:
   name: meshplay-operator-role
 rules:
 - apiGroups:
-  - meshery.layer5.io
+  - meshplay.layer5.io
   resources:
   - brokers
   verbs:
@@ -280,7 +280,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - meshery.layer5.io
+  - meshplay.layer5.io
   resources:
   - brokers/status
   verbs:
@@ -291,7 +291,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: meshery-proxy-role
+  name: meshplay-proxy-role
 rules:
 - apiGroups:
   - authentication.k8s.io
@@ -309,29 +309,29 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: meshery-leader-election-rolebinding
-  namespace: meshery
+  name: meshplay-leader-election-rolebinding
+  namespace: meshplay
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: meshery-leader-election-role
+  name: meshplay-leader-election-role
 subjects:
 - kind: ServiceAccount
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: meshery-controller-rolebinding
+  name: meshplay-controller-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: meshery-controller-role
+  name: meshplay-controller-role
 subjects:
 - kind: ServiceAccount
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -344,56 +344,56 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: meshery-proxy-rolebinding
+  name: meshplay-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: meshery-proxy-role
+  name: meshplay-proxy-role
 subjects:
 - kind: ServiceAccount
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: meshplay-operator-metrics-service
-  namespace: meshery
+  namespace: meshplay
 spec:
   ports:
   - name: https
     port: 8443
     targetPort: https
   selector:
-    app: meshery
+    app: meshplay
     component: operator
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: meshery
+      app: meshplay
       component: operator
   template:
     metadata:
       labels:
-        app: meshery
+        app: meshplay
         component: operator
     spec:
       containers:

@@ -19,21 +19,21 @@ var (
 
 	valtrue bool = true
 
-	MesheryLabel = map[string]string{
-		"app": "meshery",
+	MeshplayLabel = map[string]string{
+		"app": "meshplay",
 	}
 
-	MesheryAnnotation = map[string]string{
-		"meshery/component-type": "management-plane",
+	MeshplayAnnotation = map[string]string{
+		"meshplay/component-type": "management-plane",
 	}
 
 	BrokerLabel = map[string]string{
-		"app":       MesheryLabel["app"],
+		"app":       MeshplayLabel["app"],
 		"component": "broker",
 	}
 
 	PrometheusAnnotation = map[string]string{
-		"meshery/component-type": "management-plane",
+		"meshplay/component-type": "management-plane",
 		"prometheus.io/path":     "/metrics",
 		"prometheus.io/port":     "7777",
 		"prometheus.io/scrape":   "true",
@@ -41,8 +41,8 @@ var (
 
 	NatsConfigMap = &corev1.ConfigMap{
 		ObjectMeta: metav1.ObjectMeta{
-			Namespace: "meshery",
-			Name:      "meshery-nats-config",
+			Namespace: "meshplay",
+			Name:      "meshplay-nats-config",
 			Labels:    BrokerLabel,
 		},
 		Data: map[string]string{
@@ -60,8 +60,8 @@ include "accounts/resolver.conf"`,
 
 	AccountsConfigMap = &corev1.ConfigMap{
 		ObjectMeta: metav1.ObjectMeta{
-			Namespace: "meshery",
-			Name:      "meshery-nats-accounts",
+			Namespace: "meshplay",
+			Name:      "meshplay-nats-accounts",
 			Labels:    BrokerLabel,
 		},
 		Data: map[string]string{
@@ -75,10 +75,10 @@ ACSU3Q6LTLBVLGAQUONAGXJHVNWGSKKAUA7IY5TB4Z7PLEKSR5O6JTGR: eyJ0eXAiOiJqd3QiLCJhbG
 
 	Service = &corev1.Service{
 		ObjectMeta: metav1.ObjectMeta{
-			Namespace:   "meshery",
-			Name:        "meshery-nats",
+			Namespace:   "meshplay",
+			Name:        "meshplay-nats",
 			Labels:      BrokerLabel,
-			Annotations: MesheryAnnotation,
+			Annotations: MeshplayAnnotation,
 		},
 		Spec: corev1.ServiceSpec{
 			Ports: []corev1.ServicePort{
@@ -114,25 +114,25 @@ ACSU3Q6LTLBVLGAQUONAGXJHVNWGSKKAUA7IY5TB4Z7PLEKSR5O6JTGR: eyJ0eXAiOiJqd3QiLCJhbG
 
 	StatefulSet = &appsv1.StatefulSet{
 		ObjectMeta: metav1.ObjectMeta{
-			Namespace:   "meshery",
-			Name:        "meshery-nats",
+			Namespace:   "meshplay",
+			Name:        "meshplay-nats",
 			Labels:      BrokerLabel,
-			Annotations: MesheryAnnotation,
+			Annotations: MeshplayAnnotation,
 		},
 		Spec: appsv1.StatefulSetSpec{
 			Replicas: &val1,
 			Selector: &metav1.LabelSelector{
 				MatchLabels: BrokerLabel,
 			},
-			ServiceName: "meshery-nats",
+			ServiceName: "meshplay-nats",
 			Template:    PodTemplate,
 		},
 	}
 
 	PodTemplate = corev1.PodTemplateSpec{
 		ObjectMeta: metav1.ObjectMeta{
-			Namespace:   "meshery",
-			Name:        "meshery-nats",
+			Namespace:   "meshplay",
+			Name:        "meshplay-nats",
 			Labels:      BrokerLabel,
 			Annotations: PrometheusAnnotation,
 		},
@@ -144,7 +144,7 @@ ACSU3Q6LTLBVLGAQUONAGXJHVNWGSKKAUA7IY5TB4Z7PLEKSR5O6JTGR: eyJ0eXAiOiJqd3QiLCJhbG
 					VolumeSource: corev1.VolumeSource{
 						ConfigMap: &corev1.ConfigMapVolumeSource{
 							LocalObjectReference: corev1.LocalObjectReference{
-								Name: "meshery-nats-config",
+								Name: "meshplay-nats-config",
 							},
 						},
 					},
@@ -160,7 +160,7 @@ ACSU3Q6LTLBVLGAQUONAGXJHVNWGSKKAUA7IY5TB4Z7PLEKSR5O6JTGR: eyJ0eXAiOiJqd3QiLCJhbG
 					VolumeSource: corev1.VolumeSource{
 						ConfigMap: &corev1.ConfigMapVolumeSource{
 							LocalObjectReference: corev1.LocalObjectReference{
-								Name: "meshery-nats-accounts",
+								Name: "meshplay-nats-accounts",
 							},
 						},
 					},
@@ -226,7 +226,7 @@ ACSU3Q6LTLBVLGAQUONAGXJHVNWGSKKAUA7IY5TB4Z7PLEKSR5O6JTGR: eyJ0eXAiOiJqd3QiLCJhbG
 						},
 						{
 							Name:  "CLUSTER_ADVERTISE",
-							Value: "$(POD_NAME).meshery-nats.$(POD_NAMESPACE).svc",
+							Value: "$(POD_NAME).meshplay-nats.$(POD_NAMESPACE).svc",
 						},
 					},
 					VolumeMounts: []corev1.VolumeMount{

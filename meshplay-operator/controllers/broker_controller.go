@@ -27,7 +27,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	brokerpackage "github.com/khulnasoft/meshplay/meshplay-operator/pkg/broker"
 	"github.com/khulnasoft/meshplay/meshplay-operator/pkg/utils"
 	kubeerror "k8s.io/apimachinery/pkg/api/errors"
@@ -43,15 +43,15 @@ type BrokerReconciler struct {
 	Scheme     *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=meshery.layer5.io,resources=brokers,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=meshery.layer5.io,resources=brokers/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=brokers,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=brokers/status,verbs=get;update;patch
 
 func (r *BrokerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log
 	log = log.WithValues("controller", "Broker")
 	log = log.WithValues("namespace", req.NamespacedName)
 	log.Info("Reconciling broker")
-	baseResource := &mesheryv1alpha1.Broker{}
+	baseResource := &meshplayv1alpha1.Broker{}
 
 	// Check if resource exists
 	err := r.Get(ctx, req.NamespacedName, baseResource)
@@ -98,15 +98,15 @@ func (r *BrokerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 
 func (r *BrokerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&mesheryv1alpha1.Broker{}).
+		For(&meshplayv1alpha1.Broker{}).
 		Complete(r)
 }
 
 func (r *BrokerReconciler) Cleanup() error {
-	objects := brokerpackage.GetObjects(&mesheryv1alpha1.Broker{
+	objects := brokerpackage.GetObjects(&meshplayv1alpha1.Broker{
 		ObjectMeta: v1.ObjectMeta{
-			Name:      "meshery-broker",
-			Namespace: "meshery",
+			Name:      "meshplay-broker",
+			Namespace: "meshplay",
 		},
 	})
 	for _, object := range objects {
@@ -118,7 +118,7 @@ func (r *BrokerReconciler) Cleanup() error {
 	return nil
 }
 
-func (r *BrokerReconciler) reconcileBroker(ctx context.Context, enable bool, baseResource *mesheryv1alpha1.Broker, req ctrl.Request) (ctrl.Result, error) {
+func (r *BrokerReconciler) reconcileBroker(ctx context.Context, enable bool, baseResource *meshplayv1alpha1.Broker, req ctrl.Request) (ctrl.Result, error) {
 	objects := brokerpackage.GetObjects(baseResource)
 	for _, object := range objects {
 		object.SetNamespace(baseResource.Namespace)

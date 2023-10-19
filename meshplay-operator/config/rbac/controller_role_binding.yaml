@@ -9,4 +9,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay

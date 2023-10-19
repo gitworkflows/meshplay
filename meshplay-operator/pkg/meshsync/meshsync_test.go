@@ -19,17 +19,17 @@ package meshsync
 import (
 	"testing"
 
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func TestGetObjects(t *testing.T) {
-	m := &mesheryv1alpha1.MeshSync{
+	m := &meshplayv1alpha1.MeshSync{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      "test",
 			Namespace: "test",
 		},
-		Spec: mesheryv1alpha1.MeshSyncSpec{
+		Spec: meshplayv1alpha1.MeshSyncSpec{
 			Size: 1,
 		},
 	}

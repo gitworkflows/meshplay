@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: meshplay-operator
 ---
@@ -11,20 +11,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
   labels:
-    app: meshery
+    app: meshplay
     component: operator
 spec:
   selector:
     matchLabels:
-      app: meshery
+      app: meshplay
       component: operator
   replicas: 1
   template:
     metadata:
       labels:
-        app: meshery
+        app: meshplay
         component: operator
     spec:
       terminationGracePeriodSeconds: 10

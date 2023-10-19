@@ -4,15 +4,15 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: operator-metrics-monitor
-  namespace: meshery
+  namespace: meshplay
 spec:
   endpoints:
     - path: /metrics
       port: https
   selector:
     matchLabels:
-      app: meshery
+      app: meshplay
       component: operator

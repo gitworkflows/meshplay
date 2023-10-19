@@ -35,7 +35,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 )
 
 // Initialize test suite entrypoint
@@ -80,7 +80,7 @@ var _ = BeforeSuite(func(ctx SpecContext) {
 
 	scheme := runtime.NewScheme()
 
-	Expect(mesheryv1alpha1.AddToScheme(scheme)).To(Succeed())
+	Expect(meshplayv1alpha1.AddToScheme(scheme)).To(Succeed())
 	Expect(k8sscheme.AddToScheme(scheme)).To(Succeed())
 	Expect(apiv1.AddToScheme(scheme)).To(Succeed())
 
@@ -96,9 +96,9 @@ var _ = BeforeSuite(func(ctx SpecContext) {
 
 	crd := &apiv1.CustomResourceDefinition{}
 
-	err = k8sClient.Get(ctx, types.NamespacedName{Name: "meshsyncs.meshery.layer5.io"}, crd)
+	err = k8sClient.Get(ctx, types.NamespacedName{Name: "meshsyncs.meshplay.layer5.io"}, crd)
 	Expect(err).NotTo(HaveOccurred())
-	err = k8sClient.Get(ctx, types.NamespacedName{Name: "brokers.meshery.layer5.io"}, crd)
+	err = k8sClient.Get(ctx, types.NamespacedName{Name: "brokers.meshplay.layer5.io"}, crd)
 	Expect(err).NotTo(HaveOccurred())
 	Expect(crd.Spec.Names.Kind).To(Equal("Broker"))
 })

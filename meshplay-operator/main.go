@@ -28,7 +28,7 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	"github.com/khulnasoft/meshplay/meshplay-operator/controllers"
 
 	"k8s.io/client-go/kubernetes"
@@ -43,14 +43,14 @@ var (
 func init() {
 	// +kubebuilder:scaffold:scheme
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
-	utilruntime.Must(mesheryv1alpha1.AddToScheme(scheme))
+	utilruntime.Must(meshplayv1alpha1.AddToScheme(scheme))
 }
 
 func main() {
 	var metricsAddr, namespace string
 	var enableLeaderElection bool
 	flag.StringVar(&metricsAddr, "metrics-addr", ":8080", "The address the metric endpoint binds to.")
-	flag.StringVar(&namespace, "namespace", "meshery", "The namespace operator is deployed to.")
+	flag.StringVar(&namespace, "namespace", "meshplay", "The namespace operator is deployed to.")
 	flag.BoolVar(&enableLeaderElection, "enable-leader-election", false,
 		"Enable leader election for controller manager. "+
 			"Enabling this will ensure there is only one active controller manager.")
@@ -62,7 +62,7 @@ func main() {
 		MetricsBindAddress:      metricsAddr,
 		Port:                    9443,
 		LeaderElection:          enableLeaderElection,
-		LeaderElectionID:        fmt.Sprintf("operator-%s.meshery.layer5.io", opID),
+		LeaderElectionID:        fmt.Sprintf("operator-%s.meshplay.layer5.io", opID),
 		LeaderElectionNamespace: namespace,
 	})
 	if err != nil {

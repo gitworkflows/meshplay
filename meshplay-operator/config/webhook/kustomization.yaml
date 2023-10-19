@@ -1,4 +1,4 @@
-namePrefix: meshery-
+namePrefix: meshplay-
 resources:
 - manifests.yaml
 - service.yaml

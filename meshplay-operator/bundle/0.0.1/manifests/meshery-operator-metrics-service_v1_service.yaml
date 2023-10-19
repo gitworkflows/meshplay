@@ -3,7 +3,7 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: meshery
+    app: meshplay
     component: operator
   name: meshplay-operator-metrics-service
 spec:
@@ -12,7 +12,7 @@ spec:
     port: 8443
     targetPort: https
   selector:
-    app: meshery
+    app: meshplay
     component: operator
 status:
   loadBalancer: {}

@@ -7,7 +7,7 @@ resources:
   # TODO(user): Uncomment the below line if this resource implements a controller, else delete it.
   # controller: true
   domain: layer5.io
-  group: meshery
+  group: meshplay
   kind: MeshSync
   # TODO(user): Update the package path for your API if the below value is incorrect.
   path: github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1

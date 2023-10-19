@@ -7,18 +7,18 @@ import (
 
 func TestSimplestTemplate(t *testing.T) {
 	template := []byte("{{.namespace}}")
-	result, err := MergeToTemplate(template, map[string]string{"namespace": "meshery"})
+	result, err := MergeToTemplate(template, map[string]string{"namespace": "meshplay"})
 	if err != nil {
 		t.Errorf("err = %v; want 'nil'", err)
 	}
-	if !bytes.Equal(result, []byte("meshery")) {
-		t.Errorf("result = %s; want 'meshery'", result)
+	if !bytes.Equal(result, []byte("meshplay")) {
+		t.Errorf("result = %s; want 'meshplay'", result)
 	}
 }
 
 func TestEmptyTemplate(t *testing.T) {
 	template := []byte("")
-	result, err := MergeToTemplate(template, map[string]string{"namespace": "meshery"})
+	result, err := MergeToTemplate(template, map[string]string{"namespace": "meshplay"})
 	if err != nil {
 		t.Errorf("err = %v; want 'nil'", err)
 	}
@@ -43,9 +43,9 @@ func TestMultilineTemplate(t *testing.T) {
 {{.project}} is
 best`
 	expected := `Layer5
-Meshery is
+Meshplay is
 best`
-	result, err := MergeToTemplate([]byte(template), map[string]string{"project": "Meshery"})
+	result, err := MergeToTemplate([]byte(template), map[string]string{"project": "Meshplay"})
 	if err != nil {
 		t.Errorf("err = %v; want 'nil'", err)
 	}

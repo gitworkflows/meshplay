@@ -29,24 +29,24 @@ var (
 
 	valtrue bool = true
 
-	MesheryLabel = map[string]string{
-		"app": "meshery",
+	MeshplayLabel = map[string]string{
+		"app": "meshplay",
 	}
 
 	MeshSyncLabel = map[string]string{
-		"app":       MesheryLabel["app"],
+		"app":       MeshplayLabel["app"],
 		"component": "meshsync",
 	}
 
-	MesheryAnnotation = map[string]string{
-		"meshery/component-type": "management-plane",
+	MeshplayAnnotation = map[string]string{
+		"meshplay/component-type": "management-plane",
 	}
 
 	Deployment = &appsv1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:        "meshery-meshsync",
+			Name:        "meshplay-meshsync",
 			Labels:      MeshSyncLabel,
-			Annotations: MesheryAnnotation,
+			Annotations: MeshplayAnnotation,
 		},
 		Spec: appsv1.DeploymentSpec{
 			Replicas: &val1,
@@ -59,9 +59,9 @@ var (
 
 	PodTemplate = corev1.PodTemplateSpec{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:        "meshery-meshsync",
+			Name:        "meshplay-meshsync",
 			Labels:      MeshSyncLabel,
-			Annotations: MesheryAnnotation,
+			Annotations: MeshplayAnnotation,
 		},
 		Spec: corev1.PodSpec{
 			ServiceAccountName:            "meshplay-operator",
@@ -80,7 +80,7 @@ var (
 						},
 					},
 					Command: []string{
-						"./meshery-meshsync", "--broker-url", "$(BROKER_URL)",
+						"./meshplay-meshsync", "--broker-url", "$(BROKER_URL)",
 					},
 					Env: []corev1.EnvVar{
 						{

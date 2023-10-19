@@ -12,7 +12,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	"github.com/khulnasoft/meshplay/meshkit/utils"
-	mesherykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 )
 
 const BrokerPingEndpoint = "8222/connz"
@@ -25,7 +25,7 @@ type connection struct {
 	Name string `json:"name"`
 }
 
-func GetBrokerEndpoint(kclient *mesherykube.Client, broker *v1alpha1.Broker) string {
+func GetBrokerEndpoint(kclient *meshplaykube.Client, broker *v1alpha1.Broker) string {
 	endpoint := broker.Status.Endpoint.Internal
 	if len(strings.Split(broker.Status.Endpoint.Internal, ":")) > 1 {
 		port, _ := strconv.Atoi(strings.Split(broker.Status.Endpoint.Internal, ":")[1])
@@ -60,21 +60,21 @@ func GetBrokerEndpoint(kclient *mesherykube.Client, broker *v1alpha1.Broker) str
 	return endpoint
 }
 
-func applyOperatorHelmChart(chartRepo string, client mesherykube.Client, mesheryReleaseVersion string, delete bool, overrides map[string]interface{}) error {
+func applyOperatorHelmChart(chartRepo string, client meshplaykube.Client, meshplayReleaseVersion string, delete bool, overrides map[string]interface{}) error {
 	var (
-		act   = mesherykube.INSTALL
+		act   = meshplaykube.INSTALL
 		chart = "meshplay-operator"
 	)
 	if delete {
-		act = mesherykube.UNINSTALL
+		act = meshplaykube.UNINSTALL
 	}
-	err := client.ApplyHelmChart(mesherykube.ApplyHelmChartConfig{
-		Namespace:   "meshery",
+	err := client.ApplyHelmChart(meshplaykube.ApplyHelmChartConfig{
+		Namespace:   "meshplay",
 		ReleaseName: "meshplay-operator",
-		ChartLocation: mesherykube.HelmChartLocation{
+		ChartLocation: meshplaykube.HelmChartLocation{
 			Repository: chartRepo,
 			Chart:      chart,
-			Version:    mesheryReleaseVersion,
+			Version:    meshplayReleaseVersion,
 		},
 		// CreateNamespace doesn't have any effect when the action is UNINSTALL
 		CreateNamespace: true,

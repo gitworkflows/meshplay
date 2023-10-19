@@ -13,9 +13,9 @@ spec:
     - description: MeshSync is the Schema for the meshsyncs API
       displayName: Mesh Sync
       kind: MeshSync
-      name: meshsyncs.meshery.layer5.io
+      name: meshsyncs.meshplay.layer5.io
       version: v1alpha1
-  description: Meshery Operator is the multi-service mesh operator and implementation
+  description: Meshplay Operator is the multi-service mesh operator and implementation
     of MeshSync.
   displayName: meshplay-operator
   icon:
@@ -38,13 +38,13 @@ spec:
   - servicemesh
   - meshSync
   links:
-  - name: Meshery Operator
+  - name: Meshplay Operator
     url: https://meshplay-operator.domain
   maintainers:
   - email: urakiny@gmai.com1
     name: aisuko
   maturity: alpha
   provider:
-    name: meshery
-    url: https://github.com/meshery
+    name: meshplay
+    url: https://github.com/meshplay
   version: 0.0.0

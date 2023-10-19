@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"sync"
 
-	mesherykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	kubeerror "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/kubectl/pkg/polymorphichelpers"
 )
 
-type mesheryOperator struct {
+type meshplayOperator struct {
 	name           string
-	status         MesheryControllerStatus
-	client         *mesherykube.Client
+	status         MeshplayControllerStatus
+	client         *meshplaykube.Client
 	deploymentConf OperatorDeploymentConfig
 	mx             sync.Mutex
 }
@@ -23,28 +23,28 @@ type mesheryOperator struct {
 type OperatorDeploymentConfig struct {
 	GetHelmOverrides      func(delete bool) map[string]interface{}
 	HelmChartRepo         string
-	MesheryReleaseVersion string
+	MeshplayReleaseVersion string
 }
 
-func NewMesheryOperatorHandler(client *mesherykube.Client, deploymentConf OperatorDeploymentConfig) IMesheryController {
-	return &mesheryOperator{
-		name:           "MesheryOperator",
+func NewMeshplayOperatorHandler(client *meshplaykube.Client, deploymentConf OperatorDeploymentConfig) IMeshplayController {
+	return &meshplayOperator{
+		name:           "MeshplayOperator",
 		status:         Unknown,
 		client:         client,
 		deploymentConf: deploymentConf,
 	}
 }
 
-func (mo *mesheryOperator) GetName() string {
+func (mo *meshplayOperator) GetName() string {
 	return mo.name
 }
 
-func (mo *mesheryOperator) GetStatus() MesheryControllerStatus {
+func (mo *meshplayOperator) GetStatus() MeshplayControllerStatus {
 	if mo.status == Undeployed {
 		return Undeployed
 	}
 	// check if the deployment exists
-	deployment, err := mo.client.DynamicKubeClient.Resource(schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}).Namespace("meshery").Get(context.TODO(), "meshplay-operator", metav1.GetOptions{})
+	deployment, err := mo.client.DynamicKubeClient.Resource(schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}).Namespace("meshplay").Get(context.TODO(), "meshplay-operator", metav1.GetOptions{})
 	if err != nil {
 		if kubeerror.IsNotFound(err) {
 			mo.setStatus(NotDeployed)
@@ -71,23 +71,23 @@ func (mo *mesheryOperator) GetStatus() MesheryControllerStatus {
 	return mo.status
 }
 
-func (mo *mesheryOperator) Deploy(force bool) error {
+func (mo *meshplayOperator) Deploy(force bool) error {
 	status := mo.GetStatus()
 	if status == Undeployed && !force {
 		return nil
 	}
 	if status == Deploying {
-		return ErrDeployController(fmt.Errorf("Already a Meshery Operator is being deployed."))
+		return ErrDeployController(fmt.Errorf("Already a Meshplay Operator is being deployed."))
 	}
-	err := applyOperatorHelmChart(mo.deploymentConf.HelmChartRepo, *mo.client, mo.deploymentConf.MesheryReleaseVersion, false, mo.deploymentConf.GetHelmOverrides(false))
+	err := applyOperatorHelmChart(mo.deploymentConf.HelmChartRepo, *mo.client, mo.deploymentConf.MeshplayReleaseVersion, false, mo.deploymentConf.GetHelmOverrides(false))
 	if err != nil {
 		return ErrDeployController(err)
 	}
 	mo.setStatus(Deployed)
 	return nil
 }
-func (mo *mesheryOperator) Undeploy() error {
-	err := applyOperatorHelmChart(mo.deploymentConf.HelmChartRepo, *mo.client, mo.deploymentConf.MesheryReleaseVersion, true, mo.deploymentConf.GetHelmOverrides(false))
+func (mo *meshplayOperator) Undeploy() error {
+	err := applyOperatorHelmChart(mo.deploymentConf.HelmChartRepo, *mo.client, mo.deploymentConf.MeshplayReleaseVersion, true, mo.deploymentConf.GetHelmOverrides(false))
 	if err != nil {
 		return ErrDeployController(err)
 	}
@@ -95,15 +95,15 @@ func (mo *mesheryOperator) Undeploy() error {
 	return nil
 }
 
-func (mo *mesheryOperator) GetPublicEndpoint() (string, error) {
+func (mo *meshplayOperator) GetPublicEndpoint() (string, error) {
 	return "", nil
 }
 
-func (mo *mesheryOperator) GetVersion() (string, error) {
+func (mo *meshplayOperator) GetVersion() (string, error) {
 	return "", nil
 }
 
-func (mo *mesheryOperator) setStatus(st MesheryControllerStatus) {
+func (mo *meshplayOperator) setStatus(st MeshplayControllerStatus) {
 	mo.mx.Lock()
 	defer mo.mx.Unlock()
 	mo.status = st

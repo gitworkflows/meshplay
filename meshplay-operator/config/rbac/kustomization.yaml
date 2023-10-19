@@ -1,5 +1,5 @@
-namePrefix: meshery-
-namespace: meshery
+namePrefix: meshplay-
+namespace: meshplay
 resources:
 - role.yaml
 - role_binding.yaml

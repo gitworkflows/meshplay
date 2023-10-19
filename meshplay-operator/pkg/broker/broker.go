@@ -6,7 +6,7 @@ import (
 	"net"
 	neturl "net/url"
 
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	utils "github.com/khulnasoft/meshplay/meshplay-operator/pkg/utils"
 	v1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -27,7 +27,7 @@ type Object interface {
 	metav1.Object
 }
 
-func GetObjects(m *mesheryv1alpha1.Broker) map[string]Object {
+func GetObjects(m *meshplayv1alpha1.Broker) map[string]Object {
 	return map[string]Object{
 		ServerConfig:  getServerConfig(),
 		AccountConfig: getAccountConfig(),
@@ -65,7 +65,7 @@ func getAccountConfig() Object {
 	return obj
 }
 
-func CheckHealth(ctx context.Context, m *mesheryv1alpha1.Broker, client *kubernetes.Clientset) error {
+func CheckHealth(ctx context.Context, m *meshplayv1alpha1.Broker, client *kubernetes.Clientset) error {
 	obj, err := client.AppsV1().StatefulSets(m.ObjectMeta.Namespace).Get(ctx, m.ObjectMeta.Name, metav1.GetOptions{})
 	if err != nil {
 		return ErrGettingResource(err)
@@ -86,7 +86,7 @@ func CheckHealth(ctx context.Context, m *mesheryv1alpha1.Broker, client *kuberne
 }
 
 // GetEndpoint returns those endpoints in the given service which match the selector.
-func GetEndpoint(ctx context.Context, m *mesheryv1alpha1.Broker, client *kubernetes.Clientset, url string) error {
+func GetEndpoint(ctx context.Context, m *meshplayv1alpha1.Broker, client *kubernetes.Clientset, url string) error {
 
 	var serviceObj *corev1.Service
 	var err error

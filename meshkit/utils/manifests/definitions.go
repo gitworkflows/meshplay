@@ -10,8 +10,8 @@ const (
 	SERVICE_MESH = iota
 	// native Kubernetes resource
 	K8s
-	// native Meshery resource
-	MESHERY
+	// native Meshplay resource
+	MESHPLAY
 )
 
 type Component struct {
@@ -21,7 +21,7 @@ type Component struct {
 
 // all the data that is needed to get a certain value should be present in the config created by the adapter.
 type Config struct {
-	Name            string                 // Name of the service mesh,or k8 or meshery
+	Name            string                 // Name of the service mesh,or k8 or meshplay
 	Type            string                 //Type of the workload like- Istio, TraefikMesh, Kuma, OSM, Linkerd,AppMesh,NginxMesh
 	MeshVersion     string                 // For service meshes
 	K8sVersion      string                 //For K8ss

@@ -17,7 +17,7 @@ limitations under the License.
 package meshsync
 
 import (
-	mesheryv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	meshplayv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	v1 "k8s.io/api/apps/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -32,7 +32,7 @@ type Object interface {
 	metav1.Object
 }
 
-func GetObjects(m *mesheryv1alpha1.MeshSync) map[string]Object {
+func GetObjects(m *meshplayv1alpha1.MeshSync) map[string]Object {
 	return map[string]Object{
 		ServerObject: getServerObject(m.ObjectMeta.Namespace, m.ObjectMeta.Name, m.Spec.Size, m.Status.PublishingTo),
 	}

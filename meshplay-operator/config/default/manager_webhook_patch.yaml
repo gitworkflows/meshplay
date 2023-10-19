@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: meshplay-operator
-  namespace: meshery
+  namespace: meshplay
 spec:
   template:
     spec:
