@@ -31,7 +31,7 @@ ARG GIT_VERSION
 ARG RELEASE_CHANNEL
 LABEL org.opencontainers.image.title="Meshplay" \
   org.opencontainers.image.description="Meshplay is the open source, cloud native manager that enables the adoption, operation, and management of Kubernetes. Collaboratively design and operate your cloud native deployments with teammates in real-time." \
-  org.opencontainers.image.vendor="Layer5, Inc." \
+  org.opencontainers.image.vendor="KhulnaSoft, Inc." \
   com.docker.desktop.extension.api.version=">= 0.2.0" \
    com.docker.extension.screenshots="[ \
       { \
@@ -54,14 +54,14 @@ LABEL org.opencontainers.image.title="Meshplay" \
   </ul>" \
   com.docker.desktop.extension.icon="https://raw.githubusercontent.com/meshplay/meshplay/master/install/docker-extension/docs/img/meshplay-logo-light.svg" \
   com.docker.extension.publisher-url="https://meshplay.io" \
-  com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://docs.meshplay.io\"},{\"title\":\"Project\",\"url\":\"https://khulnasoft.io/meshplay\"},{\"title\":\"Slack\",\"url\":\"https://slack.meshplay.io\"},{\"title\":\"Discussion Forum\",\"url\":\"http://discuss.meshplay.io\"}]"
+  com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://docs.meshplay.io\"},{\"title\":\"Project\",\"url\":\"https://khulnasoft.com/meshplay\"},{\"title\":\"Slack\",\"url\":\"https://slack.meshplay.io\"},{\"title\":\"Discussion Forum\",\"url\":\"http://discuss.meshplay.io\"}]"
 COPY --from=builder /backend/bin/service /
 COPY docker-compose.yaml .
 COPY metadata.json .
 RUN mkdir -p /meshplayctl/darwin && mkdir -p /meshplayctl/windows && mkdir -p /meshplayctl/linux
-ADD https://github.com/meshplay/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz /meshplayctl/darwin/
-ADD https://github.com/meshplay/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip /meshplayctl/windows/
-ADD https://github.com/meshplay/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz /meshplayctl/linux/
+ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz /meshplayctl/darwin/
+ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip /meshplayctl/windows/
+ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz /meshplayctl/linux/
 RUN tar -xzf /meshplayctl/darwin/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz -C /meshplayctl/darwin/
 RUN unzip /meshplayctl/windows/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip -d /meshplayctl/windows/
 RUN tar -xzf /meshplayctl/linux/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz -C /meshplayctl/linux/

@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ const BYTE_SIZE = 2000
 var logsCmd = &cobra.Command{
 	Use:   "logs",
 	Short: "Print logs",
-	Long: `Print history of Meshery's logs and begin tailing them.
+	Long: `Print history of Meshplay's logs and begin tailing them.
 
 It also shows the logs of a specific component.`,
 	Args: cobra.ArbitraryArgs,
@@ -73,9 +73,9 @@ It also shows the logs of a specific component.`,
 // Show logs (without tailing)
 meshplayctl system logs
 
-// Starts tailing Meshery server debug logs (works with components also)
+// Starts tailing Meshplay server debug logs (works with components also)
 meshplayctl system logs --follow
-meshplayctl system logs meshery-istio
+meshplayctl system logs meshplay-istio
 	`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		//Check prerequisite
@@ -125,15 +125,15 @@ meshplayctl system logs meshery-istio
 		// switch statement for multiple platform
 		switch currPlatform {
 		case "docker":
-			ok, err := utils.AreMesheryComponentsRunning(currPlatform)
+			ok, err := utils.AreMeshplayComponentsRunning(currPlatform)
 			if err != nil {
 				return err
 			}
 			if !ok {
-				log.Error("No logs to show. Meshery is not running.")
+				log.Error("No logs to show. Meshplay is not running.")
 				return nil
 			}
-			log.Info("Starting Meshery logging...")
+			log.Info("Starting Meshplay logging...")
 
 			if _, err := os.Stat(utils.DockerComposeFile); os.IsNotExist(err) {
 				log.Errorf("%s does not exists", utils.DockerComposeFile)
@@ -161,14 +161,14 @@ meshplayctl system logs meshery-istio
 			}
 		case "kubernetes":
 			// if the platform is kubernetes, use kubernetes go-client to
-			// display pod status in the MesheryNamespace
+			// display pod status in the MeshplayNamespace
 
-			ok, err := utils.AreMesheryComponentsRunning(currPlatform)
+			ok, err := utils.AreMeshplayComponentsRunning(currPlatform)
 			if err != nil {
 				return err
 			}
 			if !ok {
-				log.Error("No logs to show. Meshery is not running.")
+				log.Error("No logs to show. Meshplay is not running.")
 				return nil
 			}
 
@@ -179,8 +179,8 @@ meshplayctl system logs meshery-istio
 				return err
 			}
 
-			// List the pods in the MesheryNamespace
-			podList, err := utils.GetPodList(client, utils.MesheryNamespace)
+			// List the pods in the MeshplayNamespace
+			podList, err := utils.GetPodList(client, utils.MeshplayNamespace)
 			availablePods := podList.Items
 
 			if err != nil {
@@ -199,10 +199,10 @@ meshplayctl system logs meshery-istio
 				}
 			}
 
-			log.Info("Starting Meshery logging...")
+			log.Info("Starting Meshplay logging...")
 			wg := &sync.WaitGroup{}
 
-			// List all the pods similar to kubectl get pods -n MesheryNamespace
+			// List all the pods similar to kubectl get pods -n MeshplayNamespace
 			for _, pod := range podList.Items {
 
 				// Get the values from the pod status
@@ -226,7 +226,7 @@ meshplayctl system logs meshery-istio
 						Follow:    follow,
 					}
 
-					req := client.KubeClient.CoreV1().Pods(utils.MesheryNamespace).GetLogs(name, &podLogOpts)
+					req := client.KubeClient.CoreV1().Pods(utils.MeshplayNamespace).GetLogs(name, &podLogOpts)
 
 					logs, err := req.Stream(context.TODO())
 					if err != nil {
@@ -271,5 +271,5 @@ meshplayctl system logs meshery-istio
 }
 
 func init() {
-	logsCmd.Flags().BoolVarP(&follow, "follow", "f", false, "(Optional) Follow the stream of the Meshery's logs. Defaults to false.")
+	logsCmd.Flags().BoolVarP(&follow, "follow", "f", false, "(Optional) Follow the stream of the Meshplay's logs. Defaults to false.")
 }

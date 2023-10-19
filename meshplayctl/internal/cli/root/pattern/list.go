@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ meshplayctl pattern list
 		}
 
 		var response models.PatternsAPIResponse
-		req, err := utils.NewRequest("GET", mctlCfg.GetBaseMesheryURL()+"/api/pattern", nil)
+		req, err := utils.NewRequest("GET", mctlCfg.GetBaseMeshplayURL()+"/api/pattern", nil)
 		if err != nil {
 			utils.Log.Error(err)
 			return nil
@@ -82,7 +82,7 @@ meshplayctl pattern list
 			utils.Log.Error(utils.ErrReadToken(err))
 			return nil
 		}
-		provider := tokenObj["meshery-provider"]
+		provider := tokenObj["meshplay-provider"]
 		var data [][]string
 
 		if verbose {

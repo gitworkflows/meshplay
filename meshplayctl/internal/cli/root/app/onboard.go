@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,8 +74,8 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 			return nil
 		}
 
-		deployURL := mctlCfg.GetBaseMesheryURL() + "/api/application/deploy"
-		appURL := mctlCfg.GetBaseMesheryURL() + "/api/application"
+		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/application/deploy"
+		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/application"
 
 		// app name has been passed
 		if len(args) > 0 {
@@ -162,7 +162,7 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 	},
 }
 
-func multipleApplicationsConfirmation(profiles []models.MesheryApplication) int {
+func multipleApplicationsConfirmation(profiles []models.MeshplayApplication) int {
 	reader := bufio.NewReader(os.Stdin)
 
 	for index, a := range profiles {

@@ -39,7 +39,7 @@ func TestGetLocation(t *testing.T) {
 		token.SetLocation(test)
 		got := token.GetLocation()
 		want, err := os.UserHomeDir()
-		want = want + "/.meshery/" + test
+		want = want + "/.meshplay/" + test
 		if err != nil {
 			t.Errorf("Fail")
 		}

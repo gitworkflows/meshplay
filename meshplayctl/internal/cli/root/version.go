@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ var linkDoc = map[string]string{
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Version of meshplayctl",
-	Long:  `Version of Meshery command line client - meshplayctl.`,
+	Long:  `Version of Meshplay command line client - meshplayctl.`,
 	Example: `
 // To view the current version and SHA of release binary of meshplayctl client 
 meshplayctl version
@@ -61,7 +61,7 @@ meshplayctl version
 			userResponse = utils.AskForConfirmation("Looks like you are using an outdated config file. Do you want to generate a new config file?")
 			if userResponse {
 				utils.BackupConfigFile(utils.DefaultConfigPath)
-				// Create config file if not present in meshery folder
+				// Create config file if not present in meshplay folder
 				err = utils.CreateConfigFile()
 				if err != nil {
 					utils.Log.Error(ErrCreatingConfigFile)
@@ -112,7 +112,7 @@ meshplayctl version
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 
-		url := mctlCfg.GetBaseMesheryURL()
+		url := mctlCfg.GetBaseMeshplayURL()
 		build := constants.GetMeshplayctlVersion()
 		commitsha := constants.GetMeshplayctlCommitsha()
 
@@ -168,7 +168,7 @@ func checkMeshplayctlClientVersion(build string) {
 	utils.Log.Info("Checking for latest version of meshplayctl...\n")
 
 	// Inform user of the latest release version
-	res, err := meshkitutils.GetLatestReleaseTagsSorted(c.GetMesheryGitHubOrg(), c.GetMesheryGitHubRepo())
+	res, err := meshkitutils.GetLatestReleaseTagsSorted(c.GetMeshplayGitHubOrg(), c.GetMeshplayGitHubRepo())
 	if err != nil {
 		utils.Log.Warn(fmt.Errorf("Unable to check for latest version of meshplayctl. %s", err))
 		return

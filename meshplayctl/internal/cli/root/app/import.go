@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import (
 var importCmd = &cobra.Command{
 	Use:   "import",
 	Short: "Import app manifests",
-	Long:  `Import the app manifest into Meshery`,
+	Long:  `Import the app manifest into Meshplay`,
 	Example: `
 // Import app manifest
 meshplayctl app import -f [file/URL] -s [source-type]
@@ -59,7 +59,7 @@ meshplayctl app import -f [file/URL] -s [source-type]
 			return nil
 		}
 
-		appURL := mctlCfg.GetBaseMesheryURL() + "/api/application"
+		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/application"
 
 		// If app file is passed via flags
 		if !isValidSource(sourceType) {
@@ -79,9 +79,9 @@ meshplayctl app import -f [file/URL] -s [source-type]
 	},
 }
 
-func importApp(sourceType string, file string, appURL string, save bool) (*models.MesheryApplication, error) {
+func importApp(sourceType string, file string, appURL string, save bool) (*models.MeshplayApplication, error) {
 	var req *http.Request
-	var app *models.MesheryApplication
+	var app *models.MeshplayApplication
 
 	// Check if the app manifest is file or URL
 	if validURL := govalidator.IsURL(file); !validURL {
@@ -111,7 +111,7 @@ func importApp(sourceType string, file string, appURL string, save bool) (*model
 			return nil, err
 		}
 		utils.Log.Debug("App file saved")
-		var response []*models.MesheryApplication
+		var response []*models.MeshplayApplication
 		defer resp.Body.Close()
 
 		body, err := io.ReadAll(resp.Body)
@@ -160,7 +160,7 @@ func importApp(sourceType string, file string, appURL string, save bool) (*model
 			return nil, utils.ErrRequestResponse(err)
 		}
 		utils.Log.Debug("remote hosted app request success")
-		var response []*models.MesheryApplication
+		var response []*models.MeshplayApplication
 		defer resp.Body.Close()
 
 		body, err := io.ReadAll(resp.Body)

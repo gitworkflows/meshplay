@@ -31,8 +31,8 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 # This variable is used to construct full image tags for bundle and catalog images.
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
-# layer5/meshplay-operator-bundle:$VERSION and layer5/meshplay-operator-catalog:$VERSION.
-IMAGE_TAG_BASE ?= layer5/meshplay-operator
+# khulnasoft/meshplay-operator-bundle:$VERSION and khulnasoft/meshplay-operator-catalog:$VERSION.
+IMAGE_TAG_BASE ?= khulnasoft/meshplay-operator
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
 # You can use it as an arg. (E.g make bundle-build BUNDLE_IMG=<some-registry>/<project-name-bundle>:<tag>)
@@ -50,7 +50,7 @@ ifeq ($(USE_IMAGE_DIGESTS), true)
 endif
 
 # Image URL to use all building/pushing image targets
-IMG ?= layer5/meshplay-operator:stable-latest
+IMG ?= khulnasoft/meshplay-operator:stable-latest
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true"

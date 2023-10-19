@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,15 +60,15 @@ meshplayctl filter import /path/to/filter.wasm --name [string]
 			return nil
 		}
 
-		filterURL := mctlCfg.GetBaseMesheryURL() + "/api/filter"
+		filterURL := mctlCfg.GetBaseMeshplayURL() + "/api/filter"
 
 		if len(args) == 0 {
 			return errors.New(utils.FilterImportError("URI is required\nUse 'meshplayctl filter import --help' to display usage guide\n"))
 		}
 
-		body := models.MesheryFilterRequestBody{
+		body := models.MeshplayFilterRequestBody{
 			Save:       true,
-			FilterData: &models.MesheryFilterPayload{},
+			FilterData: &models.MeshplayFilterPayload{},
 		}
 
 		uri := args[0]

@@ -20,7 +20,7 @@ var _ = Describe("The test case for the meshsync CRDs", func() {
 	context := context.Background()
 
 	const (
-		URL          string = "https://layer5.io"
+		URL          string = "https://khulnasoft.com"
 		str          string = "healthy"
 		Reason       string = "Testcase"
 		Message      string = "Message for testcase"
@@ -28,7 +28,7 @@ var _ = Describe("The test case for the meshsync CRDs", func() {
 		FileManager  string = "testcase-meshsync"
 
 		Kind       string = "MeshSync"
-		APIVersion string = "meshplay.layer5.io/v1alpha1"
+		APIVersion string = "meshplay.khulnasoft.com/v1alpha1"
 	)
 
 	meshSync := &MeshSync{
@@ -73,7 +73,7 @@ var _ = Describe("The test case for the meshsync CRDs", func() {
 			err := fakeClient.Get(context, typeNamespace, mesheSyncGet)
 			Expect(err).NotTo(HaveOccurred())
 
-			By("Confirm the URL equal to https://layer5.io")
+			By("Confirm the URL equal to https://khulnasoft.com")
 			url := mesheSyncGet.Spec.Broker.Custom.URL
 			Expect(url == URL).Should(BeTrue())
 

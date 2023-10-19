@@ -472,7 +472,7 @@ const externlinks = [
   },
   {
     id: 'issues',
-    href: 'https://github.com/meshplay/meshplay/issues/new/choose',
+    href: 'https://github.com/khulnasoft/meshplay/issues/new/choose',
     title: 'Issues',
     icon: <GithubIcon style={drawerIconsStyle} />,
     external_icon: ExternalLinkIcon,

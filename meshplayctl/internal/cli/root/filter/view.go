@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,14 +59,14 @@ meshplayctl filter view --all
 			if viewAllFlag {
 				return errors.New(utils.FilterViewError("--all cannot be used when filter name or ID is specified\nUse 'meshplayctl filter view --help' to display usage guide\n"))
 			}
-			filter, isID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "filter")
+			filter, isID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "filter")
 			if err != nil {
 				utils.Log.Error(ErrFilterNameOrID(err))
 				return nil
 			}
 		}
 
-		urlString := mctlCfg.GetBaseMesheryURL()
+		urlString := mctlCfg.GetBaseMeshplayURL()
 		if len(filter) == 0 {
 			if viewAllFlag {
 				urlString += "/api/filter?pagesize=10000"

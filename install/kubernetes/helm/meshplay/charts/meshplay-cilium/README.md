@@ -10,7 +10,7 @@ Meshplay Adapter for Cilium chart.
 | ---- | ------ | --- |
 | aisuko | <urakiny@gmail.com> |  |
 | leecalcote | <leecalcote@gmail.com> |  |
-| Layer5 Authors | <community@khulnasoft.io> |  |
+| KhulnaSoft Authors | <community@khulnasoft.com> |  |
 
 ## Values
 

@@ -1,6 +1,6 @@
 /*
 Meshplay Component Updater
-Uses a spreadsheet of centralized information about MeshModel components and their metadata like color, icon, and so on. Script is used to update components metada (svgs, icons etc) for Meshplay, Websites (Layer5.io, Meshplay.io), and Remote Provider.
+Uses a spreadsheet of centralized information about MeshModel components and their metadata like color, icon, and so on. Script is used to update components metada (svgs, icons etc) for Meshplay, Websites (khulnasoft.com, Meshplay.io), and Remote Provider.
 
 Usage: (order of flags matters)
 
@@ -150,7 +150,7 @@ func docsUpdater(output []map[string]string) {
 		log.Fatal("docsUpdater: invalid number of arguments; missing website and docs path")
 		return
 	}
-	pathToIntegrationsLayer5 := os.Args[4]
+	pathToIntegrationsKhulnaSoft := os.Args[4]
 	pathToIntegrationsMeshplay := os.Args[5]
 	pathToIntegrationsMeshplayDocs := os.Args[6]
 	updateOnlyPublished := true
@@ -211,32 +211,32 @@ func docsUpdater(output []map[string]string) {
 		jsonItem := t.CreateJSONItem()
 		meshplayDocsJSON += jsonItem + ","
 		modelName := strings.TrimSpace(out["model"])
-		pathToIntegrationsLayer5, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsLayer5, modelName))
+		pathToIntegrationsKhulnaSoft, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsKhulnaSoft, modelName))
 		pathToIntegrationsMeshplay, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsMeshplay))
 		pathToIntegrationsMeshplayDocs, _ := filepath.Abs(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "assets/img/meshmodel/", modelName))
-		err = os.MkdirAll(pathToIntegrationsLayer5, 0777)
+		err = os.MkdirAll(pathToIntegrationsKhulnaSoft, 0777)
 		if err != nil {
 			panic(err)
 		}
-		_ = pkg.WriteToFile(filepath.Join(pathToIntegrationsLayer5, "index.mdx"), md)
+		_ = pkg.WriteToFile(filepath.Join(pathToIntegrationsKhulnaSoft, "index.mdx"), md)
 		svgcolor := out["svgColor"]
 		svgwhite := out["svgWhite"]
 
-		// Write SVGs to Layer5 docs
-		err = os.MkdirAll(filepath.Join(pathToIntegrationsLayer5, "icon", "color"), 0777)
+		// Write SVGs to KhulnaSoft docs
+		err = os.MkdirAll(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "color"), 0777)
 		if err != nil {
 			panic(err)
 		}
 
-		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsLayer5, "icon", "color", modelName+"-color.svg"), svgcolor) //CHANGE PATH
+		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "color", modelName+"-color.svg"), svgcolor) //CHANGE PATH
 		if err != nil {
 			panic(err)
 		}
-		err = os.MkdirAll(filepath.Join(pathToIntegrationsLayer5, "icon", "white"), 0777)
+		err = os.MkdirAll(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "white"), 0777)
 		if err != nil {
 			panic(err)
 		}
-		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsLayer5, "icon", "white", modelName+"-white.svg"), svgwhite) //CHANGE PATH
+		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "white", modelName+"-white.svg"), svgwhite) //CHANGE PATH
 		if err != nil {
 			panic(err)
 		}

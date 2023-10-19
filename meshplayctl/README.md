@@ -1,32 +1,32 @@
 # meshplayctl
 
-`meshplayctl` is the CLI client for Meshery.
+`meshplayctl` is the CLI client for Meshplay.
 
 # Contributing
 
-Please refer the [Meshery Contributing Guidelines](https://github.com/meshery/meshery/blob/master/CONTRIBUTING.md) for setting up your development environment.
+Please refer the [Meshplay Contributing Guidelines](https://github.com/khulnasoft/meshplay/blob/master/CONTRIBUTING.md) for setting up your development environment.
 
 Refer the [meshplayctl- Command Reference and Tracker](https://docs.google.com/spreadsheets/d/1q63sIGAuCnIeDs8PeM-0BAkNj8BBgPUXhLbe1Y-318o/edit#gid=0) for current status of `meshplayctl`.
 
-For a quick introduction to `meshplayctl`, checkout [Beginner's guide to contributing to Meshery and meshplayctl](https://youtu.be/hh_kFLZx3G4).
+For a quick introduction to `meshplayctl`, checkout [Beginner's guide to contributing to Meshplay and meshplayctl](https://youtu.be/hh_kFLZx3G4).
 
 ## Building and running `meshplayctl`
 
-The [`/meshplayctl`](https://github.com/meshery/meshery/tree/master/meshplayctl) folder contains the complete code for `meshplayctl`.
+The [`/meshplayctl`](https://github.com/khulnasoft/meshplay/tree/master/meshplayctl) folder contains the complete code for `meshplayctl`.
 
 `meshplayctl` is written in Golang or the Go Programming Language. For development use Go version 1.15+.
 
 After making changes, run `make` in the `meshplayctl` folder to build the binary. You can then use the binary by, say, `./meshplayctl system start`.
 
-Refer the [Meshery CLI Commands and Documentation](https://docs.google.com/document/d/1xRlFpElRmybJ3WacgPKXgCSiQ2poJl3iCCV1dAalf0k/edit#heading=h.5fucij4hc5wt) for a complete reference of `meshplayctl`.
+Refer the [Meshplay CLI Commands and Documentation](https://docs.google.com/document/d/1xRlFpElRmybJ3WacgPKXgCSiQ2poJl3iCCV1dAalf0k/edit#heading=h.5fucij4hc5wt) for a complete reference of `meshplayctl`.
 
 ## `meshplayctl` command reference
 
-Detailed documentation of the `meshplayctl` commands is available in the [Meshery Docs](https://docs.meshery.io/reference/meshplayctl).
+Detailed documentation of the `meshplayctl` commands is available in the [Meshplay Docs](https://docs.meshplay.io/reference/meshplayctl).
 
 ## General guidelines and resources
 
-`meshplayctl` might be the interface that the users first have with Meshery. As such, `meshplayctl` needs to provide a great UX.
+`meshplayctl` might be the interface that the users first have with Meshplay. As such, `meshplayctl` needs to provide a great UX.
 
 The following principles should be taken in mind while designing `meshplayctl` commands-
 
@@ -41,10 +41,10 @@ Part of delivering a great user experience is providing intuitive interfaces. In
 
 For manipulating config files, `meshplayctl` uses [Viper](https://github.com/spf13/viper).
 
-A central `struct` is maintained in the `meshplayctl/internal/cli/root/config/config.go` file. These are updated and should be used for getting the Meshery configuration.
+A central `struct` is maintained in the `meshplayctl/internal/cli/root/config/config.go` file. These are updated and should be used for getting the Meshplay configuration.
 
 For logs, `meshplayctl` uses [Logrus](https://github.com/sirupsen/logrus). Going through the docs and understanding the different [log-levels](https://github.com/sirupsen/logrus#level-logging) will help a lot.
 
 `meshplayctl` uses [golangci-lint](https://github.com/golangci/golangci-lint). Refer it for lint checks.
 
-All contributors are invited to review [pull requests](https://github.com/meshery/meshery/pulls) on `meshplayctl` as on other Layer5 projects.
+All contributors are invited to review [pull requests](https://github.com/khulnasoft/meshplay/pulls) on `meshplayctl` as on other KhulnaSoft projects.

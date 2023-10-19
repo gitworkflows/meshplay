@@ -1,4 +1,4 @@
-apiVersion: meshplay.khulnasoft.io/v1alpha1
+apiVersion: meshplay.khulnasoft.com/v1alpha1
 kind: MeshSync
 metadata:
   name: {{ .Values.name }}

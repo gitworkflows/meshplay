@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ var (
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "meshplayctl",
-	Short: "Meshery Command Line tool",
-	Long:  `As a self-service engineering platform, Meshery enables collaborative design and operation of cloud native infrastructure.`,
+	Short: "Meshplay Command Line tool",
+	Long:  `As a self-service engineering platform, Meshplay enables collaborative design and operation of cloud native infrastructure.`,
 	Example: `
 // Base command
 meshplayctl
@@ -95,7 +95,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", utils.DefaultConfigPath, "path to config file")
 
 	// Preparing for an "edge" channel
-	// RootCmd.PersistentFlags().StringVar(&cfgFile, "edge", "", "flag to run Meshery as edge (one-time)")
+	// RootCmd.PersistentFlags().StringVar(&cfgFile, "edge", "", "flag to run Meshplay as edge (one-time)")
 
 	// global verbose flag for verbose logs
 	RootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output")
@@ -135,22 +135,22 @@ func initConfig() {
 			log.Println("Empty meshconfig. Please populate it before running a command")
 		}
 		if os.IsNotExist(err) {
-			log.Printf("Missing Meshery config file.")
+			log.Printf("Missing Meshplay config file.")
 		}
 
 		// Create a default meshconfig in each of the above two scenarios.
 		if os.IsNotExist(err) || (!os.IsNotExist(err) && stat.Size() == 0) {
-			// Check for Meshery existence and permission of application folder
-			if _, err := os.Stat(utils.MesheryFolder); err != nil {
+			// Check for Meshplay existence and permission of application folder
+			if _, err := os.Stat(utils.MeshplayFolder); err != nil {
 				if os.IsNotExist(err) {
-					err = os.MkdirAll(utils.MesheryFolder, 0775)
+					err = os.MkdirAll(utils.MeshplayFolder, 0775)
 					if err != nil {
 						log.Fatal(err)
 					}
 				}
 			}
 
-			// Create config file if not present in meshery folder
+			// Create config file if not present in meshplay folder
 			err = utils.CreateConfigFile()
 			if err != nil {
 				log.Fatal(err)

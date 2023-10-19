@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,14 +50,14 @@ meshplayctl filter delete [filter-name | ID]
 		var filterName string
 		var isValidName bool
 
-		filterID, isValidID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "filter")
+		filterID, isValidID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "filter")
 		if err != nil {
 			utils.Log.Error(ErrFilterNameOrID(err))
 			return nil
 		}
 
 		if !isValidID {
-			filterName, filterID, isValidName, err = utils.ValidName(mctlCfg.GetBaseMesheryURL(), args[0], "filter")
+			filterName, filterID, isValidName, err = utils.ValidName(mctlCfg.GetBaseMeshplayURL(), args[0], "filter")
 			if err != nil {
 				utils.Log.Error(ErrFilterNameOrID(err))
 				return nil
@@ -66,7 +66,7 @@ meshplayctl filter delete [filter-name | ID]
 
 		// Delete the filter using the id
 		if isValidID || isValidName {
-			err := utils.DeleteConfiguration(mctlCfg.GetBaseMesheryURL(), filterID, "filter")
+			err := utils.DeleteConfiguration(mctlCfg.GetBaseMeshplayURL(), filterID, "filter")
 
 			var filter string
 			if isValidID {

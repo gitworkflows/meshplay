@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ type Token struct {
 	Location string `yaml:"location" mapstructure:"location"`
 }
 
-// Context defines a meshery environment
+// Context defines a meshplay environment
 type Context struct {
 	Endpoint   string   `yaml:"endpoint,omitempty" mapstructure:"endpoint,omitempty"`
 	Token      string   `yaml:"token,omitempty" mapstructure:"token,omitempty"`
@@ -105,8 +105,8 @@ func (mc *MeshplayCtlConfig) CheckIfGivenContextIsValid(name string) (*Context, 
 	return &Context{}, errors.New("context " + name + " does not exist")
 }
 
-// GetBaseMesheryURL returns the base meshery server URL
-func (mc *MeshplayCtlConfig) GetBaseMesheryURL() string {
+// GetBaseMeshplayURL returns the base meshplay server URL
+func (mc *MeshplayCtlConfig) GetBaseMeshplayURL() string {
 	currentContext, err := mc.CheckIfCurrentContextIsValid()
 	if err != nil {
 		log.Fatal(err)
@@ -240,7 +240,7 @@ func (ctx *Context) ValidateVersion() error {
 		return nil
 	}
 
-	url := "https://github.com/" + constants.GetMesheryGitHubOrg() + "/" + constants.GetMesheryGitHubRepo() + "/releases/tag/" + ctx.Version
+	url := "https://github.com/" + constants.GetMeshplayGitHubOrg() + "/" + constants.GetMeshplayGitHubRepo() + "/releases/tag/" + ctx.Version
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
@@ -258,11 +258,11 @@ func (ctx *Context) ValidateVersion() error {
 	}()
 
 	if resp.StatusCode == 404 {
-		log.Fatal("version '" + ctx.Version + "' is not a valid Meshery release.")
+		log.Fatal("version '" + ctx.Version + "' is not a valid Meshplay release.")
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		log.Fatal("failed to validate Meshery release version " + ctx.Version)
+		log.Fatal("failed to validate Meshplay release version " + ctx.Version)
 	}
 
 	if err != nil {
@@ -313,13 +313,13 @@ func (t *Token) GetLocation() string {
 	}
 
 	// If file path is not absolute, then assume that the file
-	// is in the .meshery directory
+	// is in the .meshplay directory
 	home, err := os.UserHomeDir()
 	if err != nil {
 		log.Warn("failed to get user home directory")
 	}
 
-	return filepath.Join(home, ".meshery", t.Location)
+	return filepath.Join(home, ".meshplay", t.Location)
 }
 
 // SetName sets the token name

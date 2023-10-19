@@ -3,7 +3,7 @@ name: meshplay-cilium
 description: Meshplay Adapter for Cilium chart.
 icon: https://meshplay.io/images/logos/meshplay-logo.png
 source: 
-  - https://github.com/meshplay/meshplay-cilium
+  - https://github.com/khulnasoft/meshplay-cilium
 
 deprecated: false
 
@@ -31,5 +31,5 @@ maintainers:
     email: urakiny@gmail.com
   - name: leecalcote
     email: leecalcote@gmail.com
-  - name: Layer5 Authors
-    email: community@khulnasoft.io
+  - name: KhulnaSoft Authors
+    email: community@khulnasoft.com

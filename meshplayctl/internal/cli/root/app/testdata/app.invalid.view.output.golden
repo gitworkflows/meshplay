@@ -1,5 +1,5 @@
 application_file: |
-  name: MyApplication # display name in Meshery UI
+  name: MyApplication # display name in Meshplay UI
   services:
     myapp:
       type: Application
@@ -28,7 +28,7 @@ updated_at: "2023-09-01T05:03:30.724699428Z"
 user_id: null
 
 application_file: |
-  name: ApplicationPatternTwo # display name in Meshery UI
+  name: ApplicationPatternTwo # display name in Meshplay UI
   services:
     myapp:
       type: Application
@@ -57,7 +57,7 @@ updated_at: "2023-09-01T05:02:54.72610455Z"
 user_id: null
 
 application_file: |
-  name: ApplicationPatternOne # display name in Meshery UI
+  name: ApplicationPatternOne # display name in Meshplay UI
   services:
     myapp:
       type: Application

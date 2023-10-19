@@ -10,7 +10,7 @@
             "RBAC support",
             "Free use"
         ],
-        "provider_url": "https://meshplay.khulnasoft.io"
+        "provider_url": "https://meshplay.khulnasoft.com"
     },
     "None": {
         "provider_type": "local",

@@ -83,12 +83,12 @@ func TestPrereq(t *testing.T) {
 }
 
 func TestSetFileLocation(t *testing.T) {
-	originalMesheryFolder := MesheryFolder
+	originalMeshplayFolder := MeshplayFolder
 	originalDockerComposeFile := DockerComposeFile
 	originalAuthConfigFile := AuthConfigFile
 	originalDefaultConfigPath := DefaultConfigPath
 	defer func() {
-		MesheryFolder = originalMesheryFolder
+		MeshplayFolder = originalMeshplayFolder
 		DockerComposeFile = originalDockerComposeFile
 		AuthConfigFile = originalAuthConfigFile
 		DefaultConfigPath = originalDefaultConfigPath
@@ -101,7 +101,7 @@ func TestSetFileLocation(t *testing.T) {
 
 func TestNavigateToBrowser(t *testing.T) {
 	// opens up a browser window whenever this test runs
-	err := NavigateToBrowser("https://layer5.io")
+	err := NavigateToBrowser("https://khulnasoft.com")
 	if err != nil {
 		t.Errorf("NavigateToBrowser error: %v", err)
 	}
@@ -218,17 +218,17 @@ func TestValidateURL(t *testing.T) {
 	}{
 		{
 			name: "Correct URL",
-			url:  "https://www.layer5.io",
+			url:  "https://www.khulnasoft.com",
 		},
 		{
 			name:    "Unsupported scheme",
-			url:     "mqtt://www.layer5.io",
+			url:     "mqtt://www.khulnasoft.com",
 			wantErr: "mqtt is not a supported protocol",
 		},
 		{
 			name:    "invalid URL",
-			url:     "layer5.io",
-			wantErr: "parse \"layer5.io\": invalid URI for request",
+			url:     "khulnasoft.com",
+			wantErr: "parse \"khulnasoft.com\": invalid URI for request",
 		},
 	}
 	for _, tt := range tests {
@@ -352,8 +352,8 @@ func TestParseURLGithub(t *testing.T) {
 	}{
 		{
 			name:          "test with non-github url",
-			url:           "https://layer5.io",
-			rawRepoOutput: "https://layer5.io",
+			url:           "https://khulnasoft.com",
+			rawRepoOutput: "https://khulnasoft.com",
 			pathOutput:    "",
 			expectedError: "only github urls are supported",
 		},
@@ -365,8 +365,8 @@ func TestParseURLGithub(t *testing.T) {
 		},
 		{
 			name:          "test with raw.githubusercontent.com",
-			url:           "https://raw.githubusercontent.com/layer5io/meshery/master/.goreleaser.yml",
-			rawRepoOutput: "https://raw.githubusercontent.com/layer5io/meshery/master/.goreleaser.yml",
+			url:           "https://raw.githubusercontent.com/khulnasoft/meshplay/master/.goreleaser.yml",
+			rawRepoOutput: "https://raw.githubusercontent.com/khulnasoft/meshplay/master/.goreleaser.yml",
 			pathOutput:    "",
 		},
 	}
@@ -451,42 +451,42 @@ func TestSetOverrideValues(t *testing.T) {
 	tests := []struct {
 		name                string
 		ctx                 *config.Context
-		mesheryImageVersion string
+		meshplayImageVersion string
 		want                map[string]interface{}
 	}{
 		{
-			name: "Context contains no components and no meshery image version",
+			name: "Context contains no components and no meshplay image version",
 			ctx: &config.Context{
 				Components: nil,
 				Channel:    testChannel,
 			},
-			mesheryImageVersion: "",
+			meshplayImageVersion: "",
 			want: map[string]interface{}{
-				"meshery-app-mesh": map[string]interface{}{
+				"meshplay-app-mesh": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-istio": map[string]interface{}{
+				"meshplay-istio": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-cilium": map[string]interface{}{
+				"meshplay-cilium": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-linkerd": map[string]interface{}{
+				"meshplay-linkerd": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-consul": map[string]interface{}{
+				"meshplay-consul": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-kuma": map[string]interface{}{
+				"meshplay-kuma": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-nsm": map[string]interface{}{
+				"meshplay-nsm": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-nginx-sm": map[string]interface{}{
+				"meshplay-nginx-sm": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-traefik-mesh": map[string]interface{}{
+				"meshplay-traefik-mesh": map[string]interface{}{
 					"enabled": false,
 				},
 				"image": map[string]interface{}{
@@ -495,38 +495,38 @@ func TestSetOverrideValues(t *testing.T) {
 			},
 		},
 		{
-			name: "Context contains part of all available components and meshery image version",
+			name: "Context contains part of all available components and meshplay image version",
 			ctx: &config.Context{
-				Components: []string{"meshery-istio", "meshery-nsm"},
+				Components: []string{"meshplay-istio", "meshplay-nsm"},
 				Channel:    testChannel,
 			},
-			mesheryImageVersion: "testImageVersion",
+			meshplayImageVersion: "testImageVersion",
 			want: map[string]interface{}{
-				"meshery-app-mesh": map[string]interface{}{
+				"meshplay-app-mesh": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-istio": map[string]interface{}{
+				"meshplay-istio": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-cilium": map[string]interface{}{
+				"meshplay-cilium": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-linkerd": map[string]interface{}{
+				"meshplay-linkerd": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-consul": map[string]interface{}{
+				"meshplay-consul": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-kuma": map[string]interface{}{
+				"meshplay-kuma": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-nsm": map[string]interface{}{
+				"meshplay-nsm": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-nginx-sm": map[string]interface{}{
+				"meshplay-nginx-sm": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-traefik-mesh": map[string]interface{}{
+				"meshplay-traefik-mesh": map[string]interface{}{
 					"enabled": false,
 				},
 				"image": map[string]interface{}{
@@ -535,39 +535,39 @@ func TestSetOverrideValues(t *testing.T) {
 			},
 		},
 		{
-			name: "Context contains all available components and meshery image version",
+			name: "Context contains all available components and meshplay image version",
 			ctx: &config.Context{
-				Components: []string{"meshery-istio", "meshery-linkerd", "meshery-consul", "meshery-kuma",
-					"meshery-nsm", "meshery-nginx-sm", "meshery-traefik-mesh", "meshery-cilium"},
+				Components: []string{"meshplay-istio", "meshplay-linkerd", "meshplay-consul", "meshplay-kuma",
+					"meshplay-nsm", "meshplay-nginx-sm", "meshplay-traefik-mesh", "meshplay-cilium"},
 				Channel: testChannel,
 			},
-			mesheryImageVersion: "testImageVersion",
+			meshplayImageVersion: "testImageVersion",
 			want: map[string]interface{}{
-				"meshery-app-mesh": map[string]interface{}{
+				"meshplay-app-mesh": map[string]interface{}{
 					"enabled": false,
 				},
-				"meshery-istio": map[string]interface{}{
+				"meshplay-istio": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-cilium": map[string]interface{}{
+				"meshplay-cilium": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-linkerd": map[string]interface{}{
+				"meshplay-linkerd": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-consul": map[string]interface{}{
+				"meshplay-consul": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-kuma": map[string]interface{}{
+				"meshplay-kuma": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-nsm": map[string]interface{}{
+				"meshplay-nsm": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-nginx-sm": map[string]interface{}{
+				"meshplay-nginx-sm": map[string]interface{}{
 					"enabled": true,
 				},
-				"meshery-traefik-mesh": map[string]interface{}{
+				"meshplay-traefik-mesh": map[string]interface{}{
 					"enabled": true,
 				},
 				"image": map[string]interface{}{
@@ -578,7 +578,7 @@ func TestSetOverrideValues(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		got := SetOverrideValues(tt.ctx, tt.mesheryImageVersion)
+		got := SetOverrideValues(tt.ctx, tt.meshplayImageVersion)
 		eq := reflect.DeepEqual(got, tt.want)
 		if !eq {
 			t.Errorf("SetOverrideValues %s got = %v want = %v", tt.name, got, tt.want)

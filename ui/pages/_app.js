@@ -537,7 +537,7 @@ class MeshplayApp extends App {
                         ) : (
                           <>
                             {' '}
-                            Built with <FavoriteIcon className={classes.footerIcon} /> by the Layer5
+                            Built with <FavoriteIcon className={classes.footerIcon} /> by the KhulnaSoft
                             Community
                           </>
                         )}

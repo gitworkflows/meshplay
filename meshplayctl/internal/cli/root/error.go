@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package root
 import "github.com/khulnasoft/meshplay/meshkit/errors"
 
 // Please reference the following before contributing an error code:
-// https://docs.meshery.io/project/contributing/contributing-error
-// https://github.com/meshery/meshkit/blob/master/errors/errors.go
+// https://docs.meshplay.io/project/contributing/contributing-error
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrProcessingConfigCode        = "1088"
 	ErrCreatingConfigFileCode      = "1089"
@@ -45,7 +45,7 @@ func ErrProcessingConfig(err error) error {
 }
 
 func ErrConnectingToServer(err error) error {
-	return errors.New(ErrConnectingToServerCode, errors.Fatal, []string{"Unable to communicate with Meshery server"}, []string{"Unable to communicate with Meshery server", err.Error(), "See https://docs.meshery.io for help getting started with Meshery"}, []string{}, []string{"See https://docs.meshery.io for help getting started with Meshery"})
+	return errors.New(ErrConnectingToServerCode, errors.Fatal, []string{"Unable to communicate with Meshplay server"}, []string{"Unable to communicate with Meshplay server", err.Error(), "See https://docs.meshplay.io for help getting started with Meshplay"}, []string{}, []string{"See https://docs.meshplay.io for help getting started with Meshplay"})
 }
 
 func ErrGettingRequestContext(err error) error {

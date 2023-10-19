@@ -43,7 +43,7 @@ var (
 
 const (
 	// DefaultProviderURL is the provider url for the "none" provider
-	DefaultProviderURL = "https://meshplay.khulnasoft.io"
+	DefaultProviderURL = "https://meshplay.khulnasoft.com"
 	PoliciesPath       = "../meshmodel/kubernetes/policies"
 	RelationshipsPath  = "../meshmodel/kubernetes/relationships"
 )

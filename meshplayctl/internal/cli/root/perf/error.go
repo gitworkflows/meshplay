@@ -7,8 +7,8 @@ import (
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshery.io/project/contributing/contributing-error
-// https://github.com/meshery/meshkit/blob/master/errors/errors.go
+// https://docs.meshplay.io/project/contributing/contributing-error
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrReadFilepathCode             = "1118"
 	ErrNoProfileNameCode            = "1119"
@@ -80,7 +80,7 @@ func ErrNoProfileFound() error {
 		[]string{"No profile found"},
 		[]string{"No profile found with given name"},
 		[]string{"Invalid profile name or no profile name provided"},
-		[]string{"Ensure a valid profile name is inputted. See https://docs.meshery.io/reference/meshplayctl/perf/apply for more details"})
+		[]string{"Ensure a valid profile name is inputted. See https://docs.meshplay.io/reference/meshplayctl/perf/apply for more details"})
 }
 
 func ErrInvalidOutputChoice() error {
@@ -105,11 +105,11 @@ func ErrInvalidTestConfigFile() error {
 		[]string{"Invalid config file"},
 		[]string{"Invalid test configuration file"},
 		[]string{"The test configuration is outdated or incorrect"},
-		[]string{"See https://docs.meshery.io/guides/performance-management#running-performance-benchmarks-through-meshplayctl for a valid configuration file"})
+		[]string{"See https://docs.meshplay.io/guides/performance-management#running-performance-benchmarks-through-meshplayctl for a valid configuration file"})
 }
 
 func formatErrorWithReference() string {
-	baseURL := "https://docs.meshery.io/reference/meshplayctl/perf"
+	baseURL := "https://docs.meshplay.io/reference/meshplayctl/perf"
 	switch cmdUsed {
 	case "apply":
 		return fmt.Sprintf("\nSee %s for usage details\n", baseURL+"/apply")
@@ -144,7 +144,7 @@ func ErrHealthChecker(err error) error {
 		[]string{"Healthchecks Failed"},
 		[]string{err.Error()},
 		[]string{"Failed to initialize healthchecker"},
-		[]string{"Ensure Meshplayctl is running and has the right configurations. See https://docs.meshery.io/reference/meshplayctl/system/check for checking Meshery components"})
+		[]string{"Ensure Meshplayctl is running and has the right configurations. See https://docs.meshplay.io/reference/meshplayctl/system/check for checking Meshplay components"})
 }
 
 func ErrPerformanceProfileResult(err error) error {
@@ -152,5 +152,5 @@ func ErrPerformanceProfileResult(err error) error {
 		[]string{"Error displaying performance"},
 		[]string{"Unable to display performance Profile" + err.Error()},
 		[]string{"Failed to fetch results for a specific profile"},
-		[]string{"Check your network connection and ensure Meshery is running .", formatErrorWithReference()})
+		[]string{"Check your network connection and ensure Meshplay is running .", formatErrorWithReference()})
 }

@@ -1,17 +1,17 @@
 package constants
 
 const (
-	// Meshery Repository Location
-	mesheryGitHubOrg  string = "meshery"
-	mesheryGitHubRepo string = "meshery"
+	// Meshplay Repository Location
+	meshplayGitHubOrg  string = "meshplay"
+	meshplayGitHubRepo string = "meshplay"
 )
 
-// GetMesheryGitHubOrg retrieves the name of the GitHub organization under which the Meshery repository resides.
-func GetMesheryGitHubOrg() string {
-	return mesheryGitHubOrg
+// GetMeshplayGitHubOrg retrieves the name of the GitHub organization under which the Meshplay repository resides.
+func GetMeshplayGitHubOrg() string {
+	return meshplayGitHubOrg
 }
 
-// GetMesheryGitHubRepo retrieves the name of the Meshery repository
-func GetMesheryGitHubRepo() string {
-	return mesheryGitHubRepo
+// GetMeshplayGitHubRepo retrieves the name of the Meshplay repository
+func GetMeshplayGitHubRepo() string {
+	return meshplayGitHubRepo
 }

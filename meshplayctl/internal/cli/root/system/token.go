@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ var (
 
 var tokenCmd = &cobra.Command{
 	Use:   "token",
-	Short: "Manage Meshery user tokens",
+	Short: "Manage Meshplay user tokens",
 	Long: `
 	Manipulate user tokens and their context assignments in your meshconfig`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -172,7 +172,7 @@ meshplayctl system token list
 var viewTokenCmd = &cobra.Command{
 	Use:   "view",
 	Short: "View token",
-	Long:  "View a specific token in meshery config",
+	Long:  "View a specific token in meshplay config",
 	Example: `
 meshplayctl system token view [token-name]
 meshplayctl system token view (show token of current context)

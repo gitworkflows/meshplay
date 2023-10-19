@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -62,14 +62,14 @@ var linkDocContextCreate = map[string]string{
 // createContextCmd represents the create command
 var createContextCmd = &cobra.Command{
 	Use:   "create context-name",
-	Short: "Create a new context (a named Meshery deployment)",
-	Long:  `Add a new context to Meshery config.yaml file`,
+	Short: "Create a new context (a named Meshplay deployment)",
+	Long:  `Add a new context to Meshplay config.yaml file`,
 	Example: `
 // Create new context
 meshplayctl system context create [context-name]
 
 // Create new context and provide list of components, platform & URL
-meshplayctl system context create context-name --components meshery-nsm --platform docker --url http://localhost:9081 --set --yes
+meshplayctl system context create context-name --components meshplay-nsm --platform docker --url http://localhost:9081 --set --yes
 	`,
 	Annotations: linkDocContextCreate,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -113,7 +113,7 @@ Usage: meshplayctl system context create [context-name]`
 var deleteContextCmd = &cobra.Command{
 	Use:   "delete [context-name]",
 	Short: "Delete context",
-	Long:  `Delete an existing context (a named Meshery deployment) from Meshery config file`,
+	Long:  `Delete an existing context (a named Meshplay deployment) from Meshplay config file`,
 	Example: `
 // ### Delete context
 meshplayctl system context delete [context name]
@@ -213,7 +213,7 @@ meshplayctl system context list
 		}
 		var contexts = configuration.Contexts
 		if contexts == nil {
-			log.Print("No contexts available. Use `meshplayctl system context create <name>` to create a new Meshery deployment context.\n")
+			log.Print("No contexts available. Use `meshplayctl system context create <name>` to create a new Meshplay deployment context.\n")
 			return nil
 		}
 
@@ -254,7 +254,7 @@ var linkDocContextView = map[string]string{
 var viewContextCmd = &cobra.Command{
 	Use:   "view [context-name | --context context-name| --all] --flags",
 	Short: "view current context",
-	Long:  `Display active Meshery context`,
+	Long:  `Display active Meshplay context`,
 	Example: `
 // View default context
 meshplayctl system context view
@@ -380,7 +380,7 @@ meshplayctl system context create `
 		if viper.GetString("current-context") == args[0] {
 			return errors.New("already using context '" + args[0] + "'")
 		}
-		//check if meshery is running
+		//check if meshplay is running
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
 			utils.Log.Error(err)
@@ -391,11 +391,11 @@ meshplayctl system context create `
 			utils.Log.Error(ErrGetCurrentContext(err))
 			return nil
 		}
-		isRunning, _ := utils.AreMesheryComponentsRunning(currCtx.GetPlatform())
-		//if meshery running stop meshery before context switch
+		isRunning, _ := utils.AreMeshplayComponentsRunning(currCtx.GetPlatform())
+		//if meshplay running stop meshplay before context switch
 		if isRunning {
 			if err := stop(); err != nil {
-				return errors.Wrap(err, utils.SystemError("Failed to stop Meshery before switching context"))
+				return errors.Wrap(err, utils.SystemError("Failed to stop Meshplay before switching context"))
 			} else if !userResponse && err == nil {
 				return nil
 			}
@@ -407,7 +407,7 @@ meshplayctl system context create `
 		err = viper.WriteConfig()
 		if isRunning {
 			if Starterr := start(); Starterr != nil {
-				return errors.Wrap(Starterr, utils.SystemError("Failed to start Meshery while switching context"))
+				return errors.Wrap(Starterr, utils.SystemError("Failed to start Meshplay while switching context"))
 			}
 		}
 		return err
@@ -417,8 +417,8 @@ meshplayctl system context create `
 // ContextCmd represents the context command
 var ContextCmd = &cobra.Command{
 	Use:   "context [command]",
-	Short: "Configure your Meshery deployment(s)",
-	Long:  `Configure and switch between different named Meshery server and component versions and deployments.`,
+	Short: "Configure your Meshplay deployment(s)",
+	Long:  `Configure and switch between different named Meshplay server and component versions and deployments.`,
 	Example: `
 // Base command
 meshplayctl system context
@@ -445,11 +445,11 @@ func init() {
 		viewContextCmd,
 		listContextCmd,
 	}
-	createContextCmd.Flags().StringVarP(&serverURL, "url", "u", "", "Meshery Server URL with Port")
+	createContextCmd.Flags().StringVarP(&serverURL, "url", "u", "", "Meshplay Server URL with Port")
 	createContextCmd.Flags().BoolVarP(&set, "set", "s", false, "Set as current context")
 	createContextCmd.Flags().StringArrayVarP(&components, "components", "a", []string{}, "List of components")
-	createContextCmd.Flags().StringVarP(&platform, "platform", "p", "", "Platform to deploy Meshery")
-	deleteContextCmd.Flags().StringVarP(&newContext, "set", "s", "", "New context to deploy Meshery")
+	createContextCmd.Flags().StringVarP(&platform, "platform", "p", "", "Platform to deploy Meshplay")
+	deleteContextCmd.Flags().StringVarP(&newContext, "set", "s", "", "New context to deploy Meshplay")
 	viewContextCmd.Flags().StringVarP(&currContext, "context", "c", "", "Show config for the context")
 	viewContextCmd.Flags().BoolVar(&allContext, "all", false, "Show configs for all of the context")
 	ContextCmd.PersistentFlags().StringVarP(&tempCntxt, "context", "c", "", "(optional) temporarily change the current context.")

@@ -1,4 +1,4 @@
-name: SampleApp # display name in Meshery UI
+name: SampleApp # display name in Meshplay UI
 services:
   myapp:
     type: Application
@@ -6,8 +6,8 @@ services:
     settings:
       replicas: 1
       containers:
-        - name: Meshery
-          image: layer5/meshery:stable-latest
+        - name: Meshplay
+          image: khulnasoft/meshplay:stable-latest
           ports:
             - name: http
               containerPort: 8080

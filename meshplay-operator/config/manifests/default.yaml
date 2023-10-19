@@ -4,9 +4,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: brokers.meshplay.layer5.io
+  name: brokers.meshplay.khulnasoft.com
 spec:
-  group: meshplay.layer5.io
+  group: meshplay.khulnasoft.com
   names:
     kind: Broker
     listKind: BrokerList
@@ -95,9 +95,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: meshsyncs.meshplay.layer5.io
+  name: meshsyncs.meshplay.khulnasoft.com
 spec:
-  group: meshplay.layer5.io
+  group: meshplay.khulnasoft.com
   names:
     kind: MeshSync
     listKind: MeshSyncList
@@ -268,7 +268,7 @@ metadata:
   name: meshplay-operator-role
 rules:
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - brokers
   verbs:
@@ -280,7 +280,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - brokers/status
   verbs:
@@ -419,7 +419,7 @@ spec:
         - --enable-leader-election
         command:
         - /manager
-        image: layer5/meshplay-operator:stable-latest
+        image: khulnasoft/meshplay-operator:stable-latest
         imagePullPolicy: Always
         name: manager
         ports:

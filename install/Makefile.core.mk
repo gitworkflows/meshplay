@@ -39,8 +39,8 @@ ADAPTER_URLS := ""
 #-----------------------------------------------------------------------------
 REMOTE_PROVIDER_LOCAL="http://localhost:9876"
 MESHPLAY_CLOUD_DEV="http://localhost:9876"
-MESHPLAY_CLOUD_PROD="https://meshplay.khulnasoft.io"
-MESHPLAY_CLOUD_STAGING="https://staging-meshplay.khulnasoft.io"
+MESHPLAY_CLOUD_PROD="https://meshplay.khulnasoft.com"
+MESHPLAY_CLOUD_STAGING="https://staging-meshplay.khulnasoft.com"
 
 #-----------------------------------------------------------------------------
 # Server

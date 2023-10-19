@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,10 +35,10 @@ var linkDocReset = map[string]string{
 // resetCmd represents the reset command
 var resetCmd = &cobra.Command{
 	Use:   "reset",
-	Short: "Reset Meshery's configuration",
-	Long:  `Reset Meshery to it's default configuration.`,
+	Short: "Reset Meshplay's configuration",
+	Long:  `Reset Meshplay to it's default configuration.`,
 	Example: `
-// Resets meshery.yaml file with a copy from Meshery repo
+// Resets meshplay.yaml file with a copy from Meshplay repo
 meshplayctl system reset
 	`,
 	Annotations: linkDocReset,
@@ -46,18 +46,18 @@ meshplayctl system reset
 		if len(args) != 0 {
 			return errors.New(utils.SystemLifeCycleError(fmt.Sprintf("this command takes no arguments. See '%s --help' for more information.\n", cmd.CommandPath()), "reset"))
 		}
-		return resetMesheryConfig()
+		return resetMeshplayConfig()
 	},
 }
 
-// resets meshery config, skips conirmation if skipConfirmation is true
-func resetMesheryConfig() error {
+// resets meshplay config, skips conirmation if skipConfirmation is true
+func resetMeshplayConfig() error {
 	userResponse := false
 	if utils.SilentFlag {
 		userResponse = true
 	} else {
 		// ask user for confirmation
-		userResponse = utils.AskForConfirmation("Meshery config file will be reset to system defaults. Are you sure you want to continue")
+		userResponse = utils.AskForConfirmation("Meshplay config file will be reset to system defaults. Are you sure you want to continue")
 	}
 	if !userResponse {
 		log.Info("Reset aborted.")
@@ -84,7 +84,7 @@ func resetMesheryConfig() error {
 		return ErrRetrievingCurrentContext(err)
 	}
 
-	log.Info("Meshery resetting...\n")
+	log.Info("Meshplay resetting...\n")
 	log.Printf("Current Context: %s", mctlCfg.GetCurrentContextName())
 	log.Printf("Channel: %s", currCtx.GetChannel())
 	log.Printf("Version: %s", currCtx.GetVersion())
@@ -101,7 +101,7 @@ func resetMesheryConfig() error {
 	return fetchManifests(mctlCfg)
 }
 
-// Fetches manifests for meshery components based on the current context
+// Fetches manifests for meshplay components based on the current context
 func fetchManifests(mctlCfg *config.MeshplayCtlConfig) error {
 	currCtx, err := mctlCfg.GetCurrentContext()
 	if err != nil {
@@ -123,7 +123,7 @@ func fetchManifests(mctlCfg *config.MeshplayCtlConfig) error {
 			return ErrCreateManifestsFolder(err)
 		}
 
-		log.Printf("...fetching Meshery Operator manifests for Kubernetes...")
+		log.Printf("...fetching Meshplay Operator manifests for Kubernetes...")
 		err = utils.DownloadOperatorManifest()
 
 		if err != nil {
@@ -134,7 +134,7 @@ func fetchManifests(mctlCfg *config.MeshplayCtlConfig) error {
 
 	case "kubernetes":
 
-		log.Printf("Fetching Meshery Server and Meshery Operator manifests for  %s context...", mctlCfg.GetCurrentContextName())
+		log.Printf("Fetching Meshplay Server and Meshplay Operator manifests for  %s context...", mctlCfg.GetCurrentContextName())
 		// fetch the manifest files corresponding to the version specified
 		_, err := utils.FetchManifests(currCtx)
 
@@ -145,7 +145,7 @@ func fetchManifests(mctlCfg *config.MeshplayCtlConfig) error {
 		log.Info("...meshconfig has been reset to default settings.")
 
 	default:
-		return fmt.Errorf("the platform %s is not supported currently. The supported platforms are:\ndocker\nkubernetes\nPlease check %s/config.yaml file", currCtx.Platform, utils.MesheryFolder)
+		return fmt.Errorf("the platform %s is not supported currently. The supported platforms are:\ndocker\nkubernetes\nPlease check %s/config.yaml file", currCtx.Platform, utils.MeshplayFolder)
 	}
 
 	return nil

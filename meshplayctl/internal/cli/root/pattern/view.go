@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,13 +60,13 @@ meshplayctl pattern view [pattern-name | ID]
 			if viewAllFlag {
 				return errors.New("-a cannot be used when [pattern-name|pattern-id] is specified")
 			}
-			pattern, isID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "pattern")
+			pattern, isID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "pattern")
 			if err != nil {
 				utils.Log.Error(ErrPatternInvalidNameOrID(err))
 				return nil
 			}
 		}
-		url := mctlCfg.GetBaseMesheryURL()
+		url := mctlCfg.GetBaseMeshplayURL()
 		if len(pattern) == 0 {
 			if viewAllFlag {
 				url += "/api/pattern?pagesize=10000"

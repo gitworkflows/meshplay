@@ -1,5 +1,5 @@
 /*
-Copyright 2023 Layer5, Inc.
+Copyright 2023 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ type BrokerReconciler struct {
 	Scheme     *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=brokers,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=brokers/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=meshplay.khulnasoft.com,resources=brokers,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=meshplay.khulnasoft.com,resources=brokers/status,verbs=get;update;patch
 
 func (r *BrokerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log

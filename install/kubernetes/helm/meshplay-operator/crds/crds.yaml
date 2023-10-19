@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: brokers.meshplay.khulnasoft.io
+  name: brokers.meshplay.khulnasoft.com
 spec:
-  group: meshplay.khulnasoft.io
+  group: meshplay.khulnasoft.com
   names:
     kind: Broker
     listKind: BrokerList
@@ -96,9 +96,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.1
   creationTimestamp: null
-  name: meshsyncs.meshplay.khulnasoft.io
+  name: meshsyncs.meshplay.khulnasoft.com
 spec:
-  group: meshplay.khulnasoft.io
+  group: meshplay.khulnasoft.com
   names:
     kind: MeshSync
     listKind: MeshSyncList

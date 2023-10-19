@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -69,13 +69,13 @@ meshplayctl app view --all
 			if viewAllFlag {
 				return ErrViewAppFlag()
 			}
-			applicationID, isID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "application")
+			applicationID, isID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "application")
 			if err != nil {
 				return ErrInvalidAppNameOrID(err)
 			}
 		}
 		var req *http.Request
-		url := mctlCfg.GetBaseMesheryURL()
+		url := mctlCfg.GetBaseMeshplayURL()
 		var response *models.ApplicationsAPIResponse
 		// Merge args to get app-name
 		application = strings.Join(args, "%20")

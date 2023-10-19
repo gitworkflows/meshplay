@@ -1,6 +1,6 @@
 applications:
 - application_file: |
-    name: MApplicationPattern # display name in Meshery UI
+    name: MApplicationPattern # display name in Meshplay UI
     services:
       myapp:
         type: Application
@@ -24,7 +24,7 @@ applications:
   updated_at: "2021-07-31T00:08:31.257413966Z"
   user_id: null
 - application_file: |
-    name: OApplicationPattern # display name in Meshery UI
+    name: OApplicationPattern # display name in Meshplay UI
     services:
       myapp:
         type: Application
@@ -48,7 +48,7 @@ applications:
   updated_at: "2021-07-30T23:14:38.57316422Z"
   user_id: null
 - application_file: |
-    name: OApplicationPatternTwo # display name in Meshery UI
+    name: OApplicationPatternTwo # display name in Meshplay UI
     services:
       myapp:
         type: Application
@@ -72,7 +72,7 @@ applications:
   updated_at: "2021-07-30T23:14:12.73454268Z"
   user_id: null
 - application_file: |
-    name: OApplicationPatternTwo # display name in Meshery UI
+    name: OApplicationPatternTwo # display name in Meshplay UI
     services:
       myapp:
         type: Application

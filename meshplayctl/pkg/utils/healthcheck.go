@@ -119,8 +119,8 @@ func parseKubectlShortVersion(version string) ([3]int, error) {
 	return getK8sVersion(versionString)
 }
 
-// IsMesheryRunning checks if the meshery server containers are up and running
-func IsMesheryRunning(currPlatform string) (bool, error) {
+// IsMeshplayRunning checks if the meshplay server containers are up and running
+func IsMeshplayRunning(currPlatform string) (bool, error) {
 	// Get viper instance used for context to extract the endpoint from config file
 	mctlCfg, _ := config.GetMeshplayCtl(viper.GetViper())
 
@@ -130,14 +130,14 @@ func IsMesheryRunning(currPlatform string) (bool, error) {
 
 	urlTest := urlEndpoint + "/api/system/version"
 
-	// Checking if Meshery is running with the URL obtained
+	// Checking if Meshplay is running with the URL obtained
 	resp, _ := http.Get(urlTest)
 
 	if resp != nil && resp.StatusCode == 200 {
 		return true, nil
 	}
 
-	//If not, use the platforms to check if Meshery is running or not
+	//If not, use the platforms to check if Meshplay is running or not
 	switch currPlatform {
 	case "docker":
 		{
@@ -145,7 +145,7 @@ func IsMesheryRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshery"), nil
+			return strings.Contains(string(op), "meshplay"), nil
 		}
 	case "kubernetes":
 		{
@@ -155,8 +155,8 @@ func IsMesheryRunning(currPlatform string) (bool, error) {
 				return false, errors.Wrap(err, "failed to create new client")
 			}
 
-			//podInterface := client.KubeClient.CoreV1().Pods(MesheryNamespace)
-			deploymentInterface := client.KubeClient.AppsV1().Deployments(MesheryNamespace)
+			//podInterface := client.KubeClient.CoreV1().Pods(MeshplayNamespace)
+			deploymentInterface := client.KubeClient.AppsV1().Deployments(MeshplayNamespace)
 			//podList, err := podInterface.List(context.TODO(), v1.ListOptions{})
 			deploymentList, err := deploymentInterface.List(context.TODO(), metav1.ListOptions{})
 
@@ -164,7 +164,7 @@ func IsMesheryRunning(currPlatform string) (bool, error) {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if deployment.GetName() == "meshery" {
+				if deployment.GetName() == "meshplay" {
 					return true, nil
 				}
 			}
@@ -176,9 +176,9 @@ func IsMesheryRunning(currPlatform string) (bool, error) {
 	return false, nil
 }
 
-// AreMesheryComponentsRunning checks if the meshery containers are up and running
-func AreMesheryComponentsRunning(currPlatform string) (bool, error) {
-	//If not, use the platforms to check if Meshery is running or not
+// AreMeshplayComponentsRunning checks if the meshplay containers are up and running
+func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
+	//If not, use the platforms to check if Meshplay is running or not
 	switch currPlatform {
 	case "docker":
 		{
@@ -186,7 +186,7 @@ func AreMesheryComponentsRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshery"), nil
+			return strings.Contains(string(op), "meshplay"), nil
 		}
 	case "kubernetes":
 		{
@@ -196,14 +196,14 @@ func AreMesheryComponentsRunning(currPlatform string) (bool, error) {
 				return false, errors.Wrap(err, "failed to create new client")
 			}
 
-			deploymentInterface := client.KubeClient.AppsV1().Deployments(MesheryNamespace)
+			deploymentInterface := client.KubeClient.AppsV1().Deployments(MeshplayNamespace)
 			deploymentList, err := deploymentInterface.List(context.TODO(), metav1.ListOptions{})
 
 			if err != nil {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if strings.Contains(string(deployment.GetName()), "meshery") {
+				if strings.Contains(string(deployment.GetName()), "meshplay") {
 					return true, nil
 				}
 			}
@@ -224,14 +224,14 @@ func AreAllPodsRunning() (bool, error) {
 		return false, err
 	}
 
-	// List the pods in the MesheryNamespace
-	podList, err := GetPodList(client, MesheryNamespace)
+	// List the pods in the MeshplayNamespace
+	podList, err := GetPodList(client, MeshplayNamespace)
 
 	if err != nil {
 		return false, err
 	}
 
-	// List all the pods similar to kubectl get pods -n MesheryNamespace
+	// List all the pods similar to kubectl get pods -n MeshplayNamespace
 	for _, pod := range podList.Items {
 		// Check the status of each of the pods
 		if pod.Status.Phase != "Running" {
@@ -241,14 +241,14 @@ func AreAllPodsRunning() (bool, error) {
 	return true, nil
 }
 
-// CheckMesheryNsDelete waits for Meshery namespace to be deleted, returns (done, error)
-func CheckMesheryNsDelete() (bool, error) {
+// CheckMeshplayNsDelete waits for Meshplay namespace to be deleted, returns (done, error)
+func CheckMeshplayNsDelete() (bool, error) {
 	client, err := meshkitkube.New([]byte(""))
 	if err != nil {
 		return false, err
 	}
 
-	if err := WaitForNamespaceDeleted(client, MesheryNamespace, 300); err != nil {
+	if err := WaitForNamespaceDeleted(client, MeshplayNamespace, 300); err != nil {
 		return false, err
 	}
 

@@ -13,7 +13,7 @@ spec:
     - description: MeshSync is the Schema for the meshsyncs API
       displayName: Mesh Sync
       kind: MeshSync
-      name: meshsyncs.meshplay.layer5.io
+      name: meshsyncs.meshplay.khulnasoft.com
       version: v1alpha1
   description: Meshplay Operator is the multi-service mesh operator and implementation
     of MeshSync.
@@ -46,5 +46,5 @@ spec:
   maturity: alpha
   provider:
     name: meshplay
-    url: https://github.com/meshplay
+    url: https://github.com/khulnasoft
   version: 0.0.0

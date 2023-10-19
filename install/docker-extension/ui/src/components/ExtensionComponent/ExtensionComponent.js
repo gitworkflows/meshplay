@@ -401,7 +401,7 @@ const ExtensionsComponent = () => {
                   component="span"
                   onClick={() => {
                     window.ddClient.host.openExternal(
-                      'https://meshplay.khulnasoft.io?source=aHR0cDovL2xvY2FsaG9zdDo3ODc3L3Rva2VuL3N0b3Jl&provider_version=v0.3.14',
+                      'https://meshplay.khulnasoft.com?source=aHR0cDovL2xvY2FsaG9zdDo3ODc3L3Rva2VuL3N0b3Jl&provider_version=v0.3.14',
                     )
                   }}
                 >

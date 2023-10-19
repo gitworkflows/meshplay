@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ meshplayctl app offboard -f [filepath]
 		app := ""
 		isID := false
 		if len(args) > 0 {
-			app, isID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "application")
+			app, isID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "application")
 			if err != nil {
 				utils.Log.Error(err)
 				return nil
@@ -65,7 +65,7 @@ meshplayctl app offboard -f [filepath]
 
 		// Delete the app using the id
 		if isID {
-			err := utils.DeleteConfiguration(mctlCfg.GetBaseMesheryURL(), app, "application")
+			err := utils.DeleteConfiguration(mctlCfg.GetBaseMeshplayURL(), app, "application")
 			if err != nil {
 				utils.Log.Error(err)
 				return errors.Wrap(err, utils.AppError(fmt.Sprintf("failed to delete application %s", args[0])))
@@ -74,8 +74,8 @@ meshplayctl app offboard -f [filepath]
 			return nil
 		}
 
-		deployURL := mctlCfg.GetBaseMesheryURL() + "/api/application/deploy"
-		patternURL := mctlCfg.GetBaseMesheryURL() + "/api/pattern"
+		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/application/deploy"
+		patternURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern"
 
 		// Read file
 		if !govalidator.IsURL(file) {
@@ -108,7 +108,7 @@ meshplayctl app offboard -f [filepath]
 		}
 		defer resp.Body.Close()
 
-		var response []*models.MesheryPattern
+		var response []*models.MeshplayPattern
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {

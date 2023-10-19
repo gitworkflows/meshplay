@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ func getSourceTypes() error {
 		utils.Log.Error(err)
 		return nil
 	}
-	validTypesURL := mctlCfg.GetBaseMesheryURL() + "/api/application/types"
+	validTypesURL := mctlCfg.GetBaseMeshplayURL() + "/api/application/types"
 	req, err := utils.NewRequest("GET", validTypesURL, nil)
 	if err != nil {
 		utils.Log.Error(err)

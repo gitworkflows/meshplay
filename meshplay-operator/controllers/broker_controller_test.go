@@ -1,5 +1,5 @@
 /*
-Copyright 2023 Layer5, Inc.
+Copyright 2023 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ var _ = Describe("The test cases for customize resource: Broker's controller ", 
 		namespace = "default"
 		broker := &v1alpha1.Broker{
 			TypeMeta: metav1.TypeMeta{
-				APIVersion: "meshplay.layer5.io/v1alpha1",
+				APIVersion: "meshplay.khulnasoft.com/v1alpha1",
 				Kind:       "Broker",
 			},
 			ObjectMeta: metav1.ObjectMeta{

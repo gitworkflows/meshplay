@@ -123,7 +123,7 @@ export function MeshMapEarlyAccessCard({
 
   const handleButtonClick = (e) => {
     if (buttonText === signUpText) {
-      window.open('https://khulnasoft.io/meshmap', '_blank');
+      window.open('https://khulnasoft.com/meshmap', '_blank');
     } else {
       push(meshplayExtensionRoute);
     }

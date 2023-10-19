@@ -9,7 +9,7 @@ import (
 
 // Please reference the following before contributing an error code:
 // https://docs.meshplay.io/project/contributing/contributing-error
-// https://github.com/meshplay/meshkit/blob/master/errors/errors.go
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrInvalidK8SConfigNilCode          = "1014"
 	ErrNilClientCode                    = "1015"

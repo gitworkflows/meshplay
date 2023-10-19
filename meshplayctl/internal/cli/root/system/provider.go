@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -127,7 +127,7 @@ meshplayctl system provider list
 
 		providers, err := utils.GetProviderInfo(mctlCfg)
 		if err != nil {
-			log.Fatalln("could not fetch providers as Meshery server was unreachable\nStart Meshery to list available providers")
+			log.Fatalln("could not fetch providers as Meshplay server was unreachable\nStart Meshplay to list available providers")
 		}
 
 		log.Print("Available providers:\n")
@@ -246,9 +246,9 @@ meshplayctl system provider set [provider]
 var switchProviderCmd = &cobra.Command{
 	Use:   "switch [provider]",
 	Short: "switch provider and redeploy",
-	Long:  "Switch provider of context in focus and redeploy Meshery. Run `meshplayctl system provider list` to see the available providers.",
+	Long:  "Switch provider of context in focus and redeploy Meshplay. Run `meshplayctl system provider list` to see the available providers.",
 	Example: `
-// Switch provider and redeploy Meshery
+// Switch provider and redeploy Meshplay
 meshplayctl system provider switch [provider]
 	`,
 	Args: func(_ *cobra.Command, args []string) error {
@@ -292,7 +292,7 @@ meshplayctl system provider switch [provider]
 			userResponse = true
 		} else {
 			// ask user for confirmation
-			userResponse = utils.AskForConfirmation("The Meshery deployment in context '" + focusedContext + "' will be replaced with a new Meshery deployment with provider set to '" + args[0] + "'. Are you sure you want to continue")
+			userResponse = utils.AskForConfirmation("The Meshplay deployment in context '" + focusedContext + "' will be replaced with a new Meshplay deployment with provider set to '" + args[0] + "'. Are you sure you want to continue")
 		}
 
 		if !userResponse {
@@ -315,7 +315,7 @@ meshplayctl system provider switch [provider]
 var resetProviderCmd = &cobra.Command{
 	Use:   "reset",
 	Short: "reset provider to default",
-	Long:  "Reset provider for current context to default (Meshery)",
+	Long:  "Reset provider for current context to default (Meshplay)",
 	Example: `
 // Reset provider to default
 meshplayctl system provider reset
@@ -348,7 +348,7 @@ meshplayctl system provider reset
 			return nil
 		}
 
-		currCtx.Provider = "Meshery"
+		currCtx.Provider = "Meshplay"
 
 		mctlCfg.Contexts[focusedContext] = *currCtx
 		viper.Set("contexts", mctlCfg.Contexts)
@@ -358,7 +358,7 @@ meshplayctl system provider reset
 			return nil
 		}
 
-		log.Infof("Provider reset to Meshery")
+		log.Infof("Provider reset to Meshplay")
 		return nil
 	},
 }
@@ -367,7 +367,7 @@ meshplayctl system provider reset
 var providerCmd = &cobra.Command{
 	Use:   "provider",
 	Short: "Switch between providers",
-	Long:  `Enforce a provider. Choose between available Meshery providers`,
+	Long:  `Enforce a provider. Choose between available Meshplay providers`,
 	Example: `
 // To view provider
 meshplayctl system provider view
@@ -375,7 +375,7 @@ meshplayctl system provider view
 meshplayctl system provider list
 // To set a provider
 meshplayctl system provider set [provider]
-// To switch provider and redeploy Meshery
+// To switch provider and redeploy Meshplay
 meshplayctl system provider switch [provider]
 // To reset provider to default
 meshplayctl system provider reset

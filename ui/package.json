@@ -25,7 +25,7 @@
       "clean": "rm -rf .next,out"
     },
     "keywords": [],
-    "author": "Layer5",
+    "author": "KhulnaSoft",
     "repository": "https://github.com/khulnasoft/meshplay",
     "license": "Apache-2.0",
     "dependencies": {

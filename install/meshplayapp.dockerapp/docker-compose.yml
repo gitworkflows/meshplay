@@ -5,7 +5,7 @@ services:
     labels:
       - ${labels.watchtower}
     environment:
-      - "PROVIDER_BASE_URLS=https://meshplay.khulnasoft.io"
+      - "PROVIDER_BASE_URLS=https://meshplay.khulnasoft.com"
       - "ADAPTER_URLS=meshplay-istio:10000 meshplay-linkerd:10001 meshplay-consul:10002 meshplay-octarine:10003 meshplay-nsm:10004"
       - "EVENT=meshplayLocal"
     ports:

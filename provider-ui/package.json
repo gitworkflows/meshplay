@@ -16,8 +16,8 @@
     "clean": "rm -rf .next,out"
   },
   "keywords": [],
-  "author": "Layer5",
-  "repository": "https://github.com/meshplay/meshplay",
+  "author": "KhulnaSoft",
+  "repository": "https://github.com/khulnasoft/meshplay",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/eslint-parser": "^7.22.11",

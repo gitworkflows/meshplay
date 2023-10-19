@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -221,7 +221,7 @@ meshplayctl system channel switch [stable|stable-version|edge|edge-version]
 			userResponse = true
 		} else {
 			// ask user for confirmation
-			userResponse = utils.AskForConfirmation("The Meshery deployment in context '" + focusedContext + "' will be replaced with a new Meshery deployment and channel subscription. Are you sure you want to continue")
+			userResponse = utils.AskForConfirmation("The Meshplay deployment in context '" + focusedContext + "' will be replaced with a new Meshplay deployment and channel subscription. Are you sure you want to continue")
 		}
 
 		if !userResponse {

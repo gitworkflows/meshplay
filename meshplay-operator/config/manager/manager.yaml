@@ -31,7 +31,7 @@ spec:
       serviceAccountName: meshplay-operator
       containers:
       - name: manager
-        image: layer5/meshplay-operator:stable-latest
+        image: khulnasoft/meshplay-operator:stable-latest
         imagePullPolicy: Always
         ports:
         - containerPort: 9443

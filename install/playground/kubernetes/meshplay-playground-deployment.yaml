@@ -19,7 +19,7 @@ spec:
       containers:
         - env:
             - name: PROVIDER_BASE_URLS
-              value: https://meshplay.khulnasoft.io
+              value: https://meshplay.khulnasoft.com
             - name: PROVIDER
               value: Meshplay
             - name: PLAYGROUND

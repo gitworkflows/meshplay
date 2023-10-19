@@ -4,7 +4,7 @@ import "github.com/khulnasoft/meshplay/meshkit/errors"
 
 // Please reference the following before contributing an error code:
 // https://docs.meshplay.io/project/contributing/contributing-error
-// https://github.com/meshplay/meshkit/blob/master/errors/errors.go
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrCreatingUUIDInstanceCode                   = "1001"
 	ErrRegisteringMeshplayOAMTraitsCode            = "1002"

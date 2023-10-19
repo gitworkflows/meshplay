@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Layer5, Inc.
+Copyright 2020 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ func main() {
 		MetricsBindAddress:      metricsAddr,
 		Port:                    9443,
 		LeaderElection:          enableLeaderElection,
-		LeaderElectionID:        fmt.Sprintf("operator-%s.meshplay.layer5.io", opID),
+		LeaderElectionID:        fmt.Sprintf("operator-%s.meshplay.khulnasoft.com", opID),
 		LeaderElectionNamespace: namespace,
 	})
 	if err != nil {

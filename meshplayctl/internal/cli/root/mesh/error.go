@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package mesh
 import "github.com/khulnasoft/meshplay/meshkit/errors"
 
 // Please reference the following before contributing an error code:
-// https://docs.meshery.io/project/contributing/contributing-error
-// https://github.com/meshery/meshkit/blob/master/errors/errors.go
+// https://docs.meshplay.io/project/contributing/contributing-error
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGettingSessionDataCode                = "1098"
 	ErrNoAdaptersCode                        = "1099"
@@ -45,7 +45,7 @@ var (
 		[]string{"Unable to validate adapter"},
 		[]string{"Adapter for required mesh not found"},
 		[]string{"Unable to fetch Mesh adapter, adapter not valid."},
-		[]string{"Deploy a proper Meshery Adapter for your service mesh. See https://docs.meshery.io/concepts/architecture/adapters for list of adapters"})
+		[]string{"Deploy a proper Meshplay Adapter for your service mesh. See https://docs.meshplay.io/concepts/architecture/adapters for list of adapters"})
 
 	ErrFailedDeployingMesh = errors.New(ErrFailedDeployingMeshCode, errors.Fatal,
 		[]string{"Failed to deploy the service mesh"},
@@ -65,7 +65,7 @@ var (
 		[]string{"Network error or wrong environment configurations"},
 		[]string{"Ensure your have a strong connection and the right environment configuration"})
 
-	ErrSMIConformanceTestsFailed = errors.New(ErrSMIConformanceTestsFailedCode, errors.Fatal, []string{"SMI conformance tests failed"}, []string{"SMI conformance tests failed"}, []string{}, []string{"Join https://layer5io.slack.com/archives/C010H0HE2E6"})
+	ErrSMIConformanceTestsFailed = errors.New(ErrSMIConformanceTestsFailedCode, errors.Fatal, []string{"SMI conformance tests failed"}, []string{"SMI conformance tests failed"}, []string{}, []string{"Join https://khulnasoft.slack.com/archives/C010H0HE2E6"})
 )
 
 // When unable to get release data
@@ -74,7 +74,7 @@ func ErrGettingSessionData(err error) error {
 		[]string{"Unable to fetch session data"},
 		[]string{err.Error()},
 		[]string{"Unable to get session from server"},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrPrompt(err error) error {
@@ -89,8 +89,8 @@ func ErrCreatingDeployRequest(err error) error {
 	return errors.New(ErrCreatingDeployRequestCode, errors.Fatal,
 		[]string{"Error sending deploy request"},
 		[]string{err.Error()},
-		[]string{"There might be a connection failure with Meshery Server"},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"There might be a connection failure with Meshplay Server"},
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrCreatingDeployResponseRequest(err error) error {
@@ -99,7 +99,7 @@ func ErrCreatingDeployResponseRequest(err error) error {
 		[]string{"Failed to create a response"},
 		[]string{err.Error()},
 		[]string{"Error occurred while generating a response from deployed request"},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrCreatingDeployResponseStream(err error) error {
@@ -108,7 +108,7 @@ func ErrCreatingDeployResponseStream(err error) error {
 		[]string{"Error creating deploy event response stream"},
 		[]string{err.Error()},
 		[]string{"Unable convert a connection to a stream of server sent events"},
-		[]string{"Ensure your connection is valid and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Ensure your connection is valid and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrCreatingValidateRequest(err error) error {
@@ -116,7 +116,7 @@ func ErrCreatingValidateRequest(err error) error {
 		[]string{"Error sending Validate request"},
 		[]string{err.Error()},
 		[]string{"An HTTP error occured due to network connection"},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrCreatingValidateResponseRequest(err error) error {
@@ -124,15 +124,15 @@ func ErrCreatingValidateResponseRequest(err error) error {
 		[]string{"Error creating request for validate response"},
 		[]string{err.Error()},
 		[]string{"Unable to create response from request"},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrCreatingValidateResponseStream(err error) error {
 	return errors.New(ErrCreatingValidateResponseStreamCode, errors.Fatal,
 		[]string{"Error creating validate event response stream"},
 		[]string{err.Error()},
-		[]string{"Meshery is not running or there is a network issue."},
-		[]string{"Check your network connection and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Meshplay is not running or there is a network issue."},
+		[]string{"Check your network connection and verify the status of the Meshplay server with `meshplayctl system status`."})
 }
 
 func ErrValidatingAdapters(err error) error {
@@ -148,7 +148,7 @@ func ErrSendOperation(err error) error {
 		[]string{"Unable to perform operation"},
 		[]string{err.Error()},
 		[]string{"Failed to perform an adapter operation due to network connection."},
-		[]string{"Check your network connection and the status of Meshery Server via `meshplayctl system status`."})
+		[]string{"Check your network connection and the status of Meshplay Server via `meshplayctl system status`."})
 }
 
 func ErrValidMeshName(meshName string) error {
@@ -164,5 +164,5 @@ func ErrWaitValidateResponse(err error) error {
 		[]string{"Unable to validate a response"},
 		[]string{err.Error()},
 		[]string{"Unable to create responses after verifying operation"},
-		[]string{"Ensure your connection is valid and verify the status of the Meshery server with `meshplayctl system status`."})
+		[]string{"Ensure your connection is valid and verify the status of the Meshplay server with `meshplayctl system status`."})
 }

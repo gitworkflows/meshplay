@@ -8,7 +8,7 @@ replace (
 	github.com/docker/libcompose => github.com/docker/libcompose v0.4.1-0.20190808084053-143e0f3f1ab9
 	github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.5.5
 	github.com/jaguilar/vt100 => github.com/tonistiigi/vt100 v0.0.0-20190402012908-ad4c4a574305
-	github.com/kubernetes/kompose => github.com/meshplay/kompose v1.0.1
+	github.com/kubernetes/kompose => github.com/khulnasoft/kompose v1.0.1
 )
 
 require (

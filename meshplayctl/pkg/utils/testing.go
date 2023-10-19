@@ -37,7 +37,7 @@ type MockURL struct {
 func NewTestHelper(_ *testing.T) *TestHelper {
 	return &TestHelper{
 		Version: "v0.5.10",
-		BaseURL: MesheryEndpoint,
+		BaseURL: MeshplayEndpoint,
 	}
 }
 
@@ -141,7 +141,7 @@ func (tf *GoldenFile) WriteInByte(content []byte) {
 func SetupContextEnv(t *testing.T) {
 	path, err := os.Getwd()
 	if err != nil {
-		t.Error("unable to locate meshery directory")
+		t.Error("unable to locate meshplay directory")
 	}
 	viper.Reset()
 	viper.SetConfigFile(path + "/../../../../pkg/utils/TestConfig.yaml")
@@ -209,7 +209,7 @@ func StartMockery(t *testing.T) {
 	apiResponse := NewGoldenFile(t, "validate.version.github.golden", fixturesDir).Load()
 
 	// For validate version requests
-	url1 := "https://github.com/" + constants.GetMesheryGitHubOrg() + "/" + constants.GetMesheryGitHubRepo() + "/releases/tag/" + "v0.5.54"
+	url1 := "https://github.com/" + constants.GetMeshplayGitHubOrg() + "/" + constants.GetMeshplayGitHubRepo() + "/releases/tag/" + "v0.5.54"
 	httpmock.RegisterResponder("GET", url1,
 		httpmock.NewStringResponder(200, apiResponse))
 }
@@ -221,9 +221,9 @@ func StopMockery(_ *testing.T) {
 
 // Set file location for testing stuff
 func SetFileLocationTesting(dir string) {
-	MesheryFolder = filepath.Join(dir, "fixtures", MesheryFolder)
-	DockerComposeFile = filepath.Join(MesheryFolder, DockerComposeFile)
-	AuthConfigFile = filepath.Join(MesheryFolder, AuthConfigFile)
+	MeshplayFolder = filepath.Join(dir, "fixtures", MeshplayFolder)
+	DockerComposeFile = filepath.Join(MeshplayFolder, DockerComposeFile)
+	AuthConfigFile = filepath.Join(MeshplayFolder, AuthConfigFile)
 }
 
 func Populate(src, dst string) error {

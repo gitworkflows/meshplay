@@ -20,7 +20,7 @@ Meshplay chart for deploying Meshplay
 | env.EVENT | string | `"meshplayLocal"` |  |
 | env.PROVIDER | string | `"Local"` | Use this security-related setting to enforce selection of one and only one Provider. In this way, your Meshplay deployment will only trust and only allow users to authenticate using the Provider you have configured in this setting. See the [Remote Provider documentation](https://docs.meshplay.io/extensibility/providers) for a description of what a Provider is.  |
 | env.MESHPLAY_SERVER_CALLBACK_URL | string | `""` | Configure an OAuth callback URL for Meshplay Server to use when signing into a Remote Provider and your Meshplay Server instance is not directly reachable by that Remote Provider. See the [Remote Provider documentation](https://docs.meshplay.io/extensibility/providers#configurable-oauth-callback-url) for more details. |
-| env.PROVIDER_BASE_URLS | string | `"https://meshplay.khulnasoft.io"` | Configure your Remote Provider of choice. See the [Remote Provider documentation](https://docs.meshplay.io/extensibility/providers) for a description of what a Provider is. |
+| env.PROVIDER_BASE_URLS | string | `"https://meshplay.khulnasoft.com"` | Configure your Remote Provider of choice. See the [Remote Provider documentation](https://docs.meshplay.io/extensibility/providers) for a description of what a Provider is. |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"khulnasoft/meshplay"` |  |
@@ -122,7 +122,7 @@ helm install meshplay meshplay/meshplay --namespace meshplay
 
 ## Installing the Chart with a custom Meshplay Adapters
 
-Eg: For [Meshplay Adapter for Istio](https://github.com/meshplay/meshplay-istio)
+Eg: For [Meshplay Adapter for Istio](https://github.com/khulnasoft/meshplay-istio)
 ```console
 kubectl create namespace meshplay
 helm install meshplay meshplay/meshplay --set meshplay-istio.enabled=true

@@ -1,5 +1,5 @@
 /*
-Copyright 2023 Layer5, Inc.
+Copyright 2023 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ var (
 			Containers: []corev1.Container{
 				{
 					Name:            "meshsync",
-					Image:           "layer5/meshsync:stable-latest",
+					Image:           "khulnasoft/meshsync:stable-latest",
 					ImagePullPolicy: corev1.PullAlways,
 					Ports: []corev1.ContainerPort{
 						{

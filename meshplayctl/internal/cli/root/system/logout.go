@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ import (
 
 var logoutCmd = &cobra.Command{
 	Use:   "logout",
-	Short: "Remove authentication for Meshery Server",
+	Short: "Remove authentication for Meshplay Server",
 	Long: `
-Remove authentication for Meshery Server
+Remove authentication for Meshplay Server
 
 This command removes the authentication token from the user's filesystem`,
 	Args: cobra.MinimumNArgs(0),
 	Example: `
-// Logout current session with your Meshery Provider.
+// Logout current session with your Meshplay Provider.
 meshplayctl system logout
 	`,
 	RunE: func(cmd *cobra.Command, args []string) error {

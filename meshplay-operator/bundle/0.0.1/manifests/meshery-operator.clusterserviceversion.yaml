@@ -5,7 +5,7 @@ metadata:
     alm-examples: |-
       [
         {
-          "apiVersion": "meshplay.layer5.io/v1alpha1",
+          "apiVersion": "meshplay.khulnasoft.com/v1alpha1",
           "kind": "Broker",
           "metadata": {
             "annotations": {
@@ -24,7 +24,7 @@ metadata:
           }
         },
         {
-          "apiVersion": "meshplay.layer5.io/v1alpha1",
+          "apiVersion": "meshplay.khulnasoft.com/v1alpha1",
           "kind": "MeshSync",
           "metadata": {
             "annotations": {
@@ -51,9 +51,9 @@ metadata:
       ]
     capabilities: Basic Install
     categories: Monitoring
-    containerImage: layer5/meshplay-operator:stable-latest
+    containerImage: khulnasoft/meshplay-operator:stable-latest
     createdAt: "2022-05-12T19:42:22Z"
-    support: Layer5.io
+    support: khulnasoft.com
     description: |-
       Meshplay is the cloud native management plane offering lifecycle, configuration, and performance management of Kubernetes, service meshes, and your workloads.
     operators.operatorframework.io/builder: operator-sdk-v1.14.0+git
@@ -65,12 +65,12 @@ spec:
   customresourcedefinitions:
     owned:
     - kind: Broker
-      name: brokers.meshplay.layer5.io
+      name: brokers.meshplay.khulnasoft.com
       version: v1alpha1
     - description: MeshSync is the Schema for the meshsyncs API
       displayName: Mesh Sync
       kind: MeshSync
-      name: meshsyncs.meshplay.layer5.io
+      name: meshsyncs.meshplay.khulnasoft.com
       version: v1alpha1
   description: Meshplay Operator is the multi-service mesh operator and implementation
     of MeshSync.
@@ -451,7 +451,7 @@ FnZVJlYWR5ccllPAAAAABJRU5ErkJggg=="
           - update
           - watch
         - apiGroups:
-          - meshplay.layer5.io
+          - meshplay.khulnasoft.com
           resources:
           - brokers
           verbs:
@@ -463,7 +463,7 @@ FnZVJlYWR5ccllPAAAAABJRU5ErkJggg=="
           - update
           - watch
         - apiGroups:
-          - meshplay.layer5.io
+          - meshplay.khulnasoft.com
           resources:
           - brokers/status
           verbs:
@@ -521,7 +521,7 @@ FnZVJlYWR5ccllPAAAAABJRU5ErkJggg=="
                 - --enable-leader-election
                 command:
                 - /manager
-                image: layer5/meshplay-operator:stable-latest
+                image: khulnasoft/meshplay-operator:stable-latest
                 imagePullPolicy: Always
                 name: manager
                 ports:
@@ -592,5 +592,5 @@ FnZVJlYWR5ccllPAAAAABJRU5ErkJggg=="
   maturity: alpha
   provider:
     name: meshplay
-    url: https://github.com/meshplay
+    url: https://github.com/khulnasoft
   version: 0.0.1

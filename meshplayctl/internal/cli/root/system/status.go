@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,10 +41,10 @@ var linkDocStatus = map[string]string{
 // statusCmd represents the status command
 var statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Check Meshery status",
-	Long:  `Check status of Meshery and Meshery components.`,
+	Short: "Check Meshplay status",
+	Long:  `Check status of Meshplay and Meshplay components.`,
 	Example: `
-// Check status of Meshery, Meshery adapters, Meshery Operator and its controllers.
+// Check status of Meshplay, Meshplay adapters, Meshplay Operator and its controllers.
 meshplayctl system status
 
 // (optional) Extra data in status table
@@ -99,28 +99,28 @@ meshplayctl system status --verbose
 
 		currPlatform := currCtx.GetPlatform()
 
-		ok, err := utils.AreMesheryComponentsRunning(currPlatform)
+		ok, err := utils.AreMeshplayComponentsRunning(currPlatform)
 		if err != nil {
 			return err
 		}
 		if !ok {
-			log.Error("Meshery is not running. Run `meshplayctl system start` to start Meshery.")
+			log.Error("Meshplay is not running. Run `meshplayctl system start` to start Meshplay.")
 			return nil
 		}
 
 		switch currPlatform {
 		case "docker":
-			// List the running Meshery containers
+			// List the running Meshplay containers
 			start := exec.Command("docker-compose", "-f", utils.DockerComposeFile, "ps")
 
 			outputStd, err := start.Output()
 			if err != nil {
-				return errors.Wrap(err, utils.SystemError("failed to get Meshery status"))
+				return errors.Wrap(err, utils.SystemError("failed to get Meshplay status"))
 			}
 
 			outputString := string(outputStd)
 
-			if strings.Contains(outputString, "meshery") {
+			if strings.Contains(outputString, "meshplay") {
 				log.Info(outputString)
 			}
 
@@ -135,7 +135,7 @@ meshplayctl system status --verbose
 				utils.Log.Error(ErrHealthCheckFailed(err))
 				return nil
 			}
-			// If k8s is available print the status of pods in the MesheryNamespace
+			// If k8s is available print the status of pods in the MeshplayNamespace
 			if err = hc.Run(); err != nil {
 				return nil
 			}
@@ -143,7 +143,7 @@ meshplayctl system status --verbose
 			fallthrough
 		case "kubernetes":
 			// if the platform is kubernetes, use kubernetes go-client to
-			// display pod status in the MesheryNamespace
+			// display pod status in the MeshplayNamespace
 
 			// create an kubernetes client
 			client, err := meshkitkube.New([]byte(""))
@@ -152,8 +152,8 @@ meshplayctl system status --verbose
 				return err
 			}
 
-			// List the pods in the MesheryNamespace
-			podList, err := utils.GetPodList(client, utils.MesheryNamespace)
+			// List the pods in the MeshplayNamespace
+			podList, err := utils.GetPodList(client, utils.MeshplayNamespace)
 
 			if err != nil {
 				return err
@@ -161,7 +161,7 @@ meshplayctl system status --verbose
 
 			var data [][]string
 			columnNames := []string{"Name", "Ready", "Status", "Restarts", "Age"}
-			// List all the pods similar to kubectl get pods -n MesheryNamespace
+			// List all the pods similar to kubectl get pods -n MeshplayNamespace
 			for _, pod := range podList.Items {
 				// Calculate the age of the pod
 				podCreationTime := pod.GetCreationTimestamp()
@@ -206,7 +206,7 @@ meshplayctl system status --verbose
 			// Print the data to a table for readability
 			utils.PrintToTable(columnNames, data)
 
-			log.Info("\nMeshery endpoint is " + currCtx.GetEndpoint())
+			log.Info("\nMeshplay endpoint is " + currCtx.GetEndpoint())
 		}
 		return nil
 	},

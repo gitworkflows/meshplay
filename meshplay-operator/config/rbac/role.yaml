@@ -6,7 +6,7 @@ metadata:
   name: operator-role
 rules:
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - brokers
   verbs:
@@ -18,7 +18,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - brokers/status
   verbs:

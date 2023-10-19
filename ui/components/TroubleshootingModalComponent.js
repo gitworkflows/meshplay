@@ -293,9 +293,9 @@ const TroubleshootingModal = (props) => {
                     Cloud (at{' '}
                     <a
                       className={classes.troubleshootHelpLink}
-                      href="https://meshplay.khulnasoft.io/capabilities"
+                      href="https://meshplay.khulnasoft.com/capabilities"
                     >
-                      https://meshplay.khulnasoft.io/capabilities
+                      https://meshplay.khulnasoft.com/capabilities
                     </a>
                     ), from which MeshMap files are retreived, matches the <code>plugin</code>{' '}
                     version that Meshplay Server is using as the filesystem reference in{' '}
@@ -349,7 +349,7 @@ const TroubleshootingModal = (props) => {
               Need help? Contact us via{' '}
               <a
                 className={classes.contactHelpLink}
-                href="mailto:meshmap@khulnasoft.io"
+                href="mailto:meshmap@khulnasoft.com"
                 target="_blank"
                 rel="noreferrer"
               >

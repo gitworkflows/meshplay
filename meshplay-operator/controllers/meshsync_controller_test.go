@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Layer5, Inc.
+Copyright 2020 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ var _ = Describe("The test cases for customize resource: MeshSync's controller "
 		namespace = "default"
 		meshSync := &v1alpha1.MeshSync{
 			TypeMeta: metav1.TypeMeta{
-				APIVersion: "meshplay.layer5.io/v1alpha1",
+				APIVersion: "meshplay.khulnasoft.com/v1alpha1",
 				Kind:       "MeshSync",
 			},
 			ObjectMeta: metav1.ObjectMeta{

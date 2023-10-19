@@ -1,5 +1,5 @@
 application_file: |
-  name: OApplicationPatternTwo # display name in Meshery UI
+  name: OApplicationPatternTwo # display name in Meshplay UI
   services:
     myapp:
       type: Application

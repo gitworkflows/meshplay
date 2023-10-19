@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ meshplayctl pattern delete [file | URL]
 		pattern := ""
 		isID := false
 		if len(args) > 0 {
-			pattern, isID, err = utils.ValidId(mctlCfg.GetBaseMesheryURL(), args[0], "pattern")
+			pattern, isID, err = utils.ValidId(mctlCfg.GetBaseMeshplayURL(), args[0], "pattern")
 			if err != nil {
 				utils.Log.Error(ErrPatternInvalidNameOrID(err))
 				return nil
@@ -60,7 +60,7 @@ meshplayctl pattern delete [file | URL]
 
 		// Delete the pattern using the id
 		if isID {
-			err := utils.DeleteConfiguration(mctlCfg.GetBaseMesheryURL(), pattern, "pattern")
+			err := utils.DeleteConfiguration(mctlCfg.GetBaseMeshplayURL(), pattern, "pattern")
 			if err != nil {
 				utils.Log.Error(err)
 				return errors.Wrap(err, utils.PatternError(fmt.Sprintf("failed to delete pattern %s", args[0])))
@@ -68,8 +68,8 @@ meshplayctl pattern delete [file | URL]
 			utils.Log.Info("Pattern ", args[0], " deleted successfully")
 			return nil
 		}
-		deployURL := mctlCfg.GetBaseMesheryURL() + "/api/pattern/deploy"
-		patternURL := mctlCfg.GetBaseMesheryURL() + "/api/pattern"
+		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern/deploy"
+		patternURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern"
 
 		// If file path not a valid URL, treat it like a local file path
 		if !govalidator.IsURL(file) {
@@ -120,7 +120,7 @@ meshplayctl pattern delete [file | URL]
 				return nil
 			}
 			utils.Log.Debug("remote hosted pattern request success")
-			var response []*models.MesheryPattern
+			var response []*models.MeshplayPattern
 			defer resp.Body.Close()
 
 			body, err := io.ReadAll(resp.Body)

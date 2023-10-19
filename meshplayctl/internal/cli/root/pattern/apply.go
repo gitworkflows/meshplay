@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -66,8 +66,8 @@ meshplayctl pattern apply [pattern-name]
 			return nil
 		}
 
-		deployURL := mctlCfg.GetBaseMesheryURL() + "/api/pattern/deploy"
-		patternURL := mctlCfg.GetBaseMesheryURL() + "/api/pattern"
+		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern/deploy"
+		patternURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern"
 
 		// pattern name has been passed
 		if len(args) > 0 {
@@ -147,7 +147,7 @@ meshplayctl pattern apply [pattern-name]
 						return nil
 					}
 					utils.Log.Debug("saved pattern file")
-					var response []*models.MesheryPattern
+					var response []*models.MeshplayPattern
 					defer resp.Body.Close()
 
 					body, err := io.ReadAll(resp.Body)
@@ -214,7 +214,7 @@ meshplayctl pattern apply [pattern-name]
 					return nil
 				}
 				utils.Log.Debug("remote hosted pattern request success")
-				var response []*models.MesheryPattern
+				var response []*models.MeshplayPattern
 				defer resp.Body.Close()
 
 				body, err := io.ReadAll(resp.Body)
@@ -269,7 +269,7 @@ meshplayctl pattern apply [pattern-name]
 	},
 }
 
-func multiplePatternsConfirmation(profiles []models.MesheryPattern) int {
+func multiplePatternsConfirmation(profiles []models.MeshplayPattern) int {
 	reader := bufio.NewReader(os.Stdin)
 
 	for index, a := range profiles {

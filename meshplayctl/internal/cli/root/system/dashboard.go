@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import (
 )
 
 var (
-	// runPortForward is used for port-forwarding Meshery UI via `system dashboard`
+	// runPortForward is used for port-forwarding Meshplay UI via `system dashboard`
 	runPortForward bool
 )
 
@@ -54,28 +54,28 @@ type dashboardOptions struct {
 // These options may be overridden on the CLI at run-time
 func newDashboardOptions() *dashboardOptions {
 	return &dashboardOptions{
-		host:    utils.MesheryDefaultHost,
-		port:    utils.MesheryDefaultPort,
+		host:    utils.MeshplayDefaultHost,
+		port:    utils.MeshplayDefaultPort,
 		podPort: 8080,
 	}
 }
 
 var dashboardCmd = &cobra.Command{
 	Use:   "dashboard",
-	Short: "Open Meshery UI in browser.",
+	Short: "Open Meshplay UI in browser.",
 	Args:  cobra.NoArgs,
 	Example: `
-// Open Meshery UI in browser
+// Open Meshplay UI in browser
 meshplayctl system dashboard
 
-// Open Meshery UI in browser and use port-forwarding (if default port is taken already)
+// Open Meshplay UI in browser and use port-forwarding (if default port is taken already)
 meshplayctl system dashboard --port-forward
 
-// (optional) skip opening of MesheryUI in browser.
+// (optional) skip opening of MeshplayUI in browser.
 meshplayctl system dashboard --skip-browser
 	`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		// check if meshery is running or not
+		// check if meshplay is running or not
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
 			utils.Log.Error(err)
@@ -86,9 +86,9 @@ meshplayctl system dashboard --skip-browser
 			utils.Log.Error(ErrGetCurrentContext(err))
 			return nil
 		}
-		running, _ := utils.IsMesheryRunning(currCtx.GetPlatform())
+		running, _ := utils.IsMeshplayRunning(currCtx.GetPlatform())
 		if !running {
-			return errors.New(`meshery server is not running. run "meshplayctl system start" to start meshery`)
+			return errors.New(`meshplay server is not running. run "meshplayctl system start" to start meshplay`)
 		}
 
 		return nil
@@ -104,7 +104,7 @@ meshplayctl system dashboard --skip-browser
 			utils.Log.Error(ErrGetCurrentContext(err))
 			return nil
 		}
-		log.Debug("Fetching Meshery-UI endpoint")
+		log.Debug("Fetching Meshplay-UI endpoint")
 
 		switch currCtx.GetPlatform() {
 		case "docker":
@@ -115,7 +115,7 @@ meshplayctl system dashboard --skip-browser
 				return err
 			}
 
-			// Run port forwarding for accessing Meshery UI
+			// Run port forwarding for accessing Meshplay UI
 			if runPortForward {
 				options := newDashboardOptions()
 
@@ -133,8 +133,8 @@ meshplayctl system dashboard --skip-browser
 				portforward, err := utils.NewPortForward(
 					cmd.Context(),
 					client,
-					utils.MesheryNamespace,
-					"meshery",
+					utils.MeshplayNamespace,
+					"meshplay",
 					options.host,
 					port,
 					options.podPort,
@@ -150,9 +150,9 @@ meshplayctl system dashboard --skip-browser
 					// TODO: consider falling back to an ephemeral port if defaultPort is taken
 					return ErrRunPortForward(err)
 				}
-				log.Info("Starting Port-forwarding for Meshery UI")
+				log.Info("Starting Port-forwarding for Meshplay UI")
 
-				mesheryURL := portforward.URLFor("")
+				meshplayURL := portforward.URLFor("")
 
 				// ticker for keeping connection alive with pod each 10 seconds
 				ticker := time.NewTicker(10 * time.Second)
@@ -164,28 +164,28 @@ meshplayctl system dashboard --skip-browser
 							ticker.Stop()
 							return
 						case <-ticker.C:
-							keepConnectionAlive(mesheryURL)
+							keepConnectionAlive(meshplayURL)
 						}
 					}
 				}()
 				log.Info(fmt.Sprintf("Forwarding ports %v -> %v", options.podPort, port))
-				log.Info("Meshery UI available at: ", mesheryURL)
-				log.Info("Opening Meshery UI in the default browser.")
-				err = utils.NavigateToBrowser(mesheryURL)
+				log.Info("Meshplay UI available at: ", meshplayURL)
+				log.Info("Opening Meshplay UI in the default browser.")
+				err = utils.NavigateToBrowser(meshplayURL)
 				if err != nil {
-					log.Warn("Failed to open Meshery in browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshery.")
+					log.Warn("Failed to open Meshplay in browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshplay.")
 				}
 
 				<-portforward.GetStop()
 				return nil
 			}
 
-			var mesheryEndpoint string
+			var meshplayEndpoint string
 			var endpoint *meshkitutils.Endpoint
 			clientset := client.KubeClient
 			var opts meshkitkube.ServiceOptions
-			opts.Name = "meshery"
-			opts.Namespace = utils.MesheryNamespace
+			opts.Name = "meshplay"
+			opts.Namespace = utils.MeshplayNamespace
 			opts.APIServerURL = client.RestConfig.Host
 
 			endpoint, err = meshkitkube.GetServiceEndpoint(context.TODO(), clientset, &opts)
@@ -194,8 +194,8 @@ meshplayctl system dashboard --skip-browser
 				return nil
 			}
 
-			mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
-			currCtx.SetEndpoint(mesheryEndpoint)
+			meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
+			currCtx.SetEndpoint(meshplayEndpoint)
 			if !meshkitutils.TcpCheck(&meshkitutils.HostPort{
 				Address: endpoint.Internal.Address,
 				Port:    endpoint.Internal.Port,
@@ -210,8 +210,8 @@ meshplayctl system dashboard --skip-browser
 						Address: u.Hostname(),
 						Port:    endpoint.External.Port,
 					}, nil) {
-						mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
-						currCtx.SetEndpoint(mesheryEndpoint)
+						meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
+						currCtx.SetEndpoint(meshplayEndpoint)
 					}
 				}
 			}
@@ -227,13 +227,13 @@ meshplayctl system dashboard --skip-browser
 		}
 
 		if !skipBrowserFlag {
-			log.Info("Opening Meshery (" + currCtx.GetEndpoint() + ") in browser.")
+			log.Info("Opening Meshplay (" + currCtx.GetEndpoint() + ") in browser.")
 			err = utils.NavigateToBrowser(currCtx.GetEndpoint())
 			if err != nil {
-				log.Warn("Failed to open Meshery in your browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshery.")
+				log.Warn("Failed to open Meshplay in your browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshplay.")
 			}
 		} else {
-			log.Info("Meshery UI available at: ", currCtx.GetEndpoint())
+			log.Info("Meshplay UI available at: ", currCtx.GetEndpoint())
 		}
 
 		return nil
@@ -250,6 +250,6 @@ func keepConnectionAlive(url string) {
 }
 
 func init() {
-	dashboardCmd.Flags().BoolVarP(&runPortForward, "port-forward", "", false, "(optional) Use port forwarding to access Meshery UI")
-	dashboardCmd.Flags().BoolVarP(&skipBrowserFlag, "skip-browser", "", false, "(optional) skip opening of MesheryUI in browser.")
+	dashboardCmd.Flags().BoolVarP(&runPortForward, "port-forward", "", false, "(optional) Use port forwarding to access Meshplay UI")
+	dashboardCmd.Flags().BoolVarP(&skipBrowserFlag, "skip-browser", "", false, "(optional) skip opening of MeshplayUI in browser.")
 }

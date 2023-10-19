@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 		if len(args) > 0 {
 			searchString = strings.ReplaceAll(args[0], " ", "%20")
 		}
-		response, err := fetchFilters(mctlCfg.GetBaseMesheryURL(), searchString, pageSize, pageNumber-1)
+		response, err := fetchFilters(mctlCfg.GetBaseMeshplayURL(), searchString, pageSize, pageNumber-1)
 		if err != nil {
 			utils.Log.Error(ErrFetchFilter(err))
 			return nil
@@ -80,7 +80,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 		if err != nil {
 			return errors.New(utils.FilterListError("error reading token\nUse 'meshplayctl filter list --help' to display usage guide\n" + err.Error()))
 		}
-		provider := tokenObj["meshery-provider"]
+		provider := tokenObj["meshplay-provider"]
 		var data [][]string
 
 		if verbose {
@@ -113,7 +113,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 			return nil
 		}
 
-		// Check if meshery provider is set
+		// Check if meshplay provider is set
 		if provider == "None" {
 			for _, v := range response.Filters {
 				FilterName := strings.Trim(v.Name, filepath.Ext(v.Name))

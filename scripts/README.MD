@@ -14,7 +14,7 @@ To run the script execute following command
 `CRED=$CRED go run main.go https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel `
 
 2. Component Updater
-Uses a spreadsheet, which contains centralized information about MeshModel components and their metadata like color, icon, and so on. The script is used to update components metadata (svgs, icons etc) for Meshplay, Websites (Layer5.io, Meshplay.io), and Remote Provider.
+Uses a spreadsheet, which contains centralized information about MeshModel components and their metadata like color, icon, and so on. The script is used to update components metadata (svgs, icons etc) for Meshplay, Websites (khulnasoft.com, Meshplay.io), and Remote Provider.
 
 Supported flags are:
    - --system
@@ -24,7 +24,7 @@ Supported flags are:
         Only handle components that have a value of "true" under the "Published?" column in spreadsheet.
 
 To run the script execute following command 
-1. To update docs on khulnasoft.io website:
+1. To update docs on khulnasoft.com website:
 `./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations meshplay.io/integrations docs/ --published-only`
 2. To update component metadata for meshmodels:
 `./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel`

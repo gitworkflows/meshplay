@@ -5,7 +5,7 @@ metadata:
   name: meshsync-viewer-role
 rules:
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - meshsyncs
   verbs:
@@ -13,7 +13,7 @@ rules:
   - list
   - watch
 - apiGroups:
-  - meshplay.layer5.io
+  - meshplay.khulnasoft.com
   resources:
   - meshsyncs/status
   verbs:

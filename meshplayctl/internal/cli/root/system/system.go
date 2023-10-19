@@ -1,4 +1,4 @@
-// Copyright 2023 Layer5, Inc.
+// Copyright 2023 KhulnaSoft, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,11 +32,11 @@ var (
 	// token path
 )
 
-// SystemCmd represents Meshery Lifecycle Management cli commands
+// SystemCmd represents Meshplay Lifecycle Management cli commands
 var SystemCmd = &cobra.Command{
 	Use:   "system",
-	Short: "Meshery Lifecycle Management",
-	Long:  `Manage the state and configuration of Meshery server, components, and client.`,
+	Short: "Meshplay Lifecycle Management",
+	Long:  `Manage the state and configuration of Meshplay server, components, and client.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
 			return cmd.Help()
@@ -49,7 +49,7 @@ var SystemCmd = &cobra.Command{
 			utils.Log.Error(err)
 			return nil
 		}
-		mctlCfg.GetBaseMesheryURL()
+		mctlCfg.GetBaseMeshplayURL()
 		return nil
 	},
 }

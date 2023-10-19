@@ -6,7 +6,7 @@ import (
 
 // Please reference the following before contributing an error code:
 // https://docs.meshplay.io/project/contributing/contributing-error
-// https://github.com/meshplay/meshkit/blob/master/errors/errors.go
+// https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGetK8sComponentsCode     = "1400"
 	ErrParseK8sManifestCode     = "1401"

@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Layer5, Inc.
+Copyright 2020 KhulnaSoft, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ type MeshSyncReconciler struct {
 	Scheme     *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=meshsyncs,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=meshplay.layer5.io,resources=meshsyncs/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=meshplay.khulnasoft.com,resources=meshsyncs,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=meshplay.khulnasoft.com,resources=meshsyncs/status,verbs=get;update;patch
 func (r *MeshSyncReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log
 	log = log.WithValues("controller", "MeshSync")
