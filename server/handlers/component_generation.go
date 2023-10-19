@@ -8,9 +8,9 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/helpers/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	meshkitmodels "github.com/khulnasoft/meshkit/models"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	meshkitmodels "github.com/khulnasoft/meshplay/meshkit/models"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
 )
 
 type generationPayloadItem struct {

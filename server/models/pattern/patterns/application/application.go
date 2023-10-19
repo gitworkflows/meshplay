@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/sirupsen/logrus"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"

@@ -4,12 +4,12 @@ package handlers
 import (
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/broker"
-	"github.com/khulnasoft/meshkit/database"
-	"github.com/khulnasoft/meshkit/logger"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/policies"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshkit/utils/events"
+	"github.com/khulnasoft/meshplay/meshkit/broker"
+	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/logger"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/policies"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/utils/events"
 	"github.com/spf13/viper"
 	"github.com/vmihailenco/taskq/v3"
 )

@@ -3,7 +3,7 @@ package application
 import (
 	"fmt"
 
-	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	v1 "k8s.io/api/core/v1"
 )
 

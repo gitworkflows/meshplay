@@ -1,6 +1,6 @@
 package main
 
-import "github.com/khulnasoft/meshkit/errors"
+import "github.com/khulnasoft/meshplay/meshkit/errors"
 
 // Please reference the following before contributing an error code:
 // https://docs.meshplay.io/project/contributing/contributing-error

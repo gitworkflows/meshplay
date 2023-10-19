@@ -19,7 +19,7 @@ import (
 	"github.com/golang/protobuf/ptypes/wrappers"
 	"github.com/khulnasoft/gowrk2/api"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/utils"
+	"github.com/khulnasoft/meshplay/meshkit/utils"
 	nighthawk_client "github.com/khulnasoft/nighthawk-go/pkg/client"
 	nighthawk_proto "github.com/khulnasoft/nighthawk-go/pkg/proto"
 	"github.com/sirupsen/logrus"

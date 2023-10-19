@@ -7,9 +7,9 @@ import (
 
 	"github.com/gofrs/uuid"
 
-	"github.com/khulnasoft/meshkit/logger"
-	"github.com/khulnasoft/meshkit/models/events"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/logger"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
 	"github.com/spf13/viper"
 )
 

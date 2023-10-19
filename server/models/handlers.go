@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/meshplay/server/models/meshmodel"
-	"github.com/khulnasoft/meshkit/utils/events"
+	"github.com/khulnasoft/meshplay/meshkit/utils/events"
 	"github.com/vmihailenco/taskq/v3"
 )
 

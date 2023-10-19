@@ -19,11 +19,11 @@ import (
 	"github.com/khulnasoft/meshplay/server/models/pattern/patterns"
 	"github.com/khulnasoft/meshplay/server/models/pattern/patterns/k8s"
 	"github.com/khulnasoft/meshplay/server/models/pattern/stages"
-	"github.com/khulnasoft/meshkit/logger"
-	events "github.com/khulnasoft/meshkit/models/events"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/logger"
+	events "github.com/khulnasoft/meshplay/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/sirupsen/logrus"
 )
 

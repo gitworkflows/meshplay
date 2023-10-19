@@ -3,7 +3,7 @@ module github.com/khulnasoft/meshmodel_ahub_gen
 go 1.21
 
 require (
-	github.com/khulnasoft/meshkit v0.6.69
+	github.com/khulnasoft/meshplay/meshkit v0.6.69
 	golang.org/x/oauth2 v0.12.0
 	google.golang.org/api v0.143.0
 	gopkg.in/yaml.v3 v3.0.1

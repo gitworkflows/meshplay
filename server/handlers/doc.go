@@ -35,7 +35,7 @@ import (
 
 	"github.com/go-openapi/strfmt"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 	v1 "k8s.io/api/core/v1"
 )

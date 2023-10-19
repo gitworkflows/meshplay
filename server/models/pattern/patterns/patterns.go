@@ -11,10 +11,10 @@ import (
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/server/models/pattern/patterns/application"
 	"github.com/khulnasoft/meshplay/server/models/pattern/patterns/k8s"
-	"github.com/khulnasoft/meshkit/models/events"
-	"github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/spf13/viper"
 )
 

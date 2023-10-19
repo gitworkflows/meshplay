@@ -2,7 +2,7 @@ package stages
 
 import (
 	"github.com/khulnasoft/meshplay/server/helpers"
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
 )
 
 // import "github.com/khulnasoft/meshplay/server/models/pattern/patterns"

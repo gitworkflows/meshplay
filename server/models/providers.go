@@ -4,10 +4,10 @@ import (
 	"net/http"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/broker"
-	"github.com/khulnasoft/meshkit/database"
-	"github.com/khulnasoft/meshkit/logger"
-	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/broker"
+	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/logger"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 )
 

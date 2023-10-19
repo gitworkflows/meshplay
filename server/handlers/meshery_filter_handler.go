@@ -15,8 +15,8 @@ import (
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	"github.com/khulnasoft/meshplay/server/models/pattern/utils"
-	"github.com/khulnasoft/meshkit/models/events"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
 )
 
 // swagger:route GET /api/filter/file/{id} FiltersAPI idGetFilterFile

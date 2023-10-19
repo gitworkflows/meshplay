@@ -8,7 +8,7 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/gorilla/mux"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
 )
 
 // swagger:route GET /api/system/kubernetes/contexts GetAllContexts idGetAllContexts

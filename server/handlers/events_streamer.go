@@ -16,9 +16,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/khulnasoft/meshplay/server/meshes"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/errors"
-	"github.com/khulnasoft/meshkit/models/events"
-	_events "github.com/khulnasoft/meshkit/utils/events"
+	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	_events "github.com/khulnasoft/meshplay/meshkit/utils/events"
 	"github.com/sirupsen/logrus"
 )
 

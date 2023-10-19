@@ -11,7 +11,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	"gopkg.in/yaml.v2"
 
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
 
 	"github.com/sirupsen/logrus"
 )

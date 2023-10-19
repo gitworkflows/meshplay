@@ -18,11 +18,11 @@ import (
 	"github.com/khulnasoft/meshplay/server/meshes"
 	"github.com/khulnasoft/meshplay/server/models"
 	pCore "github.com/khulnasoft/meshplay/server/models/pattern/core"
-	"github.com/khulnasoft/meshkit/models/events"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshkit/utils/kubernetes/kompose"
-	"github.com/khulnasoft/meshkit/utils/walker"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes/kompose"
+	"github.com/khulnasoft/meshplay/meshkit/utils/walker"
 	"gopkg.in/yaml.v2"
 )
 

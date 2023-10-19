@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/khulnasoft/meshkit/errors"
+	"github.com/khulnasoft/meshplay/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:

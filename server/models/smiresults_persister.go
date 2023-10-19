@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/database"
 )
 
 // SmiResultsPersister assists with persisting session in store

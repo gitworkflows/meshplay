@@ -7,9 +7,9 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/types"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/types"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
 )
 
 // swagger:route GET /api/meshmodels/models/{model}/relationships/{name} GetMeshmodelRelationshipByName idGetMeshmodelRelationshipByName

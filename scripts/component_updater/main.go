@@ -34,8 +34,8 @@ import (
 	"strings"
 
 	"github.com/khulnasoft/component_scraper/pkg"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/utils/manifests"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
 )
 
 var (

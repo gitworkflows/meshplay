@@ -10,12 +10,12 @@ import (
 	"cuelang.org/go/cue/cuecontext"
 	cueJson "cuelang.org/go/encoding/json"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	oamcore "github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/utils/component"
-	"github.com/khulnasoft/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshkit/utils/manifests"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	oamcore "github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/utils/component"
+	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )

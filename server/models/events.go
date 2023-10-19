@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
 )
 
 type MeshplayEvents interface {

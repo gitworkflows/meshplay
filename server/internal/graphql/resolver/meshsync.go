@@ -8,8 +8,8 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/broker"
-	"github.com/khulnasoft/meshkit/utils"
+	"github.com/khulnasoft/meshplay/meshkit/broker"
+	"github.com/khulnasoft/meshplay/meshkit/utils"
 	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 )
 

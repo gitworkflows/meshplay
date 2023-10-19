@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/database"
 )
 
 // PerformanceProfilePersister is the persister for persisting

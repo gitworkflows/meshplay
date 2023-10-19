@@ -8,9 +8,9 @@ import (
 	operatorClient "github.com/khulnasoft/meshplay-operator/pkg/client"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/models/controllers"
-	"github.com/khulnasoft/meshkit/utils/broadcast"
-	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/models/controllers"
+	"github.com/khulnasoft/meshplay/meshkit/utils/broadcast"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 )
 
 type operatorStatusK8sContext struct {

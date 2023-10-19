@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/utils"
+	"github.com/khulnasoft/meshplay/meshkit/utils"
 	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 	"gorm.io/gorm/clause"
 )

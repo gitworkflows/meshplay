@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/khulnasoft/meshkit/broker"
-	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/broker"
+	"github.com/khulnasoft/meshplay/meshkit/database"
 	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 
 	"gorm.io/gorm"

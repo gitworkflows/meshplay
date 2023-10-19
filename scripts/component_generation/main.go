@@ -15,8 +15,8 @@ import (
 
 	"time"
 
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/utils/artifacthub"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/utils/artifacthub"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 	"google.golang.org/api/sheets/v4"

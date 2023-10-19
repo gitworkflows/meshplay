@@ -11,9 +11,9 @@ import (
 	"cuelang.org/go/cue/cuecontext"
 	cueJson "cuelang.org/go/encoding/json"
 	"github.com/khulnasoft/meshplay/server/internal/store"
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshkit/utils/manifests"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 

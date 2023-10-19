@@ -3,7 +3,7 @@ package selector
 import (
 	"fmt"
 
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
 )
 
 const (

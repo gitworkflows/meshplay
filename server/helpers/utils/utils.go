@@ -12,7 +12,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
 )
 
 const (

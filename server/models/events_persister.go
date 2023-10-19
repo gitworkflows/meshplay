@@ -2,8 +2,8 @@ package models
 
 import (
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/database"
-	"github.com/khulnasoft/meshkit/models/events"
+	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
 	"gorm.io/gorm/clause"
 )
 

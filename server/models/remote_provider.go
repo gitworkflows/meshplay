@@ -22,8 +22,8 @@ import (
 	"errors"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/database"
-	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/database"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"

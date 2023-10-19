@@ -13,7 +13,7 @@ import (
 	mutil "github.com/khulnasoft/meshplay/server/helpers/utils"
 
 	mcore "github.com/khulnasoft/meshplay/server/models/meshmodel/core"
-	meshmodelv1alpha1 "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodelv1alpha1 "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
 
 	// for GKE kube API authentication
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
@@ -23,9 +23,9 @@ import (
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	putils "github.com/khulnasoft/meshplay/server/models/pattern/utils"
-	"github.com/khulnasoft/meshkit/models/events"
-	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshkit/utils"
+	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshplay/meshkit/utils"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"

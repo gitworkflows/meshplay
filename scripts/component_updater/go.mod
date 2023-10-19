@@ -2,7 +2,7 @@ module github.com/khulnasoft/component_scraper
 
 go 1.21
 
-require github.com/khulnasoft/meshkit v0.6.52
+require github.com/khulnasoft/meshplay/meshkit v0.6.52
 
 require (
 	cuelang.org/go v0.5.0 // indirect

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/database"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 )
 

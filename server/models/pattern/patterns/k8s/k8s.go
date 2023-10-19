@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
-	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"gopkg.in/yaml.v2"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/client-go/rest"

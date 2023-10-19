@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/khulnasoft/meshkit/database"
-	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshplay/meshkit/logger"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )

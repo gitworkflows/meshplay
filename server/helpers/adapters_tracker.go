@@ -16,7 +16,7 @@ import (
 	"github.com/docker/go-connections/nat"
 	"github.com/khulnasoft/meshplay/server/helpers/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	meshkitkube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	meshkitkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/spf13/viper"
 )
 
