@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/layer5io/meshery-operator/api/v1alpha1"
+	"github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
 	"github.com/khulnasoft/meshplay/meshkit/utils"
 	mesherykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 )
@@ -63,14 +63,14 @@ func GetBrokerEndpoint(kclient *mesherykube.Client, broker *v1alpha1.Broker) str
 func applyOperatorHelmChart(chartRepo string, client mesherykube.Client, mesheryReleaseVersion string, delete bool, overrides map[string]interface{}) error {
 	var (
 		act   = mesherykube.INSTALL
-		chart = "meshery-operator"
+		chart = "meshplay-operator"
 	)
 	if delete {
 		act = mesherykube.UNINSTALL
 	}
 	err := client.ApplyHelmChart(mesherykube.ApplyHelmChartConfig{
 		Namespace:   "meshery",
-		ReleaseName: "meshery-operator",
+		ReleaseName: "meshplay-operator",
 		ChartLocation: mesherykube.HelmChartLocation{
 			Repository: chartRepo,
 			Chart:      chart,

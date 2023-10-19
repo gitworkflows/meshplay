@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	opClient "github.com/layer5io/meshery-operator/pkg/client"
+	opClient "github.com/khulnasoft/meshplay/meshplay-operator/pkg/client"
 	mesherykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	v1 "k8s.io/api/core/v1"
 	kubeerror "k8s.io/apimachinery/pkg/api/errors"

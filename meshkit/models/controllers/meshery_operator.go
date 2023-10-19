@@ -44,7 +44,7 @@ func (mo *mesheryOperator) GetStatus() MesheryControllerStatus {
 		return Undeployed
 	}
 	// check if the deployment exists
-	deployment, err := mo.client.DynamicKubeClient.Resource(schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}).Namespace("meshery").Get(context.TODO(), "meshery-operator", metav1.GetOptions{})
+	deployment, err := mo.client.DynamicKubeClient.Resource(schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}).Namespace("meshery").Get(context.TODO(), "meshplay-operator", metav1.GetOptions{})
 	if err != nil {
 		if kubeerror.IsNotFound(err) {
 			mo.setStatus(NotDeployed)
