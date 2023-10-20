@@ -99,7 +99,7 @@ jobs:
   tests-ui-e2e:
     needs: [build-backend, ui-build]
     name: UI end-to-end tests
-    if: github.repository == 'meshplay/meshplay'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
@@ -206,7 +206,7 @@ jobs:
           flags: e2etests
   docker-build-test:
     name: Docker build
-    if: github.repository == 'meshplay/meshplay'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
@@ -236,7 +236,7 @@ jobs:
 
   # validate the swagger docs
   swaggerci:
-    if: github.repository == 'meshplay/meshplay'
+    if: github.repository == 'khulnasoft/meshplay'
     name: swagger-docs
     runs-on: ubuntu-22.04
     steps:
@@ -263,7 +263,7 @@ jobs:
   # validate graphQL schema
   garphql_validate:
     name: Validate GraphQL schema
-    if: github.repository == 'meshplay/meshplay'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
