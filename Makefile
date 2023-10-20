@@ -65,11 +65,11 @@ docker-cloud:
 ## Setup wrk2 for local development.
 wrk2-setup:
 	echo "setup-wrk does not work on Mac Catalina at the moment"
-	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay/wrk2.git; cd wrk2; make; cd ..
+	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay.git; cd meshplay/wrk2; make; cd ..
 
 ## Setup nighthawk for local development.
 nighthawk-setup: dep-check
-	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay/getnighthawk.git; cd getnighthawk; make setup; cd ..
+	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay.git; cd meshplay/getnighthawk; make setup; cd ..
 
 run-local: server-local error
 
