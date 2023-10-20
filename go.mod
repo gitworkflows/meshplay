@@ -8,7 +8,7 @@ replace (
 	github.com/docker/libcompose => github.com/docker/libcompose v0.4.1-0.20190808084053-143e0f3f1ab9
 	github.com/go-openapi/runtime => github.com/go-openapi/runtime v0.19.31
 	github.com/go-openapi/strfmt => github.com/go-openapi/strfmt v0.20.2
-	github.com/kudobuilder/kuttl => github.com/khulnasoft/kuttl v0.4.1-0.20200806180306-b7e46afd657f
+	github.com/kudobuilder/kuttl => github.com/layer5io/kuttl v0.4.1-0.20200806180306-b7e46afd657f
 	gonum.org/v1/plot v0.9.0 => github.com/gonum/plot v0.9.0
 	vbom.ml/util => github.com/fvbommel/util v0.0.0-20180919145318-efcd4e0f9787
 )
@@ -37,6 +37,12 @@ require (
 	github.com/grafana-tools/sdk v0.0.0-20220919052116-6562121319fc
 	github.com/jarcoal/httpmock v1.3.0
 	github.com/jinzhu/copier v0.3.5
+	github.com/khulnasoft/meshplay/getnighthawk v0.0.0-20231020001212-f4908b08fe71
+	github.com/khulnasoft/meshplay/gowrk2 v0.0.0-20231020001212-f4908b08fe71
+	github.com/khulnasoft/meshplay/meshkit v0.0.0-20231019233750-e137d9870067
+	github.com/khulnasoft/meshplay/meshplay-operator v0.0.0-20231019233750-e137d9870067
+	github.com/khulnasoft/meshplay/meshsync v0.0.0-20231020001212-f4908b08fe71
+	github.com/khulnasoft/meshplay/service-mesh-performance v0.0.0-20231020001212-f4908b08fe71
 	github.com/lib/pq v1.10.9
 	github.com/manifoldco/promptui v0.9.0
 	github.com/nsf/termbox-go v1.1.1
@@ -104,28 +110,27 @@ require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/cncf/xds/go v0.0.0-20230607035331-e9ce68804cb4 // indirect
 	github.com/cockroachdb/apd/v3 v3.2.0 // indirect
+	github.com/compose-spec/compose-go v1.8.2 // indirect
 	github.com/containerd/containerd v1.7.6 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deckarep/golang-set v1.8.0 // indirect
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/distribution/distribution/v3 v3.0.0-20230214150026-36d8c594d7aa // indirect
 	github.com/docker/distribution v2.8.2+incompatible // indirect
 	github.com/docker/docker-credential-helpers v0.7.0 // indirect
 	github.com/docker/go v1.5.1-1.0.20160303222718-d30aec9fd63c // indirect
 	github.com/docker/go-metrics v0.0.1 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
-	github.com/docker/libcompose v0.4.0 // indirect
 	github.com/emicklei/go-restful/v3 v3.10.1 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/envoyproxy/protoc-gen-validate v1.0.2 // indirect
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
-	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fatih/camelcase v1.0.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/fsouza/go-dockerclient v1.9.3 // indirect
 	github.com/fvbommel/sortorder v1.1.0 // indirect
@@ -150,7 +155,6 @@ require (
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/btree v1.1.2 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
@@ -179,12 +183,6 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/khulnasoft/meshplay/getnighthawk v0.0.0-20231020001212-f4908b08fe71 // indirect
-	github.com/khulnasoft/meshplay/gowrk2 v0.0.0-20231020001212-f4908b08fe71 // indirect
-	github.com/khulnasoft/meshplay/meshkit v0.0.0-20231019233750-e137d9870067 // indirect
-	github.com/khulnasoft/meshplay/meshplay-operator v0.0.0-20231019233750-e137d9870067 // indirect
-	github.com/khulnasoft/meshplay/meshsync v0.0.0-20231020001212-f4908b08fe71 // indirect
-	github.com/khulnasoft/meshplay/service-mesh-performance v0.0.0-20231020001212-f4908b08fe71 // indirect
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/kubernetes/kompose v1.28.0 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
@@ -195,6 +193,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
+	github.com/mattn/go-shellwords v1.0.12 // indirect
 	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/miekg/pkcs11 v1.1.1 // indirect
@@ -214,7 +213,6 @@ require (
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/mpvl/unique v0.0.0-20150818121801-cbe035fff7de // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
-	github.com/myntra/pipeline v0.0.0-20180618182531-2babf4864ce8 // indirect
 	github.com/nats-io/nats.go v1.22.1 // indirect
 	github.com/nats-io/nkeys v0.3.0 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
@@ -264,7 +262,6 @@ require (
 	golang.org/x/term v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.13.0 // indirect
-	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230913181813-007df8e322eb // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
