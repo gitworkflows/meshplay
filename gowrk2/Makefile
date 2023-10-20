@@ -1,5 +1,5 @@
 get-wrk:
-	git clone https://github.com/khulnasoft/wrk2.git
+	git clone https://github.com/khulnasoft/meshplay/wrk2.git
 
 docker-build-base:
 	docker image prune -f

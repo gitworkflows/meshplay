@@ -1,4 +1,4 @@
-name: Nighthawk-Go
+name: getnighthawk
 on:
   push:
     branches:
