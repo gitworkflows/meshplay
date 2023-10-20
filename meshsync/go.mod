@@ -1,7 +1,7 @@
 module github.com/khulnasoft/meshplay/meshsync
 
 replace (
-	github.com/kudobuilder/kuttl => github.com/layer5io/kuttl v0.4.1-0.20200806180306-b7e46afd657f
+	github.com/kudobuilder/kuttl => github.com/khulnasoft/kuttl v0.4.1-0.20200806180306-b7e46afd657f
 	vbom.ml/util => github.com/fvbommel/util v0.0.0-20180919145318-efcd4e0f9787
 )
 

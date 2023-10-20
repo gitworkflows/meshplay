@@ -2,7 +2,7 @@
 -- where user_id = 'de7f1b67-5c6d-4c38-8c6c-fda919129ed0' and service_mesh='ISTIO'
 -- order by created_at DESC LIMIT 10;
 
-select runner_results, name, mesh from public.meshery_results
+select runner_results, name, mesh from public.meshplay_results
 where user_id = 'de7f1b67-5c6d-4c38-8c6c-fda919129ed0' and mesh='LINKERD'
 Order by created_at DESC
 LIMIT 10;

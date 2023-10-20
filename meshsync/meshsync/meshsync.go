@@ -4,7 +4,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshkit/broker"
 	"github.com/khulnasoft/meshplay/meshkit/config"
 	"github.com/khulnasoft/meshplay/meshkit/logger"
-	mesherykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/khulnasoft/meshplay/meshsync/internal/channels"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -30,7 +30,7 @@ type Handler struct {
 
 func New(config config.Handler, log logger.Handler, br broker.Handler, pool map[string]channels.GenericChannel) (*Handler, error) {
 	// Initialize Kubeconfig
-	kubeClient, err := mesherykube.New(nil)
+	kubeClient, err := meshplaykube.New(nil)
 	if err != nil {
 		return nil, ErrKubeConfig(err)
 	}

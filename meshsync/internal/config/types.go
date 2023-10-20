@@ -8,7 +8,7 @@ const (
 	LocalResourceKey          = "local"
 	ListenersKey              = "listeners"
 	LogStreamsKey             = "log-streams"
-	PatternResourceIDLabelKey = "resource.pattern.meshery.io/id"
+	PatternResourceIDLabelKey = "resource.pattern.meshplay.io/id"
 
 	BrokerURL     = "broker-url"
 	RequestStream = "request-stream"

@@ -44,7 +44,7 @@ The specification itself provides a standard format for describing and capturing
 - workload configuration
 - performance test results
 
-The canonical implementation of this specification is the Meshery project. Figure 8-x provides insight to the fact that the specification defines a common collection of statistical analysis to be calculated for every performance test.
+The canonical implementation of this specification is the Meshplay project. Figure 8-x provides insight to the fact that the specification defines a common collection of statistical analysis to be calculated for every performance test.
 
 <div class="codewrapper">
   <pre><code>

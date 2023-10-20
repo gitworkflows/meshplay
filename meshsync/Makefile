@@ -30,15 +30,15 @@ build:
 
 .PHONY: docker-check
 docker: check
-	docker build -t layer5/meshery-meshsync .
+	docker build -t khulnasoft/meshplay-meshsync .
 
 .PHONY: docker-run
 docker-run:
-	(docker rm -f meshery-meshsync) || true
-	docker run --name meshery-meshsync -d \
+	(docker rm -f meshplay-meshsync) || true
+	docker run --name meshplay-meshsync -d \
 	-p 10007:10007 \
 	-e DEBUG=true \
-	layer5/meshery-meshsync
+	khulnasoft/meshplay-meshsync
 
 .PHONY: run-check
 run: check

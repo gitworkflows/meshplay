@@ -1,6 +1,6 @@
 ---
 name: 💡 General Feature Request
-about: Suggest an enhancement to Meshery.
+about: Suggest an enhancement to Meshplay.
 title: ''
 labels: 'kind/enhancement'
 assignees: ''
@@ -28,10 +28,10 @@ assignees: ''
 
 ---
 
-#### Contributor [Guides](https://docs.meshery.io/project/contributing) and Resources
+#### Contributor [Guides](https://docs.meshplay.io/project/contributing) and Resources
 
-- 🛠 [Meshery Build & Release Strategy](https://docs.meshery.io/project/build-and-release)
-- 📚 [Instructions for contributing to documentation](https://github.com/meshery/meshery/blob/master/CONTRIBUTING.md#documentation-contribution-flow)
-  - Meshery documentation [site](https://docs.meshery.io/) and [source](https://github.com/meshery/meshery/tree/master/docs)
-- 🎨 Wireframes and [designs for Meshery UI](https://www.figma.com/file/SMP3zxOjZztdOLtgN4dS2W/Meshery-UI) in Figma [(open invite)](https://www.figma.com/team_invite/redeem/qJy1c95qirjgWQODApilR9)
-- 🙋🏾🙋🏼 Questions: [Layer5 Discussion Forum](https://discuss.layer5.io) and [Layer5 Community Slack](http://slack.layer5.io)
+- 🛠 [Meshplay Build & Release Strategy](https://docs.meshplay.io/project/build-and-release)
+- 📚 [Instructions for contributing to documentation](https://github.com/meshplay/meshplay/blob/master/CONTRIBUTING.md#documentation-contribution-flow)
+  - Meshplay documentation [site](https://docs.meshplay.io/) and [source](https://github.com/meshplay/meshplay/tree/master/docs)
+- 🎨 Wireframes and [designs for Meshplay UI](https://www.figma.com/file/SMP3zxOjZztdOLtgN4dS2W/Meshplay-UI) in Figma [(open invite)](https://www.figma.com/team_invite/redeem/qJy1c95qirjgWQODApilR9)
+- 🙋🏾🙋🏼 Questions: [Khulnasoft Discussion Forum](https://discuss.khulnasoft.com) and [Khulnasoft Community Slack](http://slack.khulnasoft.com)

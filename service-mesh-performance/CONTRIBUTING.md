@@ -3,9 +3,9 @@ Please do! Thanks for your help in improving the project! :balloon:
 
 All contributors are welcome. Not sure where to start? Please see the [newcomers welcome guide](https://docs.google.com/document/d/17OPtDE_rdnPQxmk2Kauhm3GwXF1R5dZ3Cj8qZLKdo5E/edit) for how, where, and why to contribute. This project is community-built and welcomes collaboration. Contributors are expected to adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-All set to contribute? Grab an open issue with the [help-wanted label](../../labels/help%20wanted) and jump in. Join the [Slack channel](http://slack.layer5.io) and engage in conversation. Create a [new issue](/../../issues/new/choose) if needed.  All [pull requests](/../../pulls) should reference an open [issue](/../../issues). Include keywords in your pull request descriptions, as well as commit messages, to [automatically close issues in GitHub](https://help.github.com/en/github/managing-your-work-on-github/closing-issues-using-keywords).
+All set to contribute? Grab an open issue with the [help-wanted label](../../labels/help%20wanted) and jump in. Join the [Slack channel](http://slack.khulnasoft.com) and engage in conversation. Create a [new issue](/../../issues/new/choose) if needed.  All [pull requests](/../../pulls) should reference an open [issue](/../../issues). Include keywords in your pull request descriptions, as well as commit messages, to [automatically close issues in GitHub](https://help.github.com/en/github/managing-your-work-on-github/closing-issues-using-keywords).
 
-Note- SMP prominently and consistently engages with the Meshery Project. For a more complete set of contributing guides see docs.meshery.io/project/contributing.
+Note- SMP prominently and consistently engages with the Meshplay Project. For a more complete set of contributing guides see docs.meshplay.io/project/contributing.
 
 # <a name="contributing">General Contribution Flow</a>
 
@@ -58,11 +58,11 @@ Or you may configure your IDE, for example, Visual Studio Code to automatically 
 
 After successful installation, proceed with the following [steps](https://jekyllrb.com/docs/installation/windows/#installation-via-bash-on-windows-10) to run Jekyll on WSL.
 
-If you face any errors during installation or setup, have a look at [Meshery Contributing Docs](https://docs.meshery.io/project/contributing-docs) to find a possible solution. 
+If you face any errors during installation or setup, have a look at [Meshplay Contributing Docs](https://docs.meshplay.io/project/contributing-docs) to find a possible solution. 
   
 
 ## <a name="contributing-docs">Documentation Contribution Flow</a>
-Please contribute! All projects under Layer5 use GitHub Pages to host its documentation. Learn more about [Layer5's documentation framework](https://docs.google.com/document/d/17guuaxb0xsfutBCzyj2CT6OZiFnMu9w4PzoILXhRXSo/edit?usp=sharing). The process of contributing follows this flow:
+Please contribute! All projects under Khulnasoft use GitHub Pages to host its documentation. Learn more about [Khulnasoft's documentation framework](https://docs.google.com/document/d/17guuaxb0xsfutBCzyj2CT6OZiFnMu9w4PzoILXhRXSo/edit?usp=sharing). The process of contributing follows this flow:
 
 1. Create a fork, if you have not already, by following the steps described [here](./CONTRIBUTING-gitflow.md)
 1. In the local copy of your fork, navigate to the docs folder.

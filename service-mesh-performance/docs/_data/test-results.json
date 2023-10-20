@@ -1,6 +1,6 @@
 [
     {
-      "meshery_id": "f9ccd668-9d26-4f70-8a51-47de5af3c502",
+      "meshplay_id": "f9ccd668-9d26-4f70-8a51-47de5af3c502",
       "name": "No mesh_1650983199033",
       "mesh": null,
       "performance_profile": "30c9382b-636f-4117-8205-10bac2d77944",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "meshery_id": "7d026c32-f912-49f6-8560-89aefe4fc91b",
+      "meshplay_id": "7d026c32-f912-49f6-8560-89aefe4fc91b",
       "name": "linkerd_1652379422611",
       "test_start_time": "2022-05-12T23:47:05.183424Z",
       "mesh": "linkerd",
@@ -293,7 +293,7 @@
       "updated_at": "2022-05-12T18:17:35.327377Z"
     },
     {
-      "meshery_id": "15e3581e-d7b9-421e-9db7-d7af6896310e",
+      "meshplay_id": "15e3581e-d7b9-421e-9db7-d7af6896310e",
       "name": "linkerd_1652362153916",
       "test_start_time": "2022-05-12T18:59:15.489318Z",
       "mesh": "linkerd",
