@@ -537,8 +537,8 @@ class MeshplayApp extends App {
                         ) : (
                           <>
                             {' '}
-                            Built with <FavoriteIcon className={classes.footerIcon} /> by the KhulnaSoft
-                            Community
+                            Built with <FavoriteIcon className={classes.footerIcon} /> by the
+                            KhulnaSoft Community
                           </>
                         )}
                       </span>
