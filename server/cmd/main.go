@@ -26,7 +26,7 @@ import (
 	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
 	"github.com/khulnasoft/meshplay/meshkit/utils/broadcast"
 	"github.com/khulnasoft/meshplay/meshkit/utils/events"
-	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"github.com/spf13/viper"
 
 	"github.com/sirupsen/logrus"

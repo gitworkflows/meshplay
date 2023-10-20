@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshsync/pkg/model"
+	"github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"gorm.io/gorm/clause"
 )
 

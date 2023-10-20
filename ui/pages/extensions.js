@@ -68,7 +68,7 @@ const MeshMapSnapShotLogo = withStyles(LogoStyles)(({ classes }) => {
 
 const MeshMapSnapShotCard = ({ classes, githubActionEnabled = false }) => {
   const handleEnable = (e) => {
-    window.open('https://cloud.meshplay.io/connect/github/new/', '_blank');
+    window.open('https://cloud.meshplay.khulnasoft.com/connect/github/new/', '_blank');
     e.stopPropagation();
   };
 
@@ -216,7 +216,7 @@ const Extensions = ({ classes, toggleCatalogContent, capabilitiesRegistry }) => 
               <Typography variant="subtitle2" style={{ fontStyle: 'italic' }}>
                 Explore the{' '}
                 <a
-                  href="https://meshplay.io/catalog"
+                  href="https://meshplay.khulnasoft.com/catalog"
                   target="_blank"
                   rel="noreferrer"
                   className={classes.link}

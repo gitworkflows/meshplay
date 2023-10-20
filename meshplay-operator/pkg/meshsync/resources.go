@@ -70,7 +70,7 @@ var (
 			Containers: []corev1.Container{
 				{
 					Name:            "meshsync",
-					Image:           "khulnasoft/meshsync:stable-latest",
+					Image:           "khulnasoft/meshplay/meshsync:stable-latest",
 					ImagePullPolicy: corev1.PullAlways,
 					Ports: []corev1.ContainerPort{
 						{

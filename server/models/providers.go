@@ -8,7 +8,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshkit/database"
 	"github.com/khulnasoft/meshplay/meshkit/logger"
 	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	SMP "github.com/khulnasoft/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
 )
 
 // ContextKey is a custom type for setting context key

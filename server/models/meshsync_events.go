@@ -5,7 +5,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshkit/database"
 	"github.com/khulnasoft/meshplay/meshkit/logger"
 	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"gorm.io/gorm"
 )
 

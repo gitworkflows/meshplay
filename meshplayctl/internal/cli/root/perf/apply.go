@@ -28,7 +28,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	SMP "github.com/khulnasoft/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/pkg/errors"
@@ -97,7 +97,7 @@ meshplayctl perf apply meshplay-profile --url https://192.168.1.15/productpage -
 // If any options are already present in the profile or passed through flags, the --options flag will take precedence over the profile and flag options 
 // Options for nighthawk - https://github.com/khulnasoft/getnighthawk/blob/v1.0.5/pkg/proto/options.pb.go#L882-L1018
 // Options for fortio - https://github.com/fortio/fortio/blob/v1.57.0/fhttp/httprunner.go#L77-L84
-// Options for wrk2 - https://github.com/khulnasoft/gowrk2/blob/v0.6.1/api/gowrk2.go#L47-L53
+// Options for wrk2 - https://github.com/khulnasoft/meshplay/gowrk2/blob/v0.6.1/api/gowrk2.go#L47-L53
 meshplayctl perf apply meshplay-profile-new --url "https://google.com" --options [filepath|json-string]
 meshplayctl perf apply meshplay-profile-new --url "https://google.com" --options path/to/options.json
 meshplayctl perf apply meshplay-profile-new --url "https://google.com" --load-generator nighthawk --options '{"requests_per_second": 10, "max_pending_requests": 5}'
@@ -351,7 +351,7 @@ func init() {
 	applyCmd.Flags().StringVar(&concurrentRequests, "concurrent-requests", "", "(optional) Number of Parallel Requests")
 	applyCmd.Flags().StringVar(&testDuration, "duration", "", "(optional) Length of test (e.g. 10s, 5m, 2h). For more, see https://golang.org/pkg/time/#ParseDuration")
 	applyCmd.Flags().StringVar(&loadGenerator, "load-generator", "", "(optional) Load-Generator to be used (fortio/wrk2/nighthawk)")
-	applyCmd.Flags().StringVarP(&filePath, "file", "f", "", "(optional) File containing SMP-compatible test configuration. For more, see https://github.com/khulnasoft/service-mesh-performance-specification")
+	applyCmd.Flags().StringVarP(&filePath, "file", "f", "", "(optional) File containing SMP-compatible test configuration. For more, see https://github.com/khulnasoft/meshplay/service-mesh-performance-specification")
 	applyCmd.Flags().StringVarP(&loadTestBody, "body", "b", "", "(optional) Load test body. Can be a filepath/string")
 	applyCmd.Flags().StringVar(&additionalOptions, "options", "", "(optional) Additional options to be passed to the load generator. Can be a json string or a filepath containing json")
 	applyCmd.Flags().StringVar(&certPath, "cert-path", "", "(optional) Path to the certificate to be used for the load test")

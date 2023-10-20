@@ -49,7 +49,7 @@ func getDefinitions(parsedCrd cue.Value, resource int, cfg Config, ctx context.C
 	switch resource {
 	case SERVICE_MESH:
 		def.Spec.Metadata = map[string]string{
-			"@type":         "pattern.meshplay.io/mesh/workload",
+			"@type":         "pattern.meshplay.khulnasoft.com/mesh/workload",
 			"meshVersion":   cfg.MeshVersion,
 			"meshName":      cfg.Name,
 			"k8sAPIVersion": k8sAPIVersion,
@@ -63,7 +63,7 @@ func getDefinitions(parsedCrd cue.Value, resource int, cfg Config, ctx context.C
 		def.Spec.DefinitionRef.Name += ".meshplay.khulnasoft.com"
 	case K8s:
 		def.Spec.Metadata = map[string]string{
-			"@type":         "pattern.meshplay.io/k8s",
+			"@type":         "pattern.meshplay.khulnasoft.com/k8s",
 			"k8sAPIVersion": k8sAPIVersion,
 			"k8sKind":       resourceId,
 			"version":       cfg.K8sVersion,
@@ -72,7 +72,7 @@ func getDefinitions(parsedCrd cue.Value, resource int, cfg Config, ctx context.C
 		def.Spec.DefinitionRef.Name = strings.ToLower(resourceId) + ".k8s.meshplay.khulnasoft.com"
 	case MESHPLAY:
 		def.Spec.Metadata = map[string]string{
-			"@type": "pattern.meshplay.io/core",
+			"@type": "pattern.meshplay.khulnasoft.com/core",
 		}
 	}
 	out, err := json.MarshalIndent(def, "", " ")

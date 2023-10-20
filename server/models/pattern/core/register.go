@@ -57,7 +57,7 @@ type WorkloadCapability struct {
 	genericCapability
 }
 
-// present in metadata."adapter.meshplay.io/name". Ex- core,kubernetes,istio,linkerd,etc
+// present in metadata."adapter.meshplay.khulnasoft.com/name". Ex- core,kubernetes,istio,linkerd,etc
 type ComponentTypes struct {
 	Names                     map[string]bool
 	LatestVersionForComponent map[string]string
@@ -284,7 +284,7 @@ func DeleteK8sWorkloads(ctx string) {
 		}
 		var workload = value
 		//delete only the ones with given context in metadata
-		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.meshplay.io/k8s" && workload.Metadata["io.meshplay.ctxid"] == ctx {
+		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.meshplay.khulnasoft.com/k8s" && workload.Metadata["io.meshplay.ctxid"] == ctx {
 			key := fmt.Sprintf(
 				"/meshplay/registry/definition/%s/%s/%s",
 				workload.OAMDefinition.APIVersion,

@@ -25,6 +25,6 @@ Supported flags are:
 
 To run the script execute following command 
 1. To update docs on khulnasoft.com website:
-`./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations meshplay.io/integrations docs/ --published-only`
+`./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations meshplay.khulnasoft.com/integrations docs/ --published-only`
 2. To update component metadata for meshmodels:
 `./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel`

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/khulnasoft/meshsync/pkg/model"
+	"github.com/khulnasoft/meshplay/meshsync/pkg/model"
 )
 
 type MeshSyncResourcesAPIResponse struct {

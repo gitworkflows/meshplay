@@ -17,7 +17,7 @@ package mesh
 import "github.com/khulnasoft/meshplay/meshkit/errors"
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.io/project/contributing/contributing-error
+// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGettingSessionDataCode                = "1098"
@@ -45,7 +45,7 @@ var (
 		[]string{"Unable to validate adapter"},
 		[]string{"Adapter for required mesh not found"},
 		[]string{"Unable to fetch Mesh adapter, adapter not valid."},
-		[]string{"Deploy a proper Meshplay Adapter for your service mesh. See https://docs.meshplay.io/concepts/architecture/adapters for list of adapters"})
+		[]string{"Deploy a proper Meshplay Adapter for your service mesh. See https://docs.meshplay.khulnasoft.com/concepts/architecture/adapters for list of adapters"})
 
 	ErrFailedDeployingMesh = errors.New(ErrFailedDeployingMeshCode, errors.Fatal,
 		[]string{"Failed to deploy the service mesh"},

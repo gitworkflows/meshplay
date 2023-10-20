@@ -47,7 +47,7 @@ const (
 	MeshsyncURL   = baseConfigURL + "samples/meshplay_v1alpha1_meshsync.yaml"
 
 	// Documentation URLs
-	docsBaseURL       = "https://docs.meshplay.io/"
+	docsBaseURL       = "https://docs.meshplay.khulnasoft.com/"
 	rootUsageURL      = docsBaseURL + "reference/meshplayctl"
 	perfUsageURL      = docsBaseURL + "reference/meshplayctl/perf"
 	systemUsageURL    = docsBaseURL + "reference/meshplayctl/system"
@@ -127,7 +127,7 @@ const (
 )
 
 const (
-	HelmChartURL          = "https://meshplay.io/charts/"
+	HelmChartURL          = "https://meshplay.khulnasoft.com/charts/"
 	HelmChartName         = "meshplay"
 	HelmChartOperatorName = "meshplay-operator"
 )
@@ -162,13 +162,13 @@ var (
 	// check https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s
 	MeshplayService = "meshplay-service.yaml"
 	//MeshplayOperator is the file for default Meshplay operator
-	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/manifests/default.yaml
+	//check https://github.com/khulnasoft/meshplay/meshplay-operator/blob/master/config/manifests/default.yaml
 	MeshplayOperator = "default.yaml"
 	//MeshplayOperatorBroker is the file for the Meshplay broker
-	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_broker.yaml
+	//check https://github.com/khulnasoft/meshplay/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_broker.yaml
 	MeshplayOperatorBroker = "meshplay_v1alpha1_broker.yaml"
 	//MeshplayOperatorMeshsync is the file for the Meshplay Meshsync Operator
-	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_meshsync.yaml
+	//check https://github.com/khulnasoft/meshplay/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_meshsync.yaml
 	MeshplayOperatorMeshsync = "meshplay_v1alpha1_meshsync.yaml"
 	// ServiceAccount is the name of a Kubernetes manifest file required to setup Meshplay
 	// check https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s

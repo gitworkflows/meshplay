@@ -385,7 +385,7 @@ class MeshplayChart extends React.Component {
                 <Paper className={classes.paper}>
                   <TwitterShareButton
                     className={classes.socialIcon}
-                    url={'https://meshplay.io'}
+                    url={'https://meshplay.khulnasoft.com'}
                     title={this.state.socialMessage}
                     hashtags={['opensource']}
                   >
@@ -393,14 +393,14 @@ class MeshplayChart extends React.Component {
                   </TwitterShareButton>
                   <LinkedinShareButton
                     className={classes.socialIcon}
-                    url={'https://meshplay.io'}
+                    url={'https://meshplay.khulnasoft.com'}
                     summary={this.state.socialMessage}
                   >
                     <LinkedinIcon size={32} />
                   </LinkedinShareButton>
                   <FacebookShareButton
                     className={classes.socialIcon}
-                    url={'https://meshplay.io'}
+                    url={'https://meshplay.khulnasoft.com'}
                     quote={this.state.socialMessage}
                     hashtag={'#opensource'}
                   >

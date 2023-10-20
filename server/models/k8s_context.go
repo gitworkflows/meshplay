@@ -17,7 +17,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/internal/sql"
 	"github.com/khulnasoft/meshplay/meshkit/models/events"
 	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"

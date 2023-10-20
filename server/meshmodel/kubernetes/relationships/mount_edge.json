@@ -1,5 +1,5 @@
 {
-    "apiVersion": "core.meshplay.io/v1alpha1",
+    "apiVersion": "core.meshplay.khulnasoft.com/v1alpha1",
     "kind": "Edge",
     "metadata": {
       "description": "A relationship that represents volume mounts between components"

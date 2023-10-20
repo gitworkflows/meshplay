@@ -333,7 +333,7 @@ const TroubleshootingModal = (props) => {
                     {' '}
                     <a
                       className={classes.troubleshootHelpLink}
-                      href="http://discuss.meshplay.io/t/what-are-some-troubleshooting-tips-for-meshmap"
+                      href="http://discuss.meshplay.khulnasoft.com/t/what-are-some-troubleshooting-tips-for-meshmap"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -358,7 +358,7 @@ const TroubleshootingModal = (props) => {
               or{' '}
               <a
                 className={classes.contactHelpLink}
-                href="http://discuss.meshplay.io"
+                href="http://discuss.meshplay.khulnasoft.com"
                 target="_blank"
                 rel="noreferrer"
               >

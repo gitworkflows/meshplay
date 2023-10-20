@@ -15,14 +15,14 @@ import (
 	"github.com/khulnasoft/meshplay/meshkit/utils"
 	"github.com/khulnasoft/meshplay/meshkit/utils/broadcast"
 	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
 // to be moved elsewhere
 const (
-	chartRepo = "https://meshplay.github.io/meshplay.io/charts"
+	chartRepo = "https://meshplay.github.io/meshplay.khulnasoft.com/charts"
 )
 
 var (

@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	HelmChartURL          = "https://meshplay.io/charts/"
+	HelmChartURL          = "https://meshplay.khulnasoft.com/charts/"
 	HelmChartName         = "meshplay"
 	HelmChartOperatorName = "meshplay-operator"
 	MeshplayFolder         = ".meshplay"

@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/go-errors/errors"
-	operatorClient "github.com/khulnasoft/meshplay-operator/pkg/client"
+	operatorClient "github.com/khulnasoft/meshplay/meshplay-operator/pkg/client"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/meshkit/models/controllers"

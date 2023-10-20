@@ -285,7 +285,7 @@ function MeshplayPatternGrid({
           handleSubmit={handlePublish}
           showInfoIcon={{
             text: 'Upon submitting your catalog item, an approval flow will be initiated.',
-            link: 'https://docs.meshplay.io/concepts/catalog',
+            link: 'https://docs.meshplay.khulnasoft.com/concepts/catalog',
           }}
           submitBtnText="Submit for Approval"
           submitBtnIcon={<PublicIcon />}

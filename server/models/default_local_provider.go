@@ -24,7 +24,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshkit/utils"
 	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
 	"github.com/khulnasoft/meshplay/meshkit/utils/walker"
-	SMP "github.com/khulnasoft/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"

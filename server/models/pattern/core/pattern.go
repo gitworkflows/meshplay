@@ -253,7 +253,7 @@ func (p *Pattern) GetApplicationComponent(name string) (v1alpha1.Component, erro
 	if comp.ObjectMeta.Labels == nil {
 		comp.ObjectMeta.Labels = make(map[string]string)
 	}
-	comp.ObjectMeta.Labels["resource.pattern.meshplay.io/id"] = svc.ID.String() //set the patternID to track back the object
+	comp.ObjectMeta.Labels["resource.pattern.meshplay.khulnasoft.com/id"] = svc.ID.String() //set the patternID to track back the object
 	return comp, nil
 }
 

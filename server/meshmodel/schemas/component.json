@@ -1,5 +1,5 @@
 {
-  "$id": "https://schema.meshplay.io/component.json",
+  "$id": "https://schema.meshplay.khulnasoft.com/component.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Components are the atomic units for designing infrastructure.",
   "required": [
@@ -32,21 +32,21 @@
           "description": "Description of the component."
         },
         "name": {
-          "$ref": "https://schema.meshplay.io/core.json#inputString",
+          "$ref": "https://schema.meshplay.khulnasoft.com/core.json#inputString",
           "description": "Name of the component."
         },
         "version": {
-          "$ref": "https://schema.meshplay.io/core.json#versionString",
+          "$ref": "https://schema.meshplay.khulnasoft.com/core.json#versionString",
           "description": "Version of the component."
         }
       }
     },
     "model": {
-      "$ref": "https://schema.meshplay.io/model.json#",
+      "$ref": "https://schema.meshplay.khulnasoft.com/model.json#",
       "description": "Model of the component."
     },
     "displayName": {
-      "$ref": "https://schema.meshplay.io/core.json#inputString",
+      "$ref": "https://schema.meshplay.khulnasoft.com/core.json#inputString",
       "description": "Display name of the component."
     },
     "format": {

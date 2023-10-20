@@ -125,7 +125,7 @@ const infoloadGenerators = (
     <Link
       style={{ textDecoration: 'underline' }}
       color="inherit"
-      href="https://docs.meshplay.io/functionality/performance-management"
+      href="https://docs.meshplay.khulnasoft.com/functionality/performance-management"
     >
       {' '}
       Performance Management
@@ -1054,7 +1054,7 @@ class MeshplayPerformanceComponent extends React.Component {
                         <TextField
                           id="headers"
                           name="headers"
-                          label='Request Headers e.g. {"host":"bookinfo.meshplay.io"}'
+                          label='Request Headers e.g. {"host":"bookinfo.meshplay.khulnasoft.com"}'
                           fullWidth
                           value={headers}
                           multiline
@@ -1093,7 +1093,7 @@ class MeshplayPerformanceComponent extends React.Component {
                         <TextField
                           id="cookies"
                           name="cookies"
-                          label='Request Body e.g. {"method":"post","url":"http://bookinfo.meshplay.io/test"}'
+                          label='Request Body e.g. {"method":"post","url":"http://bookinfo.meshplay.khulnasoft.com/test"}'
                           fullWidth
                           value={reqBody}
                           multiline

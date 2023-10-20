@@ -12,7 +12,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
 	"gorm.io/gorm/clause"
 )
 

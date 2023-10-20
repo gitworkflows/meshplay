@@ -535,7 +535,7 @@ func (h *Handler) generateFilterComponent(config string) (string, error) {
 	res, _, _ := h.registryManager.GetEntities(&v1alpha1.ComponentFilter{
 		Name:       "WASMFilter",
 		Trim:       false,
-		APIVersion: "core.meshplay.io/v1alpha1",
+		APIVersion: "core.meshplay.khulnasoft.com/v1alpha1",
 		Version:    "v1.0.0",
 		Limit:      1,
 	})

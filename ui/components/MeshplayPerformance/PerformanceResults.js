@@ -316,7 +316,7 @@ function generateColumnsForDisplay(
                       <Paper className={classes.paper}>
                         <TwitterShareButton
                           className={classes.socialIcon}
-                          url={'https://meshplay.io'}
+                          url={'https://meshplay.khulnasoft.com'}
                           title={socialMessage}
                           hashtags={['opensource']}
                         >
@@ -325,7 +325,7 @@ function generateColumnsForDisplay(
                         </TwitterShareButton>
                         <LinkedinShareButton
                           className={classes.socialIcon}
-                          url={'https://meshplay.io'}
+                          url={'https://meshplay.khulnasoft.com'}
                           summary={socialMessage}
                         >
                           {/* <img src={`/static/img/linkedin.svg`} /> */}
@@ -333,7 +333,7 @@ function generateColumnsForDisplay(
                         </LinkedinShareButton>
                         <FacebookShareButton
                           className={classes.socialIcon}
-                          url={'https://meshplay.io'}
+                          url={'https://meshplay.khulnasoft.com'}
                           quote={socialMessage}
                           hashtag={'#opensource'}
                         >

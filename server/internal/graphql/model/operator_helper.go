@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	operatorv1alpha1 "github.com/khulnasoft/meshplay-operator/api/v1alpha1"
-	operatorClient "github.com/khulnasoft/meshplay-operator/pkg/client"
+	operatorv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	operatorClient "github.com/khulnasoft/meshplay/meshplay-operator/pkg/client"
 	"github.com/khulnasoft/meshplay/server/models"
 	brokerpkg "github.com/khulnasoft/meshplay/meshkit/broker"
 	"github.com/khulnasoft/meshplay/meshkit/broker/nats"

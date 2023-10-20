@@ -8853,7 +8853,7 @@
 - systemName: meshplay-operator
   ahRepo: meshplay
   version: 0.6.28
-  repoUrl: https://meshplay.io/charts/
+  repoUrl: https://meshplay.khulnasoft.com/charts/
 - systemName: rapidsai
   ahRepo: inseefrlab
   version: 6.2.0
@@ -29825,7 +29825,7 @@
 - systemName: meshplay
   ahRepo: meshplay
   version: 0.6.28
-  repoUrl: https://meshplay.io/charts/
+  repoUrl: https://meshplay.khulnasoft.com/charts/
 - systemName: agnops
   ahRepo: agnops
   version: 0.1.0

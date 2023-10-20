@@ -124,7 +124,7 @@ meshplayctl system start -p docker
 			if latest != version {
 				log.Printf("A new release of meshplayctl is available: %s → %s", version, latest)
 				log.Printf("https://github.com/khulnasoft/meshplay/releases/tag/%s", latest)
-				log.Print("Check https://docs.meshplay.io/guides/upgrade#upgrading-meshplay-cli for instructions on how to update meshplayctl\n")
+				log.Print("Check https://docs.meshplay.khulnasoft.com/guides/upgrade#upgrading-meshplay-cli for instructions on how to update meshplayctl\n")
 			}
 		}
 	},

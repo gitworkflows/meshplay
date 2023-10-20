@@ -24,7 +24,7 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshplay/meshkit/database"
 	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	SMP "github.com/khulnasoft/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"k8s.io/client-go/util/homedir"

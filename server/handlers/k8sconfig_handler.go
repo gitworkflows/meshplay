@@ -335,7 +335,7 @@ func RegisterK8sMeshModelComponents(provider *models.Provider, _ context.Context
 		count++
 	}
 	event := events.NewEvent().ActedUpon(connectionUUID).WithCategory("kubernetes_components").WithAction("registration").FromSystem(meshplayInstanceID).FromUser(userUUID).WithSeverity(events.Informational).WithDescription(fmt.Sprintf("%d Kubernetes components registered for %s", count, ctxName)).WithMetadata(map[string]interface{}{
-		"doc": "https://docs.meshplay.io/tasks/lifecycle-management",
+		"doc": "https://docs.meshplay.khulnasoft.com/tasks/lifecycle-management",
 	}).Build()
 
 	_ = (*provider).PersistEvent(event)

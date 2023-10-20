@@ -1,5 +1,5 @@
 {
-    "apiVersion": "core.meshplay.io/v1alpha1",
+    "apiVersion": "core.meshplay.khulnasoft.com/v1alpha1",
     "kind": "Hierarchical",
     "metadata": {
         "description": "A hierarchical inventory relationship in which a Core WASM Filter configuration is applied to an Istio Envoy Filter."

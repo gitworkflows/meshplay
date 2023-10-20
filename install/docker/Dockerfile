@@ -58,7 +58,7 @@ RUN mkdir -p /seed_content/applications && cd /seed_content/applications \
 #RUN apt-get -y update && apt-get -y  install build-essential libssl-dev git zlib1g-dev
 #RUN git config --global user.email "meshplay@khulnasoft.com"
 #RUN git config --global user.name "meshplay"
-#RUN git clone https://github.com/khulnasoft/nighthawk-go
+#RUN git clone https://github.com/khulnasoft/meshplay/getnighthawk
 #RUN cd nighthawk-go/apinighthawk/bin && chmod +x ./nighthawk_client
 
 
