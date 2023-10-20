@@ -120,6 +120,7 @@ require (
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/envoyproxy/protoc-gen-validate v1.0.2 // indirect
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
+	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fatih/camelcase v1.0.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
@@ -149,6 +150,7 @@ require (
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/btree v1.1.2 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
@@ -177,6 +179,12 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
+	github.com/khulnasoft/meshplay/getnighthawk v0.0.0-20231020001212-f4908b08fe71 // indirect
+	github.com/khulnasoft/meshplay/gowrk2 v0.0.0-20231020001212-f4908b08fe71 // indirect
+	github.com/khulnasoft/meshplay/meshkit v0.0.0-20231019233750-e137d9870067 // indirect
+	github.com/khulnasoft/meshplay/meshplay-operator v0.0.0-20231019233750-e137d9870067 // indirect
+	github.com/khulnasoft/meshplay/meshsync v0.0.0-20231020001212-f4908b08fe71 // indirect
+	github.com/khulnasoft/meshplay/service-mesh-performance v0.0.0-20231020001212-f4908b08fe71 // indirect
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/kubernetes/kompose v1.28.0 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
@@ -206,6 +214,7 @@ require (
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/mpvl/unique v0.0.0-20150818121801-cbe035fff7de // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+	github.com/myntra/pipeline v0.0.0-20180618182531-2babf4864ce8 // indirect
 	github.com/nats-io/nats.go v1.22.1 // indirect
 	github.com/nats-io/nkeys v0.3.0 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
@@ -255,6 +264,7 @@ require (
 	golang.org/x/term v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.13.0 // indirect
+	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230913181813-007df8e322eb // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect

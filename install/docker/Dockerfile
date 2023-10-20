@@ -59,7 +59,7 @@ RUN mkdir -p /seed_content/applications && cd /seed_content/applications \
 #RUN git config --global user.email "meshplay@khulnasoft.com"
 #RUN git config --global user.name "meshplay"
 #RUN git clone https://github.com/khulnasoft/meshplay/getnighthawk
-#RUN cd nighthawk-go/apinighthawk/bin && chmod +x ./nighthawk_client
+#RUN cd getnighthawk/apinighthawk/bin && chmod +x ./nighthawk_client
 
 
 FROM alpine:3.15.3
