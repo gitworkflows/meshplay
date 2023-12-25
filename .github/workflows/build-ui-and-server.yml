@@ -87,12 +87,12 @@ jobs:
         run: |
           make ui-provider-build
       - name: Upload meshplay-ui artifacts
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: meshplay-ui
           path: /home/runner/work/meshplay/meshplay/ui/out
       - name: Upload provider-ui artifacts
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: provider-ui
           path: /home/runner/work/meshplay/meshplay/provider-ui/out
@@ -188,12 +188,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-ss
           path: ./ui/cypress/screenshots
       - name: Upload Videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-ss
