@@ -107,7 +107,7 @@ func (s *Selector) selectMeshTrait(ws []core.TraitCapability) (core.TraitCapabil
 // of filtered traits along with the type
 //
 // Following is the priority of the resource types:
-// pattern.meshplay.khulnasoft.com/core > pattern.meshplay.khulnasoft.com/mesh/workload > pattern.meshplay.khulnasoft.com/k8s
+// pattern.khulnasoft.com/core > pattern.khulnasoft.com/mesh/workload > pattern.khulnasoft.com/k8s
 func filterTraitByType(ws []core.TraitCapability) ([]core.TraitCapability, string) {
 	cor := []core.TraitCapability{}
 	mesh := []core.TraitCapability{}

@@ -14,6 +14,8 @@ import changeAdapterState from './graphql/mutations/AdapterStatusMutation';
 import { useNotification } from '../utils/hooks/useNotification';
 import { EVENT_TYPES } from '../lib/event-types';
 import BadgeAvatars from './CustomAvatar';
+import { keys } from '@/utils/permission_constants';
+import CAN from '@/utils/can';
 
 const useStyles = makeStyles((theme) => ({
   wrapperClass: {
@@ -76,11 +78,10 @@ const STATUS = {
 
 const MeshAdapterConfigComponent = (props) => {
   const labelRef = useRef(null);
-
   const [meshAdapters, setMeshAdapters] = useState(props.meshAdapters);
   const [setAdapterURLs, setSetAdapterURLs] = useState([]);
   const [availableAdapters, setAvailableAdapters] = useState([]);
-  const [ts, setTs] = useState(props.meshAdaptersts);
+  const [ts, setTs] = useState(props.meshAdapterStates);
   const [meshLocationURLError, setMeshLocationURLError] = useState(false);
   const [selectedAvailableAdapterError, setSelectedAvailableAdapterError] = useState(false);
   const [adapterStates, setAdapterStates] = useState(props.meshAdapterStates);
@@ -92,11 +93,11 @@ const MeshAdapterConfigComponent = (props) => {
   const { notify } = useNotification();
 
   useEffect(() => {
-    if (props.meshAdaptersts > ts) {
+    if (props.meshAdapterStates > ts) {
       setMeshAdapters(props.meshAdapters);
-      setTs(props.meshAdaptersts);
+      setTs(props.meshAdapterStates);
     }
-  }, [props.meshAdaptersts, ts]);
+  }, [props.meshAdapterStates, ts]);
 
   useEffect(() => {
     fetchSetAdapterURLs();
@@ -304,7 +305,7 @@ const MeshAdapterConfigComponent = (props) => {
       return;
     }
 
-    const adapterLabel = selectedAvailableAdapter.label.replace(/^meshplay-/, '').toUpperCase();
+    const adapterLabel = selectedAvailableAdapter.label.replace(/^meshery-/, '').toUpperCase();
     setAdapterStates((prevState) => ({
       ...prevState,
       [adapterLabel]: STATUS.DEPLOYING,
@@ -381,7 +382,7 @@ const MeshAdapterConfigComponent = (props) => {
     const adapterLabel = (
       availableAdapters.find((adapter) => adapter.value === targetPort)?.label || ''
     )
-      .replace(/^meshplay-/, '')
+      .replace(/^meshery-/, '')
       .toUpperCase();
 
     setAdapterStates((prevState) => ({
@@ -430,7 +431,7 @@ const MeshAdapterConfigComponent = (props) => {
       showAdapters = (
         <div className={classes.alignRight}>
           {meshAdapters.map((adapter) => {
-            let image = '/static/img/meshplay-logo.png';
+            let image = '/static/img/meshery-logo.png';
             // let logoIcon = <img src={image} className={classes.icon} />;
             if (adapter.name) {
               image = '/static/img/' + adapter.name.toLowerCase() + '.svg';
@@ -494,6 +495,9 @@ const MeshAdapterConfigComponent = (props) => {
                 size="large"
                 onClick={handleAdapterUndeploy}
                 className={classes.button}
+                disabled={
+                  !CAN(keys.UNDEPLOY_SERVICE_MESH.action, keys.UNDEPLOY_SERVICE_MESH.subject)
+                }
               >
                 Undeploy
               </Button>
@@ -505,6 +509,7 @@ const MeshAdapterConfigComponent = (props) => {
                 onClick={handleSubmit}
                 className={classes.button}
                 data-cy="btnSubmitMeshAdapter"
+                disabled={!CAN(keys.CONNECT_ADAPTER.action, keys.CONNECT_ADAPTER.subject)}
               >
                 Connect
               </Button>
@@ -542,6 +547,7 @@ const MeshAdapterConfigComponent = (props) => {
                   size="large"
                   onClick={handleAdapterDeploy}
                   className={classes.button}
+                  disabled={!CAN(keys.DEPLOY_SERVICE_MESH.action, keys.DEPLOY_SERVICE_MESH.subject)}
                 >
                   Deploy
                 </Button>
@@ -565,9 +571,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
   const meshAdapters = state.get('meshAdapters').toJS();
-  const meshAdaptersts = state.get('meshAdaptersts');
-
-  return { meshAdapters, meshAdaptersts };
+  const meshAdapterStates = state.get('meshAdaptersts');
+  return { meshAdapters, meshAdapterStates };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MeshAdapterConfigComponent));

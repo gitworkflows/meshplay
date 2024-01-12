@@ -1,6 +1,6 @@
 package models
 
-import "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+import "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 
 // API response model for meshmodel models API
 type MeshmodelsAPIResponse struct {

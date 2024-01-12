@@ -39,6 +39,68 @@ export const EXTENSIONS = {
   MESHMAP: 'meshmap',
 };
 
-export const MeshplayPatternsCatalog = 'meshplay-patterns-catalog';
+export const CONNECTION_STATES = {
+  DISCOVERED: 'discovered',
+  REGISTERED: 'registered',
+  CONNECTED: 'connected',
+  IGNORED: 'ignored',
+  MAINTENANCE: 'maintenance',
+  DISCONNECTED: 'disconnected',
+  DELETED: 'deleted',
+  NOTFOUND: 'not found',
+};
 
-export const MeshplayFiltersCatalog = 'meshplay-filters-catalog';
+export const CONTROLLERS = {
+  BROKER: 'BROKER',
+  OPERATOR: 'OPERATOR',
+  MESHSYNC: 'MESHSYNC',
+};
+
+// Fetch from GraphQL/REST API remove this
+export const CONTROLLER_STATES = {
+  DEPLOYED: 'DEPLOYED',
+  NOTDEPLOYED: 'NOTDEPLOYED',
+  UNDEPLOYED: 'UNDEPLOYED',
+  DEPLOYING: 'DEPLOYING',
+  ENABLED: 'ENABLED',
+  UNKOWN: 'UNKOWN',
+  RUNNING: 'RUNNING',
+  CONNECTED: 'CONNECTED',
+  DISABLED: 'DISABLED',
+};
+
+export const MeshplayPatternsCatalog = 'meshery-patterns-catalog';
+
+export const MeshplayFiltersCatalog = 'meshery-filters-catalog';
+
+// Remove this fetch all connections initially
+export const CONNECTION_KINDS_DEF = ['MESHPLAY', 'KUBERNETES', 'PROMETHEUS', 'GRAFANA', 'GITHUB'];
+
+export const CONNECTION_KINDS = {
+  MESHPLAY: 'meshery',
+  KUBERNETES: 'kubernetes',
+  PROMETHEUS: 'prometheus',
+  GRAFANA: 'grafana',
+  GITHUB: 'github',
+};
+
+export const MESHSYNC_STATES = {
+  DISCOVERED: 'discovered',
+  REGISTER: 'register',
+};
+
+export const TRANSFER_COMPONENT = {
+  CHIP: 'chip',
+  OTHER: 'other',
+};
+
+export const CONNECTION_STATE_TO_TRANSITION_MAP = {
+  [CONNECTION_STATES.IGNORED]: 'Ignore',
+  [CONNECTION_STATES.CONNECTED]: 'Connect',
+  [CONNECTION_STATES.REGISTERED]: 'Register',
+  [CONNECTION_STATES.DISCOVERED]: 'Discover',
+  [CONNECTION_STATES.DELETED]: 'Delete',
+  [CONNECTION_STATES.MAINTENANCE]: 'Maintenance',
+  [CONNECTION_STATES.DISCONNECTED]: 'Disconnect',
+  [CONNECTION_STATES.NOTFOUND]: 'Not Found',
+};

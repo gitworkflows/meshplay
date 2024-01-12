@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import {
   getOperatorStatusFromQueryResult,
   isMeshplayOperatorConnected,
-} from '../helpers/meshplayOperator.js';
+} from '../helpers/mesheryOperator.js';
 
 // Connection Wizard
 // TODO: bind to contextID prop, leaving due to no use in current UI
@@ -25,7 +25,7 @@ const MeshplayOperatorScreen = ({ setStepStatus }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const meshplayOperatorinfo = {
+  const mesheryOperatorinfo = {
     name: 'Meshplay Operator',
     logoComponent: MeshplayOperatorIcon,
     configComp: <div />,
@@ -72,7 +72,7 @@ const MeshplayOperatorScreen = ({ setStepStatus }) => {
         style={{ paddingLeft: '1rem' }}
       >
         <ServiceCard
-          serviceInfo={meshplayOperatorinfo}
+          serviceInfo={mesheryOperatorinfo}
           isConnected={isConnected}
           style={{ paddingRight: '1rem' }}
         />

@@ -7,9 +7,9 @@ import (
 	"github.com/khulnasoft/meshplay/server/helpers"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	"github.com/khulnasoft/meshplay/server/models/pattern/planner"
-	meshmodelv1alpha1 "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	meshmodelv1alpha1 "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
 )
 
 type CompConfigPair struct {
@@ -47,7 +47,6 @@ func Provision(prov ServiceInfoProvider, act ServiceActionProvider) ChainStageFu
 			act.Terminate(fmt.Errorf("failed to generate application configuration: %s", err))
 			return
 		}
-
 		errs := []error{}
 
 		// Execute the plan

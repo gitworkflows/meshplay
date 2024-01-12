@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -239,7 +239,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 		// append data for extended output
 		name := "None"
 		userid := uuid.Nil
-		meshplayid := uuid.Nil
+		mesheryid := uuid.Nil
 		url := "None"
 		loadGenerator := "None"
 
@@ -248,7 +248,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 		}
 
 		if result.MeshplayID != nil {
-			meshplayid = *result.MeshplayID
+			mesheryid = *result.MeshplayID
 		}
 
 		if result.Name != "" {
@@ -278,7 +278,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 				P99:     P99,
 			},
 			StartTime:     result.TestStartTime,
-			MeshplayID:     (*uuid.UUID)(meshplayid.Bytes()),
+			MeshplayID:     (*uuid.UUID)(mesheryid.Bytes()),
 			LoadGenerator: loadGenerator,
 		}
 

@@ -23,14 +23,14 @@ func TestResetCmd(t *testing.T) {
 	tests := []utils.CmdTestInput{
 		//Test for platform docker
 		{
-			Name:             "Reset the meshplay config file with docker platform",
+			Name:             "Reset the meshery config file with docker platform",
 			Args:             []string{"reset", "-y", "-c", "local2"},
 			ExpectedResponse: "reset_docker.output.golden",
 		},
 		//(As the unit test workflow is triggered, the version of the k8 keeps changing when downloading manifest files, which affect the unit test workflow )
 		//Test for platform kubernetes
 		// {
-		// 	Name:             "Reset the meshplay config file with kubernetes platform",
+		// 	Name:             "Reset the meshery config file with kubernetes platform",
 		// 	Args:             []string{"reset", "-y", "-c", "local"},
 		// 	ExpectedResponse: "reset_kubernetes.output.golden",
 		// },
@@ -68,15 +68,15 @@ func TestResetCmd(t *testing.T) {
 }
 
 func RemoveFileAndDirectory() {
-	// Removing the meshplay.yaml file
+	// Removing the meshery.yaml file
 	// from the directory
-	removeMeshplayYaml := os.Remove("meshplay.yaml")
+	removeMeshplayYaml := os.Remove("meshery.yaml")
 	if removeMeshplayYaml != nil {
 		log.Fatal(removeMeshplayYaml)
 	}
 
-	// Removing the .meshplay directory
-	removeMeshplayHiddenDirectory := os.RemoveAll(".meshplay")
+	// Removing the .meshery directory
+	removeMeshplayHiddenDirectory := os.RemoveAll(".meshery")
 	if removeMeshplayHiddenDirectory != nil {
 		log.Fatal(removeMeshplayHiddenDirectory)
 	}

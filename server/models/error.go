@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGrafanaClientCode                  = "1450"
@@ -98,6 +98,13 @@ const (
 	ErrPersistEventCode                   = "1533"
 	ErrUnreachableKubeAPICode             = "1534"
 	ErrFlushMeshSyncDataCode              = "1535"
+	ErrUpdateConnectionStatusCode         = "1540"
+	ErrResultNotFoundCode                 = "1546"
+	ErrPersistCredentialCode              = "1547"
+	ErrPersistConnectionCode              = "1548"
+	ErrPrometheusScanCode                 = "1549"
+	ErrGrafanaScanCode                    = "1550"
+	ErrDBCreateCode                       = "1557"
 )
 
 var (
@@ -119,7 +126,7 @@ var (
 	ErrLoadgenerator           = errors.New(ErrLoadgeneratorCode, errors.Alert, []string{"specify valid Loadgenerator"}, []string{}, []string{}, []string{})
 	ErrProtocol                = errors.New(ErrProtocolCode, errors.Alert, []string{"specify the Protocol for all clients"}, []string{}, []string{}, []string{})
 	ErrTestClient              = errors.New(ErrTestClientCode, errors.Alert, []string{"minimum one test client needs to be specified"}, []string{}, []string{}, []string{})
-	ErrParsingTest             = errors.New(ErrParsingTestCode, errors.Alert, []string{"error parsing test duration, please refer to: https://docs.meshplay.khulnasoft.com/guides/meshplayctl#performance-management"}, []string{}, []string{}, []string{})
+	ErrParsingTest             = errors.New(ErrParsingTestCode, errors.Alert, []string{"error parsing test duration, please refer to: https://docs.khulnasoft.com/guides/meshplayctl#performance-management"}, []string{}, []string{}, []string{})
 	ErrField                   = errors.New(ErrFieldCode, errors.Alert, []string{"Error: name field is blank"}, []string{}, []string{}, []string{})
 	ErrIndexOutOfRange         = errors.New(ErrIndexOutOfRangeCode, errors.Alert, []string{"Error: index out of range"}, []string{}, []string{}, []string{})
 	ErrContextID               = errors.New(ErrContextIDCode, errors.Alert, []string{"Error: Context ID is empty"}, []string{}, []string{}, []string{})
@@ -133,11 +140,11 @@ func ErrGetPackage(err error) error {
 }
 
 func ErrBrokerSubscription(err error) error {
-	return errors.New(ErrBrokerSubscriptionCode, errors.Alert, []string{"Could not subscribe to the broker subject"}, []string{"", err.Error()}, []string{""}, []string{"Make sure meshplay broker is healthy"})
+	return errors.New(ErrBrokerSubscriptionCode, errors.Alert, []string{"Could not subscribe to the broker subject"}, []string{"", err.Error()}, []string{""}, []string{"Make sure meshery broker is healthy"})
 }
 
 func ErrRequestMeshsyncStore(err error) error {
-	return errors.New(ErrRequestMeshsyncStoreCode, errors.Alert, []string{"Meshsync store request could not be issued"}, []string{"", err.Error()}, []string{""}, []string{"Make sure meshplay broker is healthy"})
+	return errors.New(ErrRequestMeshsyncStoreCode, errors.Alert, []string{"Meshsync store request could not be issued"}, []string{"", err.Error()}, []string{""}, []string{"Make sure meshery broker is healthy"})
 }
 
 func ErrCreateOperatorDeploymentConfig(err error) error {
@@ -145,7 +152,7 @@ func ErrCreateOperatorDeploymentConfig(err error) error {
 }
 
 func ErrBrokerNotFound(err error) error {
-	return errors.New(ErrBrokerNotFoundCode, errors.Alert, []string{"Meshplay broker not found"}, []string{"Unable to find meshplay broker in the cluster", err.Error()}, []string{"Invalid Grafana Endpoint or API-Key"}, []string{"Update your Grafana URL and API-Key from the settings page in the UI"})
+	return errors.New(ErrBrokerNotFoundCode, errors.Alert, []string{"Meshplay broker not found"}, []string{"Unable to find meshery broker in the cluster", err.Error()}, []string{"Invalid Grafana Endpoint or API-Key"}, []string{"Update your Grafana URL and API-Key from the settings page in the UI"})
 }
 
 func ErrGrafanaClient(err error) error {
@@ -225,7 +232,7 @@ func ErrGrafanaOrg(err error) error {
 }
 
 func ErrGrafanaBoards(err error) error {
-	return errors.New(ErrGrafanaBoardsCode, errors.Alert, []string{"Unable to get Grafana Boards"}, []string{err.Error()}, []string{"Grafana endpoint might not be reachable from meshplay", "Grafana endpoint is incorrect"}, []string{"Check if your Grafana endpoint is correct", "Connect to Grafana from the settings page in the UI"})
+	return errors.New(ErrGrafanaBoardsCode, errors.Alert, []string{"Unable to get Grafana Boards"}, []string{err.Error()}, []string{"Grafana endpoint might not be reachable from meshery", "Grafana endpoint is incorrect"}, []string{"Check if your Grafana endpoint is correct", "Connect to Grafana from the settings page in the UI"})
 }
 
 func ErrGrafanaDashboard(err error, UID string) error {
@@ -341,7 +348,7 @@ func ErrGettingSeededComponents(err error, content string) error {
 }
 
 func ErrSavingSeededComponents(err error, content string) error {
-	return errors.New(ErrSavingSeededComponentsCode, errors.Alert, []string{"Error while saving sample ", content}, []string{err.Error()}, []string{"User doesn't have permission to save content.\nDatabase unreachable.\nDatabase locked or corrupt.\nContent unsupported."}, []string{"Retry fetching content\nRetry sigining in\nLogin with correct user account\nRetry after deleting '~/.meshplay/config'."})
+	return errors.New(ErrSavingSeededComponentsCode, errors.Alert, []string{"Error while saving sample ", content}, []string{err.Error()}, []string{"User doesn't have permission to save content.\nDatabase unreachable.\nDatabase locked or corrupt.\nContent unsupported."}, []string{"Retry fetching content\nRetry sigining in\nLogin with correct user account\nRetry after deleting '~/.meshery/config'."})
 }
 
 func ErrDownloadingSeededComponents(err error, content string) error {
@@ -370,4 +377,32 @@ func ErrUnreachableKubeAPI(err error, server string) error {
 
 func ErrFlushMeshSyncData(err error, contextName, server string) error {
 	return errors.New(ErrFlushMeshSyncDataCode, errors.Alert, []string{"Unable to flush MeshSync data for context %s at %s "}, []string{err.Error()}, []string{"Meshplay Database handler is not accessible to perform operations"}, []string{"Restart Meshplay Server or Perform Hard Reset"})
+}
+
+func ErrUpdateConnectionStatus(err error, statusCode int) error {
+	return errors.New(ErrUpdateConnectionStatusCode, errors.Alert, []string{"Unable to update connection status"}, []string{err.Error()}, []string{"Connection was already deleted", "User might not have necessary privileges"}, []string{"Try refresing, you might be seeing stale data on the dashboard", "Check if the user has necessary privileges"})
+}
+
+func ErrResultNotFound(err error) error {
+	return errors.New(ErrResultNotFoundCode, errors.Alert, []string{err.Error()}, []string{"The record in the database does not exist."}, []string{"The record might have been deleted."}, []string{""})
+}
+
+func ErrPersistCredential(err error) error {
+	return errors.New(ErrPersistCredentialCode, errors.Alert, []string{"unable to persist credential details"}, []string{err.Error()}, []string{"The credential object is not valid"}, []string{"Ensure all the required fields are provided"})
+}
+
+func ErrPersistConnection(err error) error {
+	return errors.New(ErrPersistConnectionCode, errors.Alert, []string{"unable to persist connection details"}, []string{err.Error()}, []string{"The connection object is not valid"}, []string{"Ensure all the required fields are provided"})
+}
+
+func ErrGrafanaScan(err error) error {
+	return errors.New(ErrGrafanaScanCode, errors.Alert, []string{"Unable to connect to grafana"}, []string{err.Error()}, []string{"Grafana endpoint might not be reachable from meshery", "Grafana endpoint is incorrect"}, []string{"Check if your Grafana Endpoint is correct", "Connect to Grafana from the settings page in the UI"})
+}
+
+func ErrPrometheusScan(err error) error {
+	return errors.New(ErrPrometheusScanCode, errors.Alert, []string{"Unable to connect to prometheus"}, []string{err.Error()}, []string{"Prometheus endpoint might not be reachable from meshery", "Prometheus endpoint is incorrect"}, []string{"Check if your Prometheus endpoint are correct", "Connect to Prometheus from the settings page in the UI"})
+}
+
+func ErrDBCreate(err error) error {
+	return errors.New(ErrDBCreateCode, errors.Alert, []string{"Unable to create record"}, []string{err.Error()}, []string{"Record already exist", "Database connection is not reachable"}, []string{"Delete the record or try updating the record instead of recreating", "Rest the database connection"})
 }

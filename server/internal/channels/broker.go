@@ -1,6 +1,6 @@
 package channels
 
-import "github.com/khulnasoft/meshplay/meshkit/broker"
+import "github.com/khulnasoft/meshkit/broker"
 
 var (
 	BrokerPublish   = "broker-publish"

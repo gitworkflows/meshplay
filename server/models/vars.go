@@ -2,8 +2,8 @@ package models
 
 const (
 	cookieSuffix      = "_referrer"
-	meshplayGitHubOrg  = "meshplay"
-	meshplayGitHubRepo = "meshplay"
+	mesheryGitHubOrg  = "meshery"
+	mesheryGitHubRepo = "meshery"
 	Private           = "private"
 	Public            = "public"
 	Published         = "published"

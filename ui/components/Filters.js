@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useState, useEffect, useRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 // import { createTheme } from '@material-ui/core/styles';
@@ -22,14 +23,12 @@ import Moment from 'react-moment';
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@material-ui/icons/Edit';
 import { toggleCatalogContent, updateProgress } from '../lib/store';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 import dataFetch from '../lib/data-fetch';
 import PromptComponent from './PromptComponent';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import { FILE_OPS, MeshplayFiltersCatalog, VISIBILITY } from '../utils/Enum';
 import ViewSwitch from './ViewSwitch';
-import CatalogFilter from './CatalogFilter';
 import FiltersGrid from './MeshplayFilters/FiltersGrid';
 import { trueRandom } from '../lib/trueRandom';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -52,13 +51,18 @@ import { useNotification } from '../utils/hooks/useNotification';
 import { EVENT_TYPES } from '../lib/event-types';
 import SearchBar from '../utils/custom-search';
 import CustomColumnVisibilityControl from '../utils/custom-column';
-import ResponsiveDataTable from '../utils/data-table';
+import { ResponsiveDataTable } from '@layer5/sistent-components';
 import useStyles from '../assets/styles/general/tool.styles';
 import { updateVisibleColumns } from '../utils/responsive-column';
 import { useWindowDimensions } from '../utils/dimension';
 import { Box } from '@mui/material';
 import InfoModal from './Modals/Information/InfoModal';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import { SortableTableCell } from './connections/common/index.js';
+import CAN from '@/utils/can';
+import { keys } from '@/utils/permission_constants';
+import DefaultError from './General/error-404/index';
+import UniversalFilter from '../utils/custom-filter';
 
 const styles = (theme) => ({
   grid: {
@@ -102,7 +106,7 @@ const styles = (theme) => ({
   },
   btnText: {
     display: 'block',
-    '@media (max-width: 1450px)': {
+    '@media (max-width: 700px)': {
       display: 'none',
     },
   },
@@ -229,22 +233,23 @@ function MeshplayFilters({
   classes,
   selectedK8sContexts,
   catalogVisibility,
-  toggleCatalogContent,
+  // toggleCatalogContent,
 }) {
   const [page, setPage] = useState(0);
   const [search, setSearch] = useState('');
-  const [sortOrder] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
   const [count, setCount] = useState(0);
   const modalRef = useRef(null);
   const [pageSize, setPageSize] = useState(10);
   const [filters, setFilters] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(resetSelectedFilter());
   const [selectedRowData, setSelectedRowData] = useState(null);
-  const [extensionPreferences, setExtensionPreferences] = useState({});
+  const [setExtensionPreferences] = useState({});
   const [canPublishFilter, setCanPublishFilter] = useState(false);
   const [importSchema, setImportSchema] = useState({});
   const [publishSchema, setPublishSchema] = useState({});
   const { width } = useWindowDimensions();
+  const [meshModels, setMeshModels] = useState([]);
   const [viewType, setViewType] = useState(
     /**  @type {TypeView} */
     ('grid'),
@@ -256,6 +261,7 @@ function MeshplayFilters({
   //hooks
   const { notify } = useNotification();
   const StyleClass = useStyles();
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   const [infoModal, setInfoModal] = useState({
     open: false,
@@ -348,7 +354,7 @@ function MeshplayFilters({
       async (result) => {
         try {
           const { models } = await getMeshModels();
-          const modelNames = _.uniq(models?.map((model) => model.displayName.toUpperCase()));
+          const modelNames = _.uniq(models?.map((model) => model.displayName));
           modelNames.sort();
 
           // Modify the schema using the utility function
@@ -358,6 +364,7 @@ function MeshplayFilters({
             modelNames,
           );
           setPublishSchema({ rjsfSchema: modifiedSchema, uiSchema: result.uiSchema });
+          setMeshModels(models);
         } catch (err) {
           console.error(err);
           setPublishSchema(result);
@@ -458,33 +465,33 @@ function MeshplayFilters({
   };
 
   useEffect(() => {
-    fetchFilters(page, pageSize, search, sortOrder);
-  }, [page, pageSize, search, sortOrder]);
+    fetchFilters(page, pageSize, search, sortOrder, visibilityFilter);
+  }, [page, pageSize, search, sortOrder, visibilityFilter]);
 
   useEffect(() => {
     if (viewType === 'grid') setSearch('');
   }, [viewType]);
 
-  const handleCatalogPreference = (catalogPref) => {
-    let body = Object.assign({}, extensionPreferences);
-    body['catalogContent'] = catalogPref;
+  // const handleCatalogPreference = (catalogPref) => {
+  //   let body = Object.assign({}, extensionPreferences);
+  //   body['catalogContent'] = catalogPref;
 
-    dataFetch(
-      '/api/user/prefs',
-      {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({ usersExtensionPreferences: body }),
-      },
-      () => {
-        notify({
-          message: `Catalog Content was ${catalogPref ? 'enab' : 'disab'}led`,
-          event_type: EVENT_TYPES.SUCCESS,
-        });
-      },
-      (err) => console.error(err),
-    );
-  };
+  //   dataFetch(
+  //     '/api/user/prefs',
+  //     {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       body: JSON.stringify({ usersExtensionPreferences: body }),
+  //     },
+  //     () => {
+  //       notify({
+  //         message: `Catalog Content was ${catalogPref ? 'enab' : 'disab'}led`,
+  //         event_type: EVENT_TYPES.SUCCESS,
+  //       });
+  //     },
+  //     (err) => console.error(err),
+  //   );
+  // };
 
   const fetchUserPrefs = () => {
     dataFetch(
@@ -502,11 +509,11 @@ function MeshplayFilters({
     );
   };
 
-  const handleCatalogVisibility = () => {
-    handleCatalogPreference(!catalogVisibilityRef.current);
-    catalogVisibilityRef.current = !catalogVisibility;
-    toggleCatalogContent({ catalogVisibility: !catalogVisibility });
-  };
+  // const handleCatalogVisibility = () => {
+  //   handleCatalogPreference(!catalogVisibilityRef.current);
+  //   catalogVisibilityRef.current = !catalogVisibility;
+  //   toggleCatalogContent({ catalogVisibility: !catalogVisibility });
+  // };
 
   useEffect(() => {
     fetchUserPrefs();
@@ -544,13 +551,19 @@ function MeshplayFilters({
    * @param {string} search search string
    * @param {string} sortOrder order of sort
    */
-  function fetchFilters(page, pageSize, search, sortOrder) {
+
+  const [visibilityFilter, setVisibilityFilter] = useState(null);
+  function fetchFilters(page, pageSize, search, sortOrder, visibilityFilter) {
     if (!search) search = '';
     if (!sortOrder) sortOrder = '';
 
-    const query = `?page=${page}&pagesize=${pageSize}&search=${encodeURIComponent(
-      search,
-    )}&order=${encodeURIComponent(sortOrder)}`;
+    const query =
+      `?page=${page}&pagesize=${pageSize}&search=${encodeURIComponent(
+        search,
+      )}&order=${encodeURIComponent(sortOrder)}` +
+      (visibilityFilter
+        ? `&visibility=${encodeURIComponent(JSON.stringify([visibilityFilter]))}`
+        : '');
 
     updateProgress({ showProgress: true });
 
@@ -561,10 +574,17 @@ function MeshplayFilters({
         console.log('FilterFile API', `/api/filter${query}`);
         updateProgress({ showProgress: false });
         if (result) {
-          handleSetFilters(result.filters || []);
+          const filteredFilters = result.filters.filter((content) => {
+            if (visibilityFilter === null || content.visibility === visibilityFilter) {
+              return true;
+            }
+            return false;
+          });
+          handleSetFilters(filteredFilters);
           // setPage(result.page || 0);
           setPageSize(result.page_size || 0);
           setCount(result.total_count || 0);
+          setVisibilityFilter(visibilityFilter);
         }
       },
       // handleError
@@ -816,7 +836,7 @@ function MeshplayFilters({
       let uint8 = new Uint8Array(event.target.result);
       handleSubmit({
         data: Array.from(uint8),
-        name: file?.name || 'meshplay_' + Math.floor(trueRandom() * 100),
+        name: file?.name || 'meshery_' + Math.floor(trueRandom() * 100),
         type: FILE_OPS.FILE_UPLOAD,
         metadata: metadata,
       });
@@ -840,16 +860,14 @@ function MeshplayFilters({
         filter: false,
         sort: true,
         searchable: true,
-        customHeadRender: function CustomHead({ index, ...column }, sortColumn) {
+        customHeadRender: function CustomHead({ index, ...column }, sortColumn, columnMeta) {
           return (
-            <TableCell key={index} onClick={() => sortColumn(index)}>
-              <TableSortLabel
-                active={column.sortDirection != null}
-                direction={column.sortDirection || 'asc'}
-              >
-                <b>{column.label}</b>
-              </TableSortLabel>
-            </TableCell>
+            <SortableTableCell
+              index={index}
+              columnData={column}
+              columnMeta={columnMeta}
+              onSort={() => sortColumn(index)}
+            />
           );
         },
       },
@@ -861,16 +879,14 @@ function MeshplayFilters({
         filter: false,
         sort: true,
         searchable: true,
-        customHeadRender: function CustomHead({ index, ...column }, sortColumn) {
+        customHeadRender: function CustomHead({ index, ...column }, sortColumn, columnMeta) {
           return (
-            <TableCell key={index} onClick={() => sortColumn(index)}>
-              <TableSortLabel
-                active={column.sortDirection != null}
-                direction={column.sortDirection || 'asc'}
-              >
-                <b>{column.label}</b>
-              </TableSortLabel>
-            </TableCell>
+            <SortableTableCell
+              index={index}
+              columnData={column}
+              columnMeta={columnMeta}
+              onSort={() => sortColumn(index)}
+            />
           );
         },
         customBodyRender: function CustomBody(value) {
@@ -885,16 +901,14 @@ function MeshplayFilters({
         filter: false,
         sort: true,
         searchable: true,
-        customHeadRender: function CustomHead({ index, ...column }, sortColumn) {
+        customHeadRender: function CustomHead({ index, ...column }, sortColumn, columnMeta) {
           return (
-            <TableCell key={index} onClick={() => sortColumn(index)}>
-              <TableSortLabel
-                active={column.sortDirection != null}
-                direction={column.sortDirection || 'asc'}
-              >
-                <b>{column.label}</b>
-              </TableSortLabel>
-            </TableCell>
+            <SortableTableCell
+              index={index}
+              columnData={column}
+              columnMeta={columnMeta}
+              onSort={() => sortColumn(index)}
+            />
           );
         },
         customBodyRender: function CustomBody(value) {
@@ -916,14 +930,15 @@ function MeshplayFilters({
             </TableCell>
           );
         },
-        customBodyRender: function CustomBody(_, tableMeta) {
-          const visibility = filters[tableMeta.rowIndex]?.visibility;
-          return (
-            <>
-              <img className={classes.visibilityImg} src={`/static/img/${visibility}.svg`} />
-            </>
-          );
-        },
+        //   customBodyRender: function CustomBody(_, tableMeta, value) {
+        //     const visibility = filters[tableMeta.rowIndex]?.visibility;
+        //     return (
+        //       // <>
+        //       //   <img className={classes.visibilityImg} src={`/static/img/${visibility}.svg`} />
+        //       // </>
+        //       {value}
+        //     );
+        //   },
       },
     },
     {
@@ -957,6 +972,7 @@ function MeshplayFilters({
                     e.stopPropagation();
                     handleClone(rowData.id, rowData.name);
                   }}
+                  // disabled={!CAN(keys.CLONE_FILTERS.action, keys.CLONE_FILTERS.subject)} // TODO: uncomment when seeded
                 >
                   <CloneIcon fill="currentColor" className={classes.iconPatt} />
                 </TooltipIcon>
@@ -967,6 +983,7 @@ function MeshplayFilters({
                     e.stopPropagation();
                     setSelectedRowData(filters[tableMeta.rowIndex]);
                   }}
+                  disabled={!CAN(keys.EDIT_WASM_FILTER.action, keys.EDIT_WASM_FILTER.subject)}
                 >
                   <EditIcon aria-label="config" color="inherit" style={iconMedium} />
                 </TooltipIcon>
@@ -974,20 +991,36 @@ function MeshplayFilters({
               <TooltipIcon
                 title="Download"
                 onClick={(e) => handleDownload(e, rowData.id, rowData.name)}
+                disabled={
+                  !CAN(keys.DOWNLOAD_A_WASM_FILTER.action, keys.DOWNLOAD_A_WASM_FILTER.subject)
+                }
               >
                 <GetAppIcon data-cy="download-button" />
               </TooltipIcon>
-              <TooltipIcon title="Filter Information" onClick={() => handleInfoModal(rowData)}>
+              <TooltipIcon
+                title="Filter Information"
+                onClick={() => handleInfoModal(rowData)}
+                disabled={
+                  !CAN(keys.DETAILS_OF_WASM_FILTER.action, keys.DETAILS_OF_WASM_FILTER.subject)
+                }
+              >
                 <InfoOutlinedIcon data-cy="information-button" />
               </TooltipIcon>
               {canPublishFilter && visibility !== VISIBILITY.PUBLISHED ? (
-                <TooltipIcon title="Publish" onClick={(ev) => handlePublishModal(ev, rowData)}>
+                <TooltipIcon
+                  title="Publish"
+                  onClick={(ev) => handlePublishModal(ev, rowData)}
+                  disabled={!CAN(keys.PUBLISH_WASM_FILTER.action, keys.PUBLISH_WASM_FILTER.subject)}
+                >
                   <PublicIcon fill="#F91313" data-cy="publish-button" />
                 </TooltipIcon>
               ) : (
                 <TooltipIcon
                   title="Unpublish"
                   onClick={(ev) => handleUnpublishModal(ev, rowData)()}
+                  disabled={
+                    !CAN(keys.UNPUBLISH_WASM_FILTER.action, keys.UNPUBLISH_WASM_FILTER.subject)
+                  }
                 >
                   <PublicIcon fill="#F91313" data-cy="unpublish-button" />
                 </TooltipIcon>
@@ -1036,7 +1069,7 @@ function MeshplayFilters({
   const options = {
     filter: false,
     viewColumns: false,
-    sort: !(user && user.user_id === 'meshplay'),
+    sort: !(user && user.user_id === 'meshery'),
     search: false,
     filterType: 'textField',
     responsive: 'standard',
@@ -1044,7 +1077,7 @@ function MeshplayFilters({
     serverSide: true,
     count,
     rowsPerPage: pageSize,
-    rowsPerPageOptions: [10, 20, 25],
+    rowsPerPageOptions: [10, 20, 100],
     fixedHeader: true,
     page,
     print: false,
@@ -1084,6 +1117,7 @@ function MeshplayFilters({
             search,
             sortOrder,
           );
+          setPage(tableState.page);
           break;
         case 'changeRowsPerPage':
           initFiltersSubscription(
@@ -1092,6 +1126,7 @@ function MeshplayFilters({
             search,
             sortOrder,
           );
+          setPageSize(tableState.rowsPerPage);
           break;
         case 'search':
           if (searchTimeout.current) {
@@ -1104,6 +1139,7 @@ function MeshplayFilters({
                 pageSize,
                 tableState.searchText !== null ? tableState.searchText : '',
                 sortOrder,
+                visibilityFilter,
               );
               setSearch(tableState.searchText);
             }
@@ -1119,6 +1155,7 @@ function MeshplayFilters({
           }
           if (order !== sortOrder) {
             initFiltersSubscription(page.toString(), pageSize.toString(), search, order);
+            setSortOrder(order);
           }
           break;
       }
@@ -1195,169 +1232,247 @@ function MeshplayFilters({
     return initialVisibility;
   });
 
+  const filter = {
+    visibility: {
+      name: 'visibility',
+      //if catalog content is enabled, then show all filters including published otherwise only show public and private filters
+      options: catalogVisibility
+        ? [
+            { label: 'Public', value: 'public' },
+            { label: 'Private', value: 'private' },
+            { label: 'Published', value: 'published' },
+          ]
+        : [
+            { label: 'Public', value: 'public' },
+            { label: 'Private', value: 'private' },
+          ],
+    },
+  };
+
+  const [selectedFilters, setSelectedFilters] = useState({ visibility: 'All' });
+
+  const handleApplyFilter = () => {
+    const visibilityFilter =
+      selectedFilters.visibility === 'All' ? null : selectedFilters.visibility;
+    fetchFilters(page, pageSize, search, sortOrder, visibilityFilter);
+  };
+
   return (
     <>
       <NoSsr>
-        {selectedRowData && Object.keys(selectedRowData).length > 0 && (
-          <YAMLEditor
-            filter={selectedRowData}
-            onClose={resetSelectedRowData()}
-            onSubmit={handleSubmit}
-            classes={classes}
-          />
-        )}
-        <div className={StyleClass.toolWrapper}>
-          <div style={{ display: 'flex' }}>
-            {!selectedFilter.show && (filters.length > 0 || viewType === 'table') && (
-              <div className={classes.createButton}>
-                <div>
-                  <Button
-                    aria-label="Add Filter"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    // @ts-ignore
-                    onClick={handleUploadImport}
-                    style={{ marginRight: '2rem' }}
-                  >
-                    <PublishIcon
-                      style={iconMedium}
-                      className={classes.addIcon}
-                      data-cy="import-button"
-                    />
-                    <span className={classes.btnText}> Import Filters </span>
-                  </Button>
-                </div>
-              </div>
-            )}
-            <div style={{ jdisplay: 'flex' }}>
-              <CatalogFilter
-                catalogVisibility={catalogVisibility}
-                handleCatalogVisibility={handleCatalogVisibility}
+        {CAN(keys.VIEW_FILTERS.action, keys.VIEW_FILTERS.subject) ? (
+          <>
+            {selectedRowData && Object.keys(selectedRowData).length > 0 && (
+              <YAMLEditor
+                filter={selectedRowData}
+                onClose={resetSelectedRowData()}
+                onSubmit={handleSubmit}
                 classes={classes}
               />
+            )}
+            <div className={StyleClass.toolWrapper}>
+              {width < 600 && isSearchExpanded ? null : (
+                <div style={{ display: 'flex' }}>
+                  {!selectedFilter.show && (filters.length > 0 || viewType === 'table') && (
+                    <div className={classes.createButton}>
+                      <div>
+                        <Button
+                          aria-label="Add Filter"
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          // @ts-ignore
+                          onClick={handleUploadImport}
+                          style={{ marginRight: '2rem' }}
+                          disabled={!CAN(keys.IMPORT_FILTER.action, keys.IMPORT_FILTER.subject)}
+                        >
+                          <PublishIcon
+                            style={iconMedium}
+                            className={classes.addIcon}
+                            data-cy="import-button"
+                          />
+                          <span className={classes.btnText}> Import Filters </span>
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  <div style={{ jdisplay: 'flex' }}>
+                    {/* <CatalogFilter
+                      catalogVisibility={catalogVisibility}
+                      handleCatalogVisibility={handleCatalogVisibility}
+                      classes={classes}
+                    /> */}
+                  </div>
+                </div>
+              )}
+              <div className={classes.searchWrapper} style={{ display: 'flex' }}>
+                <SearchBar
+                  onSearch={(value) => {
+                    setSearch(value);
+                    initFiltersSubscription(page.toString(), pageSize.toString(), value, sortOrder);
+                  }}
+                  expanded={isSearchExpanded}
+                  setExpanded={setIsSearchExpanded}
+                  placeholder="Search"
+                />
+                <UniversalFilter
+                  id="ref"
+                  filters={filter}
+                  selectedFilters={selectedFilters}
+                  setSelectedFilters={setSelectedFilters}
+                  handleApplyFilter={handleApplyFilter}
+                />
+                {viewType === 'table' && (
+                  <CustomColumnVisibilityControl
+                    id="ref"
+                    columns={columns}
+                    customToolsProps={{ columnVisibility, setColumnVisibility }}
+                  />
+                )}
+
+                {!selectedFilter.show && (
+                  <ViewSwitch data-cy="table-view" view={viewType} changeView={setViewType} />
+                )}
+              </div>
             </div>
-          </div>
-          <div className={classes.searchWrapper} style={{ display: 'flex' }}>
-            <SearchBar
-              onSearch={(value) => {
-                setSearch(value);
-                initFiltersSubscription(page.toString(), pageSize.toString(), value, sortOrder);
-              }}
-              placeholder="Search"
-            />
-            {viewType === 'table' && (
-              <CustomColumnVisibilityControl
+            {!selectedFilter.show && viewType === 'table' && (
+              <ResponsiveDataTable
+                data={filters}
                 columns={columns}
-                customToolsProps={{ columnVisibility, setColumnVisibility }}
+                tableCols={tableCols}
+                updateCols={updateCols}
+                columnVisibility={columnVisibility}
+                // @ts-ignore
+                options={options}
+                className={classes.muiRow}
               />
             )}
-
-            {!selectedFilter.show && (
-              <ViewSwitch data-cy="table-view" view={viewType} changeView={setViewType} />
+            {!selectedFilter.show && viewType === 'grid' && (
+              // grid view
+              <FiltersGrid
+                filters={filters}
+                handleDeploy={handleDeploy}
+                handleUndeploy={handleUndeploy}
+                handleSubmit={handleSubmit}
+                canPublishFilter={canPublishFilter}
+                handlePublish={handlePublish}
+                handleUnpublishModal={handleUnpublishModal}
+                handleUploadImport={handleUploadImport}
+                handleClone={handleClone}
+                handleDownload={handleDownload}
+                uploadHandler={uploadHandler}
+                setSelectedFilter={setSelectedFilter}
+                selectedFilter={selectedFilter}
+                pages={Math.ceil(count / pageSize)}
+                importSchema={importSchema}
+                setPage={setPage}
+                selectedPage={page}
+                publishModal={publishModal}
+                setPublishModal={setPublishModal}
+                publishSchema={publishSchema}
+                fetch={() => fetchFilters(page, pageSize, search, sortOrder, visibilityFilter)}
+                handleInfoModal={handleInfoModal}
+              />
             )}
-          </div>
-        </div>
-        {!selectedFilter.show && viewType === 'table' && (
-          <ResponsiveDataTable
-            data={filters}
-            columns={columns}
-            tableCols={tableCols}
-            updateCols={updateCols}
-            columnVisibility={columnVisibility}
-            // @ts-ignore
-            options={options}
-            className={classes.muiRow}
-          />
-        )}
-        {!selectedFilter.show && viewType === 'grid' && (
-          // grid view
-          <FiltersGrid
-            filters={filters}
-            handleDeploy={handleDeploy}
-            handleUndeploy={handleUndeploy}
-            handleSubmit={handleSubmit}
-            canPublishFilter={canPublishFilter}
-            handlePublish={handlePublish}
-            handleUnpublishModal={handleUnpublishModal}
-            handleUploadImport={handleUploadImport}
-            handleClone={handleClone}
-            handleDownload={handleDownload}
-            uploadHandler={uploadHandler}
-            setSelectedFilter={setSelectedFilter}
-            selectedFilter={selectedFilter}
-            pages={Math.ceil(count / pageSize)}
-            importSchema={importSchema}
-            setPage={setPage}
-            selectedPage={page}
-            publishModal={publishModal}
-            setPublishModal={setPublishModal}
-            publishSchema={publishSchema}
-            fetch={() => fetchFilters(page, pageSize, search, sortOrder)}
-            handleInfoModal={handleInfoModal}
-          />
-        )}
-        <ConfirmationMsg
-          open={modalOpen.open}
-          handleClose={handleModalClose}
-          submit={{
-            deploy: () => handleDeploy(modalOpen.filter_file, modalOpen.name),
-            unDeploy: () => handleUndeploy(modalOpen.filter_file, modalOpen.name),
-          }}
-          isDelete={!modalOpen.deploy}
-          title={modalOpen.name}
-          componentCount={modalOpen.count}
-          tab={modalOpen.deploy ? 2 : 1}
-        />
-        {canPublishFilter && publishModal.open && (
-          <Modal
-            open={true}
-            schema={publishSchema.rjsfSchema}
-            uiSchema={publishSchema.uiSchema}
-            title={publishModal.filter?.name}
-            handleClose={handlePublishModalClose}
-            handleSubmit={handlePublish}
-            showInfoIcon={{
-              text: 'Upon submitting your catalog item, an approval flow will be initiated.',
-              link: 'https://docs.meshplay.khulnasoft.com/concepts/catalog',
-            }}
-            submitBtnText="Submit for Approval"
-            submitBtnIcon={
-              <PublicIcon style={iconMedium} className={classes.addIcon} data-cy="import-button" />
-            }
-          />
-        )}
-        <PromptComponent ref={modalRef} />
-        {importModal.open && (
-          <Modal
-            open={true}
-            schema={importSchema.rjsfSchema}
-            uiSchema={importSchema.uiSchema}
-            handleClose={handleUploadImportClose}
-            handleSubmit={handleImportFilter}
-            title="Import Filter"
-            submitBtnText="Import"
-            leftHeaderIcon={
-              <Filter fill="#fff" style={{ height: '24px', width: '24px', fonSize: '1.45rem' }} />
-            }
-            submitBtnIcon={<PublishIcon />}
-          />
-        )}
-        {infoModal.open && (
-          <InfoModal
-            infoModalOpen={true}
-            handleInfoModalClose={handleInfoModalClose}
-            dataName="filters"
-            selectedResource={infoModal.selectedResource}
-            resourceOwnerID={infoModal.ownerID}
-            currentUserID={user?.id}
-            formSchema={publishSchema}
-          />
+            <ConfirmationMsg
+              open={modalOpen.open}
+              handleClose={handleModalClose}
+              submit={{
+                deploy: () => handleDeploy(modalOpen.filter_file, modalOpen.name),
+                unDeploy: () => handleUndeploy(modalOpen.filter_file, modalOpen.name),
+              }}
+              isDelete={!modalOpen.deploy}
+              title={modalOpen.name}
+              componentCount={modalOpen.count}
+              tab={modalOpen.deploy ? 2 : 1}
+            />
+            {canPublishFilter &&
+              publishModal.open &&
+              CAN(keys.PUBLISH_WASM_FILTER.action, keys.PUBLISH_WASM_FILTER.subject) && (
+                <PublishModal
+                  publishFormSchema={publishSchema}
+                  handleClose={handlePublishModalClose}
+                  title={publishModal.filter?.name}
+                  handleSubmit={handlePublish}
+                />
+              )}
+            {importModal.open && CAN(keys.IMPORT_FILTER.action, keys.IMPORT_FILTER.subject) && (
+              <ImportModal
+                importFormSchema={importSchema}
+                handleClose={handleUploadImportClose}
+                handleImportFilter={handleImportFilter}
+              />
+            )}
+            {infoModal.open &&
+              CAN(keys.DETAILS_OF_WASM_FILTER.action, keys.DETAILS_OF_WASM_FILTER.subject) && (
+                <InfoModal
+                  infoModalOpen={true}
+                  handleInfoModalClose={handleInfoModalClose}
+                  dataName="filters"
+                  selectedResource={infoModal.selectedResource}
+                  resourceOwnerID={infoModal.ownerID}
+                  currentUserID={user?.id}
+                  formSchema={publishSchema}
+                  meshModels={meshModels}
+                />
+              )}
+            <PromptComponent ref={modalRef} />
+          </>
+        ) : (
+          <DefaultError />
         )}
       </NoSsr>
     </>
   );
 }
+
+const ImportModal = React.memo((props) => {
+  const { importFormSchema, handleClose, handleImportFilter } = props;
+
+  const classes = useStyles();
+
+  return (
+    <Modal
+      open={true}
+      schema={importFormSchema.rjsfSchema}
+      uiSchema={importFormSchema.uiSchema}
+      handleClose={handleClose}
+      handleSubmit={handleImportFilter}
+      title="Import Design"
+      submitBtnText="Import"
+      leftHeaderIcon={
+        <Filter
+          fill="#fff"
+          style={{ height: '24px', width: '24px', fonSize: '1.45rem' }}
+          className={undefined}
+        />
+      }
+      submitBtnIcon={<PublishIcon className={classes.addIcon} data-cy="import-button" />}
+    />
+  );
+});
+
+const PublishModal = React.memo((props) => {
+  const { publishFormSchema, handleClose, handlePublish, title } = props;
+
+  return (
+    <Modal
+      open={true}
+      schema={publishFormSchema.rjsfSchema}
+      uiSchema={publishFormSchema.uiSchema}
+      handleClose={handleClose}
+      aria-label="catalog publish"
+      title={title}
+      handleSubmit={handlePublish}
+      showInfoIcon={{
+        text: 'Upon submitting your catalog item, an approval flow will be initiated.',
+        link: 'https://docs.khulnasoft.com/concepts/catalog',
+      }}
+      submitBtnText="Submit for Approval"
+      submitBtnIcon={<PublicIcon />}
+    />
+  );
+});
 
 const mapDispatchToProps = (dispatch) => ({
   updateProgress: bindActionCreators(updateProgress, dispatch),

@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshkit/database"
 )
 
 // MeshplayApplicationPersister is the persister for persisting
@@ -24,7 +24,7 @@ type MeshplayApplicationPage struct {
 
 // GetMeshplayApplications returns all of the applications
 func (maap *MeshplayApplicationPersister) GetMeshplayApplications(search, order string, page, pageSize uint64, updatedAfter string) ([]byte, error) {
-	order = sanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
+	order = SanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
 
 	if order == "" {
 		order = "updated_at desc"
@@ -37,21 +37,21 @@ func (maap *MeshplayApplicationPersister) GetMeshplayApplications(search, order 
 
 	if search != "" {
 		like := "%" + strings.ToLower(search) + "%"
-		query = query.Where("(lower(meshplay_applications.name) like ?)", like)
+		query = query.Where("(lower(meshery_applications.name) like ?)", like)
 	}
 
-	query.Table("meshplay_applications").Count(&count)
+	query.Table("meshery_applications").Count(&count)
 
 	Paginate(uint(page), uint(pageSize))(query).Find(&applications)
 
-	meshplayApplicationPage := &MeshplayApplicationPage{
+	mesheryApplicationPage := &MeshplayApplicationPage{
 		Page:         page,
 		PageSize:     pageSize,
 		TotalCount:   int(count),
 		Applications: applications,
 	}
 
-	return marshalMeshplayApplicationPage(meshplayApplicationPage), nil
+	return marshalMeshplayApplicationPage(mesheryApplicationPage), nil
 }
 
 // DeleteMeshplayApplication takes in an application id and delete it if it already exists
@@ -95,15 +95,15 @@ func (maap *MeshplayApplicationPersister) SaveMeshplayApplications(applications 
 }
 
 func (maap *MeshplayApplicationPersister) GetMeshplayApplication(id uuid.UUID) ([]byte, error) {
-	var meshplayApplication MeshplayApplication
-	err := maap.DB.First(&meshplayApplication, id).Error
-	return marshalMeshplayApplication(&meshplayApplication), err
+	var mesheryApplication MeshplayApplication
+	err := maap.DB.First(&mesheryApplication, id).Error
+	return marshalMeshplayApplication(&mesheryApplication), err
 }
 
 func (maap *MeshplayApplicationPersister) GetMeshplayApplicationSource(id uuid.UUID) ([]byte, error) {
-	var meshplayApplication MeshplayApplication
-	err := maap.DB.First(&meshplayApplication, id).Error
-	return meshplayApplication.SourceContent, err
+	var mesheryApplication MeshplayApplication
+	err := maap.DB.First(&mesheryApplication, id).Error
+	return mesheryApplication.SourceContent, err
 }
 
 func marshalMeshplayApplicationPage(maap *MeshplayApplicationPage) []byte {

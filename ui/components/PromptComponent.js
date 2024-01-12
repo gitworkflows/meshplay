@@ -10,8 +10,13 @@ import {
   DialogTitle,
   FormControlLabel,
   Checkbox,
+  styled,
+  IconButton,
 } from '@material-ui/core';
-import classNames from 'classnames';
+import theme from '../themes/app';
+import { CustomTextTooltip } from './MeshplayMeshInterface/PatternService/CustomTextTooltip';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import { getHyperLinkDiv } from './MeshplayMeshInterface/PatternService/helper';
 
 const styles = (theme) => ({
   title: {
@@ -33,18 +38,7 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
   },
-  button0: {
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(1),
-    borderRadius: 5,
-    backgroundColor: theme.palette.type === 'dark' ? '#00B39F' : '#607d8b',
-    '&:hover': {
-      backgroundColor: theme.palette.type === 'dark' ? '#00B39F' : '#607d8b',
-      boxShadow:
-        '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
-    },
-    minWidth: 100,
-  },
+
   button1: {
     margin: theme.spacing(0.5),
     padding: theme.spacing(1),
@@ -75,6 +69,31 @@ const styles = (theme) => ({
   },
 });
 
+const PromptActionButton = styled(Button)(({ theme }) => ({
+  margin: theme.spacing(0.5),
+  padding: theme.spacing(1),
+  borderRadius: 5,
+  color: '#fff',
+  '&:hover': {
+    boxShadow:
+      '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
+  },
+  minWidth: 100,
+}));
+
+const IconButtonWrapper = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  right: 10,
+  color: theme.palette.secondary.focused,
+}));
+
+export const PROMPT_VARIANTS = {
+  WARNING: 'warning',
+  DANGER: 'danger',
+  SUCCESS: 'success',
+  CONFIRMATION: 'confirmation',
+};
+
 class PromptComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -85,19 +104,24 @@ class PromptComponent extends React.Component {
       options: [],
       isChecked: false,
       showCheckbox: false,
+      showInfoIcon: null,
     };
     this.promiseInfo = {};
+    this.variant = this.props.variant;
   }
 
   show = async (passed) => {
     return new Promise((resolve, reject) => {
       this.promiseInfo = { resolve, reject };
+      console.log('show passed', passed);
+      this.variant = passed.variant;
       this.setState({
         title: passed.title,
         subtitle: passed.subtitle,
         options: passed.options,
         showCheckbox: !!passed.showCheckbox,
         show: true,
+        showInfoIcon: passed.showInfoIcon || null,
       });
     });
   };
@@ -117,7 +141,7 @@ class PromptComponent extends React.Component {
   };
 
   render() {
-    const { show, options, title, subtitle, isChecked, showCheckbox } = this.state;
+    const { show, options, title, subtitle, isChecked, showCheckbox, showInfoIcon } = this.state;
     const { classes } = this.props;
     const { resolve } = this.promiseInfo;
     return (
@@ -155,39 +179,50 @@ class PromptComponent extends React.Component {
             </DialogContent>
           )}
           <DialogActions className={classes.actions}>
-            <Button
-              onClick={() => {
-                this.hide();
-                resolve(options[1]);
-              }}
-              key={options[1]}
-              className={classes.button1}
-            >
-              <Typography variant body2>
-                {' '}
-                {options[1]}{' '}
-              </Typography>
-            </Button>
-            <Button
+            {options.length > 1 && (
+              <Button
+                onClick={() => {
+                  this.hide();
+                  resolve(options[1]);
+                }}
+                key={options[1]}
+                className={classes.button1}
+              >
+                <Typography variant body2>
+                  {' '}
+                  {options[1]}{' '}
+                </Typography>
+              </Button>
+            )}
+            <PromptActionButton
+              color="primary"
               onClick={() => {
                 this.hide();
                 resolve(options[0]);
               }}
               key={options[0]}
-              className={
-                options[0]?.toLowerCase() === 'reset'
-                  ? classNames(classes.button0, classes.resetButton)
-                  : classes.button0
-              }
+              promptVariant={this.variant}
+              style={this.variant && { backgroundColor: theme.palette.secondary[this.variant] }}
               type="submit"
               variant="contained"
-              color="primary"
             >
               <Typography variant body2>
-                {' '}
                 {options[0]}{' '}
               </Typography>
-            </Button>
+            </PromptActionButton>
+            {showInfoIcon && (
+              <CustomTextTooltip
+                backgroundColor="#3C494F"
+                placement="top"
+                interactive={true}
+                style={{ whiteSpace: 'pre-line' }}
+                title={getHyperLinkDiv(showInfoIcon)}
+              >
+                <IconButtonWrapper color="primary">
+                  <InfoOutlinedIcon />
+                </IconButtonWrapper>
+              </CustomTextTooltip>
+            )}
           </DialogActions>
         </Dialog>
       </div>

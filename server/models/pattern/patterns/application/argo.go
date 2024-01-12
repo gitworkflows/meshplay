@@ -6,8 +6,8 @@ import (
 	"github.com/khulnasoft/meshplay/server/helpers"
 	"github.com/khulnasoft/meshplay/server/models/pattern/patterns/application/argo/v1alpha1"
 	patternUtils "github.com/khulnasoft/meshplay/server/models/pattern/utils"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshkit/utils"
+	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/sirupsen/logrus"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -211,7 +211,7 @@ func createNativeService(opt RolloutEngineGenericOptions) v1.Service {
 		ObjectMeta: metav1.ObjectMeta{
 			Name: opt.Name,
 			Annotations: helpers.MergeStringMaps(map[string]string{
-				"meshplay-engine": "argo",
+				"meshery-engine": "argo",
 			}, opt.Metadata.Annotations),
 			Labels:    opt.Metadata.Labels,
 			Namespace: opt.Namespace,

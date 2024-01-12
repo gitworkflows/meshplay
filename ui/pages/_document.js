@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript, Html } from 'next/document';
-import flush from 'styled-jsx/server';
+import { createStyleRegistry } from 'styled-jsx';
 
+const registry = createStyleRegistry();
+const flush = registry.flush();
 class MeshplayDocument extends Document {
   render() {
     return (
@@ -127,7 +129,7 @@ MeshplayDocument.getInitialProps = (ctx) => {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />
-        {flush() || null}
+        {flush || null}
       </React.Fragment>
     ),
   };

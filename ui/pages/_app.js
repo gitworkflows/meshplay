@@ -27,10 +27,16 @@ import Header from '../components/Header';
 import MeshplayProgressBar from '../components/MeshplayProgressBar';
 import Navigator from '../components/Navigator';
 import getPageContext from '../components/PageContext';
-import { OPERATOR_EVENT_SUBSCRIPTION } from '../components/subscription/helpers';
+import { MESHPLAY_CONTROLLER_SUBSCRIPTION } from '../components/subscription/helpers';
 import { GQLSubscription } from '../components/subscription/subscriptionhandler';
 import dataFetch, { promisifiedDataFetch } from '../lib/data-fetch';
-import { actionTypes, makeStore, toggleCatalogContent, updateTelemetryUrls } from '../lib/store';
+import {
+  actionTypes,
+  makeStore,
+  toggleCatalogContent,
+  updateTelemetryUrls,
+  setConnectionMetadata,
+} from '../lib/store';
 import theme, { styles } from '../themes';
 import { getK8sConfigIdsFromK8sConfig } from '../utils/multi-ctx';
 import './../public/static/style/index.css';
@@ -46,13 +52,17 @@ import Router from 'next/router';
 import subscribeMeshSyncEvents from '../components/graphql/subscriptions/MeshSyncEventsSubscription';
 import { isTelemetryComponent, TelemetryComps } from '../utils/nameMapper';
 import { extractURLFromScanData } from '../components/ConnectionWizard/helpers/metrics';
-import { updateURLs } from '../utils/utils';
+import { formatToTitleCase, updateURLs } from '../utils/utils';
 import { RelayEnvironmentProvider } from 'react-relay';
 import { createRelayEnvironment } from '../lib/relayEnvironment';
 import './styles/charts.css';
 
 import { ErrorBoundary } from '../components/General/ErrorBoundary';
 import { NotificationCenterProvider } from '../components/NotificationCenter';
+import { getMeshModelComponentByName } from '../api/meshmodel';
+import { CONNECTION_KINDS, CONNECTION_KINDS_DEF, CONNECTION_STATES } from '../utils/Enum';
+import { ability } from '../utils/can';
+import { getCredentialByID } from '@/api/credentials';
 
 if (typeof window !== 'undefined') {
   require('codemirror/mode/yaml/yaml');
@@ -75,16 +85,16 @@ async function fetchContexts(number = 10, search = '') {
   );
 }
 
-export const meshplayExtensionRoute = '/extension/meshmap';
+export const mesheryExtensionRoute = '/extension/meshmap';
 function isMeshplayUiRestrictedAndThePageIsNotPlayground(capabilitiesRegistry) {
   return (
-    !window.location.pathname.startsWith(meshplayExtensionRoute) &&
+    !window.location.pathname.startsWith(mesheryExtensionRoute) &&
     capabilitiesRegistry?.restrictedAccess?.isMeshplayUiRestricted
   );
 }
 
 export function isExtensionOpen() {
-  return window.location.pathname.startsWith(meshplayExtensionRoute);
+  return window.location.pathname.startsWith(mesheryExtensionRoute);
 }
 
 class MeshplayApp extends App {
@@ -101,13 +111,62 @@ class MeshplayApp extends App {
       k8sContexts: [],
       activeK8sContexts: [],
       operatorSubscription: null,
+      mesheryControllerSubscription: null,
       meshSyncSubscription: null,
       disposeK8sContextSubscription: null,
       theme: 'light',
       isOpen: false,
       relayEnvironment: createRelayEnvironment(),
+      connectionMetadata: {},
+      keys: [],
+      abilities: [],
     };
   }
+
+  loadPromGrafanaConnection = () => {
+    const { store } = this.props;
+
+    dataFetch(
+      `/api/integrations/connections?page=0&pagesize=2&status=${encodeURIComponent(
+        JSON.stringify([CONNECTION_STATES.CONNECTED]),
+      )}&kind=${encodeURIComponent(
+        JSON.stringify([CONNECTION_KINDS.PROMETHEUS, CONNECTION_KINDS.GRAFANA]),
+      )}`,
+      {
+        credentials: 'include',
+        method: 'GET',
+      },
+      (res) => {
+        res?.connections?.forEach((connection) => {
+          if (connection.kind == CONNECTION_KINDS.PROMETHEUS) {
+            const promCfg = {
+              prometheusURL: connection?.metadata?.url || '',
+              selectedPrometheusBoardsConfigs: connection?.metadata['prometheus_boards'] || [],
+              connectionID: connection?.id,
+              connectionName: connection?.name,
+            };
+
+            store.dispatch({ type: actionTypes.UPDATE_PROMETHEUS_CONFIG, prometheus: promCfg });
+          } else {
+            const credentialID = connection?.credential_id;
+
+            getCredentialByID(credentialID).then((res) => {
+              const grafanaCfg = {
+                grafanaURL: connection?.metadata?.url || '',
+                grafanaAPIKey: res?.secret?.secret || '',
+                grafanaBoardSearch: '',
+                grafanaBoards: connection?.metadata['grafana_boards'] || [],
+                selectedBoardsConfigs: [],
+                connectionID: connection?.id,
+                connectionName: connection?.name,
+              };
+              store.dispatch({ type: actionTypes.UPDATE_GRAFANA_CONFIG, grafana: grafanaCfg });
+            });
+          }
+        });
+      },
+    );
+  };
 
   initMeshSyncEventsSubscription(contexts = []) {
     if (this.meshsyncEventsSubscriptionRef.current) {
@@ -164,6 +223,8 @@ class MeshplayApp extends App {
 
   componentDidMount() {
     this.loadConfigFromServer(); // this works, but sometimes other components which need data load faster than this data is obtained.
+    this.loadPromGrafanaConnection();
+    this.loadOrg();
     this.initSubscriptions([]);
     dataFetch(
       '/api/user/prefs',
@@ -206,7 +267,25 @@ class MeshplayApp extends App {
     this.setState({ disposeK8sContextSubscription });
 
     document.addEventListener('fullscreenchange', this.fullScreenChanged);
+    this.loadMeshModelComponent();
   }
+
+  loadMeshModelComponent = () => {
+    const connectionDef = {};
+    CONNECTION_KINDS_DEF.map(async (kind) => {
+      const res = await getMeshModelComponentByName(formatToTitleCase(kind).concat('Connection'));
+      if (res?.components) {
+        connectionDef[CONNECTION_KINDS[kind]] = {
+          transitions: res?.components[0].model.metadata.transitions,
+          icon: res?.components[0].metadata.svgColor,
+        };
+      }
+      this.setState({ connectionMetadata: connectionDef });
+    });
+    this.props.setConnectionMetadata({
+      connectionMetadataState: connectionDef,
+    });
+  };
 
   componentWillUnmount() {
     document.removeEventListener('fullscreenchange', this.fullScreenChanged);
@@ -215,24 +294,26 @@ class MeshplayApp extends App {
   componentDidUpdate(prevProps) {
     const { k8sConfig, capabilitiesRegistry } = this.props;
 
-    // in case the meshplay-ui is restricted, the user will be redirected to signup/extension page
+    // in case the meshery-ui is restricted, the user will be redirected to signup/extension page
     if (isMeshplayUiRestrictedAndThePageIsNotPlayground(capabilitiesRegistry)) {
-      Router.push(meshplayExtensionRoute);
+      Router.push(mesheryExtensionRoute);
     }
-    console.log('prevProps.k8sConfig', prevProps.k8sConfig, 'k8sConfig', k8sConfig);
 
     if (!_.isEqual(prevProps.k8sConfig, k8sConfig)) {
-      const { operatorSubscription, meshSyncSubscription } = this.state;
+      const { meshSyncSubscription, mesheryControllerSubscription } = this.state;
       console.log(
         'k8sconfig changed, re-initialising subscriptions',
         k8sConfig,
         this.state.activeK8sContexts,
       );
       const ids = getK8sConfigIdsFromK8sConfig(k8sConfig);
-      if (operatorSubscription) {
-        operatorSubscription.updateSubscription(ids);
-      }
+      // if (operatorSubscription) {
+      //   operatorSubscription.updateSubscription(ids);
+      // }
 
+      if (mesheryControllerSubscription) {
+        mesheryControllerSubscription.updateSubscription(ids);
+      }
       if (meshSyncSubscription) {
         meshSyncSubscription.updateSubscription(ids);
       }
@@ -244,21 +325,19 @@ class MeshplayApp extends App {
   }
 
   initSubscriptions = (contexts) => {
-    const operatorCallback = (data) => {
-      this.props.store.dispatch({
-        type: actionTypes.SET_OPERATOR_SUBSCRIPTION,
-        operatorState: data,
-      });
-    };
-
-    const operatorSubscription = new GQLSubscription({
-      type: OPERATOR_EVENT_SUBSCRIPTION,
+    const mesheryControllerSubscription = new GQLSubscription({
+      type: MESHPLAY_CONTROLLER_SUBSCRIPTION,
       contextIds: contexts,
-      callbackFunction: operatorCallback,
+      callbackFunction: (data) => {
+        this.props.store.dispatch({
+          type: actionTypes.SET_CONTROLLER_STATE,
+          controllerState: data,
+        });
+      },
     });
     // const meshSyncSubscription = new GQLSubscription({ type : MESHSYNC_EVENT_SUBSCRIPTION, contextIds : contexts, callbackFunction : meshSyncCallback }) above uses old listenToMeshSyncEvents subscription, instead new subscribeMeshSyncEvents is used
-
-    this.setState({ operatorSubscription });
+    this.setState({ mesheryControllerSubscription });
+    // this.setState({ operatorSubscription });
   };
 
   handleDrawerToggle = () => {
@@ -329,6 +408,85 @@ class MeshplayApp extends App {
     this.props.store.dispatch({ type: actionTypes.UPDATE_EXTENSION_TYPE, extensionType: type });
   };
 
+  loadOrg = async () => {
+    const currentOrg = sessionStorage.getItem('currentOrg');
+    let reFetchKeys = false;
+
+    if (currentOrg && currentOrg !== 'undefined') {
+      let org = JSON.parse(currentOrg);
+      await this.loadAbility(org.id, reFetchKeys);
+      this.setOrganization(org);
+    }
+
+    dataFetch(
+      '/api/identity/orgs',
+      {
+        method: 'GET',
+        credentials: 'include',
+      },
+      async (result) => {
+        let organizationToSet;
+        const sessionOrg = JSON.parse(currentOrg);
+
+        if (currentOrg) {
+          const indx = result.organizations.findIndex((org) => org.id === sessionOrg.id);
+          if (indx === -1) {
+            organizationToSet = result.organizations[0];
+            reFetchKeys = true;
+            await this.loadAbility(organizationToSet.id, reFetchKeys);
+            this.setOrganization(organizationToSet);
+          }
+        } else {
+          organizationToSet = result.organizations[0];
+          reFetchKeys = true;
+          await this.loadAbility(organizationToSet.id, reFetchKeys);
+          this.setOrganization(organizationToSet);
+        }
+      },
+      (err) => console.log('There was an error fetching available orgs:', err),
+    );
+  };
+
+  setOrganization = (org) => {
+    const { store } = this.props;
+    store.dispatch({
+      type: actionTypes.SET_ORGANIZATION,
+      organization: org,
+    });
+  };
+
+  loadAbility = async (orgID, reFetchKeys) => {
+    const storedKeys = sessionStorage.getItem('keys');
+    const { store } = this.props;
+    if (storedKeys !== null && !reFetchKeys && storedKeys !== 'undefined') {
+      this.setState({ keys: JSON.parse(storedKeys) }, this.updateAbility);
+    } else {
+      dataFetch(
+        `/api/identity/orgs/${orgID}/users/keys`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        },
+        (result) => {
+          if (result) {
+            this.setState({ keys: result.keys }, () => {
+              store.dispatch({
+                type: actionTypes.SET_KEYS,
+                keys: result.keys,
+              });
+              this.updateAbility();
+            });
+          }
+        },
+        (err) => console.log('There was an error fetching available orgs:', err),
+      );
+    }
+  };
+
+  updateAbility = () => {
+    ability.update(this.state.keys?.map((key) => ({ action: key.id, subject: key.function })));
+  };
+
   async loadConfigFromServer() {
     const { store } = this.props;
     dataFetch(
@@ -349,35 +507,35 @@ class MeshplayApp extends App {
               meshAdapters: result.meshAdapters,
             });
           }
-          if (result.grafana) {
-            const grafanaCfg = Object.assign(
-              {
-                grafanaURL: '',
-                grafanaAPIKey: '',
-                grafanaBoardSearch: '',
-                grafanaBoards: [],
-                selectedBoardsConfigs: [],
-              },
-              result.grafana,
-            );
-            store.dispatch({ type: actionTypes.UPDATE_GRAFANA_CONFIG, grafana: grafanaCfg });
-          }
-          if (result.prometheus) {
-            if (typeof result.prometheus.prometheusURL === 'undefined') {
-              result.prometheus.prometheusURL = '';
-            }
-            if (typeof result.prometheus.selectedPrometheusBoardsConfigs === 'undefined') {
-              result.prometheus.selectedPrometheusBoardsConfigs = [];
-            }
-            const promCfg = Object.assign(
-              {
-                prometheusURL: '',
-                selectedPrometheusBoardsConfigs: [],
-              },
-              result.prometheus,
-            );
-            store.dispatch({ type: actionTypes.UPDATE_PROMETHEUS_CONFIG, prometheus: promCfg });
-          }
+          // if (result.grafana) {
+          //   const grafanaCfg = Object.assign(
+          //     {
+          //       grafanaURL: '',
+          //       grafanaAPIKey: '',
+          //       grafanaBoardSearch: '',
+          //       grafanaBoards: [],
+          //       selectedBoardsConfigs: [],
+          //     },
+          //     result.grafana,
+          //   );
+          //   store.dispatch({ type: actionTypes.UPDATE_GRAFANA_CONFIG, grafana: grafanaCfg });
+          // }
+          // if (result.prometheus) {
+          //   if (typeof result.prometheus.prometheusURL === 'undefined') {
+          //     result.prometheus.prometheusURL = '';
+          //   }
+          //   if (typeof result.prometheus.selectedPrometheusBoardsConfigs === 'undefined') {
+          //     result.prometheus.selectedPrometheusBoardsConfigs = [];
+          //   }
+          //   const promCfg = Object.assign(
+          //     {
+          //       prometheusURL: '',
+          //       selectedPrometheusBoardsConfigs: [],
+          //     },
+          //     result.prometheus,
+          //   );
+          //   store.dispatch({ type: actionTypes.UPDATE_PROMETHEUS_CONFIG, prometheus: promCfg });
+          // }
           if (result.loadTestPrefs) {
             const loadTestPref = Object.assign(
               {
@@ -537,8 +695,17 @@ class MeshplayApp extends App {
                         ) : (
                           <>
                             {' '}
-                            Built with <FavoriteIcon className={classes.footerIcon} /> by the
-                            KhulnaSoft Community
+                            Built with{' '}
+                            <FavoriteIcon
+                              style={{
+                                color:
+                                  this.state.theme === 'dark'
+                                    ? theme.palette.secondary.focused
+                                    : '#00b39f',
+                              }}
+                              className={classes.footerIcon}
+                            />{' '}
+                            by the Layer5 Community
                           </>
                         )}
                       </span>
@@ -567,11 +734,13 @@ const mapStateToProps = (state) => ({
   meshSyncSubscription: state.get('meshSyncSubscription'),
   capabilitiesRegistry: state.get('capabilitiesRegistry'),
   telemetryURLs: state.get('telemetryURLs'),
+  connectionMetadata: state.get('connectionMetadata'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCatalogContent: bindActionCreators(toggleCatalogContent, dispatch),
   updateTelemetryUrls: bindActionCreators(updateTelemetryUrls, dispatch),
+  setConnectionMetadata: bindActionCreators(setConnectionMetadata, dispatch),
 });
 
 const MeshplayWithRedux = withStyles(styles)(
@@ -582,7 +751,7 @@ const MeshplayAppWrapper = (props) => {
   return (
     <Provider store={props.store}>
       <Head>
-        <link rel="shortcut icon" href="/static/img/meshplay-logo/meshplay-logo.svg" />
+        <link rel="shortcut icon" href="/static/img/meshery-logo/meshery-logo.svg" />
         <title>Meshplay</title>
       </Head>
       <MuiPickersUtilsProvider utils={MomentUtils}>

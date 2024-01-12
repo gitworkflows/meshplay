@@ -2,14 +2,14 @@ package stages
 
 import (
 	"github.com/khulnasoft/meshplay/server/helpers"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
 )
 
 // import "github.com/khulnasoft/meshplay/server/models/pattern/patterns"
 
 const DryRunResponseKey = "dryRunResponse"
 
-var meshplayDefinedAPIVersions = map[string]bool{
+var mesheryDefinedAPIVersions = map[string]bool{
 	"core.oam.dev/v1alpha1": true,
 }
 
@@ -29,7 +29,7 @@ func DryRun(_ ServiceInfoProvider, act ServiceActionProvider) ChainStageFunction
 		var comps []v1alpha1.Component
 		processAnnotations(data.Pattern)
 		for name, svc := range data.Pattern.Services {
-			if meshplayDefinedAPIVersions[svc.APIVersion] {
+			if mesheryDefinedAPIVersions[svc.APIVersion] {
 				continue
 			}
 			comp, err := data.Pattern.GetApplicationComponent(name)

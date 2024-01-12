@@ -6,7 +6,7 @@ token: default
 token-location: auth.json
 platform: kubernetes
 components:
-- meshplay-istio
+- meshery-istio
 channel: stable
 version: latest
 provider: Meshplay

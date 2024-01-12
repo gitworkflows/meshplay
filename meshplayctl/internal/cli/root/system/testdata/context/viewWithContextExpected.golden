@@ -6,7 +6,7 @@ token: default2
 token-location: auth.json
 platform: docker
 components:
-- meshplay-istio
+- meshery-istio
 channel: stable
 version: latest
 provider: Meshplay

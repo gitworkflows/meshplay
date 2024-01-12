@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
-	meshkitkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshkitkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
@@ -119,7 +119,7 @@ func parseKubectlShortVersion(version string) ([3]int, error) {
 	return getK8sVersion(versionString)
 }
 
-// IsMeshplayRunning checks if the meshplay server containers are up and running
+// IsMeshplayRunning checks if the meshery server containers are up and running
 func IsMeshplayRunning(currPlatform string) (bool, error) {
 	// Get viper instance used for context to extract the endpoint from config file
 	mctlCfg, _ := config.GetMeshplayCtl(viper.GetViper())
@@ -145,7 +145,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshplay"), nil
+			return strings.Contains(string(op), "meshery"), nil
 		}
 	case "kubernetes":
 		{
@@ -164,7 +164,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if deployment.GetName() == "meshplay" {
+				if deployment.GetName() == "meshery" {
 					return true, nil
 				}
 			}
@@ -176,7 +176,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 	return false, nil
 }
 
-// AreMeshplayComponentsRunning checks if the meshplay containers are up and running
+// AreMeshplayComponentsRunning checks if the meshery containers are up and running
 func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 	//If not, use the platforms to check if Meshplay is running or not
 	switch currPlatform {
@@ -186,7 +186,7 @@ func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshplay"), nil
+			return strings.Contains(string(op), "meshery"), nil
 		}
 	case "kubernetes":
 		{
@@ -203,7 +203,7 @@ func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if strings.Contains(string(deployment.GetName()), "meshplay") {
+				if strings.Contains(string(deployment.GetName()), "meshery") {
 					return true, nil
 				}
 			}
@@ -277,7 +277,11 @@ func isPodRunning(c *meshkitkube.Client, podName, namespace string) wait.Conditi
 // Poll up to timeout seconds for pod to enter running state.
 // Returns an error if the pod never enters the running state.
 func pollForPodRunning(c *meshkitkube.Client, namespace, podName string, timeout time.Duration) error {
-	return wait.PollImmediate(time.Second, timeout, isPodRunning(c, podName, namespace))
+	// return wait.PollImmediate(time.Second, timeout, isPodRunning(c, podName, namespace))
+	return wait.PollUntilContextTimeout(context.Background(), time.Second, timeout, true, func(ctx context.Context) (done bool, err error) {
+		conditionFunc := isPodRunning(c, podName, namespace)
+		return conditionFunc()
+	})
 }
 
 // Wait up to timeout seconds for pod in 'namespace' to enter running state.
@@ -326,7 +330,11 @@ func isNamespaceDeleted(c *meshkitkube.Client, namespace string) wait.ConditionF
 
 // Poll up to timeout seconds every 5 seconds until the namespace no more exists.
 func pollForNamespaceDeleted(c *meshkitkube.Client, namespace string, timeout time.Duration) error {
-	return wait.Poll(5*time.Second, timeout, isNamespaceDeleted(c, namespace))
+	// return wait.Poll(5*time.Second, timeout, isNamespaceDeleted(c, namespace))
+	return wait.PollUntilContextTimeout(context.Background(), time.Second, timeout, false, func(ctx context.Context) (done bool, err error) {
+		conditionFunc := isNamespaceDeleted(c, namespace)
+		return conditionFunc()
+	})
 }
 
 // Wait up to timeout seconds for `namespace` to be deleted.

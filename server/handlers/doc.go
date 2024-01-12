@@ -35,8 +35,10 @@ import (
 
 	"github.com/go-openapi/strfmt"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
-	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	"github.com/khulnasoft/meshplay/server/models/connections"
+	"github.com/khulnasoft/meshplay/server/models/environments"
+	"github.com/khulnasoft/meshkit/models/events"
+	SMP "github.com/layer5io/service-mesh-performance/spec"
 	v1 "k8s.io/api/core/v1"
 )
 
@@ -74,16 +76,16 @@ type usersKeys struct {
 	Body models.UserKeys
 }
 
-// Returns all meshplay patterns
-// swagger:response meshplayPatternsResponseWrapper
-type meshplayPatternsResponseWrapper struct {
+// Returns all meshery patterns
+// swagger:response mesheryPatternsResponseWrapper
+type mesheryPatternsResponseWrapper struct {
 	// in: body
 	Body models.PatternsAPIResponse
 }
 
-// Returns a single meshplay pattern
-// swagger:response meshplayPatternResponseWrapper
-type meshplayPatternResponseWrapper struct {
+// Returns a single meshery pattern
+// swagger:response mesheryPatternResponseWrapper
+type mesheryPatternResponseWrapper struct {
 	// in: body
 	Body models.MeshplayPattern
 }
@@ -308,7 +310,7 @@ type k8sContextsRespWrapper struct {
 
 // Parameters for updating provider choice
 // swagger:parameters idChoiceProvider
-type meshplayProviderParamsWrapper struct {
+type mesheryProviderParamsWrapper struct {
 	// in: query
 	Provider string `json:"provider"`
 }
@@ -328,8 +330,8 @@ type providerPropertiesRespWrapper struct {
 }
 
 // Returns Meshplay version
-// swagger:response meshplayVersionRespWrapper
-type meshplayVersionRespWrapper struct {
+// swagger:response mesheryVersionRespWrapper
+type mesheryVersionRespWrapper struct {
 	// in: body
 	Body Version
 }
@@ -351,34 +353,34 @@ type applicationFileParamsWrapper struct {
 }
 
 // Fetches a single Meshplay Application
-// swagger:response meshplayApplicationResponseWrapper
-type meshplayApplicationResponseWrapper struct {
+// swagger:response mesheryApplicationResponseWrapper
+type mesheryApplicationResponseWrapper struct {
 	// in: body
 	Body models.MeshplayApplication
 }
 
-// Returns all meshplay applications
-// swagger:response meshplayApplicationsResponseWrapper
-type meshplayApplicationsResponseWrapper struct {
+// Returns all meshery applications
+// swagger:response mesheryApplicationsResponseWrapper
+type mesheryApplicationsResponseWrapper struct {
 	// in: body
 	Body models.ApplicationsAPIResponse
 }
 
-// Returns all the meshplay adapters
-// swagger:response meshplayAdaptersRespWrapper
-type meshplayAdaptersRespWrapper struct {
+// Returns all the meshery adapters
+// swagger:response mesheryAdaptersRespWrapper
+type mesheryAdaptersRespWrapper struct {
 	// in: body
 	Body []*models.Adapter
 }
 
-// Parameter for meshplay adapter location-url
+// Parameter for meshery adapter location-url
 // swagger:parameters idPostAdapterConfig
-type meshplayAdapterParamsWrapper struct {
+type mesheryAdapterParamsWrapper struct {
 	// in: body
 	MeshLocationURL string `json:"meshLocationURL"`
 }
 
-// Parameters for meshplay operations
+// Parameters for meshery operations
 // swagger:parameters idPostAdapterOperation
 type adapterOpsParamsWrapper struct {
 	Adapter    string `json:"adapter"`
@@ -388,16 +390,16 @@ type adapterOpsParamsWrapper struct {
 	Delete     string `json:"deleteOp"`
 }
 
-// Returns a single meshplay filter
-// swagger:response meshplayFilterResponseWrapper
-type meshplayFilterResponseWrapper struct {
+// Returns a single meshery filter
+// swagger:response mesheryFilterResponseWrapper
+type mesheryFilterResponseWrapper struct {
 	// in: body
 	Body models.MeshplayFilter
 }
 
-// Returns all meshplay filters
-// swagger:response meshplayFiltersResponseWrapper
-type meshplayFiltersResponseWrapper struct {
+// Returns all meshery filters
+// swagger:response mesheryFiltersResponseWrapper
+type mesheryFiltersResponseWrapper struct {
 	// in: body
 	Body models.FiltersAPIResponse
 }
@@ -494,38 +496,73 @@ type smiResultsResponseWrapper struct {
 }
 
 // Returns Meshplay application types
-// swagger:response meshplayApplicationTypesResponseWrapper
-type meshplayApplicationTypesResponseWrapper struct {
+// swagger:response mesheryApplicationTypesResponseWrapper
+type mesheryApplicationTypesResponseWrapper struct {
 	// in: body
 	Body []models.ApplicationTypeResponse
 }
 
 // Returns a single connection
-// swagger:response meshplayConnectionResponseWrapper
-type meshplayConnectionResponseWrapper struct {
+// swagger:response mesheryConnectionResponseWrapper
+type mesheryConnectionResponseWrapper struct {
 	// in: body
-	Body models.Connection
+	Body connections.Connection
+}
+
+// Returns all connections
+// swagger:response mesheryConnectionsResponseWrapper
+type mesheryConnectionsResponseWrapper struct {
+	// in: body
+	Body *connections.ConnectionPage
 }
 
 // Returns all connections Status
-// swagger:response meshplayConnectionsStatusPage
-type meshplayConnectionsStatusPage struct {
+// swagger:response mesheryConnectionsStatusPage
+type mesheryConnectionsStatusPage struct {
 	// in: body
-	Body *models.ConnectionsStatusPage
+	Body *connections.ConnectionsStatusPage
 }
 
 // Returns environment
 // swagger:response environmentResponseWrapper
 type environmentResponseWrapper struct {
 	// in: body
-	Body *models.EnvironmentData
+	Body *environments.EnvironmentData
 }
 
 // Returns all environements
 // swagger:response environmentsResponseWrapper
 type environmentsResponseWrapper struct {
 	// in: body
-	Body *models.EnvironmentPage
+	Body *environments.EnvironmentPage
+}
+
+// Returns workspaces
+// swagger:response workspacesResponseWrapper
+type workspacesResponseWrapper struct {
+	// in: body
+	Body *models.WorkspacePage
+}
+
+// Returns workspace
+// swagger:response workspaceResponseWrapper
+type workspaceResponseWrapper struct {
+	// in: body
+	Body *models.Workspace
+}
+
+// Returns workspace designs mapping
+// swagger:response workspaceDesignsMappingResponseWrapper
+type workspaceDesignsMappingResponseWrapper struct {
+	// in: body
+	Body *models.WorkspacesDesignsMapping
+}
+
+// Returns workspace environments mapping
+// swagger:response workspaceEnvironmentsMappingResponseWrapper
+type workspaceEnvironmentsMappingResponseWrapper struct {
+	// in: body
+	Body *models.WorkspacesEnvironmentsMapping
 }
 
 // Returns event
@@ -540,4 +577,36 @@ type eventResponseWrapper struct {
 type eventsResponseWrapper struct {
 	// in: body
 	Body *models.EventsResponse
+}
+
+// swagger:response loadTestPreferencesWrapper
+type possibleTransitions struct {
+	//in: body
+	Body map[string]map[connections.ConnectionStatus][]connections.ConnectionStatus
+}
+
+type relationshipPolicyEvalPayloadWrapper struct {
+	//in: body
+	relationshipPolicyEvalPayload relationshipPolicyEvalPayload
+}
+
+// Returns all orgs
+// swagger:response orgsResponseWrapper
+type orgsResponseWrapper struct {
+	// in: body
+	Body *models.OrganizationsPage
+}
+
+// Returns Design Source Content
+// swagger:response mesheryPatternSourceContentResponseWrapper
+type mesheryPatternSourceContentResponseWrapper struct {
+	// in: body
+	Body []byte
+}
+
+// Returns MeshSync Resources Kinds
+// swagger:response meshsyncResourcesKindsResponseWrapper
+type meshsyncResourcesKindsResponseWrapper struct {
+	// in: body
+	Body *models.MeshSyncResourcesKindsAPIResponse
 }

@@ -2,6 +2,11 @@
 import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useCallback } from 'react';
 import { useWindowDimensions } from './dimension';
+import { styled } from '@mui/system';
+
+const StyledMUIDataTable = styled(MUIDataTable)(() => ({
+  padding: '5px 18px 0 18px',
+}));
 
 const ResponsiveDataTable = ({
   data,
@@ -95,6 +100,7 @@ const ResponsiveDataTable = ({
       }
     });
     updateCols([...columns]);
+    console.log(data);
   }, [width, columnVisibility]);
 
   const components = {
@@ -104,8 +110,8 @@ const ResponsiveDataTable = ({
   };
 
   return (
-    <div id="searchClick">
-      <MUIDataTable
+    <div>
+      <StyledMUIDataTable
         components={components}
         columns={tableCols}
         data={data}

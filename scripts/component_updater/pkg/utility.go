@@ -11,7 +11,7 @@ const (
 func (dt SystemType) String() string {
 	switch dt {
 	case Meshplay:
-		return "meshplay"
+		return "meshery"
 
 	case Docs:
 		return "docs"

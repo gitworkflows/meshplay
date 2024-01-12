@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 package filter
 
 import (
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrFilterNameOrIDCode = "1096"

@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 package pattern
 
-import "github.com/khulnasoft/meshplay/meshkit/errors"
+import "github.com/khulnasoft/meshkit/errors"
 
 const (
 	ErrPatternsNotFoundCode       = "1115"

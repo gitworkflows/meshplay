@@ -72,11 +72,11 @@ function CustomErrorMessage() {
         <img src="/static/img/service-mesh.svg" alt="service meshed" className={classes.mesh} />
         <Typography variant="body1">
           <p className={classes.helpMessage}>
-            Start a conversation at KhulnaSoft community{' '}
+            Start a conversation at Layer5 community{' '}
             <Link
               className={classes.discussionforumlink}
               underline="none"
-              href="http://discuss.meshplay.khulnasoft.com/c/meshplay/5"
+              href="http://discuss.khulnasoft.com/c/meshery/5"
               target="_blank"
             >
               discussion forum

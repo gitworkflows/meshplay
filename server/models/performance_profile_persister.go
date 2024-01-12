@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshkit/database"
 )
 
 // PerformanceProfilePersister is the persister for persisting
@@ -24,7 +24,7 @@ type PerformanceProfilePage struct {
 
 // GetPerformanceProfiles returns all of the performance profiles
 func (ppp *PerformanceProfilePersister) GetPerformanceProfiles(_, search, order string, page, pageSize uint64) ([]byte, error) {
-	order = sanitizeOrderInput(order, []string{"updated_at", "created_at", "name", "last_run"})
+	order = SanitizeOrderInput(order, []string{"updated_at", "created_at", "name", "last_run"})
 	if order == "" {
 		order = "updated_at desc"
 	}
@@ -39,8 +39,8 @@ func (ppp *PerformanceProfilePersister) GetPerformanceProfiles(_, search, order 
 		duration, request_headers, request_cookies,
 		request_body, content_type, created_at,
 		updated_at, (?) as last_run, (?) as total_results`,
-			ppp.DB.Table("meshplay_results").Select("DATETIME(MAX(meshplay_results.test_start_time))").Where("performance_profile = performance_profiles.id"),
-			ppp.DB.Table("meshplay_results").Select("COUNT(meshplay_results.name)").Where("performance_profile = performance_profiles.id"),
+			ppp.DB.Table("meshery_results").Select("DATETIME(MAX(meshery_results.test_start_time))").Where("performance_profile = performance_profiles.id"),
+			ppp.DB.Table("meshery_results").Select("COUNT(meshery_results.name)").Where("performance_profile = performance_profiles.id"),
 		).
 		Order(order)
 

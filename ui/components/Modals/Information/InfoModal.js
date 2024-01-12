@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useEffect, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import PatternIcon from '../../../assets/icons/Pattern';
@@ -29,14 +30,17 @@ import { EVENT_TYPES } from '../../../lib/event-types';
 import axios from 'axios';
 import _ from 'lodash';
 import RJSFWrapper from '../../MeshplayMeshInterface/PatternService/RJSF_wrapper';
-import { promisifiedDataFetch } from '../../../lib/data-fetch';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Provider } from 'react-redux';
+import { store } from '../../../store';
+import { useGetUserByIdQuery } from '../../../rtk-query/user.js';
+import { ErrorBoundary } from '../../General/ErrorBoundary';
 
 const APPLICATION_PLURAL = 'applications';
 const FILTER_PLURAL = 'filters';
 const PATTERN_PLURAL = 'patterns';
 
-const InfoModal = (props) => {
+const InfoModal_ = React.memo((props) => {
   const {
     infoModalOpen,
     handleInfoModalClose,
@@ -45,12 +49,12 @@ const InfoModal = (props) => {
     selectedResource,
     currentUserID,
     formSchema,
+    meshModels = [],
   } = props;
 
   const formRef = React.createRef();
   const [formState, setFormState] = useState(selectedResource?.catalog_data || {});
   const [isCatalogDataEqual, setIsCatalogDataEqual] = useState(false);
-  const [resourceUserProfile, setResourceUserProfile] = useState(null);
   const [saveFormLoading, setSaveFormLoading] = useState(false);
   const [uiSchema, setUiSchema] = useState({});
   const { notify } = useNotification();
@@ -59,6 +63,8 @@ const InfoModal = (props) => {
   const formatDate = (date) => {
     return moment(date).utc().format('MMMM Do YYYY, h:mm:ss A');
   };
+
+  const { data: resourceUserProfile } = useGetUserByIdQuery(resourceOwnerID);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleCopy = () => {
@@ -73,10 +79,14 @@ const InfoModal = (props) => {
     if (formRef.current && formRef.current.validateForm()) {
       setSaveFormLoading(true);
       let body = null;
+      let modifiedData = {
+        ...formState,
+        type: formState?.type?.toLowerCase(),
+      };
       if (dataName === PATTERN_PLURAL) {
         body = JSON.stringify({
           pattern_data: {
-            catalog_data: formState,
+            catalog_data: modifiedData,
             pattern_file: selectedResource.pattern_file,
             id: selectedResource.id,
           },
@@ -86,11 +96,11 @@ const InfoModal = (props) => {
         setSaveFormLoading(true);
         let config = '';
         if (selectedResource.filter_resource !== null || selectedResource.filter_resource !== '') {
-          config = JSON.parse(selectedResource.filter_resource).settings.config; // send the config inorder to prevent over-write of the config
+          config = JSON.parse(selectedResource.filter_resource).settings.config; // send the config in order to prevent over-write of the config
         }
         body = JSON.stringify({
           filter_data: {
-            catalog_data: formState,
+            catalog_data: modifiedData,
             id: selectedResource.id,
             name: selectedResource.name,
             filter_file: selectedResource.filter_file,
@@ -130,10 +140,32 @@ const InfoModal = (props) => {
   };
 
   useEffect(() => {
-    if (selectedResource?.catalog_data) {
-      setFormState(selectedResource.catalog_data);
+    if (selectedResource?.catalog_data && Object.keys(selectedResource?.catalog_data).length > 0) {
+      if (meshModels) {
+        const compatibilitySet = new Set(
+          (selectedResource?.catalog_data?.compatibility || []).map((comp) => comp.toLowerCase()),
+        );
+
+        const filteredCompatibilityArray = _.uniq(
+          meshModels
+            .filter((obj) => {
+              const displayName = obj.displayName.toLowerCase();
+              return compatibilitySet.has(displayName);
+            })
+            .map((obj) => obj.displayName),
+        );
+
+        let modifiedData = {
+          ...selectedResource.catalog_data,
+          type: _.startCase(selectedResource?.catalog_data?.type),
+          compatibility: filteredCompatibilityArray,
+        };
+        setFormState(modifiedData);
+      }
+    } else {
+      setFormState(selectedResource?.catalog_data);
     }
-  }, [selectedResource?.catalog_data]);
+  }, [selectedResource?.catalog_data, meshModels]);
 
   useEffect(() => {
     if (formSchema) {
@@ -147,33 +179,6 @@ const InfoModal = (props) => {
       setUiSchema(newUiSchema);
     }
   }, [resourceOwnerID, formSchema, currentUserID]);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      try {
-        const response = await promisifiedDataFetch(`/api/user/profile/${resourceOwnerID}`, {
-          method: 'GET',
-          credentials: 'include',
-        });
-
-        // Check if the component is still mounted before setting the state
-        if (isMounted) {
-          setResourceUserProfile(response);
-        }
-      } catch (error) {
-        console.error('Error fetching user profile with id in info modal:', error);
-      }
-    };
-
-    fetchData();
-
-    // Cleanup function
-    return () => {
-      isMounted = false;
-    };
-  }, [resourceOwnerID]);
 
   const renderIcon = () => {
     if (dataName === PATTERN_PLURAL) {
@@ -250,30 +255,15 @@ const InfoModal = (props) => {
                         resourceUserProfile?.first_name + ' ' + resourceUserProfile?.last_name
                       }`}
                     >
-                      <Chip
-                        avatar={
-                          <Avatar
-                            src={resourceUserProfile?.avatar_url}
-                            className={classes.chipIcon}
-                          />
-                        }
-                        label={
-                          resourceUserProfile ? (
-                            resourceUserProfile?.first_name + ' ' + resourceUserProfile?.last_name
-                          ) : (
-                            <Box sx={{ display: 'flex' }}>
-                              <CircularProgress color="inherit" size="1rem" />
-                            </Box>
-                          )
-                        }
-                        variant="outlined"
-                        data-cy="chipDesignDetails"
-                        className={classes.chip}
-                      />
+                      <OwnerChip userProfile={resourceUserProfile} />
                     </Tooltip>
                   </Typography>
                 </Grid>
-                <Grid item xs={dataName === APPLICATION_PLURAL ? 12 : 6}>
+                <Grid
+                  item
+                  xs={dataName === APPLICATION_PLURAL ? 12 : 6}
+                  className={classes.visibilityGridItem}
+                >
                   <Typography gutterBottom variant="subtitle1" className={classes.text}>
                     <span
                       style={{
@@ -283,18 +273,17 @@ const InfoModal = (props) => {
                     >
                       Visibility:
                     </span>{' '}
-                    <Chip
-                      label={selectedResource?.visibility}
-                      variant="outlined"
-                      className={classes.chip}
-                    />
                   </Typography>
+                  <img
+                    className={classes.img}
+                    src={`/static/img/${selectedResource?.visibility}.svg`}
+                  />
                 </Grid>
                 {dataName === APPLICATION_PLURAL && formSchema ? null : (
                   <Grid item className={classes.rjsfInfoModalForm}>
                     <RJSFWrapper
                       formData={formState}
-                      jsonSchema={formSchema.rjsfSchema}
+                      jsonSchema={{ ...formSchema.rjsfSchema, required: undefined }}
                       uiSchema={uiSchema}
                       onChange={handleFormChange}
                       liveValidate={false}
@@ -362,6 +351,40 @@ const InfoModal = (props) => {
         </DialogActions>
       </Dialog>
     </div>
+  );
+});
+
+const OwnerChip = ({ userProfile }) => {
+  const classes = useStyles();
+  return (
+    <Chip
+      avatar={<Avatar src={userProfile?.avatar_url} className={classes.chipIcon} />}
+      label={
+        userProfile ? (
+          `${userProfile?.first_name} ${userProfile?.last_name}`
+        ) : (
+          <Box sx={{ display: 'flex' }}>
+            <CircularProgress color="inherit" size="1rem" />
+          </Box>
+        )
+      }
+      variant="outlined"
+      data-cy="chipDesignDetails"
+      className={classes.chip}
+    />
+  );
+};
+
+const InfoModal = (props) => {
+  return (
+    <ErrorBoundary
+      FallbackComponent={() => null}
+      onError={(e) => console.error('Error in Info modal', e)}
+    >
+      <Provider store={store}>
+        <InfoModal_ {...props} />
+      </Provider>
+    </ErrorBoundary>
   );
 };
 

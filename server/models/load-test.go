@@ -103,7 +103,7 @@ type LoadTestResponse struct {
 
 // MeshplayResult - represents the results from Meshplay test run to be shipped
 type MeshplayResult struct {
-	ID                 uuid.UUID              `json:"meshplay_id,omitempty"`
+	ID                 uuid.UUID              `json:"meshery_id,omitempty"`
 	Name               string                 `json:"name,omitempty"`
 	Mesh               string                 `json:"mesh,omitempty"`
 	PerformanceProfile *uuid.UUID             `json:"performance_profile,omitempty"`
@@ -121,7 +121,7 @@ type MeshplayResult struct {
 	UserID    string `json:"user_id,omitempty"`
 }
 
-// ConvertToSpec - converts meshplay result to SMP
+// ConvertToSpec - converts meshery result to SMP
 func (m *MeshplayResult) ConvertToSpec() (*PerformanceSpec, error) {
 	b := &PerformanceSpec{
 		Latencies: &LatenciesMs{},

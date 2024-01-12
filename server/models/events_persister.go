@@ -2,8 +2,8 @@ package models
 
 import (
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/models/events"
 	"gorm.io/gorm/clause"
 )
 
@@ -124,7 +124,7 @@ func (e *EventsPersister) BulkUpdateEventStatus(eventIDs []*uuid.UUID, status st
 	if err != nil {
 		return nil, err
 	}
-	
+
 	updatedEvent := &[]*events.Event{}
 	err = e.DB.Find(updatedEvent, "id IN ?", eventIDs).Error
 	if err != nil {

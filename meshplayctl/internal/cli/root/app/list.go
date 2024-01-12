@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@ meshplayctl app list
 			return nil
 		}
 
-		var response *models.ApplicationsAPIResponse
-		req, err := utils.NewRequest("GET", mctlCfg.GetBaseMeshplayURL()+"/api/application", nil)
+		var response *models.PatternsAPIResponse
+		req, err := utils.NewRequest("GET", mctlCfg.GetBaseMeshplayURL()+"/api/pattern", nil)
 		if err != nil {
 			utils.Log.Error(err)
 			return nil
@@ -82,12 +82,12 @@ meshplayctl app list
 			utils.Log.Error(err)
 			return nil
 		}
-		provider := tokenObj["meshplay-provider"]
+		provider := tokenObj["meshery-provider"]
 		var data [][]string
 
 		if verbose {
 			if provider == "None" {
-				for _, v := range response.Applications {
+				for _, v := range response.Patterns {
 					AppID := v.ID.String()
 					AppName := v.Name
 					CreatedAt := fmt.Sprintf("%d-%d-%d %d:%d:%d", int(v.CreatedAt.Month()), v.CreatedAt.Day(), v.CreatedAt.Year(), v.CreatedAt.Hour(), v.CreatedAt.Minute(), v.CreatedAt.Second())
@@ -98,7 +98,7 @@ meshplayctl app list
 				return nil
 			}
 
-			for _, v := range response.Applications {
+			for _, v := range response.Patterns {
 				AppID := utils.TruncateID(v.ID.String())
 				var UserID string
 				if v.UserID != nil {
@@ -116,9 +116,9 @@ meshplayctl app list
 			return nil
 		}
 
-		// Check if meshplay provider is set
+		// Check if meshery provider is set
 		if provider == "None" {
-			for _, v := range response.Applications {
+			for _, v := range response.Patterns {
 				AppName := strings.Trim(v.Name, filepath.Ext(v.Name))
 				AppID := utils.TruncateID(v.ID.String())
 				CreatedAt := fmt.Sprintf("%d-%d-%d", int(v.CreatedAt.Month()), v.CreatedAt.Day(), v.CreatedAt.Year())
@@ -128,7 +128,7 @@ meshplayctl app list
 			utils.PrintToTableWithFooter([]string{"APP ID", "NAME", "CREATED", "UPDATED"}, data, []string{"Total", fmt.Sprintf("%d", response.TotalCount), "", ""})
 			return nil
 		}
-		for _, v := range response.Applications {
+		for _, v := range response.Patterns {
 			AppID := utils.TruncateID(v.ID.String())
 			var UserID string
 			if v.UserID != nil {

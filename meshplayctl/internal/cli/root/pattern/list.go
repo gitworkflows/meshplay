@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ meshplayctl pattern list
 			utils.Log.Error(utils.ErrReadToken(err))
 			return nil
 		}
-		provider := tokenObj["meshplay-provider"]
+		provider := tokenObj["meshery-provider"]
 		var data [][]string
 
 		if verbose {

@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 package config
 
-import "github.com/khulnasoft/meshplay/meshkit/errors"
+import "github.com/khulnasoft/meshkit/errors"
 
 const (
 	ErrInvalidMeshConfigCode = "1086"
@@ -23,7 +23,7 @@ const (
 
 func ErrInvalidMeshConfig(err error) error {
 	return errors.New(ErrInvalidMeshConfigCode, errors.Alert, []string{"Invalid Meshconfig"},
-		[]string{err.Error()}, []string{"Loading the Invalid MeshConfig data caused error"}, []string{"Make sure that your 'config.yaml' file in your '.meshplay' is valid"})
+		[]string{err.Error()}, []string{"Loading the Invalid MeshConfig data caused error"}, []string{"Make sure that your 'config.yaml' file in your '.meshery' is valid"})
 }
 
 func ErrUpdateConfig(err error) error {
@@ -31,5 +31,5 @@ func ErrUpdateConfig(err error) error {
 		[]string{"Error in writing config"},
 		[]string{err.Error()},
 		[]string{"Unable to Update config file"},
-		[]string{"Ensure that you have the correct context in your  meshconfig at `$HOME/.meshplay/config.yaml`."})
+		[]string{"Ensure that you have the correct context in your  meshconfig at `$HOME/.meshery/config.yaml`."})
 }

@@ -1,11 +1,11 @@
 package helpers
 
 import (
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrErrNewDynamicClientGeneratorCode    = "1200"
@@ -43,51 +43,51 @@ const (
 )
 
 func ErrNewDynamicClientGenerator(err error) error {
-	return errors.New(ErrErrNewDynamicClientGeneratorCode, errors.Alert, []string{"Unable to generate the dynamic client generator"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshplay or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
+	return errors.New(ErrErrNewDynamicClientGeneratorCode, errors.Alert, []string{"Unable to generate the dynamic client generator"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshery or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
 }
 
 func ErrInvalidK8SConfig(err error) error {
-	return errors.New(ErrInvalidK8SConfigCode, errors.Alert, []string{"No valid kubernetes config found"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshplay or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
+	return errors.New(ErrInvalidK8SConfigCode, errors.Alert, []string{"No valid kubernetes config found"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshery or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
 }
 
 func ErrClientConfig(err error) error {
-	return errors.New(ErrClientConfigCode, errors.Alert, []string{"Unable to create client config"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshplay or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
+	return errors.New(ErrClientConfigCode, errors.Alert, []string{"Unable to create client config"}, []string{err.Error()}, []string{"Kubernetes config is not accessible to meshery or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
 }
 
 func ErrFetchKubernetesNodes(err error) error {
-	return errors.New(ErrFetchKubernetesNodesCode, errors.Alert, []string{"Unable to fetch kubernetes nodes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshplay server"})
+	return errors.New(ErrFetchKubernetesNodesCode, errors.Alert, []string{"Unable to fetch kubernetes nodes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshery server"})
 }
 
 func ErrFetchNodes(err error) error {
-	return errors.New(ErrFetchNodesCode, errors.Alert, []string{"Unable to get the list of nodes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshplay server"})
+	return errors.New(ErrFetchNodesCode, errors.Alert, []string{"Unable to get the list of nodes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshery server"})
 }
 
 func ErrFetchKubernetesVersion(err error) error {
-	return errors.New(ErrFetchKubernetesVersionCode, errors.Alert, []string{"Unable to fetch kubernetes version"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshplay server"})
+	return errors.New(ErrFetchKubernetesVersionCode, errors.Alert, []string{"Unable to fetch kubernetes version"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshery server"})
 }
 
 func ErrScanKubernetes(err error) error {
-	return errors.New(ErrScanKubernetesCode, errors.Alert, []string{"Unable to scan kubernetes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshplay server"})
+	return errors.New(ErrScanKubernetesCode, errors.Alert, []string{"Unable to scan kubernetes"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshery server"})
 }
 
 func ErrRetrievePodList(err error) error {
-	return errors.New(ErrRetrievePodListCode, errors.Alert, []string{"Unable to retrieve pod list"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshplay server", "Make sure you are requesting for a valid resource"})
+	return errors.New(ErrRetrievePodListCode, errors.Alert, []string{"Unable to retrieve pod list"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshery server", "Make sure you are requesting for a valid resource"})
 }
 
 func ErrDetectServiceForDeploymentImage(err error) error {
-	return errors.New(ErrDetectServiceForDeploymentImageCode, errors.Alert, []string{"Unable to detect service for deployment image"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshplay server", "Make sure you are requesting for a valid resource"})
+	return errors.New(ErrDetectServiceForDeploymentImageCode, errors.Alert, []string{"Unable to detect service for deployment image"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshery server", "Make sure you are requesting for a valid resource"})
 }
 
 func ErrRetrieveNamespacesList(err error) error {
-	return errors.New(ErrRetrieveNamespacesListCode, errors.Alert, []string{"Unable to get the list of namespaces"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshplay server", "Make sure you are requesting for a valid resource"})
+	return errors.New(ErrRetrieveNamespacesListCode, errors.Alert, []string{"Unable to get the list of namespaces"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshery server", "Make sure you are requesting for a valid resource"})
 }
 
 func ErrGetNamespaceDeployments(err error, obj string) error {
-	return errors.New(ErrGetNamespaceDeploymentsCode, errors.Alert, []string{"Unable to get deployments in the ", obj, "namespace"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshplay server", "Make sure you are requesting for a valid resource"})
+	return errors.New(ErrGetNamespaceDeploymentsCode, errors.Alert, []string{"Unable to get deployments in the ", obj, "namespace"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not be available"}, []string{"Make sure kubernetes API server is reachable from meshery server", "Make sure you are requesting for a valid resource"})
 }
 
 func ErrDetectServiceWithName(err error) error {
-	return errors.New(ErrDetectServiceWithNameCode, errors.Alert, []string{"Unable to get services from the cluster with the name given in names parameter"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not reachable from Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshplay server", "Make sure the network connectivity is up between meshplay server and the service endpoint"})
+	return errors.New(ErrDetectServiceWithNameCode, errors.Alert, []string{"Unable to get services from the cluster with the name given in names parameter"}, []string{err.Error()}, []string{"Kubernetes API server might not be reachable from the Meshplay server", "Requested resource might not reachable from Meshplay server"}, []string{"Make sure kubernetes API server is reachable from meshery server", "Make sure the network connectivity is up between meshery server and the service endpoint"})
 }
 
 func ErrGeneratingLoadTest(err error) error {

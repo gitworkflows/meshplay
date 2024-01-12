@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshkit/database"
 )
 
 // SmiResultsPersister assists with persisting session in store
@@ -17,7 +17,7 @@ type SmiResultWithID struct {
 	SmiResult `gorm:"embedded"`
 }
 
-// SmiResultPage - represents a page of meshplay results
+// SmiResultPage - represents a page of meshery results
 type SmiResultPage struct {
 	Page       uint64             `json:"page"`
 	PageSize   uint64             `json:"page_size"`

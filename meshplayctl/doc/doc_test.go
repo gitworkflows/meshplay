@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -79,11 +79,12 @@ var _ = Describe("Tests for Doc", func() {
 
 			// add Example for cmd for test
 			cmd.Example = "test_example"
+			manuallyAddedContent, _ := getManuallyAddedContentMap("test.md")
 
 			// io.Writer
 			buf := &bytes.Buffer{}
 			// call GenMarkdownCustom
-			err := GenMarkdownCustom(cmd, buf)
+			err := GenMarkdownCustom(cmd, buf, manuallyAddedContent)
 			// check if err is nil
 			Expect(err).To(BeNil())
 			// check if buf is not empty
@@ -116,6 +117,18 @@ var _ = Describe("Tests for Doc", func() {
 			yamlPath := "../../docs/pages/reference/meshplayctl/"
 			// call GenYamlTreeCustom
 			err := GenYamlTreeCustom(cmd, yamlPath, prepender, linkHandler)
+			// check if err is nil
+			Expect(err).To(BeNil())
+		})
+	})
+
+	//Test getManuallyAddedContentMap
+	Context("Test getManuallyAddedContentMap function", func() {
+		It("should return nil", func() {
+
+			// call getManuallyAddedContentMap
+			_, err := getManuallyAddedContentMap("test.md")
+
 			// check if err is nil
 			Expect(err).To(BeNil())
 		})

@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,26 +31,27 @@ var (
 var PatternCmd = &cobra.Command{
 	Use:   "pattern",
 	Short: "Cloud Native Patterns Management",
-	Long:  `Manage service meshes using predefined patterns`,
+	Long: `Manage service meshes using predefined patterns.
+Find more information at: https://docs.khulnasoft.com/reference/meshplayctl#command-reference`,
 	Example: `
-// Apply pattern file
+// Apply pattern file:
 meshplayctl pattern apply --file [path to pattern file | URL of the file]
 
-// Delete pattern file
+// Delete pattern file:
 meshplayctl pattern delete --file [path to pattern file]
 
-// View pattern file
+// View pattern file:
 meshplayctl pattern view [pattern name | ID]
 
-// List all patterns
+// List all patterns:
 meshplayctl pattern list
-	`,
+`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
 			return cmd.Help()
 		}
 		if ok := utils.IsValidSubcommand(availableSubcommands, args[0]); !ok {
-			return errors.New(utils.PatternError(fmt.Sprintf("'%s' is a invalid command.  Use 'meshplayctl pattern --help' to display usage guide.\n", args[0])))
+			return errors.New(utils.PatternError(fmt.Sprintf("'%s' is an invalid command.  Use 'meshplayctl pattern --help' to display usage guide.\n", args[0])))
 		}
 		return nil
 	},

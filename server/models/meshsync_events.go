@@ -1,37 +1,49 @@
 package models
 
 import (
-	"github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
+	"github.com/gofrs/uuid"
+	mutils "github.com/khulnasoft/meshplay/server/helpers/utils"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/utils"
+	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
 	"gorm.io/gorm"
 )
 
 const (
-	MeshsyncStoreUpdatesSubject = "meshplay-server.meshsync.store"
-	MeshsyncRequestSubject      = "meshplay.meshsync.request"
+	MeshsyncStoreUpdatesSubject = "meshery-server.meshsync.store"
+	MeshsyncRequestSubject      = "meshery.meshsync.request"
 )
 
 // TODO: Create proper error codes for the functionalities this struct implements
 type MeshsyncDataHandler struct {
-	broker    broker.Handler
-	dbHandler database.Handler
-	log       logger.Handler
+	broker       broker.Handler
+	dbHandler    database.Handler
+	log          logger.Handler
+	Provider     Provider
+	UserID       uuid.UUID
+	ConnectionID uuid.UUID
+	InstanceID   uuid.UUID
+	Token        string
 }
 
-func NewMeshsyncDataHandler(broker broker.Handler, dbHandler database.Handler, log logger.Handler) *MeshsyncDataHandler {
+func NewMeshsyncDataHandler(broker broker.Handler, dbHandler database.Handler, log logger.Handler, provider Provider, userID, connID, instanceID uuid.UUID, token string) *MeshsyncDataHandler {
 	return &MeshsyncDataHandler{
-		broker:    broker,
-		dbHandler: dbHandler,
-		log:       log,
+		broker:       broker,
+		dbHandler:    dbHandler,
+		log:          log,
+		Provider:     provider,
+		UserID:       userID,
+		ConnectionID: connID,
+		InstanceID:   instanceID,
+		Token: token,
 	}
 }
 
 func (mh *MeshsyncDataHandler) Run() error {
 	storeSubscriptionStatusChan := make(chan bool)
-
 	// this subscription is independent of whether or not the stale data in the database have been cleaned up
 	go mh.subscribeToMeshsyncEvents()
 
@@ -40,7 +52,7 @@ func (mh *MeshsyncDataHandler) Run() error {
 	if <-storeSubscriptionStatusChan {
 		// err := mh.removeStaleObjects()
 		// if err != nil {
-		// 	return err
+		//  return err
 		// }
 		err := mh.requestMeshsyncStore()
 		if err != nil {
@@ -58,7 +70,7 @@ func (mh *MeshsyncDataHandler) subscribeToMeshsyncEvents() {
 		mh.log.Error(ErrBrokerSubscription(err))
 		return
 	}
-	mh.log.Info("subscribed to meshplay broker for meshsync events")
+	mh.log.Info("subscribed to meshery broker for meshsync events")
 
 	for event := range eventsChan {
 		if event.EventType == broker.ErrorEvent {
@@ -77,7 +89,7 @@ func (mh *MeshsyncDataHandler) subscribeToMeshsyncEvents() {
 }
 
 func (mh *MeshsyncDataHandler) ListenToMeshSyncEvents(out chan *broker.Message) error {
-	err := mh.broker.SubscribeWithChannel("meshplay.meshsync.core", "", out)
+	err := mh.broker.SubscribeWithChannel("meshery.meshsync.core", "", out)
 	if err != nil {
 		return err
 	}
@@ -105,11 +117,8 @@ func (mh *MeshsyncDataHandler) subsribeToStoreUpdates(statusChan chan bool) {
 		objectsSlice := storeUpdate.Object.([]interface{})
 
 		for _, object := range objectsSlice {
-			objectJSON, _ := utils.Marshal(object)
-			obj := meshsyncmodel.KubernetesResource{}
-			err := utils.Unmarshal(objectJSON, &obj)
+			obj, err := mh.Unmarshal(object)
 			if err != nil {
-				mh.log.Error(ErrUnmarshal(err, objectJSON))
 				continue
 			}
 
@@ -122,30 +131,50 @@ func (mh *MeshsyncDataHandler) subsribeToStoreUpdates(statusChan chan bool) {
 	}
 }
 
+func (mh *MeshsyncDataHandler) Unmarshal(object interface{}) (meshsyncmodel.KubernetesResource, error) {
+	objectJSON, _ := utils.Marshal(object)
+	obj := meshsyncmodel.KubernetesResource{}
+	err := utils.Unmarshal(objectJSON, &obj)
+	if err != nil {
+		mh.log.Error(ErrUnmarshal(err, objectJSON))
+		return obj, ErrUnmarshal(err, objectJSON)
+	}
+	return obj, nil
+}
+
 // derives the state of the cluster from the events and persists it in the database
 func (mh *MeshsyncDataHandler) meshsyncEventsAccumulator(event *broker.Message) error {
 	mh.dbHandler.Lock()
 	defer mh.dbHandler.Unlock()
 
-	objectJSON, _ := utils.Marshal(event.Object)
-	obj := meshsyncmodel.KubernetesResource{}
-	err := utils.Unmarshal(objectJSON, &obj)
-
+	obj, err := mh.Unmarshal(event.Object)
 	if err != nil {
-		return ErrUnmarshal(err, objectJSON)
+		return err
 	}
 
+	regQueue := GetMeshSyncRegistrationQueue()
 	switch event.EventType {
-	case broker.Add, broker.Update:
+	case broker.Add:
+		compMetadata := mh.getComponentMetadata(obj.APIVersion, obj.Kind)
+		obj.ComponentMetadata = mutils.MergeMaps(obj.ComponentMetadata, compMetadata)
 		result := mh.dbHandler.Create(&obj)
+		go regQueue.Send(MeshSyncRegistrationData{MeshsyncDataHandler: *mh, Obj: obj})
+		// Try to update object if Create fails. If MeshSync is restarted, on initial sync the discovered data will have eventType as ADD, but the database would already have the data, leading to conflicts hence try to update the object in such cases.
 		if result.Error != nil {
 			result = mh.dbHandler.Session(&gorm.Session{FullSaveAssociations: true}).Updates(&obj)
 			if result.Error != nil {
 				return ErrDBPut(result.Error)
 			}
-			return nil
 		}
+	case broker.Update:
+		compMetadata := mh.getComponentMetadata(obj.APIVersion, obj.Kind)
+		obj.ComponentMetadata = mutils.MergeMaps(obj.ComponentMetadata, compMetadata)
 
+		result := mh.dbHandler.Session(&gorm.Session{FullSaveAssociations: true}).Updates(&obj)
+		if result.Error != nil {
+			return ErrDBPut(result.Error)
+		}
+		return nil
 	case broker.Delete:
 		result := mh.dbHandler.Delete(&obj)
 		if result.Error != nil {
@@ -161,8 +190,13 @@ func (mh *MeshsyncDataHandler) meshsyncEventsAccumulator(event *broker.Message) 
 func (mh *MeshsyncDataHandler) persistStoreUpdate(object *meshsyncmodel.KubernetesResource) error {
 	mh.dbHandler.Lock()
 	defer mh.dbHandler.Unlock()
-
+	compMetadata := mh.getComponentMetadata(object.APIVersion, object.Kind)
+	object.ComponentMetadata = mutils.MergeMaps(object.ComponentMetadata, compMetadata)
 	result := mh.dbHandler.Create(object)
+	regQueue := GetMeshSyncRegistrationQueue()
+
+	go regQueue.Send(MeshSyncRegistrationData{MeshsyncDataHandler: *mh, Obj: *object})
+
 	if result.Error != nil {
 		result = mh.dbHandler.Session(&gorm.Session{FullSaveAssociations: true}).Updates(object)
 		if result.Error != nil {
@@ -216,4 +250,24 @@ func (mh *MeshsyncDataHandler) requestMeshsyncStore() error {
 		return ErrRequestMeshsyncStore(err)
 	}
 	return nil
+}
+
+// Returns metadata for the component identified by apiVersion and kind.
+// If the component does not exist in the registry, default metadata for k8s component is returned.
+func (mh *MeshsyncDataHandler) getComponentMetadata(apiVersion string, kind string) map[string]interface{} {
+	var metadata map[string]interface{}
+
+	result := mh.dbHandler.Model(v1alpha1.ComponentDefinitionDB{}).Select("metadata").
+		Where("api_version = ? and kind = ?", apiVersion, kind).Scan(&metadata)
+	if result.Error != nil {
+		if result.Error == gorm.ErrRecordNotFound {
+			mh.log.Error(ErrResultNotFound(result.Error))
+			metadata = K8sMeshModelMetadata
+		} else {
+			mh.log.Error(ErrDBRead(result.Error))
+			metadata = K8sMeshModelMetadata
+		}
+	}
+
+	return metadata
 }

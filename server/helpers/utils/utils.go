@@ -12,14 +12,15 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/utils"
 )
 
 const (
-	HelmChartURL          = "https://meshplay.khulnasoft.com/charts/"
-	HelmChartName         = "meshplay"
-	HelmChartOperatorName = "meshplay-operator"
-	MeshplayFolder         = ".meshplay"
+	HelmChartURL          = "https://khulnasoft.com/charts/"
+	HelmChartName         = "meshery"
+	HelmChartOperatorName = "meshery-operator"
+	MeshplayFolder         = ".meshery"
 	ManifestsFolder       = "manifests"
 )
 
@@ -338,4 +339,26 @@ func FormatK8sMessage(message string) string {
 	// If index is not nil, there will always be an array of length 2.
 	// 0th index since we want the start index of matched string.
 	return message[:index[0]]
+}
+
+func MarshalAndUnmarshal[k any, v any](val k) (unmarshalledvalue v, err error) {
+	data, err := utils.Marshal(val)
+	if err != nil {
+		return
+	}
+
+	err = utils.Unmarshal(data, &unmarshalledvalue)
+	if err != nil {
+		return
+	}
+	return
+}
+func MergeMaps(mergeInto, toMerge map[string]interface{}) map[string]interface{} {
+	if mergeInto == nil {
+		mergeInto = make(map[string]interface{})
+	}
+	for k, v := range toMerge {
+		mergeInto[k] = v
+	}
+	return mergeInto
 }

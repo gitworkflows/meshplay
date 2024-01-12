@@ -244,7 +244,7 @@ const TroubleshootingModal = (props) => {
                 <Typography>
                   <li className={classes.troubleshootListitem}>
                     Verify MeshSync data is being received. Run{' '}
-                    <code>kubectl get svc -n meshplay</code>. Docker Desktop: VPNkit commonly fails
+                    <code>kubectl get svc -n meshery</code>. Docker Desktop: VPNkit commonly fails
                     to assign an IP address to Meshplay Broker (MeshSync). Verify that the Meshplay
                     Broker service has external IP address assigned.
                   </li>
@@ -252,7 +252,7 @@ const TroubleshootingModal = (props) => {
                     Confirm that your machine&apos;s firewall isn&apos;t getting in the way.
                   </li>
                   <li className={classes.troubleshootListitem}>
-                    Dump Meshplay Database. Run <code>rm -rf ~/.meshplay/config</code>.
+                    Dump Meshplay Database. Run <code>rm -rf ~/.meshery/config</code>.
                   </li>
                 </Typography>
               </ul>
@@ -284,22 +284,21 @@ const TroubleshootingModal = (props) => {
                 <Typography>
                   <li className={classes.troubleshootListitem}>
                     <b>Building</b>: Ensure that <code>go.mod</code> in the{' '}
-                    <code>meshplay/meshplay</code> repository is identical to the{' '}
-                    <code>go.mod</code> in the <code>khulnasoftlabs/meshplay-extensions</code>{' '}
-                    repository are identical.
+                    <code>meshery/meshery</code> repository is identical to the <code>go.mod</code>{' '}
+                    in the <code>layer5labs/meshery-extensions</code> repository are identical.
                   </li>
                   <li className={classes.troubleshootListitem}>
                     <b>Loading</b>: Confirm that the <code>plugin</code> version offered by Meshplay
                     Cloud (at{' '}
                     <a
                       className={classes.troubleshootHelpLink}
-                      href="https://meshplay.khulnasoft.com/capabilities"
+                      href="https://meshery.layer5.io/capabilities"
                     >
-                      https://meshplay.khulnasoft.com/capabilities
+                      https://meshery.layer5.io/capabilities
                     </a>
                     ), from which MeshMap files are retreived, matches the <code>plugin</code>{' '}
                     version that Meshplay Server is using as the filesystem reference in{' '}
-                    <code>~/.meshplay/provider/Meshplay/vx.x.x/</code>.
+                    <code>~/.meshery/provider/Meshplay/vx.x.x/</code>.
                   </li>
                 </Typography>
               </ul>
@@ -333,7 +332,7 @@ const TroubleshootingModal = (props) => {
                     {' '}
                     <a
                       className={classes.troubleshootHelpLink}
-                      href="http://discuss.meshplay.khulnasoft.com/t/what-are-some-troubleshooting-tips-for-meshmap"
+                      href="http://discuss.khulnasoft.com/t/what-are-some-troubleshooting-tips-for-meshmap"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -349,7 +348,7 @@ const TroubleshootingModal = (props) => {
               Need help? Contact us via{' '}
               <a
                 className={classes.contactHelpLink}
-                href="mailto:meshmap@khulnasoft.com"
+                href="mailto:meshmap@layer5.io"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -358,7 +357,7 @@ const TroubleshootingModal = (props) => {
               or{' '}
               <a
                 className={classes.contactHelpLink}
-                href="http://discuss.meshplay.khulnasoft.com"
+                href="http://discuss.khulnasoft.com"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -6,3 +6,4 @@ do
  
   
 done < <(cut -d "," -f26,3 ~/test.csv | tail -n +4)
+

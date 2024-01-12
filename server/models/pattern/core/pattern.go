@@ -10,10 +10,10 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshplay/server/models/pattern/utils"
-	meshmodelv1alpha1 "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
+	meshmodelv1alpha1 "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/utils/manifests"
 	"github.com/sirupsen/logrus"
 	cytoscapejs "gonum.org/v1/gonum/graph/formats/cytoscapejs"
 	"gopkg.in/yaml.v2"
@@ -158,7 +158,7 @@ type Pattern struct {
 // Service represents the services defined within the appfile
 type Service struct {
 	// ID is the id of the service and is completely internal to
-	// Meshplay Server and meshplay providers
+	// Meshplay Server and meshery providers
 	ID *uuid.UUID `yaml:"id,omitempty" json:"id,omitempty"`
 	// Name is the name of the service and is an optional parameter
 	// If given then this supercedes the name of the service inherited
@@ -253,7 +253,7 @@ func (p *Pattern) GetApplicationComponent(name string) (v1alpha1.Component, erro
 	if comp.ObjectMeta.Labels == nil {
 		comp.ObjectMeta.Labels = make(map[string]string)
 	}
-	comp.ObjectMeta.Labels["resource.pattern.meshplay.khulnasoft.com/id"] = svc.ID.String() //set the patternID to track back the object
+	comp.ObjectMeta.Labels["resource.pattern.khulnasoft.com/id"] = svc.ID.String() //set the patternID to track back the object
 	return comp, nil
 }
 

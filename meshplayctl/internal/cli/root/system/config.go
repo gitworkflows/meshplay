@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -276,7 +276,7 @@ meshplayctl system config gke
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// TODO: move the GenerateConfigGKE logic to meshkit/client-go
 		log.Info("Configuring Meshplay to access GKE...")
-		SAName := "sa-meshplay-" + utils.StringWithCharset(8)
+		SAName := "sa-meshery-" + utils.StringWithCharset(8)
 		if err := utils.GenerateConfigGKE(utils.ConfigPath, SAName, "default"); err != nil {
 			log.Fatal("Error generating config:", err)
 			return err

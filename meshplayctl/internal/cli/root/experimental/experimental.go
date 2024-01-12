@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package experimental
 import (
 	"fmt"
 
+	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/system"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
@@ -36,13 +37,13 @@ var ExpCmd = &cobra.Command{
 			return cmd.Help()
 		}
 		if ok := utils.IsValidSubcommand(availableSubcommands, args[0]); !ok {
-			return errors.New(utils.ExpError(fmt.Sprintf("'%s' is a invalid command. Use 'meshplayctl exp --help' to display usage guide.'\n", args[0])))
+			return errors.New(utils.ExpError(fmt.Sprintf("'%s' is an invalid command. Use 'meshplayctl exp --help' to display usage guide.'\n", args[0])))
 		}
 		return nil
 	},
 }
 
 func init() {
-	// availableSubcommands = []*cobra.Command{filter.FilterCmd}
-	// ExpCmd.AddCommand(availableSubcommands...)
+	availableSubcommands = append(availableSubcommands, system.ModelCmd)
+	ExpCmd.AddCommand(availableSubcommands...)
 }

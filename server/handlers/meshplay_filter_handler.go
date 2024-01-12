@@ -15,8 +15,8 @@ import (
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	"github.com/khulnasoft/meshplay/server/models/pattern/utils"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/models/events"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 )
 
 // swagger:route GET /api/filter/file/{id} FiltersAPI idGetFilterFile
@@ -25,7 +25,7 @@ import (
 // Returns the Meshplay Filter file saved by the current user with the given id
 // responses:
 //
-//	200: meshplayFilterResponseWrapper
+//	200: mesheryFilterResponseWrapper
 func (h *Handler) GetMeshplayFilterFileHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -77,7 +77,7 @@ func (h *Handler) FilterFileRequestHandler(
 // Used to save/update a Meshplay Filter
 // responses:
 //
-//	200: meshplayFilterResponseWrapper
+//	200: mesheryFilterResponseWrapper
 func (h *Handler) handleFilterPOST(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -151,7 +151,7 @@ func (h *Handler) handleFilterPOST(
 	if parsedBody.FilterData != nil {
 		// Assign a name if no name is provided
 		if parsedBody.FilterData.Name == "" {
-			parsedBody.FilterData.Name = "meshplay-filter-" + utils.GetRandomAlphabetsOfDigit(5)
+			parsedBody.FilterData.Name = "meshery-filter-" + utils.GetRandomAlphabetsOfDigit(5)
 		}
 		// Assign a location if no location is specified
 		if parsedBody.FilterData.Location == nil || len(parsedBody.FilterData.Location) == 0 {
@@ -163,7 +163,7 @@ func (h *Handler) handleFilterPOST(
 			}
 		}
 
-		meshplayFilter := models.MeshplayFilter{
+		mesheryFilter := models.MeshplayFilter{
 			FilterFile:     parsedBody.FilterData.FilterFile,
 			Name:           parsedBody.FilterData.Name,
 			ID:             parsedBody.FilterData.ID,
@@ -171,11 +171,11 @@ func (h *Handler) handleFilterPOST(
 			UpdatedAt:      parsedBody.FilterData.UpdatedAt,
 			Location:       parsedBody.FilterData.Location,
 			FilterResource: filterResource,
-			CatalogData: 	parsedBody.FilterData.CatalogData,
+			CatalogData:    parsedBody.FilterData.CatalogData,
 		}
 
 		if parsedBody.Save {
-			resp, err := provider.SaveMeshplayFilter(token, &meshplayFilter)
+			resp, err := provider.SaveMeshplayFilter(token, &mesheryFilter)
 			if err != nil {
 				errFilterSave := ErrSaveFilter(err)
 				h.log.Error(errFilterSave)
@@ -199,7 +199,7 @@ func (h *Handler) handleFilterPOST(
 			return
 		}
 
-		byt, err := json.Marshal([]models.MeshplayFilter{meshplayFilter})
+		byt, err := json.Marshal([]models.MeshplayFilter{mesheryFilter})
 		if err != nil {
 			h.log.Error(ErrEncodeFilter(err))
 			http.Error(rw, ErrEncodeFilter(err).Error(), http.StatusInternalServerError)
@@ -239,10 +239,12 @@ func (h *Handler) handleFilterPOST(
 //
 // ```?pagesize={pagesize}``` Default pagesize is 10
 //
-// ```?visibility={visibility}``` Default visibility is public
+// ```?visibility={[visibility]}``` Default visibility is public + private; Mulitple visibility filters can be passed as an array
+// Eg: ```?visibility=["public", "published"]``` will return public and published filters
+//
 // responses:
 //
-//	200: meshplayFiltersResponseWrapper
+//	200: mesheryFiltersResponseWrapper
 func (h *Handler) GetMeshplayFiltersHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -253,7 +255,21 @@ func (h *Handler) GetMeshplayFiltersHandler(
 	q := r.URL.Query()
 	tokenString := r.Context().Value(models.TokenCtxKey).(string)
 
-	resp, err := provider.GetMeshplayFilters(tokenString, q.Get("page"), q.Get("pagesize"), q.Get("search"), q.Get("order"), q.Get("visibility"))
+	filter := struct {
+		Visibility []string `json:"visibility"`
+	}{}
+
+	visibility := q.Get("visibility")
+	if visibility != "" {
+		err := json.Unmarshal([]byte(visibility), &filter.Visibility)
+		if err != nil {
+			h.log.Error(ErrFetchFilter(err))
+			http.Error(rw, ErrFetchFilter(err).Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	resp, err := provider.GetMeshplayFilters(tokenString, q.Get("page"), q.Get("pagesize"), q.Get("search"), q.Get("order"), filter.Visibility)
 	if err != nil {
 		h.log.Error(ErrFetchFilter(err))
 		http.Error(rw, ErrFetchFilter(err).Error(), http.StatusInternalServerError)
@@ -278,7 +294,7 @@ func (h *Handler) GetMeshplayFiltersHandler(
 // ```?search={filtername}``` If search is non empty then a greedy search is performed
 // responses:
 //
-//	200: meshplayFiltersResponseWrapper
+//	200: mesheryFiltersResponseWrapper
 func (h *Handler) GetCatalogMeshplayFiltersHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -303,7 +319,7 @@ func (h *Handler) GetCatalogMeshplayFiltersHandler(
 // swagger:route DELETE /api/filter/{id} FiltersAPI idDeleteMeshplayFilter
 // Handle Delete for a Meshplay Filter
 //
-// Deletes a meshplay filter with ID: id
+// Deletes a meshery filter with ID: id
 // responses:
 //
 //	200: noContentWrapper
@@ -386,9 +402,24 @@ func (h *Handler) PublishCatalogFilterHandler(
 		_ = r.Body.Close()
 	}()
 
+	userID := uuid.FromStringOrNil(user.ID)
+	eventBuilder := events.NewEvent().
+		FromUser(userID).
+		FromSystem(*h.SystemID).
+		WithCategory("filter").
+		WithAction("publish").
+		ActedUpon(userID)
+
 	var parsedBody *models.MeshplayCatalogFilterRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&parsedBody); err != nil {
 		h.log.Error(ErrRequestBody(err))
+		e := eventBuilder.WithSeverity(events.Error).
+			WithMetadata(map[string]interface{}{
+				"error": ErrRequestBody(err),
+			}).
+			WithDescription("Error parsing filter payload.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
 		http.Error(rw, ErrRequestBody(err).Error(), http.StatusBadRequest)
 		return
 	}
@@ -396,9 +427,32 @@ func (h *Handler) PublishCatalogFilterHandler(
 	resp, err := provider.PublishCatalogFilter(r, parsedBody)
 	if err != nil {
 		h.log.Error(ErrPublishCatalogFilter(err))
+		e := eventBuilder.WithSeverity(events.Error).
+			WithMetadata(map[string]interface{}{
+				"error": ErrPublishCatalogFilter(err),
+			}).
+			WithDescription("Error publishing filter.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
 		http.Error(rw, ErrPublishCatalogFilter(err).Error(), http.StatusInternalServerError)
 		return
 	}
+
+	var respBody *models.CatalogRequest
+	err = json.Unmarshal(resp, &respBody)
+	if err != nil {
+		h.log.Error(ErrPublishCatalogFilter(err))
+		e := eventBuilder.WithSeverity(events.Error).WithMetadata(map[string]interface{}{
+			"error": ErrPublishCatalogFilter(err),
+		}).WithDescription("Error parsing response.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
+		http.Error(rw, ErrPublishCatalogFilter(err).Error(), http.StatusInternalServerError)
+	}
+
+	e := eventBuilder.WithSeverity(events.Informational).ActedUpon(parsedBody.ID).WithDescription(fmt.Sprintf("Request to publish '%s' filter submitted with status: %s", respBody.ContentName, respBody.Status)).Build()
+	_ = provider.PersistEvent(e)
+	go h.config.EventBroadcaster.Publish(userID, e)
 
 	go h.config.FilterChannel.Publish(uuid.FromStringOrNil(user.ID), struct{}{})
 	rw.Header().Set("Content-Type", "application/json")
@@ -426,18 +480,56 @@ func (h *Handler) UnPublishCatalogFilterHandler(
 		_ = r.Body.Close()
 	}()
 
+	userID := uuid.FromStringOrNil(user.ID)
+	eventBuilder := events.NewEvent().
+		FromUser(userID).
+		FromSystem(*h.SystemID).
+		WithCategory("filter").
+		WithAction("unpublish_request").
+		ActedUpon(userID)
+
 	var parsedBody *models.MeshplayCatalogFilterRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&parsedBody); err != nil {
 		h.log.Error(ErrRequestBody(err))
+		e := eventBuilder.WithSeverity(events.Error).
+			WithMetadata(map[string]interface{}{
+				"error": ErrRequestBody(err),
+			}).
+			WithDescription("Error parsing filter payload.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
 		http.Error(rw, ErrRequestBody(err).Error(), http.StatusBadRequest)
 		return
 	}
 	resp, err := provider.UnPublishCatalogFilter(r, parsedBody)
 	if err != nil {
 		h.log.Error(ErrPublishCatalogFilter(err))
+		e := eventBuilder.WithSeverity(events.Error).
+			WithMetadata(map[string]interface{}{
+				"error": ErrPublishCatalogFilter(err),
+			}).
+			WithDescription("Error publishing filter.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
 		http.Error(rw, ErrPublishCatalogFilter(err).Error(), http.StatusInternalServerError)
 		return
 	}
+
+	var respBody *models.CatalogRequest
+	err = json.Unmarshal(resp, &respBody)
+	if err != nil {
+		h.log.Error(ErrPublishCatalogFilter(err))
+		e := eventBuilder.WithSeverity(events.Error).WithMetadata(map[string]interface{}{
+			"error": ErrPublishCatalogFilter(err),
+		}).WithDescription("Error parsing response.").Build()
+		_ = provider.PersistEvent(e)
+		go h.config.EventBroadcaster.Publish(userID, e)
+		http.Error(rw, ErrPublishCatalogFilter(err).Error(), http.StatusInternalServerError)
+	}
+
+	e := eventBuilder.WithSeverity(events.Informational).ActedUpon(parsedBody.ID).WithDescription(fmt.Sprintf("'%s' filter unpublished", respBody.ContentName)).Build()
+	_ = provider.PersistEvent(e)
+	go h.config.EventBroadcaster.Publish(userID, e)
 
 	go h.config.FilterChannel.Publish(uuid.FromStringOrNil(user.ID), struct{}{})
 	rw.Header().Set("Content-Type", "application/json")
@@ -449,7 +541,7 @@ func (h *Handler) UnPublishCatalogFilterHandler(
 //
 // Fetches the Meshplay Filter with the given id
 // responses:
-// 	200: meshplayFilterResponseWrapper
+// 	200: mesheryFilterResponseWrapper
 
 // GetMeshplayFilterHandler fetched the filter with the given id
 func (h *Handler) GetMeshplayFilterHandler(
@@ -535,7 +627,7 @@ func (h *Handler) generateFilterComponent(config string) (string, error) {
 	res, _, _ := h.registryManager.GetEntities(&v1alpha1.ComponentFilter{
 		Name:       "WASMFilter",
 		Trim:       false,
-		APIVersion: "core.meshplay.khulnasoft.com/v1alpha1",
+		APIVersion: "core.khulnasoft.com/v1alpha1",
 		Version:    "v1.0.0",
 		Limit:      1,
 	})

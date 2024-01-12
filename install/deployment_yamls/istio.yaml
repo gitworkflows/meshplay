@@ -2,8 +2,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: meshplay-gateway
-  namespace: meshplay
+  name: meshery-gateway
+  namespace: meshery
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -18,20 +18,20 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: meshplay
-  namespace: meshplay
+  name: meshery
+  namespace: meshery
 spec:
   hosts:
   - "*"
   gateways:
-  - meshplay-gateway
+  - meshery-gateway
   http:
   - match:
     - uri:
         prefix: /
     route:
     - destination:
-        host: meshplay
+        host: meshery
         port:
           number: 9081
 ---

@@ -4,7 +4,7 @@ contexts:
         token: default
         platform: gke
         components:
-            - meshplay-istio
+            - meshery-istio
         channel: stable
         version: latest
     local:
@@ -12,7 +12,7 @@ contexts:
         token: default
         platform: docker
         components:
-            - meshplay-istio
+            - meshery-istio
         channel: stable
         version: latest
 current-context: local

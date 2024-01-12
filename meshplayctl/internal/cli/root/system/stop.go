@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,17 +28,17 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/kubernetes"
 
-	meshkitkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshkitkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	controllerConfig "sigs.k8s.io/controller-runtime/pkg/client/config"
 
-	"github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
+	"github.com/khulnasoft/meshplay-operator/api/v1alpha1"
 )
 
 var (
-	// forceDelete used to clean-up meshplay resources forcefully
+	// forceDelete used to clean-up meshery resources forcefully
 	forceDelete bool
 )
 
@@ -131,7 +131,7 @@ func stop() error {
 		stop.Stderr = os.Stderr
 
 		if err := stop.Run(); err != nil {
-			return errors.Wrap(err, utils.SystemError("failed to stop meshplay - could not stop some containers."))
+			return errors.Wrap(err, utils.SystemError("failed to stop meshery - could not stop some containers."))
 		}
 
 		// Remove all Docker containers
@@ -190,7 +190,7 @@ func stop() error {
 			// 	}
 			// }
 
-			// Dry run passed; now delete meshplay components with the helm pkg
+			// Dry run passed; now delete meshery components with the helm pkg
 			err := applyHelmCharts(client, currCtx, currCtx.GetVersion(), false, meshkitkube.UNINSTALL)
 			if err != nil {
 				return errors.Wrap(err, "cannot stop Meshplay")
@@ -233,9 +233,9 @@ func stop() error {
 func invokeDeleteCRs(client *meshkitkube.Client) error {
 	const (
 		brokerResourceName   = "brokers"
-		brokerInstanceName   = "meshplay-broker"
+		brokerInstanceName   = "meshery-broker"
 		meshsyncResourceName = "meshsyncs"
-		meshsyncInstanceName = "meshplay-meshsync"
+		meshsyncInstanceName = "meshery-meshsync"
 	)
 
 	if err := deleteCR(brokerResourceName, brokerInstanceName, client); err != nil {
@@ -271,8 +271,8 @@ func deleteCR(resourceName, instanceName string, client *meshkitkube.Client) err
 // invokeDeleteCRs is a wrapper of deleteCRD to delete CRDs (brokers and meshsyncs)
 func invokeDeleteCRDs() error {
 	const (
-		brokerCRDName   = "brokers.meshplay.khulnasoft.com"
-		meshsyncCRDName = "meshsyncs.meshplay.khulnasoft.com"
+		brokerCRDName   = "brokers.meshery.layer5.io"
+		meshsyncCRDName = "meshsyncs.meshery.layer5.io"
 	)
 
 	cfg := controllerConfig.GetConfigOrDie()

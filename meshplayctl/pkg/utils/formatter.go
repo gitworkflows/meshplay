@@ -4,8 +4,10 @@ import (
 	"io"
 	"os"
 
-	"github.com/khulnasoft/meshplay/meshkit/logger"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 // TerminalFormatter is exported
@@ -25,10 +27,15 @@ func SetupLogrusFormatter() {
 
 // Initialize Meshkit Logger instance
 func SetupMeshkitLogger(debugLevel bool, output io.Writer) {
+	logLevel := viper.GetInt("LOG_LEVEL")
+	if debugLevel {
+		logLevel = int(logrus.DebugLevel)
+	}
+
 	logger, err := logger.New("meshplayctl", logger.Options{
-		Format:     logger.TerminalLogFormat,
-		DebugLevel: debugLevel,
-		Output:     output,
+		Format:   logger.TerminalLogFormat,
+		LogLevel: logLevel,
+		Output:   output,
 	})
 	if err != nil {
 		log.Error(err)

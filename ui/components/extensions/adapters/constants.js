@@ -9,7 +9,7 @@ const adaptersDescription = (adapterName) => {
 export const adaptersList = {
   ISTIO: {
     name: 'Istio',
-    label: 'meshplay-istio',
+    label: 'meshery-istio',
     imageSrc: '/static/img/istio.svg',
     description: adaptersDescription('Istio'),
     defaultPort: 10000,
@@ -18,7 +18,7 @@ export const adaptersList = {
   },
   LINKERD: {
     name: 'Linkerd',
-    label: 'meshplay-linkerd',
+    label: 'meshery-linkerd',
     imageSrc: '/static/img/linkerd.svg',
     description: adaptersDescription('Linkerd'),
     defaultPort: 10001,
@@ -27,7 +27,7 @@ export const adaptersList = {
   },
   CONSUL: {
     name: 'Consul',
-    label: 'meshplay-consul',
+    label: 'meshery-consul',
     imageSrc: '/static/img/consul.svg',
     description: adaptersDescription('Consul'),
     defaultPort: 10002,
@@ -36,7 +36,7 @@ export const adaptersList = {
   },
   NETWORK_SERVICE_MESH: {
     name: 'Network Service Mesh',
-    label: 'meshplay-nsm',
+    label: 'meshery-nsm',
     imageSrc: '/static/img/networkservicemesh.svg',
     description: adaptersDescription('Network Service Mesh'),
     defaultPort: 10004,
@@ -45,7 +45,7 @@ export const adaptersList = {
   },
   APP_MESH: {
     name: 'App Mesh',
-    label: 'meshplay-app-mesh',
+    label: 'meshery-app-mesh',
     imageSrc: '/static/img/app_mesh.svg',
     description: adaptersDescription('App Mesh'),
     defaultPort: 10005,
@@ -54,7 +54,7 @@ export const adaptersList = {
   },
   TRAEFIK_MESH: {
     name: 'Traefik Mesh',
-    label: 'meshplay-traefik-mesh',
+    label: 'meshery-traefik-mesh',
     imageSrc: '/static/img/traefik_mesh.svg',
     description: adaptersDescription('Traefik Mesh'),
     defaultPort: 10006,
@@ -63,7 +63,7 @@ export const adaptersList = {
   },
   KUMA: {
     name: 'Kuma',
-    label: 'meshplay-kuma',
+    label: 'meshery-kuma',
     imageSrc: '/static/img/kuma.svg',
     description: adaptersDescription('Kuma'),
     defaultPort: 10007,
@@ -71,9 +71,9 @@ export const adaptersList = {
     url: '',
   },
   // TODO: Need to add icon for this.
-  // "meshplay-cpx": {
+  // "meshery-cpx": {
   //   name: "Meshplay Cpx",
-  // label: "meshplay-cpx",
+  // label: "meshery-cpx",
   //   imageSrc: "/static/img/",
   //   description: adaptersDescription("Meshplay CPX"),
   //   defaultPort: 10008,
@@ -83,7 +83,7 @@ export const adaptersList = {
 
   NGINX_SERVICE_MESH: {
     name: 'Nginx Service Mesh',
-    label: 'meshplay-nginx-sm',
+    label: 'meshery-nginx-sm',
     imageSrc: '/static/img/nginx.svg',
     description: adaptersDescription('Nginx Serice Mesh'),
     defaultPort: 10010,
@@ -92,7 +92,7 @@ export const adaptersList = {
   },
   CILIUM_SERVICE_MESH: {
     name: 'Cilium Service Mesh',
-    label: 'meshplay-cilium',
+    label: 'meshery-cilium',
     imageSrc: '/static/img/cilium_service_mesh.svg',
     description: adaptersDescription('Cilium Service Mesh'),
     defaultPort: 10012,

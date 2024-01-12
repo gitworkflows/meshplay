@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./meshplayAnimation.css";
+import "./mesheryAnimation.css";
 
 
 function getClassName(className, isActive) {

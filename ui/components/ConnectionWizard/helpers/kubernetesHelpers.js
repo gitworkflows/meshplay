@@ -1,5 +1,6 @@
 import dataFetch from '../../../lib/data-fetch';
 import { EVENT_TYPES } from '../../../lib/event-types';
+import { CONNECTION_KINDS, CONNECTION_STATES } from '../../../utils/Enum';
 
 /**
  * Pings kuberenetes server endpoint
@@ -18,7 +19,7 @@ export const pingKubernetes = (successHandler, errorHandler, connectionId) => {
 /**
  * Figures out if kubernetes connection is established or not
  *
- * @param {true|false} isClusterConfigured - data received from meshplay server
+ * @param {true|false} isClusterConfigured - data received from meshery server
  * as to whether or not the server config is found
  * @param {true|false} kubernetesPingStatus - found after pinging the kubernetes
  * server endpoint
@@ -35,10 +36,14 @@ export const isKubernetesConnected = (isClusterConfigured, kubernetesPingStatus)
 
 export const deleteKubernetesConfig = (successCb, errorCb, connectionId) =>
   dataFetch(
-    '/api/system/kubernetes/contexts/' + connectionId,
+    `/api/integrations/connections/${CONNECTION_KINDS.KUBERNETES}/status`,
     {
-      method: 'DELETE',
+      method: 'PUT',
       credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        [connectionId]: CONNECTION_STATES.DELETED,
+      }),
     },
     successCb,
     errorCb,

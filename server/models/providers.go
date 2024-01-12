@@ -4,11 +4,13 @@ import (
 	"net/http"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	"github.com/khulnasoft/meshplay/server/models/connections"
+	"github.com/khulnasoft/meshplay/server/models/environments"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/logger"
+	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	SMP "github.com/layer5io/service-mesh-performance/spec"
 )
 
 // ContextKey is a custom type for setting context key
@@ -204,19 +206,17 @@ type K8sContextPersistResponse struct {
 }
 
 type ConnectionPayload struct {
-	Kind             string                 `json:"kind,omitempty"`
-	SubType          string                 `json:"sub_type,omitempty"`
-	Type             string                 `json:"type,omitempty"`
-	MetaData         map[string]interface{} `json:"metadata,omitempty"`
-	Status           ConnectionStatus       `json:"status,omitempty"`
-	CredentialSecret map[string]interface{} `json:"credential_secret,omitempty"`
-	Name             string                 `json:"name,omitempty"`
-}
-
-type EnvironmentPayload struct {
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description,omitempty"`
-	OrgID       string `json:"org_id,omitempty"`
+	ID                         uuid.UUID                    `json:"id,omitempty"`
+	Kind                       string                       `json:"kind,omitempty"`
+	SubType                    string                       `json:"sub_type,omitempty"`
+	Type                       string                       `json:"type,omitempty"`
+	MetaData                   map[string]interface{}       `json:"metadata,omitempty"`
+	Status                     connections.ConnectionStatus `json:"status,omitempty"`
+	CredentialSecret           map[string]interface{}       `json:"credential_secret,omitempty"`
+	Name                       string                       `json:"name,omitempty"`
+	CredentialID               *uuid.UUID                   `json:"credential_id,omitempty"`
+	Model                      string                       `json:"model,omitempty"`
+	SkipCredentialVerification bool                         `json:"skip_credential_verification"`
 }
 
 type ExtensionProxyResponse struct {
@@ -243,25 +243,25 @@ const (
 
 	PersistSMPTestProfile Feature = "persist-smp-test-profile" // /user/test-config
 
-	PersistMeshplayPatterns Feature = "persist-meshplay-patterns" // /patterns
+	PersistMeshplayPatterns Feature = "persist-meshery-patterns" // /patterns
 
-	PersistMeshplayPatternResources Feature = "persist-meshplay-pattern-resources" // /patterns/resources
+	PersistMeshplayPatternResources Feature = "persist-meshery-pattern-resources" // /patterns/resources
 
-	PersistMeshplayFilters Feature = "persist-meshplay-filters" // /filter
+	PersistMeshplayFilters Feature = "persist-meshery-filters" // /filter
 
-	PersistMeshplayApplications Feature = "persist-meshplay-applications" // /applications
+	PersistMeshplayApplications Feature = "persist-meshery-applications" // /applications
 
 	PersistPerformanceProfiles Feature = "persist-performance-profiles" // /user/performance/profile
 
 	PersistSchedules Feature = "persist-schedules" // /user/schedules
 
-	MeshplayPatternsCatalog Feature = "meshplay-patterns-catalog" // /patterns/catalog
+	MeshplayPatternsCatalog Feature = "meshery-patterns-catalog" // /patterns/catalog
 
-	MeshplayFiltersCatalog Feature = "meshplay-filters-catalog" // /filters/catalog
+	MeshplayFiltersCatalog Feature = "meshery-filters-catalog" // /filters/catalog
 
-	CloneMeshplayPatterns Feature = "clone-meshplay-patterns" // /patterns/clone
+	CloneMeshplayPatterns Feature = "clone-meshery-patterns" // /patterns/clone
 
-	CloneMeshplayFilters Feature = "clone-meshplay-filters" // /filters/clone
+	CloneMeshplayFilters Feature = "clone-meshery-filters" // /filters/clone
 
 	ShareDesigns Feature = "share-designs"
 
@@ -276,6 +276,12 @@ const (
 	UsersIdentity Feature = "users-identity"
 
 	UsersKeys Feature = "users-keys"
+
+	PersistOrganizations Feature = "organizations"
+
+	PersistEnvironments Feature = "environments"
+
+	PersistWorkspaces Feature = "workspaces"
 )
 
 const (
@@ -294,20 +300,24 @@ const (
 	// UserCtxKey is the context key for persisting user to context
 	UserCtxKey ContextKey = "user"
 
+	// UserIDCtxKey is the context key for persisting userID to context
+	UserIDCtxKey ContextKey = "user_id"
+
 	// UserPrefsCtxKey is the context key for persisting user preferences to context
 	PerfObjCtxKey ContextKey = "perf_obj"
 
 	KubeClustersKey   ContextKey = "kubeclusters"
 	AllKubeClusterKey ContextKey = "allkubeclusters"
 
-	MeshplayControllerHandlersKey ContextKey = "meshplaycontrollerhandlerskey"
+	MeshplayControllerHandlersKey ContextKey = "mesherycontrollerhandlerskey"
 	MeshSyncDataHandlersKey      ContextKey = "meshsyncdatahandlerskey"
 
 	RegistryManagerKey ContextKey = "registrymanagerkey"
 
 	HandlerKey               ContextKey = "handlerkey"
-	MeshplayServerURL         ContextKey = "meshplayserverurl"
-	MeshplayServerCallbackURL ContextKey = "meshplayservercallbackurl"
+	SystemIDKey              ContextKey = "systemidKey"
+	MeshplayServerURL         ContextKey = "mesheryserverurl"
+	MeshplayServerCallbackURL ContextKey = "mesheryservercallbackurl"
 )
 
 // IsSupported returns true if the given feature is listed as one of
@@ -363,7 +373,7 @@ type Provider interface {
 	GetUserDetails(*http.Request) (*User, error)
 	GetUserByID(req *http.Request, userID string) ([]byte, error)
 	GetUsers(token, page, pageSize, search, order, filter string) ([]byte, error)
-	GetUsersKeys(token, page, pageSize, search, order, filter string) ([]byte, error)
+	GetUsersKeys(token, page, pageSize, search, order, filter string, orgID string) ([]byte, error)
 	GetProviderToken(req *http.Request) (string, error)
 	UpdateToken(http.ResponseWriter, *http.Request) string
 	Logout(http.ResponseWriter, *http.Request) error
@@ -378,8 +388,8 @@ type Provider interface {
 	GetResult(tokenVal string, resultID uuid.UUID) (*MeshplayResult, error)
 	RecordPreferences(req *http.Request, userID string, data *Preference) error
 
-	SaveK8sContext(token string, k8sContext K8sContext) (K8sContext, error)
-	GetK8sContexts(token, page, pageSize, search, order string, withCredentials bool) ([]byte, error)
+	SaveK8sContext(token string, k8sContext K8sContext) (connections.Connection, error)
+	GetK8sContexts(token, page, pageSize, search, order string, withStatus string, withCredentials bool) ([]byte, error)
 	DeleteK8sContext(token, id string) (K8sContext, error)
 	GetK8sContext(token, connectionID string) (K8sContext, error)
 	LoadAllK8sContext(token string) ([]*K8sContext, error)
@@ -393,11 +403,11 @@ type Provider interface {
 
 	GetGenericPersister() *database.Handler
 
-	SetKubeClient(client *meshplaykube.Client)
-	GetKubeClient() *meshplaykube.Client
+	SetKubeClient(client *mesherykube.Client)
+	GetKubeClient() *mesherykube.Client
 
 	SaveMeshplayPattern(tokenString string, pattern *MeshplayPattern) ([]byte, error)
-	GetMeshplayPatterns(tokenString, page, pageSize, search, order string, updatedAfter string) ([]byte, error)
+	GetMeshplayPatterns(tokenString, page, pageSize, search, order string, updatedAfter string, visbility []string) ([]byte, error)
 	GetCatalogMeshplayPatterns(tokenString string, page, pageSize, search, order string) ([]byte, error)
 	PublishCatalogPattern(req *http.Request, publishPatternRequest *MeshplayCatalogPatternRequestBody) ([]byte, error)
 	UnPublishCatalogPattern(req *http.Request, publishPatternRequest *MeshplayCatalogPatternRequestBody) ([]byte, error)
@@ -410,9 +420,11 @@ type Provider interface {
 	GetMeshplayPatternResource(token, resourceID string) (*PatternResource, error)
 	GetMeshplayPatternResources(token, page, pageSize, search, order, name, namespace, typ, oamType string) (*PatternResourcePage, error)
 	DeleteMeshplayPatternResource(token, resourceID string) error
+	SaveMeshplayPatternSourceContent(token string, applicationID string, sourceContent []byte) error
+	GetDesignSourceContent(req *http.Request, patternID string) ([]byte, error)
 
 	SaveMeshplayFilter(tokenString string, filter *MeshplayFilter) ([]byte, error)
-	GetMeshplayFilters(tokenString, page, pageSize, search, order string, visibility string) ([]byte, error)
+	GetMeshplayFilters(tokenString, page, pageSize, search, order string, visibility []string) ([]byte, error)
 	GetCatalogMeshplayFilters(tokenString string, page, pageSize, search, order string) ([]byte, error)
 	PublishCatalogFilter(req *http.Request, publishFilterRequest *MeshplayCatalogFilterRequestBody) ([]byte, error)
 	UnPublishCatalogFilter(req *http.Request, publishFilterRequest *MeshplayCatalogFilterRequestBody) ([]byte, error)
@@ -443,25 +455,43 @@ type Provider interface {
 
 	ExtensionProxy(req *http.Request) (*ExtensionProxyResponse, error)
 
-	SaveConnection(req *http.Request, conn *ConnectionPayload, token string, skipTokenCheck bool) error
-	GetConnections(req *http.Request, userID string, page, pageSize int, search, order string) (*ConnectionPage, error)
+	SaveConnection(conn *ConnectionPayload, token string, skipTokenCheck bool) (*connections.Connection, error)
+	GetConnections(req *http.Request, userID string, page, pageSize int, search, order string, filter string, status []string, kind []string) (*connections.ConnectionPage, error)
+	GetConnectionByID(token string, connectionID uuid.UUID, kind string) (*connections.Connection, int, error)
 	GetConnectionsByKind(req *http.Request, userID string, page, pageSize int, search, order, connectionKind string) (*map[string]interface{}, error)
-	GetConnectionsStatus(req *http.Request, userID string) (*ConnectionsStatusPage, error)
-	UpdateConnection(req *http.Request, conn *Connection) (*Connection, error)
-	UpdateConnectionById(req *http.Request, conn *ConnectionPayload, connId string) (*Connection, error)
-	DeleteConnection(req *http.Request, connID uuid.UUID) (*Connection, error)
+	GetConnectionsStatus(req *http.Request, userID string) (*connections.ConnectionsStatusPage, error)
+	UpdateConnection(req *http.Request, conn *connections.Connection) (*connections.Connection, error)
+	UpdateConnectionById(req *http.Request, conn *ConnectionPayload, connId string) (*connections.Connection, error)
+	UpdateConnectionStatusByID(token string, connectionID uuid.UUID, connectionStatus connections.ConnectionStatus) (*connections.Connection, int, error)
+	DeleteConnection(req *http.Request, connID uuid.UUID) (*connections.Connection, error)
 	DeleteMeshplayConnection() error
 
-	SaveUserCredential(req *http.Request, credential *Credential) error
+	SaveUserCredential(token string, credential *Credential) (*Credential, error)
 	GetUserCredentials(req *http.Request, userID string, page, pageSize int, search, order string) (*CredentialsPage, error)
+	GetCredentialByID(token string, credentialID uuid.UUID) (*Credential, int, error)
 	UpdateUserCredential(req *http.Request, credential *Credential) (*Credential, error)
 	DeleteUserCredential(req *http.Request, credentialID uuid.UUID) (*Credential, error)
 
-	GetEnvironments(token, page, pageSize, search, order, filter string) ([]byte, error)
-	GetEnvironmentByID(req *http.Request, environmentID string) ([]byte, error)
-	SaveEnvironment(req *http.Request, env *EnvironmentPayload, token string, skipTokenCheck bool) error
+	GetEnvironments(token, page, pageSize, search, order, filter, orgID string) ([]byte, error)
+	GetEnvironmentByID(req *http.Request, environmentID, orgID string) ([]byte, error)
+	SaveEnvironment(req *http.Request, env *environments.EnvironmentPayload, token string, skipTokenCheck bool) ([]byte, error)
 	DeleteEnvironment(req *http.Request, environmentID string) ([]byte, error)
-	UpdateEnvironment(req *http.Request, env *EnvironmentPayload, environmentID string) (*EnvironmentData, error)
+	UpdateEnvironment(req *http.Request, env *environments.EnvironmentPayload, environmentID string) (*environments.EnvironmentData, error)
 	AddConnectionToEnvironment(req *http.Request, environmentID string, connectionID string) ([]byte, error)
 	RemoveConnectionFromEnvironment(req *http.Request, environmentID string, connectionID string) ([]byte, error)
+	GetConnectionsOfEnvironment(req *http.Request, environmentID, page, pagesize, search, order, filter string) ([]byte, error)
+
+	GetOrganizations(token, page, pageSize, search, order, filter string) ([]byte, error)
+
+	GetWorkspaces(token, page, pagesize, search, order, filter, orgID string) ([]byte, error)
+	GetWorkspaceByID(req *http.Request, workspaceID, orgID string) ([]byte, error)
+	SaveWorkspace(req *http.Request, workspace *WorkspacePayload, token string, skipTokenCheck bool) ([]byte, error)
+	DeleteWorkspace(req *http.Request, workspaceID string) ([]byte, error)
+	UpdateWorkspace(req *http.Request, workspace *WorkspacePayload, workspaceID string) (*Workspace, error)
+	GetEnvironmentsOfWorkspace(req *http.Request, workspaceID, page, pagesize, search, order, filter string) ([]byte, error)
+	AddEnvironmentToWorkspace(req *http.Request, workspaceID string, environmentID string) ([]byte, error)
+	RemoveEnvironmentFromWorkspace(req *http.Request, workspaceID string, environmentID string) ([]byte, error)
+	GetDesignsOfWorkspace(req *http.Request, workspaceID, page, pagesize, search, order, filter string) ([]byte, error)
+	AddDesignToWorkspace(req *http.Request, workspaceID string, designID string) ([]byte, error)
+	RemoveDesignFromWorkspace(req *http.Request, workspaceID string, designID string) ([]byte, error)
 }

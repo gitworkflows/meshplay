@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/khulnasoft/meshplay/meshkit/utils"
+	"github.com/khulnasoft/meshkit/utils"
 	"gopkg.in/yaml.v2"
 )
 

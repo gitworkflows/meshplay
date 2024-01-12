@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
+	"github.com/khulnasoft/meshkit/utils"
+	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
 
 	corev1 "k8s.io/api/core/v1"
 )

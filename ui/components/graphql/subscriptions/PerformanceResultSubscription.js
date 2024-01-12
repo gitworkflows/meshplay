@@ -8,7 +8,7 @@ const performanceResultSubscription = graphql`
       page_size
       total_count
       results {
-        meshplay_id
+        meshery_id
         name
         mesh
         performance_profile

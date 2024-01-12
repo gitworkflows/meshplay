@@ -180,7 +180,7 @@ type K8sContext struct {
 	Server             string `json:"server"`
 	Owner              string `json:"owner"`
 	CreatedBy          string `json:"created_by"`
-	MeshplayInstanceID  string `json:"meshplay_instance_id"`
+	MeshplayInstanceID  string `json:"meshery_instance_id"`
 	KubernetesServerID string `json:"kubernetes_server_id"`
 	DeploymentType     string `json:"deployment_type"`
 	Version            string `json:"version"`
@@ -235,10 +235,11 @@ type MeshplayControllersStatusListItem struct {
 	ContextID  string                  `json:"contextId"`
 	Controller MeshplayController       `json:"controller"`
 	Status     MeshplayControllerStatus `json:"status"`
+	Version    *string                 `json:"version,omitempty"`
 }
 
 type MeshplayResult struct {
-	MeshplayID          *string                `json:"meshplay_id,omitempty"`
+	MeshplayID          *string                `json:"meshery_id,omitempty"`
 	Name               *string                `json:"name,omitempty"`
 	Mesh               *string                `json:"mesh,omitempty"`
 	PerformanceProfile *string                `json:"performance_profile,omitempty"`
@@ -302,13 +303,14 @@ type OperatorStatusPerK8sContext struct {
 }
 
 type PageFilter struct {
-	Page         string  `json:"page"`
-	PageSize     string  `json:"pageSize"`
-	Order        *string `json:"order,omitempty"`
-	Search       *string `json:"search,omitempty"`
-	From         *string `json:"from,omitempty"`
-	To           *string `json:"to,omitempty"`
-	UpdatedAfter *string `json:"updated_after,omitempty"`
+	Page         string   `json:"page"`
+	PageSize     string   `json:"pageSize"`
+	Order        *string  `json:"order,omitempty"`
+	Search       *string  `json:"search,omitempty"`
+	From         *string  `json:"from,omitempty"`
+	To           *string  `json:"to,omitempty"`
+	UpdatedAfter *string  `json:"updated_after,omitempty"`
+	Visibility   []string `json:"visibility,omitempty"`
 }
 
 type PatternPageResult struct {
@@ -549,6 +551,10 @@ const (
 	MeshplayControllerStatusNotdeployed MeshplayControllerStatus = "NOTDEPLOYED"
 	MeshplayControllerStatusDeploying   MeshplayControllerStatus = "DEPLOYING"
 	MeshplayControllerStatusUnkown      MeshplayControllerStatus = "UNKOWN"
+	MeshplayControllerStatusUndeployed  MeshplayControllerStatus = "UNDEPLOYED"
+	MeshplayControllerStatusEnabled     MeshplayControllerStatus = "ENABLED"
+	MeshplayControllerStatusRunning     MeshplayControllerStatus = "RUNNING"
+	MeshplayControllerStatusConnected   MeshplayControllerStatus = "CONNECTED"
 )
 
 var AllMeshplayControllerStatus = []MeshplayControllerStatus{
@@ -556,11 +562,15 @@ var AllMeshplayControllerStatus = []MeshplayControllerStatus{
 	MeshplayControllerStatusNotdeployed,
 	MeshplayControllerStatusDeploying,
 	MeshplayControllerStatusUnkown,
+	MeshplayControllerStatusUndeployed,
+	MeshplayControllerStatusEnabled,
+	MeshplayControllerStatusRunning,
+	MeshplayControllerStatusConnected,
 }
 
 func (e MeshplayControllerStatus) IsValid() bool {
 	switch e {
-	case MeshplayControllerStatusDeployed, MeshplayControllerStatusNotdeployed, MeshplayControllerStatusDeploying, MeshplayControllerStatusUnkown:
+	case MeshplayControllerStatusDeployed, MeshplayControllerStatusNotdeployed, MeshplayControllerStatusDeploying, MeshplayControllerStatusUnkown, MeshplayControllerStatusUndeployed, MeshplayControllerStatusEnabled, MeshplayControllerStatusRunning, MeshplayControllerStatusConnected:
 		return true
 	}
 	return false

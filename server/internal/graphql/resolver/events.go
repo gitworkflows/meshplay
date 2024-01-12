@@ -7,7 +7,7 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	"github.com/khulnasoft/meshkit/models/events"
 )
 
 func (r *Resolver) eventsResolver(ctx context.Context, provider models.Provider, user models.User) (<-chan *model.Event, error) {

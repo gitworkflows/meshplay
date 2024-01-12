@@ -8,7 +8,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
 	"github.com/khulnasoft/meshplay/server/models/pattern/jsonschema"
 	"github.com/khulnasoft/meshplay/server/models/pattern/resource/selector"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 	"gopkg.in/yaml.v2"
 )
 

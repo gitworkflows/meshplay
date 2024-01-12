@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,8 +74,8 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 			return nil
 		}
 
-		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/application/deploy"
-		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/application"
+		deployURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern/deploy"
+		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern"
 
 		// app name has been passed
 		if len(args) > 0 {
@@ -97,7 +97,7 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 				return nil
 			}
 
-			var response *models.ApplicationsAPIResponse
+			var response *models.PatternsAPIResponse
 			defer resp.Body.Close()
 			body, err := io.ReadAll(resp.Body)
 			if err != nil {
@@ -111,20 +111,20 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 			}
 
 			index := 0
-			if len(response.Applications) == 0 {
+			if len(response.Patterns) == 0 {
 				utils.Log.Error(utils.ErrNotFound(errors.New("no app found with the given name")))
 				return nil
-			} else if len(response.Applications) == 1 {
-				appFile = response.Applications[0].ApplicationFile
+			} else if len(response.Patterns) == 1 {
+				appFile = response.Patterns[0].PatternFile
 			} else {
 				// Multiple apps with same name
-				index = multipleApplicationsConfirmation(response.Applications)
-				appFile = response.Applications[index].ApplicationFile
+				index = multipleApplicationsConfirmation(response.Patterns)
+				appFile = response.Patterns[index].PatternFile
 			}
 		} else {
 			// Check if a valid source type is set
-			if !isValidSource(sourceType) {
-				return ErrValidSource(validSourceTypes)
+			if sourceType, err = getFullSourceType(sourceType); err != nil {
+				return ErrInValidSource(sourceType, validSourceTypes)
 			}
 			app, err := importApp(sourceType, file, appURL, !skipSave)
 			if err != nil {
@@ -132,7 +132,7 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 				return nil
 			}
 
-			appFile = app.ApplicationFile
+			appFile = app.PatternFile
 		}
 
 		req, err = utils.NewRequest("POST", deployURL, bytes.NewBuffer([]byte(appFile)))
@@ -162,7 +162,7 @@ meshplayctl app onboard -f ./application.yml -s "Kubernetes Manifest"
 	},
 }
 
-func multipleApplicationsConfirmation(profiles []models.MeshplayApplication) int {
+func multipleApplicationsConfirmation(profiles []models.MeshplayPattern) int {
 	reader := bufio.NewReader(os.Stdin)
 
 	for index, a := range profiles {
@@ -170,7 +170,7 @@ func multipleApplicationsConfirmation(profiles []models.MeshplayApplication) int
 		fmt.Printf("Name: %v\n", a.Name)
 		fmt.Printf("ID: %s\n", a.ID.String())
 		fmt.Printf("ApplicationFile:\n")
-		fmt.Printf(a.ApplicationFile)
+		fmt.Printf(a.PatternFile)
 		fmt.Println("---------------------")
 	}
 

@@ -8,9 +8,9 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/helpers/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	meshkitmodels "github.com/khulnasoft/meshplay/meshkit/models"
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	meshkitmodels "github.com/khulnasoft/meshkit/models"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
 )
 
 type generationPayloadItem struct {
@@ -71,7 +71,7 @@ func (h *Handler) MeshModelGenerationHandler(rw http.ResponseWriter, r *http.Req
 		if gpi.Register {
 			for _, comp := range comps {
 				utils.WriteSVGsOnFileSystem(&comp)
-				host := fmt.Sprintf("%s.artifacthub.meshplay", gpi.Name)
+				host := fmt.Sprintf("%s.artifacthub.meshery", gpi.Name)
 				err = h.registryManager.RegisterEntity(meshmodel.Host{
 					IHost:    meshmodel.ArtifactHub{},
 					Hostname: meshmodel.ArtifactHub{}.String(),

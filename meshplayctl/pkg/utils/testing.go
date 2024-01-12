@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -141,7 +142,7 @@ func (tf *GoldenFile) WriteInByte(content []byte) {
 func SetupContextEnv(t *testing.T) {
 	path, err := os.Getwd()
 	if err != nil {
-		t.Error("unable to locate meshplay directory")
+		t.Error("unable to locate meshery directory")
 	}
 	viper.Reset()
 	viper.SetConfigFile(path + "/../../../../pkg/utils/TestConfig.yaml")
@@ -249,4 +250,20 @@ func Populate(src, dst string) error {
 	defer destination.Close()
 	_, err = io.Copy(destination, source)
 	return err
+}
+
+func StartMockMeshplayServer(t *testing.T) error {
+	serverAddr, _ := strings.CutPrefix(MeshplayEndpoint, "http://")
+	l, err := net.Listen("tcp", serverAddr)
+	if err != nil {
+		return err
+	}
+	// accept and close the connection.
+	// this is to verify IsServerRunning() in auth.go
+	conn, err := l.Accept()
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+	return nil
 }

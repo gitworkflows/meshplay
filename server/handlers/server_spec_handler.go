@@ -7,7 +7,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/constants"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
+	"github.com/khulnasoft/meshkit/utils"
 	"github.com/spf13/viper"
 )
 
@@ -25,7 +25,7 @@ type Version struct {
 //
 // Returns the running Meshplay version
 // responses:
-// 	200: meshplayVersionRespWrapper
+// 	200: mesheryVersionRespWrapper
 
 // ServerVersionHandler handles the version api request for the server
 func (h *Handler) ServerVersionHandler(w http.ResponseWriter, _ *http.Request) {

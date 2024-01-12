@@ -11,9 +11,9 @@ import (
 	"cuelang.org/go/cue/cuecontext"
 	cueJson "cuelang.org/go/encoding/json"
 	"github.com/khulnasoft/meshplay/server/internal/store"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshkit/utils/manifests"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -57,7 +57,7 @@ type WorkloadCapability struct {
 	genericCapability
 }
 
-// present in metadata."adapter.meshplay.khulnasoft.com/name". Ex- core,kubernetes,istio,linkerd,etc
+// present in metadata."adapter.khulnasoft.com/name". Ex- core,kubernetes,istio,linkerd,etc
 type ComponentTypes struct {
 	Names                     map[string]bool
 	LatestVersionForComponent map[string]string
@@ -81,7 +81,7 @@ func (c *ComponentTypes) Get() (names []string) {
 	return
 }
 
-// ComponentTypesSingleton is initialized per meshplay instance and acts as a helper middleware between client facing API and capability registry.
+// ComponentTypesSingleton is initialized per meshery instance and acts as a helper middleware between client facing API and capability registry.
 // Examples of names stored in this struct are: core,kubernetes,istio,linkerd
 var ComponentTypesSingleton = ComponentTypes{
 	Names:                     make(map[string]bool),
@@ -284,9 +284,9 @@ func DeleteK8sWorkloads(ctx string) {
 		}
 		var workload = value
 		//delete only the ones with given context in metadata
-		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.meshplay.khulnasoft.com/k8s" && workload.Metadata["io.meshplay.ctxid"] == ctx {
+		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.khulnasoft.com/k8s" && workload.Metadata["io.meshery.ctxid"] == ctx {
 			key := fmt.Sprintf(
-				"/meshplay/registry/definition/%s/%s/%s",
+				"/meshery/registry/definition/%s/%s/%s",
 				workload.OAMDefinition.APIVersion,
 				workload.OAMDefinition.Kind,
 				workload.OAMDefinition.Name,

@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ func TestClosestArgs(t *testing.T) {
 	})
 
 	t.Run("Test levenshtein", func(t *testing.T) {
-		str1 := []rune("meshplay")
+		str1 := []rune("meshery")
 		str2 := []rune("meshplayctl")
 
 		distance := levenshtein(str1, str2)
@@ -61,11 +61,11 @@ func TestClosestArgs(t *testing.T) {
 	})
 
 	t.Run("Test FindClosestArg", func(t *testing.T) {
-		argPassed := "meshplay"
-		validArgs := []string{"meshplay", "meshplayctl", "meshplay1", "meshplay2"}
+		argPassed := "meshery"
+		validArgs := []string{"meshery", "meshplayctl", "meshery1", "meshery2"}
 		closestArg := FindClosestArg(argPassed, validArgs)
-		if closestArg != "meshplay" {
-			t.Errorf("Expected meshplay, got %s", closestArg)
+		if closestArg != "meshery" {
+			t.Errorf("Expected meshery, got %s", closestArg)
 		}
 	})
 }

@@ -113,15 +113,15 @@ const styles = (theme) => ({
 });
 
 const generateMsgForMesh = (name) => {
-  return `I deployed ${name} service mesh with one-click using @meshplayio!\nManage your infrastructure with Meshplay`;
+  return `I deployed ${name} service mesh with one-click using @mesheryio!\nManage your infrastructure with Meshplay`;
 };
 
 const generateMsgForSampleApp = (name) => {
-  return `I deployed ${name} with one-click using @meshplayio!\nManage your infrastructure with Meshplay`;
+  return `I deployed ${name} with one-click using @mesheryio!\nManage your infrastructure with Meshplay`;
 };
 
 const generateMsgForAppsPatt = (name) => {
-  return `I deployed ${name} [design | application] in a single-click using @meshplayio!\nFind design patterns like mine in the Meshplay Catalog - https://meshplay.khulnasoft.com/catalog`;
+  return `I deployed ${name} [design | application] in a single-click using @mesheryio!\nFind design patterns like mine in the Meshplay Catalog - https://khulnasoft.com/catalog`;
 };
 
 const getDefaultMessage = (message) => {
@@ -159,7 +159,7 @@ function MeshplaySnackbarWrapper(props) {
   } = props;
   const variant = eventType.type;
   const Icon = variantIcon[variant];
-  const ERROR_DOC_LINK = 'https://docs.meshplay.khulnasoft.com/reference/error-codes';
+  const ERROR_DOC_LINK = 'https://docs.khulnasoft.com/reference/error-codes';
   const [expanded, setExpanded] = useState(false);
   const [cardHover, setCardHover] = useState(false);
   const [socialExpand, setSocialExpand] = useState(false);
@@ -304,7 +304,7 @@ function MeshplaySnackbarWrapper(props) {
                     ERROR CODE
                   </Typography>
                   <a
-                    href={`${ERROR_DOC_LINK}#meshplay-${componentType}-for-meshplay-${componentName.toLowerCase()}`}
+                    href={`${ERROR_DOC_LINK}#meshery-${componentType}-for-meshery-${componentName.toLowerCase()}`}
                     target="_blank"
                     rel="referrer noreferrer"
                   >
@@ -324,7 +324,7 @@ function MeshplaySnackbarWrapper(props) {
                   <Paper className={classes.paper}>
                     <TwitterShareButton
                       className={classes.shareIcon}
-                      url={'https://meshplay.khulnasoft.com'}
+                      url={'https://khulnasoft.com'}
                       title={socialMessage}
                       hashtags={['opensource']}
                     >
@@ -332,14 +332,14 @@ function MeshplaySnackbarWrapper(props) {
                     </TwitterShareButton>
                     <LinkedinShareButton
                       className={classes.shareIcon}
-                      url={'https://meshplay.khulnasoft.com'}
+                      url={'https://khulnasoft.com'}
                       summary={socialMessage}
                     >
                       <LinkedinIcon size={32} />
                     </LinkedinShareButton>
                     <FacebookShareButton
                       className={classes.shareIcon}
-                      url={'https://meshplay.khulnasoft.com'}
+                      url={'https://khulnasoft.com'}
                       quote={socialMessage}
                       hashtag={'#opensource'}
                     >

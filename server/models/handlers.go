@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/khulnasoft/meshplay/server/models/meshmodel"
-	"github.com/khulnasoft/meshplay/meshkit/utils/events"
+	"github.com/khulnasoft/meshkit/utils/events"
 	"github.com/vmihailenco/taskq/v3"
 )
 
@@ -23,7 +23,7 @@ type HandlerInterface interface {
 	//such external systems trying to communicate without provider authentication. So for different endpoints, different authentication mechanisms other than provider can be used.
 	AuthMiddleware(http.Handler, AuthenticationMechanism) http.Handler
 	KubernetesMiddleware(func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)) func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)
-	MeshplayControllersMiddleware(func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)) func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)
+	K8sFSMMiddleware(func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)) func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)
 	SessionInjectorMiddleware(func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)) http.Handler
 	GraphqlMiddleware(http.Handler) func(http.ResponseWriter, *http.Request, *Preference, *User, Provider)
 
@@ -81,7 +81,7 @@ type HandlerInterface interface {
 	GrafanaConfigHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GrafanaBoardsHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GrafanaQueryHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
-	GrafanaQueryRangeHandler(w http.ResponseWriter, req *http.Request)
+	GrafanaQueryRangeHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GrafanaPingHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	SaveSelectedGrafanaBoardsHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 
@@ -91,7 +91,7 @@ type HandlerInterface interface {
 	PrometheusConfigHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GrafanaBoardImportForPrometheusHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	PrometheusQueryHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
-	PrometheusQueryRangeHandler(w http.ResponseWriter, req *http.Request)
+	PrometheusQueryRangeHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	PrometheusPingHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	PrometheusStaticBoardHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	SaveSelectedPrometheusBoardsHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
@@ -138,6 +138,7 @@ type HandlerInterface interface {
 	GetAllMeshmodelPolicies(rw http.ResponseWriter, r *http.Request)
 	GetAllMeshmodelPoliciesByName(rw http.ResponseWriter, r *http.Request)
 	RegisterMeshmodelRelationships(rw http.ResponseWriter, r *http.Request)
+	EvaluateRelationshipPolicy(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 
 	PatternFileRequestHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 	DeleteMeshplayPatternHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
@@ -148,6 +149,9 @@ type HandlerInterface interface {
 	PublishCatalogPatternHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 	UnPublishCatalogPatternHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetMeshplayPatternHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	DesignFileRequestHandlerWithSourceType(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetMeshplayDesignTypesHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetMeshplayPatternSourceHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 
 	FilterFileHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetMeshplayFilterFileHandler(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
@@ -182,6 +186,7 @@ type HandlerInterface interface {
 
 	SaveUserCredential(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetUserCredentials(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetUserCredentialByID(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	UpdateUserCredential(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	DeleteUserCredential(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 
@@ -189,11 +194,11 @@ type HandlerInterface interface {
 	GetConnections(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetConnectionsByKind(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetConnectionsStatus(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	UpdateConnectionStatus(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	UpdateConnection(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	UpdateConnectionById(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	DeleteConnection(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
-
-	GetRegoPolicyForDesignFile(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	ProcessConnectionRegistration(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 
 	GetEnvironments(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	GetEnvironmentByIDHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
@@ -202,8 +207,25 @@ type HandlerInterface interface {
 	UpdateEnvironmentHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	AddConnectionToEnvironmentHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 	RemoveConnectionFromEnvironmentHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetConnectionsOfEnvironmentHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 
 	GetMeshSyncResources(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetMeshSyncResourcesKinds(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+	DeleteMeshSyncResource(rw http.ResponseWriter, r *http.Request, prefObj *Preference, user *User, provider Provider)
+
+	GetOrganizations(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+
+	GetWorkspacesHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetWorkspaceByIdHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	SaveWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	DeleteWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	UpdateWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetEnvironmentsOfWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	AddEnvironmentToWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	RemoveEnvironmentFromWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	GetDesignsOfWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	AddDesignToWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
+	RemoveDesignFromWorkspaceHandler(w http.ResponseWriter, req *http.Request, prefObj *Preference, user *User, provider Provider)
 }
 
 // HandlerConfig holds all the config pieces needed by handler methods

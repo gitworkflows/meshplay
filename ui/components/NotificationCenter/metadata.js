@@ -61,7 +61,7 @@ export const ErrorMetadataFormatter = ({ metadata, event }) => {
   const errorCode = metadata?.error_code || '';
   const code = metadata?.Code || '';
   const formattedErrorCode = errorCode ? `${errorCode}-${code}` : code;
-  const errorLink = `https://docs.meshplay.khulnasoft.com/reference/error-codes#${formattedErrorCode}`;
+  const errorLink = `https://docs.khulnasoft.com/reference/error-codes#${formattedErrorCode}`;
   return (
     <Grid container>
       <div>
@@ -96,7 +96,17 @@ export const ErrorMetadataFormatter = ({ metadata, event }) => {
 };
 
 const EmptyState = ({ event }) => {
-  return <Typography variant="body1"> {event.description} </Typography>;
+  return (
+    <Typography
+      variant="body1"
+      style={{
+        marginBlock: '0.5rem',
+      }}
+    >
+      {' '}
+      {event.description}{' '}
+    </Typography>
+  );
 };
 
 export const FormattedMetadata = ({ event }) => {

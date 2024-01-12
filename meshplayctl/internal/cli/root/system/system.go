@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ var SystemCmd = &cobra.Command{
 			return cmd.Help()
 		}
 		if ok := utils.IsValidSubcommand(availableSubcommands, args[0]); !ok {
-			return errors.New(utils.SystemError(fmt.Sprintf("'%s' is a invalid command.  Use 'meshplayctl system --help' to display usage guide.\n", args[0])))
+			return errors.New(utils.SystemError(fmt.Sprintf("'%s' is an invalid command.  Use 'meshplayctl system --help' to display usage guide.\n", args[0])))
 		}
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
@@ -72,6 +72,7 @@ func init() {
 		logoutCmd,
 		tokenCmd,
 		dashboardCmd,
+		// ModelCmd,
 	}
 	// --context flag to temporarily change context. This is global to all system commands
 	SystemCmd.PersistentFlags().StringVarP(&tempContext, "context", "c", "", "(optional) temporarily change the current context.")

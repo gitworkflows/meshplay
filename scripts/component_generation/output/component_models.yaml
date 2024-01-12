@@ -8850,10 +8850,10 @@
   ahRepo: verik-charts
   version: 1.1.10
   repoUrl: https://charts.veriksystems.com/
-- systemName: meshplay-operator
-  ahRepo: meshplay
+- systemName: meshery-operator
+  ahRepo: meshery
   version: 0.6.28
-  repoUrl: https://meshplay.khulnasoft.com/charts/
+  repoUrl: https://khulnasoft.com/charts/
 - systemName: rapidsai
   ahRepo: inseefrlab
   version: 6.2.0
@@ -20054,7 +20054,7 @@
   ahRepo: maxxblow
   version: 0.1.4
   repoUrl: https://maxxblow.de/charts
-- systemName: meshplay
+- systemName: meshery
   ahRepo: wenerme
   version: 0.6.28
   repoUrl: https://charts.wener.tech
@@ -21498,7 +21498,7 @@
   ahRepo: portefaix-hub
   version: 1.1.1
   repoUrl: https://charts.portefaix.xyz/
-- systemName: meshplay
+- systemName: meshery
   ahRepo: wener
   version: 0.6.28
   repoUrl: https://wenerme.github.io/charts
@@ -29822,10 +29822,10 @@
   ahRepo: kiwigrid
   version: 0.6.0
   repoUrl: https://kiwigrid.github.io
-- systemName: meshplay
-  ahRepo: meshplay
+- systemName: meshery
+  ahRepo: meshery
   version: 0.6.28
-  repoUrl: https://meshplay.khulnasoft.com/charts/
+  repoUrl: https://khulnasoft.com/charts/
 - systemName: agnops
   ahRepo: agnops
   version: 0.1.0

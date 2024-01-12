@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import (
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	SMP "github.com/layer5io/service-mesh-performance/spec"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/pkg/errors"
@@ -66,43 +66,43 @@ var applyCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(0),
 	Example: `
 // Execute a Performance test with the specified performance profile
-meshplayctl perf apply meshplay-profile [flags]
+meshplayctl perf apply meshery-profile [flags]
 
 // Execute a Performance test with creating a new performance profile
-meshplayctl perf apply meshplay-profile-new --url "https://google.com"
+meshplayctl perf apply meshery-profile-new --url "https://google.com"
 
 // Execute a Performance test creating a new performance profile and pass certificate to be used 
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --cert-path path/to/cert.pem
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --cert-path path/to/cert.pem
 
 // Execute a performance profile without using the certificate present in the profile
-meshplayctl perf apply meshplay-profile --url "https://google.com" --disable-cert
+meshplayctl perf apply meshery-profile --url "https://google.com" --disable-cert
 
 // Run Performance test using SMP compatible test configuration
 // If the profile already exists, the test will be run overriding the values with the ones provided in the configuration file
-meshplayctl perf apply meshplay-profile -f path/to/perf-config.yaml
+meshplayctl perf apply meshery-profile -f path/to/perf-config.yaml
 
 // Run performance test using SMP compatible test configuration and override values with flags
-meshplayctl perf apply meshplay-profile -f path/to/perf-config.yaml [flags]
+meshplayctl perf apply meshery-profile -f path/to/perf-config.yaml [flags]
 
 // Choice of load generator - fortio, wrk2 or nighthawk (default: fortio)
-meshplayctl perf apply meshplay-profile --load-generator wrk2
+meshplayctl perf apply meshery-profile --load-generator wrk2
 
 // Execute a Performance test with specified queries per second
-meshplayctl perf apply meshplay-profile --url https://192.168.1.15/productpage --qps 30
+meshplayctl perf apply meshery-profile --url https://192.168.1.15/productpage --qps 30
 
 // Execute a Performance test with specified service mesh
-meshplayctl perf apply meshplay-profile --url https://192.168.1.15/productpage --mesh istio
+meshplayctl perf apply meshery-profile --url https://192.168.1.15/productpage --mesh istio
 
 // Execute a Performance test creating a new performance profile and pass options to the load generator used
 // If any options are already present in the profile or passed through flags, the --options flag will take precedence over the profile and flag options 
-// Options for nighthawk - https://github.com/khulnasoft/meshplay/getnighthawk/blob/v1.0.5/pkg/proto/options.pb.go#L882-L1018
+// Options for nighthawk - https://github.com/layer5io/getnighthawk/blob/v1.0.5/pkg/proto/options.pb.go#L882-L1018
 // Options for fortio - https://github.com/fortio/fortio/blob/v1.57.0/fhttp/httprunner.go#L77-L84
-// Options for wrk2 - https://github.com/khulnasoft/meshplay/gowrk2/blob/v0.6.1/api/gowrk2.go#L47-L53
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --options [filepath|json-string]
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --options path/to/options.json
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --load-generator nighthawk --options '{"requests_per_second": 10, "max_pending_requests": 5}'
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --load-generator fortio --options '{"MethodOverride": "POST"}'
-meshplayctl perf apply meshplay-profile-new --url "https://google.com" --load-generator wrk2 --options '{"DurationInSeconds": 15, "Thread": 3}'
+// Options for wrk2 - https://github.com/layer5io/gowrk2/blob/v0.6.1/api/gowrk2.go#L47-L53
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --options [filepath|json-string]
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --options path/to/options.json
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --load-generator nighthawk --options '{"requests_per_second": 10, "max_pending_requests": 5}'
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --load-generator fortio --options '{"MethodOverride": "POST"}'
+meshplayctl perf apply meshery-profile-new --url "https://google.com" --load-generator wrk2 --options '{"DurationInSeconds": 15, "Thread": 3}'
 	`,
 	Annotations: linkDocPerfApply,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -351,7 +351,7 @@ func init() {
 	applyCmd.Flags().StringVar(&concurrentRequests, "concurrent-requests", "", "(optional) Number of Parallel Requests")
 	applyCmd.Flags().StringVar(&testDuration, "duration", "", "(optional) Length of test (e.g. 10s, 5m, 2h). For more, see https://golang.org/pkg/time/#ParseDuration")
 	applyCmd.Flags().StringVar(&loadGenerator, "load-generator", "", "(optional) Load-Generator to be used (fortio/wrk2/nighthawk)")
-	applyCmd.Flags().StringVarP(&filePath, "file", "f", "", "(optional) File containing SMP-compatible test configuration. For more, see https://github.com/khulnasoft/meshplay/service-mesh-performance-specification")
+	applyCmd.Flags().StringVarP(&filePath, "file", "f", "", "(optional) File containing SMP-compatible test configuration. For more, see https://github.com/layer5io/service-mesh-performance-specification")
 	applyCmd.Flags().StringVarP(&loadTestBody, "body", "b", "", "(optional) Load test body. Can be a filepath/string")
 	applyCmd.Flags().StringVar(&additionalOptions, "options", "", "(optional) Additional options to be passed to the load generator. Can be a json string or a filepath containing json")
 	applyCmd.Flags().StringVar(&certPath, "cert-path", "", "(optional) Path to the certificate to be used for the load test")

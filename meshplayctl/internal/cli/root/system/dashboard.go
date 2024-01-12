@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
-	meshkitutils "github.com/khulnasoft/meshplay/meshkit/utils"
-	meshkitkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshkitutils "github.com/khulnasoft/meshkit/utils"
+	meshkitkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -75,7 +75,7 @@ meshplayctl system dashboard --port-forward
 meshplayctl system dashboard --skip-browser
 	`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		// check if meshplay is running or not
+		// check if meshery is running or not
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
 			utils.Log.Error(err)
@@ -88,7 +88,7 @@ meshplayctl system dashboard --skip-browser
 		}
 		running, _ := utils.IsMeshplayRunning(currCtx.GetPlatform())
 		if !running {
-			return errors.New(`meshplay server is not running. run "meshplayctl system start" to start meshplay`)
+			return errors.New(`meshery server is not running. run "meshplayctl system start" to start meshery`)
 		}
 
 		return nil
@@ -134,7 +134,7 @@ meshplayctl system dashboard --skip-browser
 					cmd.Context(),
 					client,
 					utils.MeshplayNamespace,
-					"meshplay",
+					"meshery",
 					options.host,
 					port,
 					options.podPort,
@@ -152,7 +152,7 @@ meshplayctl system dashboard --skip-browser
 				}
 				log.Info("Starting Port-forwarding for Meshplay UI")
 
-				meshplayURL := portforward.URLFor("")
+				mesheryURL := portforward.URLFor("")
 
 				// ticker for keeping connection alive with pod each 10 seconds
 				ticker := time.NewTicker(10 * time.Second)
@@ -164,14 +164,14 @@ meshplayctl system dashboard --skip-browser
 							ticker.Stop()
 							return
 						case <-ticker.C:
-							keepConnectionAlive(meshplayURL)
+							keepConnectionAlive(mesheryURL)
 						}
 					}
 				}()
 				log.Info(fmt.Sprintf("Forwarding ports %v -> %v", options.podPort, port))
-				log.Info("Meshplay UI available at: ", meshplayURL)
+				log.Info("Meshplay UI available at: ", mesheryURL)
 				log.Info("Opening Meshplay UI in the default browser.")
-				err = utils.NavigateToBrowser(meshplayURL)
+				err = utils.NavigateToBrowser(mesheryURL)
 				if err != nil {
 					log.Warn("Failed to open Meshplay in browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshplay.")
 				}
@@ -180,11 +180,11 @@ meshplayctl system dashboard --skip-browser
 				return nil
 			}
 
-			var meshplayEndpoint string
+			var mesheryEndpoint string
 			var endpoint *meshkitutils.Endpoint
 			clientset := client.KubeClient
 			var opts meshkitkube.ServiceOptions
-			opts.Name = "meshplay"
+			opts.Name = "meshery"
 			opts.Namespace = utils.MeshplayNamespace
 			opts.APIServerURL = client.RestConfig.Host
 
@@ -194,8 +194,8 @@ meshplayctl system dashboard --skip-browser
 				return nil
 			}
 
-			meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
-			currCtx.SetEndpoint(meshplayEndpoint)
+			mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
+			currCtx.SetEndpoint(mesheryEndpoint)
 			if !meshkitutils.TcpCheck(&meshkitutils.HostPort{
 				Address: endpoint.Internal.Address,
 				Port:    endpoint.Internal.Port,
@@ -210,8 +210,8 @@ meshplayctl system dashboard --skip-browser
 						Address: u.Hostname(),
 						Port:    endpoint.External.Port,
 					}, nil) {
-						meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
-						currCtx.SetEndpoint(meshplayEndpoint)
+						mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
+						currCtx.SetEndpoint(mesheryEndpoint)
 					}
 				}
 			}

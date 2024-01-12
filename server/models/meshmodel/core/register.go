@@ -3,30 +3,32 @@ package core
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
 
 	"cuelang.org/go/cue"
 	"cuelang.org/go/cue/cuecontext"
 	cueJson "cuelang.org/go/encoding/json"
+	"github.com/gofrs/uuid"
+	"github.com/khulnasoft/meshplay/server/helpers/utils"
+	mutil "github.com/khulnasoft/meshplay/server/helpers/utils"
+
+	"github.com/khulnasoft/meshplay/server/models"
+
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
-	oamcore "github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
-	"github.com/khulnasoft/meshplay/meshkit/utils/component"
-	"github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
+	"github.com/khulnasoft/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	oamcore "github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
+
+	"github.com/khulnasoft/meshkit/utils/component"
+	"github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshkit/utils/manifests"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
-
-type kind string
-type groupversion string
-type helperGV struct {
-	group   string
-	version string
-	isCRD   bool
-}
 
 type crd struct {
 	Items []crdhelper `json:"items"`
@@ -39,6 +41,55 @@ type spec struct {
 }
 type names struct {
 	Kind string `json:"kind"`
+}
+
+func RegisterK8sMeshModelComponents(provider *models.Provider, _ context.Context, config []byte, ctxID string, connectionID string, userID string, mesheryInstanceID uuid.UUID, reg *meshmodel.RegistryManager, ec *models.Broadcast, ctxName string) (err error) {
+	connectionUUID := uuid.FromStringOrNil(connectionID)
+	userUUID := uuid.FromStringOrNil(userID)
+
+	man, err := GetK8sMeshModelComponents(config)
+	if err != nil {
+		return ErrCreatingKubernetesComponents(err, ctxID)
+	}
+	if man == nil {
+		return ErrCreatingKubernetesComponents(errors.New("generated components are nil"), ctxID)
+	}
+	count := 0
+	for _, c := range man {
+		writeK8sMetadata(&c, reg)
+		err = reg.RegisterEntity(meshmodel.Host{
+			Hostname: "kubernetes",
+			Metadata: ctxID,
+		}, c)
+		count++
+	}
+	event := events.NewEvent().ActedUpon(connectionUUID).WithCategory("kubernetes_components").WithAction("registration").FromSystem(mesheryInstanceID).FromUser(userUUID).WithSeverity(events.Informational).WithDescription(fmt.Sprintf("%d Kubernetes components registered for %s", count, ctxName)).WithMetadata(map[string]interface{}{
+		"doc": "https://docs.khulnasoft.com/tasks/lifecycle-management",
+	}).Build()
+
+	_ = (*provider).PersistEvent(event)
+	ec.Publish(userUUID, event)
+	return
+}
+
+func writeK8sMetadata(comp *v1alpha1.ComponentDefinition, reg *meshmodel.RegistryManager) {
+	ent, _, _ := reg.GetEntities(&v1alpha1.ComponentFilter{
+		Name:       comp.Kind,
+		APIVersion: comp.APIVersion,
+	})
+	//If component was not available in the registry, then use the generic model level metadata
+	if len(ent) == 0 {
+		comp.Metadata = utils.MergeMaps(comp.Metadata, models.K8sMeshModelMetadata)
+		mutil.WriteSVGsOnFileSystem(comp)
+	} else {
+		existingComp, ok := ent[0].(v1alpha1.ComponentDefinition)
+		if !ok {
+			comp.Metadata = utils.MergeMaps(comp.Metadata, models.K8sMeshModelMetadata)
+			return
+		}
+		comp.Metadata = utils.MergeMaps(comp.Metadata, existingComp.Metadata)
+		comp.Model = existingComp.Model
+	}
 }
 
 func RegisterMeshmodelComponentsForCRDS(reg meshmodel.RegistryManager, k8sYaml []byte, contextID string, version string) {

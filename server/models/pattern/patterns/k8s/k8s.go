@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
-	meshkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
+	meshkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"gopkg.in/yaml.v2"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/client-go/rest"
@@ -70,7 +70,7 @@ func dryRun(rClient rest.Interface, k8sResource map[string]interface{}, namespac
 		return
 	}
 
-	req := rClient.Post().AbsPath(path).Body(data).SetHeader("Content-Type", "application/json").SetHeader("Accept", "application/json").Param("dryRun", "All").Param("fieldValidation", "Strict").Param("fieldManager", "meshplay")
+	req := rClient.Post().AbsPath(path).Body(data).SetHeader("Content-Type", "application/json").SetHeader("Accept", "application/json").Param("dryRun", "All").Param("fieldValidation", "Strict").Param("fieldManager", "meshery")
 	res := req.Do(context.Background())
 
 	// ignoring the error since this client-go treats failure of dryRun as an error

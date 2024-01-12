@@ -68,12 +68,17 @@ enum MeshplayControllerStatus {
     NOTDEPLOYED
     DEPLOYING
     UNKOWN
+    UNDEPLOYED
+    ENABLED
+    RUNNING
+    CONNECTED
   }
 
 type MeshplayControllersStatusListItem {
     contextId: String!
     controller: MeshplayController! 
     status: MeshplayControllerStatus!
+    version: String
   }
 
 type MeshSyncEvent {
@@ -328,7 +333,7 @@ type K8sContext {
   server: String!,
   owner: ID!,
   created_by: ID!,
-  meshplay_instance_id: ID!,
+  meshery_instance_id: ID!,
   kubernetes_server_id: ID!,
   deployment_type: String!,
   version: String!,
@@ -432,6 +437,7 @@ type PatternResult {
   errmsg: String
   created_at: String
   updated_at: String
+  type: NullString
 }
 
 type Location {
@@ -493,7 +499,7 @@ type PerfProfile {
 }
 
 type MeshplayResult {
-  meshplay_id: String
+  meshery_id: String
   name: String
   mesh: String
   performance_profile: String
@@ -515,7 +521,10 @@ input PageFilter {
   from: String
   to: String
   updated_after: String
+  visibility: [String!]
 }
+
+# ============== CATALOG =============================
 
 input CatalogSelector {
   page: String!
@@ -587,7 +596,7 @@ type Query {
   # Query status of Meshplay Operator in your cluster
   getOperatorStatus(
         k8scontextID: String!
-  ): OperatorStatus @KubernetesMiddleware
+  ): MeshplayControllersStatusListItem @KubernetesMiddleware
 
   # Query to resync the cluster discovery
   resyncCluster(
@@ -679,19 +688,19 @@ type Subscription {
   # Listen to all results for profile ID
   subscribePerfResults(selector: PageFilter!, profileID: String!): PerfPageResult!
 
-  # Listen to changes in the status of meshplay controllers
+  # Listen to changes in the status of meshery controllers
   subscribeMeshplayControllersStatus(
     k8scontextIDs: [String!]
   ): [MeshplayControllersStatusListItem!]! @KubernetesMiddleware
 
   # Listen to the events that MeshSync is sending through Meshplay Broker.
-  # Note: It does not listen to the changes in meshplay database, but to meshsync events
+  # Note: It does not listen to the changes in meshery database, but to meshsync events
   subscribeMeshSyncEvents(
     k8scontextIDs: [String!]
     eventTypes: [MeshSyncEventType!]
   ) : MeshSyncEvent! @KubernetesMiddleware
 
-  subscribeConfiguration(applicationSelector: PageFilter!, patternSelector: PageFilter!, filterSelector: PageFilter!) : ConfigurationPage!
+  subscribeConfiguration( patternSelector: PageFilter!, filterSelector: PageFilter!) : ConfigurationPage!
 
   subscribeClusterResources(
     k8scontextIDs: [String!],

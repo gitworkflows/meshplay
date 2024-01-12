@@ -90,6 +90,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'start',
+    paddingTop: '1rem',
   },
 
   descriptionHeading: {
@@ -111,6 +112,35 @@ export const MAX_NOTIFICATION_DESCRIPTION_LENGTH = 45;
 
 export const canTruncateDescription = (description) => {
   return description.length > MAX_NOTIFICATION_DESCRIPTION_LENGTH;
+};
+
+const AvatarStack = ({ avatars, direction }) => {
+  const theme = useTheme();
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: direction,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '0',
+
+        '& .MuiAvatar-root': {
+          width: '2rem',
+          height: '2rem',
+          border: '0.05rem solid ' + theme.palette.secondary.menuActionText,
+        },
+      }}
+    >
+      {avatars.map((avatar, index) => (
+        <Tooltip title={avatar.name} placement="top" key={index}>
+          <div style={{ zIndex: avatars.length - index, marginTop: '-0.4rem' }}>
+            <Avatar alt={avatar.name} src={avatar.avatar_url} />
+          </div>
+        </Tooltip>
+      ))}
+    </Box>
+  );
 };
 
 const useMenuStyles = makeStyles((theme) => {
@@ -224,22 +254,13 @@ const BasicMenu = withSuppressedErrorBoundary(({ event }) => {
             </Box>
             <Collapse in={isSocialShareOpen}>
               <Box className={classes.socialListItem}>
-                <FacebookShareButton
-                  url={'https://meshplay.khulnasoft.com'}
-                  quote={event.description || ''}
-                >
+                <FacebookShareButton url={'https://khulnasoft.com'} quote={event.description || ''}>
                   <FacebookIcon {...iconMedium} fill={theme.palette.secondary.iconMain} />
                 </FacebookShareButton>
-                <LinkedinShareButton
-                  url={'https://meshplay.khulnasoft.com'}
-                  summary={event.description || ''}
-                >
+                <LinkedinShareButton url={'https://khulnasoft.com'} summary={event.description || ''}>
                   <LinkedInIcon {...iconMedium} fill={theme.palette.secondary.iconMain} />
                 </LinkedinShareButton>
-                <TwitterShareButton
-                  url={'https://meshplay.khulnasoft.com'}
-                  title={event.description || ''}
-                >
+                <TwitterShareButton url={'https://khulnasoft.com'} title={event.description || ''}>
                   <TwitterIcon {...iconMedium} fill={theme.palette.secondary.iconMain} />
                 </TwitterShareButton>
               </Box>
@@ -333,6 +354,21 @@ export const Notification = withErrorBoundary(({ event_id }) => {
     );
   };
 
+  const eventActors = [
+    ...(event.user_id && user
+      ? [{ name: userName, avatar_url: userAvatarUrl, tooltip: userName }]
+      : []),
+    ...(event.system_id
+      ? [
+          {
+            name: 'Meshplay',
+            avatar_url: '/static/img/meshery-logo.png',
+            tooltip: `System ID: ${event.system_id}`,
+          },
+        ]
+      : []),
+  ];
+
   return (
     <Slide
       in={isVisible}
@@ -389,24 +425,13 @@ export const Notification = withErrorBoundary(({ event_id }) => {
           <ErrorBoundary>
             <Grid container className={classes.expanded}>
               <Grid item sm={1} className={classes.actorAvatar}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    gridGap: '0.5rem',
-                    flexDirection: { xs: 'row', md: 'column' },
+                <AvatarStack
+                  avatars={eventActors}
+                  direction={{
+                    xs: 'row',
+                    md: 'column',
                   }}
-                >
-                  {event.user_id && user && (
-                    <Tooltip title={userName} placement="top">
-                      <Avatar alt={userName} src={userAvatarUrl} />
-                    </Tooltip>
-                  )}
-                  {event.system_id && (
-                    <Tooltip title={`System ID: ${event.system_id}`} placement="top">
-                      <Avatar src="/static/img/meshplay-logo.png" />
-                    </Tooltip>
-                  )}
-                </Box>
+                />
               </Grid>
               <Grid
                 item

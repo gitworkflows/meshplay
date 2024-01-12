@@ -8,9 +8,11 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/utils"
+	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
 )
 
 // Global singleton instance of k8s connection tracker to map Each K8sContext to a unique Broker URL
@@ -28,17 +30,17 @@ var (
 
 func (r *Resolver) resyncCluster(ctx context.Context, provider models.Provider, actions *model.ReSyncActions, k8scontextID string) (model.Status, error) {
 	if actions.ClearDb == "true" {
-		// copies the contents .meshplay/config/meshplaydb.sql to .meshplay/config/.archive/meshplaydb.sql
+		// copies the contents .meshery/config/mesherydb.sql to .meshery/config/.archive/mesherydb.sql
 		// then drops all the DB table and then migrate/create tables, missing foreign keys, constraints, columns and indexes.
 		if actions.HardReset == "true" {
-			meshplaydbPath := path.Join(utils.GetHome(), ".meshplay/config")
-			err := os.Mkdir(path.Join(meshplaydbPath, ".archive"), os.ModePerm)
+			mesherydbPath := path.Join(utils.GetHome(), ".meshery/config")
+			err := os.Mkdir(path.Join(mesherydbPath, ".archive"), os.ModePerm)
 			if err != nil && os.IsNotExist(err) {
 				return "", err
 			}
 
-			src := path.Join(meshplaydbPath, "meshplaydb.sql")
-			dst := path.Join(meshplaydbPath, ".archive/meshplaydb.sql")
+			src := path.Join(mesherydbPath, "mesherydb.sql")
+			dst := path.Join(mesherydbPath, ".archive/mesherydb.sql")
 
 			fin, err := os.Open(src)
 			if err != nil {
@@ -66,26 +68,20 @@ func (r *Resolver) resyncCluster(ctx context.Context, provider models.Provider, 
 			defer dbHandler.Unlock()
 
 			r.Log.Info("Dropping Meshplay Database")
-			err = dbHandler.Migrator().DropTable(
-				&meshsyncmodel.KubernetesKeyValue{},
-				&meshsyncmodel.KubernetesResource{},
-				&meshsyncmodel.KubernetesResourceSpec{},
-				&meshsyncmodel.KubernetesResourceStatus{},
-				&meshsyncmodel.KubernetesResourceObjectMeta{},
-				&models.PerformanceProfile{},
-				&models.MeshplayResult{},
-				&models.MeshplayPattern{},
-				&models.MeshplayFilter{},
-				&models.PatternResource{},
-				&models.MeshplayApplication{},
-				&models.UserPreference{},
-				&models.PerformanceTestConfig{},
-				&models.SmiResultWithID{},
-				models.K8sContext{},
-			)
+			tables, err := dbHandler.Migrator().GetTables()
 			if err != nil {
-				r.Log.Error(err)
+				r.Log.Error(ErrGormDatabase(err))
 				return "", err
+			}
+
+			for _, table := range tables {
+				if table == "events" {
+					continue
+				}
+				if err := dbHandler.Migrator().DropTable(table); err != nil {
+					r.Log.Error(ErrGormDatabase(err))
+					return "", err
+				}
 			}
 
 			r.Log.Info("Migrating Meshplay Database")
@@ -104,7 +100,16 @@ func (r *Resolver) resyncCluster(ctx context.Context, provider models.Provider, 
 				&models.UserPreference{},
 				&models.PerformanceTestConfig{},
 				&models.SmiResultWithID{},
-				models.K8sContext{},
+				&models.K8sContext{},
+
+				// Registries
+				&registry.Registry{},
+				&registry.Host{},
+				&v1alpha1.ComponentDefinitionDB{},
+				&v1alpha1.RelationshipDefinitionDB{},
+				&v1alpha1.PolicyDefinitionDB{},
+				&v1alpha1.ModelDB{},
+				&v1alpha1.CategoryDB{},
 			)
 			if err != nil {
 				r.Log.Error(err)
@@ -210,7 +215,7 @@ func (r *Resolver) connectToBroker(ctx context.Context, provider models.Provider
 		r.Log.Error(ErrNilClient)
 		return ErrNilClient
 	}
-	if (r.BrokerConn.IsEmpty() || newContextFound) && status != nil && status.Status == model.StatusEnabled {
+	if (r.BrokerConn.IsEmpty() || newContextFound) && status != nil && status.Status == model.MeshplayControllerStatus(model.StatusEnabled) {
 		endpoint, err := model.SubscribeToBroker(provider, kubeclient, r.brokerChannel, r.BrokerConn, connectionTrackerSingleton)
 		if err != nil {
 			r.Log.Error(ErrAddonSubscription(err))

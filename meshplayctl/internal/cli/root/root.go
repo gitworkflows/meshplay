@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/app"
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
+	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/experimental"
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/filter"
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/mesh"
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/pattern"
@@ -46,18 +47,19 @@ var (
 var RootCmd = &cobra.Command{
 	Use:   "meshplayctl",
 	Short: "Meshplay Command Line tool",
-	Long:  `As a self-service engineering platform, Meshplay enables collaborative design and operation of cloud native infrastructure.`,
+	Long: `As a self-service engineering platform, Meshplay enables collaborative design and operation of cloud native infrastructure.
+Find more information at: https://docs.khulnasoft.com/reference/meshplayctl#command-reference`,
 	Example: `
-// Base command
+// Base command:
 meshplayctl
 
-// Display help about command/subcommand
+// Display help about command/subcommand:
 meshplayctl --help
 meshplayctl system start --help
 
-// For viewing verbose output
+// For viewing verbose output:
 meshplayctl -v [or] --verbose
-	`,
+`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
 			return cmd.Help()
@@ -108,7 +110,7 @@ func init() {
 		perf.PerfCmd,
 		mesh.MeshCmd,
 		app.AppCmd,
-		// experimental.ExpCmd,
+		experimental.ExpCmd,
 		filter.FilterCmd,
 	}
 
@@ -150,7 +152,7 @@ func initConfig() {
 				}
 			}
 
-			// Create config file if not present in meshplay folder
+			// Create config file if not present in meshery folder
 			err = utils.CreateConfigFile()
 			if err != nil {
 				log.Fatal(err)

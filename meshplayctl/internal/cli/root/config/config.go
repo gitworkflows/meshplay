@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ type Token struct {
 	Location string `yaml:"location" mapstructure:"location"`
 }
 
-// Context defines a meshplay environment
+// Context defines a meshery environment
 type Context struct {
 	Endpoint   string   `yaml:"endpoint,omitempty" mapstructure:"endpoint,omitempty"`
 	Token      string   `yaml:"token,omitempty" mapstructure:"token,omitempty"`
@@ -105,7 +105,7 @@ func (mc *MeshplayCtlConfig) CheckIfGivenContextIsValid(name string) (*Context, 
 	return &Context{}, errors.New("context " + name + " does not exist")
 }
 
-// GetBaseMeshplayURL returns the base meshplay server URL
+// GetBaseMeshplayURL returns the base meshery server URL
 func (mc *MeshplayCtlConfig) GetBaseMeshplayURL() string {
 	currentContext, err := mc.CheckIfCurrentContextIsValid()
 	if err != nil {
@@ -313,13 +313,13 @@ func (t *Token) GetLocation() string {
 	}
 
 	// If file path is not absolute, then assume that the file
-	// is in the .meshplay directory
+	// is in the .meshery directory
 	home, err := os.UserHomeDir()
 	if err != nil {
 		log.Warn("failed to get user home directory")
 	}
 
-	return filepath.Join(home, ".meshplay", t.Location)
+	return filepath.Join(home, ".meshery", t.Location)
 }
 
 // SetName sets the token name

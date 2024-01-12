@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 		if err != nil {
 			return errors.New(utils.FilterListError("error reading token\nUse 'meshplayctl filter list --help' to display usage guide\n" + err.Error()))
 		}
-		provider := tokenObj["meshplay-provider"]
+		provider := tokenObj["meshery-provider"]
 		var data [][]string
 
 		if verbose {
@@ -113,7 +113,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 			return nil
 		}
 
-		// Check if meshplay provider is set
+		// Check if meshery provider is set
 		if provider == "None" {
 			for _, v := range response.Filters {
 				FilterName := strings.Trim(v.Name, filepath.Ext(v.Name))

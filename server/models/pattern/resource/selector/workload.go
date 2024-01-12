@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 )
 
 func (s *Selector) Workload(name string, version string, model string, apiVersion string) (v1alpha1.ComponentDefinition, error) {

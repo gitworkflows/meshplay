@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 )
 
 // Data is the struct that will be passed on each stage

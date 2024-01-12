@@ -3,8 +3,8 @@ package stages
 import (
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshplay/server/models/pattern/core"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
-	"github.com/khulnasoft/meshplay/meshkit/models/oam/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/models/oam/core/v1alpha1"
 )
 
 type ServiceInfoProvider interface {

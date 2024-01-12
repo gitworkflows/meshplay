@@ -4,7 +4,7 @@ contexts:
     token: default
     platform: docker
     components:
-      - meshplay-istio
+      - meshery-istio
     channel: stable
     version: v0.5.10
 current-context: local
@@ -13,4 +13,4 @@ tokens:
   - name: default
     location: auth.json
   - name: default2
-    location: ~/.meshplay/auth.json
+    location: ~/.meshery/auth.json

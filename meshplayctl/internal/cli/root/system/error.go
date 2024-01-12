@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrHealthCheckFailedCode             = "1133"
@@ -59,13 +59,13 @@ const (
 
 var (
 	cmdType     string
-	contextdocs string = "See https://docs.meshplay.khulnasoft.com/reference/meshplayctl/system/context for usage details."
-	contextDir  string = "see that you have a correct context in your  meshconfig at `$HOME/.meshplay/config.yaml`."
+	contextdocs string = "See https://docs.khulnasoft.com/reference/meshplayctl/system/context for usage details."
+	contextDir  string = "see that you have a correct context in your  meshconfig at `$HOME/.meshery/config.yaml`."
 )
 
 // A Format reference that returns Meshplayctl's URL docs for system command and sub commands
 func FormatErrorReference() string {
-	baseURL := "https://docs.meshplay.khulnasoft.com/reference/meshplayctl/system"
+	baseURL := "https://docs.khulnasoft.com/reference/meshplayctl/system"
 	switch cmdType {
 	case "channel":
 		return fmt.Sprintf("\nSee %s for usage details\n", baseURL+"/channel")
@@ -179,7 +179,7 @@ func ErrSettingTemporaryContext(err error) error {
 }
 
 func ErrCreateManifestsFolder(err error) error {
-	return errors.New(ErrCreateManifestsFolderCode, errors.Alert, []string{"Error creating manifest folder"}, []string{err.Error()}, []string{"system error in creating manifest folder"}, []string{"Make sure manifest folder (.meshplay/manifests) is created properly"})
+	return errors.New(ErrCreateManifestsFolderCode, errors.Alert, []string{"Error creating manifest folder"}, []string{err.Error()}, []string{"system error in creating manifest folder"}, []string{"Make sure manifest folder (.meshery/manifests) is created properly"})
 }
 
 func ErrRestartMeshplay(err error) error {
@@ -187,11 +187,11 @@ func ErrRestartMeshplay(err error) error {
 }
 
 func ErrK8sConfig(err error) error {
-	return errors.New(ErrK8sConfigCode, errors.Alert, []string{"The Kubernetes cluster is not accessible."}, []string{err.Error(), "\nThe Kubernetes cluster is not accessible", " Please confirm that the cluster is running", " See https://docs.meshplay.khulnasoft.com/installation/quick-start for additional instructions."}, []string{"Kubernetes cluster isn't running or inaccessible"}, []string{"Verify kubernetes and Meshplay connectivity or Verify kubeconfig certificates."})
+	return errors.New(ErrK8sConfigCode, errors.Alert, []string{"The Kubernetes cluster is not accessible."}, []string{err.Error(), "\nThe Kubernetes cluster is not accessible", " Please confirm that the cluster is running", " See https://docs.khulnasoft.com/installation/quick-start for additional instructions."}, []string{"Kubernetes cluster isn't running or inaccessible"}, []string{"Verify kubernetes and Meshplay connectivity or Verify kubeconfig certificates."})
 }
 
 func ErrK8SQuery(err error) error {
-	return errors.New(ErrK8sQueryCode, errors.Alert, []string{"The Kubernetes cluster is not accessible."}, []string{err.Error(), "\nThe Kubernetes cluster is not accessible", " Please confirm that the token is valid", " See https://docs.meshplay.khulnasoft.com/installation/quick-start for additional instructions"}, []string{"Kubernetes cluster is unavailable and that the token is invalid"}, []string{"Please confirm that your cluster is available and that the token is valid. See https://docs.meshplay.khulnasoft.com/installation/quick-start for additional instructions"})
+	return errors.New(ErrK8sQueryCode, errors.Alert, []string{"The Kubernetes cluster is not accessible."}, []string{err.Error(), "\nThe Kubernetes cluster is not accessible", " Please confirm that the token is valid", " See https://docs.khulnasoft.com/installation/quick-start for additional instructions"}, []string{"Kubernetes cluster is unavailable and that the token is invalid"}, []string{"Please confirm that your cluster is available and that the token is valid. See https://docs.khulnasoft.com/installation/quick-start for additional instructions"})
 }
 
 func ErrInitPortForward(err error) error {

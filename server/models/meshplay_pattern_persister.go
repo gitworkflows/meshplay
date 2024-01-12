@@ -7,7 +7,9 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
+	"gorm.io/gorm"
+
+	"github.com/khulnasoft/meshkit/database"
 )
 
 // MeshplayPatternPersister is the persister for persisting
@@ -26,8 +28,8 @@ type MeshplayPatternPage struct {
 
 // GetMeshplayPatterns returns all of the 'private' patterns. Though private has no meaning here since there is only
 // one local user. We make this distinction to be consistent with the remote provider
-func (mpp *MeshplayPatternPersister) GetMeshplayPatterns(search, order string, page, pageSize uint64, updatedAfter string) ([]byte, error) {
-	order = sanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
+func (mpp *MeshplayPatternPersister) GetMeshplayPatterns(search, order string, page, pageSize uint64, updatedAfter string, visibility []string) ([]byte, error) {
+	order = SanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
 
 	if order == "" {
 		order = "updated_at desc"
@@ -35,31 +37,35 @@ func (mpp *MeshplayPatternPersister) GetMeshplayPatterns(search, order string, p
 
 	count := int64(0)
 	patterns := []*MeshplayPattern{}
-	query := mpp.DB.Where("visibility = ?", Private).Where("updated_at > ?", updatedAfter).Order(order)
+	var query *gorm.DB
+	if len(visibility) == 0 {
+		query = mpp.DB.Where("visibility in (?)", visibility)
+	}
+	query = query.Where("updated_at > ?", updatedAfter).Order(order)
 
 	if search != "" {
 		like := "%" + strings.ToLower(search) + "%"
-		query = query.Where("(lower(meshplay_patterns.name) like ?)", like)
+		query = query.Where("(lower(meshery_patterns.name) like ?)", like)
 	}
 
-	query.Table("meshplay_patterns").Count(&count)
+	query.Table("meshery_patterns").Count(&count)
 
 	Paginate(uint(page), uint(pageSize))(query).Find(&patterns)
 
-	meshplayPatternPage := &MeshplayPatternPage{
+	mesheryPatternPage := &MeshplayPatternPage{
 		Page:       page,
 		PageSize:   pageSize,
 		TotalCount: int(count),
 		Patterns:   patterns,
 	}
 
-	return marshalMeshplayPatternPage(meshplayPatternPage), nil
+	return marshalMeshplayPatternPage(mesheryPatternPage), nil
 }
 
 // GetMeshplayCatalogPatterns returns all of the published patterns
 func (mpp *MeshplayPatternPersister) GetMeshplayCatalogPatterns(page, pageSize, search, order string) ([]byte, error) {
 	var err error
-	order = sanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
+	order = SanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
 
 	if order == "" {
 		order = "updated_at desc"
@@ -94,7 +100,7 @@ func (mpp *MeshplayPatternPersister) GetMeshplayCatalogPatterns(page, pageSize, 
 
 	if search != "" {
 		like := "%" + strings.ToLower(search) + "%"
-		query = query.Where("(lower(meshplay_patterns.name) like ?)", like)
+		query = query.Where("(lower(meshery_patterns.name) like ?)", like)
 	}
 
 	var count int64
@@ -121,12 +127,12 @@ func (mpp *MeshplayPatternPersister) GetMeshplayCatalogPatterns(page, pageSize, 
 	return marshalledResponse, nil
 }
 
-// CloneMeshplayPattern clones meshplay pattern to private
+// CloneMeshplayPattern clones meshery pattern to private
 func (mpp *MeshplayPatternPersister) CloneMeshplayPattern(patternID string, clonePatternRequest *MeshplayClonePatternRequestBody) ([]byte, error) {
-	var meshplayPattern MeshplayPattern
+	var mesheryPattern MeshplayPattern
 	patternUUID, _ := uuid.FromString(patternID)
-	err := mpp.DB.First(&meshplayPattern, patternUUID).Error
-	if err != nil || *meshplayPattern.ID == uuid.Nil {
+	err := mpp.DB.First(&mesheryPattern, patternUUID).Error
+	if err != nil || *mesheryPattern.ID == uuid.Nil {
 		return nil, fmt.Errorf("unable to get design: %w", err)
 	}
 
@@ -135,11 +141,11 @@ func (mpp *MeshplayPatternPersister) CloneMeshplayPattern(patternID string, clon
 		return nil, err
 	}
 
-	meshplayPattern.Visibility = Private
-	meshplayPattern.ID = &id
-	meshplayPattern.Name = clonePatternRequest.Name
+	mesheryPattern.Visibility = Private
+	mesheryPattern.ID = &id
+	mesheryPattern.Name = clonePatternRequest.Name
 
-	return mpp.SaveMeshplayPattern(&meshplayPattern)
+	return mpp.SaveMeshplayPattern(&mesheryPattern)
 }
 
 // DeleteMeshplayPattern takes in a profile id and delete it if it already exists
@@ -150,7 +156,7 @@ func (mpp *MeshplayPatternPersister) DeleteMeshplayPattern(id uuid.UUID) ([]byte
 	return marshalMeshplayPattern(&pattern), nil
 }
 
-// DeleteMeshplayPatterns takes in a meshplay-patterns and delete those if exist
+// DeleteMeshplayPatterns takes in a meshery-patterns and delete those if exist
 func (mpp *MeshplayPatternPersister) DeleteMeshplayPatterns(patterns MeshplayPatternDeleteRequestBody) ([]byte, error) {
 	var deletedMaptterns []MeshplayPattern
 	for _, pObj := range patterns.Patterns {
@@ -204,10 +210,16 @@ func (mpp *MeshplayPatternPersister) SaveMeshplayPatterns(patterns []MeshplayPat
 }
 
 func (mpp *MeshplayPatternPersister) GetMeshplayPattern(id uuid.UUID) ([]byte, error) {
-	var meshplayPattern MeshplayPattern
+	var mesheryPattern MeshplayPattern
 
-	err := mpp.DB.First(&meshplayPattern, id).Error
-	return marshalMeshplayPattern(&meshplayPattern), err
+	err := mpp.DB.First(&mesheryPattern, id).Error
+	return marshalMeshplayPattern(&mesheryPattern), err
+}
+
+func (mpp *MeshplayPatternPersister) GetMeshplayPatternSource(id uuid.UUID) ([]byte, error) {
+	var mesheryPattern MeshplayPattern
+	err := mpp.DB.First(&mesheryPattern, id).Error
+	return mesheryPattern.SourceContent, err
 }
 
 func marshalMeshplayPatternPage(mpp *MeshplayPatternPage) []byte {

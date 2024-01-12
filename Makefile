@@ -24,39 +24,41 @@ include install/Makefile.show-help.mk
 docker-build:
 	# `make docker-build` builds Meshplay inside of a multi-stage Docker container.
 	# This method does NOT require that you have Go, NPM, etc. installed locally.
-	DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile -t khulnasoft/meshplay --build-arg TOKEN=$(GLOBAL_TOKEN) --build-arg GIT_COMMITSHA=$(GIT_COMMITSHA) --build-arg GIT_VERSION=$(GIT_VERSION) --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} .
+	DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile -t layer5/meshery --build-arg TOKEN=$(GLOBAL_TOKEN) --build-arg GIT_COMMITSHA=$(GIT_COMMITSHA) --build-arg GIT_VERSION=$(GIT_VERSION) --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} .
 
 ## Build Meshplay Server and UI container in Playground mode. 
 docker-playground-build:
 	# `make docker-playground-build` builds Meshplay inside of a multi-stage Docker container.
 	# This method does NOT require that you have Go, NPM, etc. installed locally.
-	DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile -t khulnasoft/meshplay --build-arg TOKEN=$(GLOBAL_TOKEN) --build-arg GIT_COMMITSHA=$(GIT_COMMITSHA) --build-arg GIT_VERSION=$(GIT_VERSION) --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} --build-arg PROVIDER=$(LOCAL_PROVIDER) --build-arg PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) .
+	DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile -t layer5/meshery --build-arg TOKEN=$(GLOBAL_TOKEN) --build-arg GIT_COMMITSHA=$(GIT_COMMITSHA) --build-arg GIT_VERSION=$(GIT_VERSION) --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} --build-arg PROVIDER=$(LOCAL_PROVIDER) --build-arg PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) .
 
 ## Meshplay Cloud for user authentication.
 ## Runs Meshplay in a container locally and points to locally-running
 docker-local-cloud:
 
-	(docker rm -f meshplay) || true
-	docker run --name meshplay -d \
-	--link meshplay-cloud:meshplay-cloud \
+	(docker rm -f meshery) || true
+	docker run --name meshery -d \
+	--link meshery-cloud:meshery-cloud \
 	-e PROVIDER_BASE_URLS=$(REMOTE_PROVIDER_LOCAL) \
 	-e DEBUG=true \
 	-e ADAPTER_URLS=$(ADAPTER_URLS) \
+	-e KEYS_PATH=$(KEYS_PATH) \
 	-p 9081:8080 \
-	khulnasoft/meshplay ./meshplay
+	layer5/meshery ./meshery
 
 ## Runs Meshplay in a container locally and points to remote
 ## Remote Provider for user authentication.
 docker-cloud:
-	(docker rm -f meshplay) || true
-	docker run --name meshplay -d \
-	-e PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	(docker rm -f meshery) || true
+	docker run --name meshery -d \
+	-e PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	-e DEBUG=true \
 	-e ADAPTER_URLS=$(ADAPTER_URLS) \
-	-v meshplay-config:/home/appuser/.meshplay/config \
+	-e KEYS_PATH=$(KEYS_PATH) \
+	-v meshery-config:/home/appuser/.meshery/config \
   -v $(HOME)/.kube:/home/appuser/.kube:ro \
 	-p 9081:8080 \
-	khulnasoft/meshplay ./meshplay
+	layer5/meshery ./meshery
 
 #-----------------------------------------------------------------------------
 # Meshplay Server Native Builds
@@ -65,11 +67,11 @@ docker-cloud:
 ## Setup wrk2 for local development.
 wrk2-setup:
 	echo "setup-wrk does not work on Mac Catalina at the moment"
-	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay.git; cd meshplay/wrk2; make; cd ..
+	cd server; cd cmd; git clone https://github.com/layer5io/wrk2.git; cd wrk2; make; cd ..
 
 ## Setup nighthawk for local development.
 nighthawk-setup: dep-check
-	cd server; cd cmd; git clone https://github.com/khulnasoft/meshplay.git; cd meshplay/getnighthawk; make setup; cd ..
+	cd server; cd cmd; git clone https://github.com/layer5io/nighthawk-go.git; cd nighthawk-go; make setup; cd ..
 
 run-local: server-local error
 
@@ -84,17 +86,19 @@ server-local: dep-check
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go
 
 ## Build Meshplay Server on your local machine.
 build-server: dep-check
 	cd server; cd cmd; go mod tidy; cd "../.."
 	BUILD="$(GIT_VERSION)" \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go build ./server/cmd/main.go ./server/cmd/error.go
 	chmod +x ./main
 
@@ -102,11 +106,12 @@ build-server: dep-check
 server: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 ## Build and run Meshplay Server on your local machine.
@@ -114,24 +119,26 @@ server: dep-check
 server-without-operator: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DISABLE_OPERATOR=true \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 ## Build and run Meshplay Server with no Kubernetes components on your local machine.
 server-skip-compgen:
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
  	SKIP_COMP_GEN=true \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 	
 ## Build and run Meshplay Server on your local machine.
@@ -140,57 +147,62 @@ server-without-k8s: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
 	REGISTER_STATIC_K8S=false \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 server-remote-provider: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
 	PROVIDER=$(REMOTE_PROVIDER) \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 server-local-provider: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
 	PROVIDER=$(LOCAL_PROVIDER) \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_DEV) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_DEV) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 ## Build and run Meshplay Server with no seed content.
 server-no-content:
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
 	SKIP_DOWNLOAD_CONTENT=true \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 server-playground: dep-check
 	cd server; cd cmd; go mod tidy; \
 	BUILD="$(GIT_VERSION)" \
 	PROVIDER=$(REMOTE_PROVIDER) \
-	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
+	PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	PORT=9081 \
 	DEBUG=true \
 	ADAPTER_URLS=$(ADAPTER_URLS) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
 	PLAYGROUND=true \
+	KEYS_PATH=$(KEYS_PATH) \
 	go run main.go error.go;
 
 ## Lint check Meshplay Server.
@@ -208,19 +220,19 @@ proto-build:
 
 ## Analyze error codes
 error: dep-check
-	go run github.com/khulnasoft/meshplay/meshkit/cmd/errorutil -d . analyze -i ./server/helpers -o ./server/helpers --skip-dirs meshplayctl
+	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . analyze -i ./server/helpers -o ./server/helpers --skip-dirs meshplayctl
 
-## Runs meshkit error utility to update error codes for meshplay server only.
+## Runs meshkit error utility to update error codes for meshery server only.
 server-error-util:
-	go run github.com/khulnasoft/meshplay/meshkit/cmd/errorutil -d . --skip-dirs meshplayctl update -i ./server/helpers/ -o ./server/helpers
+	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . --skip-dirs meshplayctl update -i ./server/helpers/ -o ./server/helpers
 
 ## Build Meshplay UI; Build and run Meshplay Server on your local machine.
-ui-server: ui-meshplay-build ui-provider-build server
+ui-server: ui-meshery-build ui-provider-build server
 
 #-----------------------------------------------------------------------------
 # Meshplay UI Native Builds.
 #-----------------------------------------------------------------------------
-.PHONY: ui-setup ui ui-meshplay-build ui-provider ui-lint ui-provider ui-meshplay ui-build ui-provider-build ui-provider-test
+.PHONY: ui-setup ui ui-meshery-build ui-provider ui-lint ui-provider ui-meshery ui-build ui-provider-build ui-provider-test
 
 UI_BUILD_SCRIPT = build16
 UI_DEV_SCRIPT = dev16
@@ -267,7 +279,7 @@ ui-build:
 	cd provider-ui; npm run build && npm run export; cd ..
 
 ## Build only Meshplay UI on your local machine.
-ui-meshplay-build:
+ui-meshery-build:
 	cd ui; npm run build && npm run export; cd ..
 
 ## Builds only the provider user interface on your local machine
@@ -289,7 +301,7 @@ site: docs
 
 ## Run Meshplay Docs. Listen for changes.
 docs:
-	cd docs; bundle install; bundle exec jekyll serve --drafts --livereload --config _config_dev.yml
+	cd docs; bundle install; bundle exec jekyll serve --drafts --incremental --config _config_dev.yml
 
 ## Build Meshplay Docs on your local machine.
 docs-build:
@@ -297,7 +309,7 @@ docs-build:
 
 ## Run Meshplay Docs in a Docker container. Listen for changes.
 docs-docker:
-	cd docs; docker run --name meshplay-docs --rm -p 4000:4000 -v `pwd`:"/srv/jekyll" jekyll/jekyll:4.0.0 bash -c "bundle install; jekyll serve --drafts --livereload"
+	cd docs; docker run --name meshery-docs --rm -p 4000:4000 -v `pwd`:"/srv/jekyll" jekyll/jekyll:4.0.0 bash -c "bundle install; jekyll serve --drafts --livereload"
 
 ## Build Meshplay CLI docs
 docs-meshplayctl:
@@ -305,29 +317,29 @@ docs-meshplayctl:
 #-----------------------------------------------------------------------------
 # Meshplay Helm Charts
 #-----------------------------------------------------------------------------
-.PHONY: helm-docs helm-operator-docs helm-meshplay-docs helm-operator-lint helm-lint
+.PHONY: helm-docs helm-operator-docs helm-meshery-docs helm-operator-lint helm-lint
 ## Generate all Meshplay Helm Chart documentation in markdown format.
-helm-docs: helm-operator-docs helm-meshplay-docs
+helm-docs: helm-operator-docs helm-meshery-docs
 
 ## Generate Meshplay Operator Helm Chart documentation in markdown format.
 helm-operator-docs: dep-check
 	GO111MODULE=on go get github.com/norwoodj/helm-docs/cmd/helm-docs
-	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshplay-operator
+	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshery-operator
 
 ## Generate Meshplay Server and Adapters Helm Chart documentation in markdown format.
-helm-meshplay-docs: dep-check
+helm-meshery-docs: dep-check
 	GO111MODULE=on go get github.com/norwoodj/helm-docs/cmd/helm-docs
-	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshplay
+	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshery
 
 ## Lint all of Meshplay's Helm Charts
-helm-lint: helm-operator-lint helm-meshplay-lint
+helm-lint: helm-operator-lint helm-meshery-lint
 
 ## Lint Meshplay Operator Helm Chart
 helm-operator-lint:
-	helm lint install/kubernetes/helm/meshplay-operator --with-subcharts
+	helm lint install/kubernetes/helm/meshery-operator --with-subcharts
 ## Lint Meshplay Server and Adapter Helm Charts
-helm-meshplay-lint:
-	helm lint install/kubernetes/helm/meshplay --with-subcharts
+helm-meshery-lint:
+	helm lint install/kubernetes/helm/meshery --with-subcharts
 
 #-----------------------------------------------------------------------------
 # Meshplay APIs

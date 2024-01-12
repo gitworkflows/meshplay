@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 var (
 	ErrFailRequestCode        = "1163"
@@ -128,6 +128,19 @@ func SystemProviderSubError(msg string, cmd string) string {
 	}
 }
 
+// SystemProviderSubError returns a formatted error message with a link to `provider` command usage page
+// in addition to the error message
+func SystemModelSubError(msg string, cmd string) string {
+	switch cmd {
+	case "list":
+		return formatError(msg, cmdModelList)
+	case "view":
+		return formatError(msg, cmdModelView)
+	default:
+		return formatError(msg, cmdModel)
+	}
+}
+
 // MeshError returns a formatted error message with a link to 'mesh' command usage page in addition to the error message
 func MeshError(msg string) string {
 	return formatError(msg, cmdMesh)
@@ -183,7 +196,7 @@ func AppViewError(msg string) string {
 	return formatError(msg, cmdAppView)
 }
 
-// formatError returns a formatted error message with a link to the meshplay command URL
+// formatError returns a formatted error message with a link to the meshery command URL
 func formatError(msg string, cmd cmdType) string {
 	switch cmd {
 	case cmdRoot:
@@ -254,6 +267,12 @@ func formatError(msg string, cmd cmdType) string {
 		return fmt.Sprintf("%s\nSee %s for usage details\n", msg, providerUsageURL)
 	case cmdToken:
 		return fmt.Sprintf("%s\nSee %s for usage details\n", msg, tokenUsageURL)
+	case cmdModel:
+		return fmt.Sprintf("%s\nSee %s for usage details\n", msg, modelUsageURL)
+	case cmdModelList:
+		return fmt.Sprintf("%s\nSee %s for usage details\n", msg, modelListURL)
+	case cmdModelView:
+		return fmt.Sprintf("%s\nSee %s for usage details\n", msg, modelViewURL)
 	default:
 		return fmt.Sprintf("%s\n", msg)
 	}
@@ -431,7 +450,7 @@ func ErrLoadConfig(err error) error {
 		[]string{"Error processing config"},
 		[]string{"Error processing config:" + err.Error()},
 		[]string{"Unable to load meshconfig due to wrong configurations"},
-		[]string{"Ensure your `config.yaml` file in your `.meshplay` is valid, or run `meshplayctl system config`."})
+		[]string{"Ensure your `config.yaml` file in your `.meshery` is valid, or run `meshplayctl system config`."})
 }
 
 func ErrParseGithubFile(err error, URL string) error {

@@ -1,12 +1,12 @@
 describe('Visit Meshplay', () => {
-  it('Visits meshplay', () => {
+  it('Visits meshery', () => {
     cy.selectProviderNone();
     cy.visit('/');
   });
 });
 
 describe('Visit Meshplay settings', () => {
-  it('Visits meshplay settings page', () => {
+  it('Visits meshery settings page', () => {
     cy.selectProviderNone();
     cy.visit('/settings');
   });

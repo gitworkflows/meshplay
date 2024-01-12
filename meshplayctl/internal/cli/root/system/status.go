@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
-	meshkitkube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	meshkitkube "github.com/khulnasoft/meshkit/utils/kubernetes"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -120,7 +120,7 @@ meshplayctl system status --verbose
 
 			outputString := string(outputStd)
 
-			if strings.Contains(outputString, "meshplay") {
+			if strings.Contains(outputString, "meshery") {
 				log.Info(outputString)
 			}
 

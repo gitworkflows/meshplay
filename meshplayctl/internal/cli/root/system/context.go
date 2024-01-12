@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ var createContextCmd = &cobra.Command{
 meshplayctl system context create [context-name]
 
 // Create new context and provide list of components, platform & URL
-meshplayctl system context create context-name --components meshplay-nsm --platform docker --url http://localhost:9081 --set --yes
+meshplayctl system context create context-name --components meshery-nsm --platform docker --url http://localhost:9081 --set --yes
 	`,
 	Annotations: linkDocContextCreate,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -380,7 +380,7 @@ meshplayctl system context create `
 		if viper.GetString("current-context") == args[0] {
 			return errors.New("already using context '" + args[0] + "'")
 		}
-		//check if meshplay is running
+		//check if meshery is running
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
 			utils.Log.Error(err)
@@ -392,7 +392,7 @@ meshplayctl system context create `
 			return nil
 		}
 		isRunning, _ := utils.AreMeshplayComponentsRunning(currCtx.GetPlatform())
-		//if meshplay running stop meshplay before context switch
+		//if meshery running stop meshery before context switch
 		if isRunning {
 			if err := stop(); err != nil {
 				return errors.Wrap(err, utils.SystemError("Failed to stop Meshplay before switching context"))
@@ -431,7 +431,7 @@ meshplayctl system context
 		}
 
 		if ok := utils.IsValidSubcommand(availableSubcommands, args[0]); !ok {
-			return errors.New(utils.SystemContextSubError(fmt.Sprintf("'%s' is a invalid command. Include one of these arguments: [ create | delete | list | switch | view ]. Use 'meshplayctl system context --help' to display sample usage.\n", args[0]), "context"))
+			return errors.New(utils.SystemContextSubError(fmt.Sprintf("'%s' is an invalid command. Include one of these arguments: [ create | delete | list | switch | view ]. Use 'meshplayctl system context --help' to display sample usage.\n", args[0]), "context"))
 		}
 		return nil
 	},

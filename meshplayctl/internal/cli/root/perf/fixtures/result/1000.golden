@@ -11,7 +11,7 @@
         "fortio"
       ],
       "endpoints": [
-        "https://twitter.com/khulnasoft"
+        "https://twitter.com/layer5"
       ],
       "service_mesh": "consul",
       "concurrent_request": 10,

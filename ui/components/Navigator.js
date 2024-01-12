@@ -21,7 +21,6 @@ import HelpIcon from '@material-ui/icons/Help';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LifecycleIcon from '../public/static/img/drawer-icons/lifecycle_mgmt_svg';
 import PerformanceIcon from '../public/static/img/drawer-icons/performance_svg';
-import ApplicationIcon from '../public/static/img/drawer-icons/application_svg';
 import ExtensionIcon from '../public/static/img/drawer-icons/extensions_svg';
 import FilterIcon from '../public/static/img/drawer-icons/filter_svg';
 import PatternIcon from '../public/static/img/drawer-icons/pattern_svg';
@@ -59,7 +58,6 @@ import {
 } from '../css/disableComponent.styles';
 import { CapabilitiesRegistry } from '../utils/disabledComponents';
 import {
-  APPLICATION,
   DESIGN,
   CONFIGURATION,
   DASHBOARD,
@@ -69,8 +67,13 @@ import {
   PERFORMANCE,
   PROFILES,
   TOGGLER,
+  CONNECTION,
+  ENVIRONMENT,
+  WORKSPACE,
 } from '../constants/navigator';
 import { iconSmall } from '../css/icons.styles';
+import CAN from '@/utils/can';
+import { keys } from '@/utils/permission_constants';
 
 const styles = (theme) => ({
   root: {
@@ -339,7 +342,7 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
     title: 'Dashboard',
     show: capabilityRegistryObj.isNavigatorComponentEnabled([DASHBOARD]),
     link: true,
-    submenu: false,
+    submenu: true,
   },
   {
     id: LIFECYCLE,
@@ -347,24 +350,54 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
     hovericon: <LifecycleHover style={drawerIconsStyle} />,
     title: 'Lifecycle',
     link: true,
-    href: '/management',
+    href: '/management/connections',
     show: capabilityRegistryObj.isNavigatorComponentEnabled([LIFECYCLE]),
     submenu: true,
     children: [
-      // {
-      //   id : CONNECTION,
-      //   href : "/management/connections",
-      //   title : "Connections",
-      //   show : capabilityRegistryObj.isNavigatorComponentEnabled([LIFECYCLE, CONNECTION]),
-      //   link : true,
-      // },
+      {
+        id: CONNECTION,
+        href: '/management/connections',
+        title: 'Connections',
+        show: capabilityRegistryObj.isNavigatorComponentEnabled([LIFECYCLE, CONNECTION]),
+        link: true,
+        permission: {
+          action: keys.VIEW_CONNECTIONS.action,
+          subject: keys.VIEW_CONNECTIONS.subject,
+        },
+      },
+      {
+        id: ENVIRONMENT,
+        href: '/management/environments',
+        title: 'Environments',
+        show: capabilityRegistryObj.isNavigatorComponentEnabled([LIFECYCLE, ENVIRONMENT]),
+        link: true,
+        permission: {
+          action: keys.VIEW_ENVIRONMENTS.action,
+          subject: keys.VIEW_ENVIRONMENTS.subject,
+        },
+      },
+      {
+        id: WORKSPACE,
+        href: '/management/workspaces',
+        title: 'Workspaces',
+        show: capabilityRegistryObj.isNavigatorComponentEnabled([LIFECYCLE, WORKSPACE]),
+        link: true,
+        permission: {
+          action: keys.VIEW_WORKSPACE.action,
+          subject: keys.VIEW_WORKSPACE.subject,
+        },
+      },
       {
         id: SERVICE_MESH,
-        href: '/management',
+        href: '/management/service-mesh',
         title: 'Service Mesh',
         link: true,
         icon: <ServiceMeshIcon style={{ ...drawerIconsStyle }} />,
         show: true,
+        permission: {
+          action: keys.VIEW_SERVICE_MESH.action,
+          subject: keys.VIEW_SERVICE_MESH.subject,
+        },
       },
     ],
   },
@@ -372,21 +405,12 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
     id: CONFIGURATION,
     icon: <ConfigurationIcon {...drawerIconsStyle} />,
     hovericon: <ConfigurationHover style={drawerIconsStyle} />,
-    href: '/configuration/applications',
+    href: '/configuration/designs',
     title: 'Configuration',
     show: capabilityRegistryObj.isNavigatorComponentEnabled([CONFIGURATION]),
     link: true,
     submenu: true,
     children: [
-      {
-        id: APPLICATION,
-        icon: <ApplicationIcon style={{ ...drawerIconsStyle }} />,
-        href: '/configuration/applications',
-        title: 'Applications',
-        show: capabilityRegistryObj.isNavigatorComponentEnabled([CONFIGURATION, APPLICATION]),
-        link: true,
-        isBeta: true,
-      },
       {
         id: FILTER,
         icon: <FilterIcon style={{ ...drawerIconsStyle }} />,
@@ -395,6 +419,10 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
         show: capabilityRegistryObj.isNavigatorComponentEnabled([CONFIGURATION, FILTER]),
         link: true,
         isBeta: true,
+        permission: {
+          action: keys.VIEW_FILTERS.action,
+          subject: keys.VIEW_FILTERS.subject,
+        },
       },
       {
         id: DESIGN,
@@ -404,6 +432,10 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
         show: capabilityRegistryObj.isNavigatorComponentEnabled([CONFIGURATION, DESIGN]),
         link: true,
         isBeta: true,
+        permission: {
+          action: keys.VIEW_DESIGNS.action,
+          subject: keys.VIEW_DESIGNS.subject,
+        },
       },
     ],
   },
@@ -424,6 +456,10 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
         title: 'Profiles',
         show: capabilityRegistryObj.isNavigatorComponentEnabled([PERFORMANCE, PROFILES]),
         link: true,
+        permission: {
+          action: keys.VIEW_PERFORMANCE_PROFILES.action,
+          subject: keys.VIEW_PERFORMANCE_PROFILES.subject,
+        },
       },
     ],
   },
@@ -437,6 +473,10 @@ const getNavigatorComponents = (/** @type {CapabilitiesRegistry} */ capabilityRe
     link: true,
     href: '/extensions',
     submenu: false,
+    permission: {
+      action: keys.VIEW_EXTENSIONS.action,
+      subject: keys.VIEW_EXTENSIONS.subject,
+    },
   },
 ];
 
@@ -447,14 +487,14 @@ const ExternalLinkIcon = (
 const externlinks = [
   {
     id: 'doc',
-    href: 'https://docs.meshplay.khulnasoft.com',
+    href: 'https://docs.khulnasoft.com',
     title: 'Documentation',
     icon: <DocumentIcon style={drawerIconsStyle} />,
     external_icon: ExternalLinkIcon,
   },
   {
     id: 'community',
-    href: 'https://slack.meshplay.khulnasoft.com',
+    href: 'https://slack.khulnasoft.com',
     title: 'Community',
     icon: (
       <SlackIcon
@@ -465,7 +505,7 @@ const externlinks = [
   },
   {
     id: 'forum',
-    href: 'http://discuss.meshplay.khulnasoft.com',
+    href: 'http://discuss.khulnasoft.com',
     title: 'Discussion Forum',
     icon: <ChatIcon style={drawerIconsStyle} />,
     external_icon: ExternalLinkIcon,
@@ -515,6 +555,11 @@ class Navigator extends React.Component {
   componentId = 'navigator';
 
   componentDidMount() {
+    this.fetchCapabilities();
+    this.fetchVersionDetails();
+  }
+
+  fetchCapabilities() {
     dataFetch(
       '/api/provider/capabilities',
       {
@@ -524,7 +569,7 @@ class Navigator extends React.Component {
       (result) => {
         if (result) {
           const capabilitiesRegistryObj = new CapabilitiesRegistry(result);
-          const navigatorComponents = getNavigatorComponents(capabilitiesRegistryObj);
+          const navigatorComponents = this.createNavigatorComponents(capabilitiesRegistryObj);
 
           this.setState({
             navigator: ExtensionPointSchemaValidator('navigator')(result?.extensions?.navigator),
@@ -536,6 +581,9 @@ class Navigator extends React.Component {
       },
       (err) => console.error(err),
     );
+  }
+
+  fetchVersionDetails() {
     dataFetch(
       '/api/system/version',
       {
@@ -558,6 +606,10 @@ class Navigator extends React.Component {
       },
       (err) => console.error(err),
     );
+  }
+
+  createNavigatorComponents(capabilityRegistryObj) {
+    return getNavigatorComponents(capabilityRegistryObj);
   }
 
   /**
@@ -672,7 +724,7 @@ class Navigator extends React.Component {
         cat.children?.forEach((ch) => {
           if (ch.id === 'Designs') {
             const idx = self.props.capabilitiesRegistry?.capabilities?.findIndex(
-              (cap) => cap.feature === 'persist-meshplay-patterns',
+              (cap) => cap.feature === 'persist-meshery-patterns',
             );
             if (idx != -1) {
               ch.show = true;
@@ -769,7 +821,7 @@ class Navigator extends React.Component {
   pickIcon(aName, href) {
     aName = aName.toLowerCase();
     const { classes } = this.props;
-    let image = '/static/img/meshplay-logo.png';
+    let image = '/static/img/meshery-logo.png';
     let filter =
       window.location.pathname === href
         ? 'invert(50%) sepia(78%) saturate(2392%) hue-rotate(160deg) brightness(93%) contrast(101%)'
@@ -855,6 +907,7 @@ class Navigator extends React.Component {
               show: showc,
               link: linkc,
               children: childrenc,
+              permission: permissionc,
             }) => {
               if (typeof showc !== 'undefined' && !showc) {
                 return '';
@@ -871,6 +924,7 @@ class Navigator extends React.Component {
                       path === hrefc && classes.itemActiveItem,
                       isDrawerCollapsed && classes.noPadding,
                     )}
+                    disabled={permissionc ? !CAN(permissionc.action, permissionc.subject) : false}
                   >
                     {this.linkContent(iconc, titlec, hrefc, linkc, isDrawerCollapsed)}
                   </ListItem>
@@ -895,6 +949,7 @@ class Navigator extends React.Component {
                 show: showc,
                 link: linkc,
                 children: childrenc,
+                permission: permissionc,
               }) => {
                 if (typeof showc !== 'undefined' && !showc) {
                   return '';
@@ -914,6 +969,7 @@ class Navigator extends React.Component {
                         !showc && classes.disabled,
                       )}
                       onClick={() => this.handleAdapterClick(idc, linkc)}
+                      disabled={permissionc ? !CAN(permissionc.action, permissionc.subject) : false}
                     >
                       {this.linkContent(iconc, titlec, hrefc, linkc, isDrawerCollapsed)}
                     </ListItem>
@@ -971,8 +1027,8 @@ class Navigator extends React.Component {
   /**
    * getMeshplayVersionText returs a well formatted version text
    *
-   * If the meshplay is running latest version then and is using "edge" channel
-   * then it will just show "edge-latest". However, if the meshplay is on edge and
+   * If the meshery is running latest version then and is using "edge" channel
+   * then it will just show "edge-latest". However, if the meshery is on edge and
    * is running an outdated version then it will return "edge-$version".
    *
    * If on stable channel, then it will always show "stable-$version"
@@ -995,7 +1051,7 @@ class Navigator extends React.Component {
 
   /**
    * versionUpdateMsg returns the appropriate message
-   * based on the meshplay's current running version and latest available
+   * based on the meshery's current running version and latest available
    * version.
    *
    * @returns {React.ReactNode} react component to display
@@ -1008,7 +1064,7 @@ class Navigator extends React.Component {
         <span style={{ marginLeft: '15px' }}>
           {'Update available '}
           <a
-            href={`https://docs.meshplay.khulnasoft.com/project/releases/${latest}`}
+            href={`https://docs.khulnasoft.com/project/releases/${latest}`}
             target="_blank"
             rel="noreferrer"
             style={{ color: 'white' }}
@@ -1025,7 +1081,7 @@ class Navigator extends React.Component {
 
   /**
    * openReleaseNotesInNew returns the appropriate link to the release note
-   * based on the meshplay's current running channel and version.
+   * based on the meshery's current running channel and version.
    *
    * @returns {React.ReactNode} react component to display
    */
@@ -1035,7 +1091,7 @@ class Navigator extends React.Component {
     if (release_channel === 'edge')
       return (
         <a
-          href="https://docs.meshplay.khulnasoft.com/project/releases"
+          href="https://docs.khulnasoft.com/project/releases"
           target="_blank"
           rel="noreferrer"
           style={{ color: 'white' }}
@@ -1046,7 +1102,7 @@ class Navigator extends React.Component {
 
     return (
       <a
-        href={`https://docs.meshplay.khulnasoft.com/project/releases/${build}`}
+        href={`https://docs.khulnasoft.com/project/releases/${build}`}
         target="_blank"
         rel="noreferrer"
         style={{ color: 'white' }}
@@ -1083,12 +1139,12 @@ class Navigator extends React.Component {
         >
           <img
             className={isDrawerCollapsed ? classes.mainLogoCollapsed : classes.mainLogo}
-            src="/static/img/meshplay-logo.png"
+            src="/static/img/meshery-logo.png"
             onClick={this.handleTitleClick}
           />
           <img
             className={isDrawerCollapsed ? classes.mainLogoTextCollapsed : classes.mainLogoText}
-            src="/static/img/meshplay-logo-text.png"
+            src="/static/img/meshery-logo-text.png"
             onClick={this.handleTitleClick}
           />
 
@@ -1099,7 +1155,18 @@ class Navigator extends React.Component {
     const Menu = (
       <List disablePadding className={classes.hideScrollbar}>
         {navigatorComponents.map(
-          ({ id: childId, title, icon, href, show, link, children, hovericon, submenu }) => {
+          ({
+            id: childId,
+            title,
+            icon,
+            href,
+            show,
+            link,
+            children,
+            hovericon,
+            submenu,
+            permission,
+          }) => {
             // if (typeof show !== "undefined" && !show) {
             //   return "";
             // }
@@ -1124,6 +1191,7 @@ class Navigator extends React.Component {
                       ? this.setState({ hoveredId: false })
                       : null
                   }
+                  disabled={permission ? !CAN(permission.action, permission.subject) : false}
                 >
                   <Link href={link ? href : ''}>
                     <div data-cy={childId} className={classNames(classes.link)}>
@@ -1349,7 +1417,17 @@ const mapStateToProps = (state) => {
   const path = state.get('page').get('path');
   const isDrawerCollapsed = state.get('isDrawerCollapsed');
   const capabilitiesRegistry = state.get('capabilitiesRegistry');
-  return { meshAdapters, meshAdaptersts, path, isDrawerCollapsed, capabilitiesRegistry };
+  const organization = state.get('organization');
+  const keys = state.get('keys');
+  return {
+    meshAdapters,
+    meshAdaptersts,
+    path,
+    isDrawerCollapsed,
+    capabilitiesRegistry,
+    organization,
+    keys,
+  };
 };
 
 export default withStyles(styles)(

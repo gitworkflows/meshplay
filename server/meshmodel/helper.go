@@ -10,9 +10,9 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/helpers/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
 	"github.com/pkg/errors"
 )
 
@@ -33,8 +33,8 @@ func NewEntityRegistrationHelper(hc *models.HandlerConfig, rm *meshmodel.Registr
 	return &EntityRegistrationHelper{
 		handlerConfig:    hc,
 		regManager:       rm,
-		componentChan:    make(chan v1alpha1.ComponentDefinition, 1),
-		relationshipChan: make(chan v1alpha1.RelationshipDefinition, 1),
+		componentChan:    make(chan v1alpha1.ComponentDefinition),
+		relationshipChan: make(chan v1alpha1.RelationshipDefinition),
 		errorChan:        make(chan error),
 		log:              log,
 	}
@@ -73,7 +73,6 @@ func (erh *EntityRegistrationHelper) SeedComponents() {
 				case "relationships":
 					relationships = append(relationships, entityPath)
 				case "policies":
-					break
 				default:
 					erh.generateComponents(entityPath) // register components first
 				}

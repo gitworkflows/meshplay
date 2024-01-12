@@ -1,21 +1,39 @@
 /*
 Meshplay Component Updater
-Uses a spreadsheet of centralized information about MeshModel components and their metadata like color, icon, and so on. Script is used to update components metada (svgs, icons etc) for Meshplay, Websites (khulnasoft.com, Meshplay.io), and Remote Provider.
+Uses a spreadsheet of centralized information about MeshModel components and their metadata like color, icon, and so on. Script is used to update components metada (svgs, icons etc) for Meshplay, Websites (Layer5.io, Meshplay.io), and Remote Provider.
+
+Secret - this script expects that an environment variable `CRED` is available
+and it contains a token for Google Sheets API interactions.
+
+Example:
+	export CRED='{
+		"type": "service_account",
+		"project_id": "",
+		"private_key_id": "",
+		"private_key": "-----BEGIN PRIVATE KEY-----\nn-----END PRIVATE KEY-----\n",
+		"client_email": "",
+		"client_id": "",
+		"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+		"token_uri": "https://oauth2.googleapis.com/token",
+		"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+		"client_x509_cert_url": "",
+		"universe_domain": "googleapis.com"
+		}'
 
 Usage: (order of flags matters)
 
-    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in khulnasoft website] [relative path to docs in meshplay website] [--only-published]
+    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in layer5 website] [relative path to docs in meshery website] [--only-published]
 
 Examples:
 
-	1. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations meshplay.khulnasoft.com/integrations docs/ --published-only
+	1. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
 	2. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system remote-provider <remote-provider>/meshmodels/models <remote-provider>/ui/public/img/meshmodels
-	3. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel
+	3. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshery ../../server/meshmodel
 
 The flags are:
 
   --system
-        defined type of system to update. Can be one of "meshplay", "docs", or "remote-provider".
+        defined type of system to update. Can be one of "meshery", "docs", or "remote-provider".
 
 	--only-published
         Only handle components that have a value of "true" under the "Published?" column in spreadsheet.
@@ -33,13 +51,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/khulnasoft/component_scraper/pkg"
-	"github.com/khulnasoft/meshplay/meshkit/models/meshmodel/core/v1alpha1"
-	"github.com/khulnasoft/meshplay/meshkit/utils/manifests"
+	"github.com/layer5io/component_scraper/pkg"
+	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
+	"github.com/khulnasoft/meshkit/utils/manifests"
 )
 
 var (
-	ColumnNamesToExtract        = []string{"modelDisplayName", "model", "category", "subCategory", "shape", "primaryColor", "secondaryColor", "logoURL", "svgColor", "svgWhite", "Publish?", "CRDs", "component", "svgComplete", "genealogy", "styleOverrides"}
+	ColumnNamesToExtract        = []string{"modelDisplayName", "model", "category", "subCategory", "shape", "primaryColor", "secondaryColor", "logoURL", "svgColor", "svgWhite", "isAnnotation", "isModelAnnotation", "PublishToRegistry", "CRDs", "component", "svgComplete","capabilities", "genealogy", "styleOverrides", "capabilities"}
 	ColumnNamesToExtractForDocs = []string{"modelDisplayName", "Page Subtitle", "Docs URL", "category", "subCategory", "Feature 1", "Feature 2", "Feature 3", "howItWorks", "howItWorksDetails", "Publish?", "About Project", "Standard Blurb", "svgColor", "svgWhite", "Full Page", "model"}
 	PrimaryColumnName           = "model"
 	OutputPath                  = ""
@@ -104,7 +122,7 @@ func main() {
 	case pkg.Docs.String():
 		docsUpdater(output)
 	case pkg.Meshplay.String():
-		meshplayUpdater(output)
+		mesheryUpdater(output)
 	case pkg.RemoteProvider.String():
 		remoteProviderUpdater(output)
 	default:
@@ -150,7 +168,7 @@ func docsUpdater(output []map[string]string) {
 		log.Fatal("docsUpdater: invalid number of arguments; missing website and docs path")
 		return
 	}
-	pathToIntegrationsKhulnaSoft := os.Args[4]
+	pathToIntegrationsLayer5 := os.Args[4]
 	pathToIntegrationsMeshplay := os.Args[5]
 	pathToIntegrationsMeshplayDocs := os.Args[6]
 	updateOnlyPublished := true
@@ -160,7 +178,7 @@ func docsUpdater(output []map[string]string) {
 		}
 	}
 	output = cleanupDuplicatesAndPreferEmptyComponentField(output, "model")
-	meshplayDocsJSON := "const data = ["
+	mesheryDocsJSON := "const data = ["
 	for _, out := range output {
 		var t pkg.TemplateAttributes
 		publishValue, err := strconv.ParseBool(out["Publish?"])
@@ -209,34 +227,34 @@ func docsUpdater(output []map[string]string) {
 
 		md := t.CreateMarkDown()
 		jsonItem := t.CreateJSONItem()
-		meshplayDocsJSON += jsonItem + ","
+		mesheryDocsJSON += jsonItem + ","
 		modelName := strings.TrimSpace(out["model"])
-		pathToIntegrationsKhulnaSoft, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsKhulnaSoft, modelName))
+		pathToIntegrationsLayer5, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsLayer5, modelName))
 		pathToIntegrationsMeshplay, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsMeshplay))
 		pathToIntegrationsMeshplayDocs, _ := filepath.Abs(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "assets/img/meshmodel/", modelName))
-		err = os.MkdirAll(pathToIntegrationsKhulnaSoft, 0777)
+		err = os.MkdirAll(pathToIntegrationsLayer5, 0777)
 		if err != nil {
 			panic(err)
 		}
-		_ = pkg.WriteToFile(filepath.Join(pathToIntegrationsKhulnaSoft, "index.mdx"), md)
+		_ = pkg.WriteToFile(filepath.Join(pathToIntegrationsLayer5, "index.mdx"), md)
 		svgcolor := out["svgColor"]
 		svgwhite := out["svgWhite"]
 
-		// Write SVGs to KhulnaSoft docs
-		err = os.MkdirAll(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "color"), 0777)
+		// Write SVGs to Layer5 docs
+		err = os.MkdirAll(filepath.Join(pathToIntegrationsLayer5, "icon", "color"), 0777)
 		if err != nil {
 			panic(err)
 		}
 
-		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "color", modelName+"-color.svg"), svgcolor) //CHANGE PATH
+		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsLayer5, "icon", "color", modelName+"-color.svg"), svgcolor) //CHANGE PATH
 		if err != nil {
 			panic(err)
 		}
-		err = os.MkdirAll(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "white"), 0777)
+		err = os.MkdirAll(filepath.Join(pathToIntegrationsLayer5, "icon", "white"), 0777)
 		if err != nil {
 			panic(err)
 		}
-		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsKhulnaSoft, "icon", "white", modelName+"-white.svg"), svgwhite) //CHANGE PATH
+		err = pkg.WriteSVG(filepath.Join(pathToIntegrationsLayer5, "icon", "white", modelName+"-white.svg"), svgwhite) //CHANGE PATH
 		if err != nil {
 			panic(err)
 		}
@@ -274,25 +292,25 @@ func docsUpdater(output []map[string]string) {
 		}
 	}
 
-	meshplayDocsJSON = strings.TrimSuffix(meshplayDocsJSON, ",")
-	meshplayDocsJSON += "]; export default data"
-	if err := pkg.WriteToFile(filepath.Join("../../../", pathToIntegrationsMeshplay, "data.js"), meshplayDocsJSON); err != nil {
+	mesheryDocsJSON = strings.TrimSuffix(mesheryDocsJSON, ",")
+	mesheryDocsJSON += "]; export default data"
+	if err := pkg.WriteToFile(filepath.Join("../../../", pathToIntegrationsMeshplay, "data.js"), mesheryDocsJSON); err != nil {
 		log.Fatal(err)
 	}
 
-	if err := pkg.WriteToFile(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "_data/integrations/", "data.js"), meshplayDocsJSON); err != nil {
+	if err := pkg.WriteToFile(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "_data/integrations/", "data.js"), mesheryDocsJSON); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func meshplayUpdater(output []map[string]string) {
+func mesheryUpdater(output []map[string]string) {
 	if len(os.Args) < 5 {
-		log.Fatal("meshplayUpdater: invalid number of arguments; missing meshmodels path in meshplay server")
+		log.Fatal("mesheryUpdater: invalid number of arguments; missing meshmodels path in meshery server")
 		return
 	}
 	OutputPath = os.Args[4]
 	if OutputPath == "" {
-		OutputPath = "../../server/meshmodel" // default path for meshplay server
+		OutputPath = "../../server/meshmodel" // default path for meshery server
 	}
 	publishedModels := make(map[string]bool)
 	countWithoutCrds := 0
@@ -300,7 +318,7 @@ func meshplayUpdater(output []map[string]string) {
 		if changeFields["CRDs"] == "" {
 			countWithoutCrds++
 		}
-		if changeFields["Publish?"] == "TRUE" { //For a component level field
+		if changeFields["PublishToRegistry"] == "TRUE" { //For a component level field
 			publishedModels[changeFields[PrimaryColumnName]] = true
 		}
 		return nil
@@ -368,6 +386,15 @@ func meshplayUpdater(output []map[string]string) {
 							if changeFields["component"] != "" || component.Metadata[key] == nil { // If it is a component level SVG or component already doesn't have an SVG. Use this svg at component level.
 								component.Metadata[key] = svg
 							}
+						} else if key == "isModelAnnotation" && changeFields["component"] == "" {
+							if component.Model.Metadata == nil {
+								component.Model.Metadata = make(map[string]interface{})
+							}
+							if value == "TRUE" || value == "true" {
+								component.Model.Metadata["isAnnotation"] = true
+							} else {
+								component.Model.Metadata["isAnnotation"] = false
+							}
 						} else if contains(key, ColumnNamesToExtract) != -1 {
 							component.Metadata[key] = value
 						}
@@ -380,13 +407,20 @@ func meshplayUpdater(output []map[string]string) {
 						component.Metadata["isNamespaced"] = false
 					}
 					//Either component is set to published or the parent model is set to published
-					if component.Metadata["Publish?"] == "TRUE" || publishedModels[component.Model.Name] { //Publish? is an invalid field for putting inside kubernetes annotations
+					if component.Metadata["PublishToRegistry"] == "TRUE" || publishedModels[component.Model.Name] { //Publish? is an invalid field for putting inside kubernetes annotations
 						component.Metadata["published"] = true
 					} else {
 						component.Metadata["published"] = false
 					}
+					if component.Metadata["isAnnotation"] == "TRUE" {
+						component.Metadata["isAnnotation"] = true
+					} else {
+						component.Metadata["isAnnotation"] = false
+					}
+
 					fmt.Println("updating for ", changeFields["modelDisplayName"], "--", component.Kind, "-- published=", component.Metadata["published"])
 					delete(component.Metadata, "Publish?")
+					delete(component.Metadata, "PublishToRegistry")
 					delete(component.Metadata, "CRDs")
 					delete(component.Metadata, "component")
 					modelDisplayName := component.Metadata["modelDisplayName"].(string)

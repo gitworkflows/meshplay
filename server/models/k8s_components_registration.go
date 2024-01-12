@@ -2,16 +2,22 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io"
+	"os"
+	"path/filepath"
 	"sync"
 
 	"github.com/gofrs/uuid"
 
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/models/events"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
 	"github.com/spf13/viper"
 )
+
+const k8sMeshModelPath = "../meshmodel/kubernetes/model_template.json"
 
 type RegistrationStatus int
 
@@ -20,6 +26,8 @@ const (
 	NotRegistered
 	Registering
 )
+
+var K8sMeshModelMetadata = make(map[string]interface{})
 
 // INstead define a set of actions
 func (rs RegistrationStatus) String() string {
@@ -112,7 +120,7 @@ func (cg *ComponentsRegistrationHelper) RegisterComponents(ctxs []*K8sContext, r
 				cg.ctxRegStatusMap[ctxID] = RegistrationComplete
 				cg.mx.Unlock()
 
-				cg.log.Info(ctxName, " components for contextID:", ctxID, " registered")
+				cg.log.Info("components registered for context ", ctxName, " ID:", ctxID)
 			}()
 
 			// start registration
@@ -130,4 +138,22 @@ func (cg *ComponentsRegistrationHelper) RegisterComponents(ctxs []*K8sContext, r
 			}
 		}(ctx)
 	}
+}
+
+// Caches k8sMeshModel metadatas in memory to use at the time of dynamic k8s component generation
+func init() {
+	f, err := os.Open(filepath.Join(k8sMeshModelPath))
+	if err != nil {
+		return
+	}
+	byt, err := io.ReadAll(f)
+	if err != nil {
+		return
+	}
+	m := make(map[string]interface{})
+	err = json.Unmarshal(byt, &m)
+	if err != nil {
+		return
+	}
+	K8sMeshModelMetadata = m
 }

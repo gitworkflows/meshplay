@@ -8,24 +8,24 @@ import (
 	"strings"
 	"time"
 
-	operatorv1alpha1 "github.com/khulnasoft/meshplay/meshplay-operator/api/v1alpha1"
-	operatorClient "github.com/khulnasoft/meshplay/meshplay-operator/pkg/client"
+	operatorv1alpha1 "github.com/khulnasoft/meshplay-operator/api/v1alpha1"
+	operatorClient "github.com/khulnasoft/meshplay-operator/pkg/client"
 	"github.com/khulnasoft/meshplay/server/models"
-	brokerpkg "github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/broker/nats"
-	"github.com/khulnasoft/meshplay/meshkit/models/controllers"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	brokerpkg "github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/broker/nats"
+	"github.com/khulnasoft/meshkit/models/controllers"
+	"github.com/khulnasoft/meshkit/utils"
+	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/sirupsen/logrus"
 	kubeerror "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 const (
-	Namespace                = "meshplay"
-	RequestSubject           = "meshplay.meshsync.request"
-	MeshsyncSubject          = "meshplay.meshsync.core"
-	BrokerQueue              = "meshplay"
+	Namespace                = "meshery"
+	RequestSubject           = "meshery.meshsync.request"
+	MeshsyncSubject          = "meshery.meshsync.core"
+	BrokerQueue              = "meshery"
 	MeshSyncBrokerConnection = "meshsync"
 )
 
@@ -41,7 +41,7 @@ type connection struct {
 	Name string `json:"name"`
 }
 
-func Initialize(client *meshplaykube.Client, delete bool, adapterTracker models.AdaptersTrackerInterface) error {
+func Initialize(client *mesherykube.Client, delete bool, adapterTracker models.AdaptersTrackerInterface) error {
 	// installOperator
 	err := installUsingHelm(client, delete, adapterTracker)
 	if err != nil {
@@ -51,12 +51,12 @@ func Initialize(client *meshplaykube.Client, delete bool, adapterTracker models.
 	return nil
 }
 
-func GetOperator(kubeclient *meshplaykube.Client) (string, string, error) {
+func GetOperator(kubeclient *mesherykube.Client) (string, string, error) {
 	if kubeclient == nil || kubeclient.KubeClient == nil {
 		return "", "", ErrMeshplayClientNil
 	}
 
-	dep, err := kubeclient.KubeClient.AppsV1().Deployments("meshplay").Get(context.TODO(), "meshplay-operator", metav1.GetOptions{})
+	dep, err := kubeclient.KubeClient.AppsV1().Deployments("meshery").Get(context.TODO(), "meshery-operator", metav1.GetOptions{})
 	if err != nil && !kubeerror.IsNotFound(err) {
 		return "", "", ErrMeshplayClient(err)
 	}
@@ -73,36 +73,29 @@ func GetOperator(kubeclient *meshplaykube.Client) (string, string, error) {
 	return dep.ObjectMeta.Name, version, nil
 }
 
-func GetControllersInfo(meshplayKubeClient *meshplaykube.Client, brokerConn brokerpkg.Handler) ([]*OperatorControllerStatus, error) {
+func GetControllersInfo(mesheryKubeClient *mesherykube.Client, brokerConn brokerpkg.Handler) ([]*OperatorControllerStatus, error) {
 	controllers := make([]*OperatorControllerStatus, 0)
 
-	meshplayclient, err := operatorClient.New(&meshplayKubeClient.RestConfig)
+	mesheryclient, err := operatorClient.New(&mesheryKubeClient.RestConfig)
 	if err != nil {
-		if meshplayclient == nil {
+		if mesheryclient == nil {
 			return controllers, ErrMeshplayClientNil
 		}
 		return controllers, ErrMeshplayClient(err)
 	}
 
-	broker, err := GetBrokerInfo(meshplayclient, meshplayKubeClient, brokerConn)
-	if err != nil {
-		return controllers, err
-	}
+	broker := GetBrokerInfo(mesheryKubeClient)
 
 	controllers = append(controllers, &broker)
 
-	meshsync, err := GetMeshSyncInfo(meshplayclient, meshplayKubeClient)
-	if err != nil {
-		return controllers, err
-	}
-
+	meshsync := GetMeshSyncInfo(mesheryKubeClient, nil)
 	controllers = append(controllers, &meshsync)
 
 	return controllers, nil
 }
 
-func GetBrokerInfo(_ operatorClient.Interface, meshplayKubeClient *meshplaykube.Client, _ brokerpkg.Handler) (OperatorControllerStatus, error) {
-	broker := controllers.NewMeshplayBrokerHandler(meshplayKubeClient)
+func GetBrokerInfo(mesheryKubeClient *mesherykube.Client) OperatorControllerStatus {
+	broker := controllers.NewMeshplayBrokerHandler(mesheryKubeClient)
 	brokerStatus := broker.GetStatus().String()
 
 	if brokerStatus == controllers.Connected.String() {
@@ -116,14 +109,15 @@ func GetBrokerInfo(_ operatorClient.Interface, meshplayKubeClient *meshplaykube.
 
 	brokerControllerStatus.Version, _ = broker.GetVersion()
 
-	return brokerControllerStatus, nil
+	return brokerControllerStatus
 }
 
-func GetMeshSyncInfo(_ operatorClient.Interface, meshplayKubeClient *meshplaykube.Client) (OperatorControllerStatus, error) {
-	meshsync := controllers.NewMeshsyncHandler(meshplayKubeClient)
+func GetMeshSyncInfo(mesheryKubeClient *mesherykube.Client, broker controllers.IMeshplayController) OperatorControllerStatus {
+	meshsync := controllers.NewMeshsyncHandler(mesheryKubeClient)
 	meshsyncStatus := meshsync.GetStatus().String()
-
-	broker := controllers.NewMeshplayBrokerHandler(meshplayKubeClient)
+	if broker == nil {
+		broker = controllers.NewMeshplayBrokerHandler(mesheryKubeClient)
+	}
 
 	if meshsyncStatus == controllers.Connected.String() {
 		brokerEndpoint, _ := broker.GetPublicEndpoint()
@@ -136,18 +130,18 @@ func GetMeshSyncInfo(_ operatorClient.Interface, meshplayKubeClient *meshplaykub
 		Status:  Status(meshsyncStatus),
 	}
 
-	return meshsyncControllerStatus, nil
+	return meshsyncControllerStatus
 }
 
-func SubscribeToBroker(_ models.Provider, meshplayKubeClient *meshplaykube.Client, datach chan *brokerpkg.Message, brokerConn brokerpkg.Handler, ct *K8sConnectionTracker) (string, error) {
+func SubscribeToBroker(_ models.Provider, mesheryKubeClient *mesherykube.Client, datach chan *brokerpkg.Message, brokerConn brokerpkg.Handler, ct *K8sConnectionTracker) (string, error) {
 	var broker *operatorv1alpha1.Broker
 	var endpoints []string
 	if ct != nil {
 		endpoints = ct.ListBrokerEndpoints()
 	}
-	meshplayclient, err := operatorClient.New(&meshplayKubeClient.RestConfig)
+	mesheryclient, err := operatorClient.New(&mesheryKubeClient.RestConfig)
 	if err != nil {
-		if meshplayclient == nil {
+		if mesheryclient == nil {
 			return "", ErrMeshplayClientNil
 		}
 		return "", ErrMeshplayClient(err)
@@ -155,7 +149,7 @@ func SubscribeToBroker(_ models.Provider, meshplayKubeClient *meshplaykube.Clien
 
 	timeout := 60
 	for timeout > 0 {
-		broker, err = meshplayclient.CoreV1Alpha1().Brokers(Namespace).Get(context.Background(), "meshplay-broker", metav1.GetOptions{})
+		broker, err = mesheryclient.CoreV1Alpha1().Brokers(Namespace).Get(context.Background(), "meshery-broker", metav1.GetOptions{})
 		if err == nil && broker.Status.Endpoint.External != "" {
 			break
 		}
@@ -181,7 +175,7 @@ func SubscribeToBroker(_ models.Provider, meshplayKubeClient *meshplaykube.Clien
 					Address: "host.docker.internal",
 					Port:    int32(port),
 				}, nil) {
-					u, _ := url.Parse(meshplayKubeClient.RestConfig.Host)
+					u, _ := url.Parse(mesheryKubeClient.RestConfig.Host)
 					if utils.TcpCheck(&utils.HostPort{
 						Address: u.Hostname(),
 						Port:    int32(port),
@@ -198,7 +192,7 @@ func SubscribeToBroker(_ models.Provider, meshplayKubeClient *meshplaykube.Clien
 	// subscribing to nats
 	conn, err := nats.New(nats.Options{
 		URLS:           endpoints,
-		ConnectionName: "meshplay",
+		ConnectionName: "meshery",
 		Username:       "",
 		Password:       "",
 		ReconnectWait:  2 * time.Second,
@@ -242,7 +236,7 @@ func SubscribeToBroker(_ models.Provider, meshplayKubeClient *meshplaykube.Clien
 func getVersion(brokerConn brokerpkg.Handler) {
 	versionch := make(chan *brokerpkg.Message)
 
-	err := brokerConn.SubscribeWithChannel("meshsync-meta", "meshplay", versionch) // what is this queue used for now just using "meshplay"
+	err := brokerConn.SubscribeWithChannel("meshsync-meta", "meshery", versionch) // what is this queue used for now just using "meshery"
 
 	if err != nil {
 		logrus.Error(err.Error())

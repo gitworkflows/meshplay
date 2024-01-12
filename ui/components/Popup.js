@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
-import { meshplayExtensionRoute } from '../pages/_app';
+import { mesheryExtensionRoute } from '../pages/_app';
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -21,7 +21,7 @@ const styles = makeStyles((theme) => ({
     ['@media (max-width: 455px)']: {
       width: '100%',
     },
-    zIndex: 5,
+    zIndex: 1201,
   },
   grid: {
     width: '100%',
@@ -57,6 +57,7 @@ const styles = makeStyles((theme) => ({
   headerWrapper: {
     marginBottom: 12,
     display: 'flex',
+    justifyContent: 'space-between',
   },
 }));
 
@@ -123,9 +124,9 @@ export function MeshMapEarlyAccessCard({
 
   const handleButtonClick = (e) => {
     if (buttonText === signUpText) {
-      window.open('https://khulnasoft.com/meshmap', '_blank');
+      window.open('https://layer5.io/meshmap', '_blank');
     } else {
-      push(meshplayExtensionRoute);
+      push(mesheryExtensionRoute);
     }
     e.stopPropagation();
   };

@@ -19,12 +19,14 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	"github.com/khulnasoft/meshplay/meshkit/utils/walker"
-	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	"github.com/khulnasoft/meshplay/server/models/connections"
+	"github.com/khulnasoft/meshplay/server/models/environments"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/utils"
+	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	"github.com/khulnasoft/meshkit/utils/walker"
+	SMP "github.com/layer5io/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
@@ -45,8 +47,12 @@ type DefaultLocalProvider struct {
 	MeshplayApplicationPersister     *MeshplayApplicationPersister
 	MeshplayFilterPersister          *MeshplayFilterPersister
 	MeshplayK8sContextPersister      *MeshplayK8sContextPersister
-	GenericPersister                *database.Handler
-	KubeClient                      *meshplaykube.Client
+	OrganizationPersister           *OrganizationPersister
+	KeyPersister                    *KeyPersister
+
+	GenericPersister *database.Handler
+	KubeClient       *mesherykube.Client
+	Log              logger.Handler
 }
 
 // Initialize will initialize the local provider
@@ -111,7 +117,7 @@ func (l *DefaultLocalProvider) InitiateLogin(_ http.ResponseWriter, _ *http.Requ
 
 func (l *DefaultLocalProvider) fetchUserDetails() *User {
 	return &User{
-		UserID:    "meshplay",
+		UserID:    "meshery",
 		FirstName: "Meshplay",
 		LastName:  "Meshplay",
 		AvatarURL: "",
@@ -131,11 +137,11 @@ func (l *DefaultLocalProvider) GetUsers(_, _, _, _, _, _ string) ([]byte, error)
 	return []byte(""), ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) GetEnvironments(_, _, _, _, _, _ string) ([]byte, error) {
+func (l *DefaultLocalProvider) GetEnvironments(_, _, _, _, _, _, _ string) ([]byte, error) {
 	return []byte(""), ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) GetEnvironmentByID(_ *http.Request, _ string) ([]byte, error) {
+func (l *DefaultLocalProvider) GetEnvironmentByID(_ *http.Request, _, _ string) ([]byte, error) {
 	return []byte(""), ErrLocalProviderSupport
 }
 
@@ -143,11 +149,11 @@ func (l *DefaultLocalProvider) DeleteEnvironment(_ *http.Request, _ string) ([]b
 	return []byte(""), ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) SaveEnvironment(_ *http.Request, _ *EnvironmentPayload, _ string, _ bool) error {
-	return ErrLocalProviderSupport
+func (l *DefaultLocalProvider) SaveEnvironment(_ *http.Request, _ *environments.EnvironmentPayload, _ string, _ bool) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) UpdateEnvironment(_ *http.Request, _ *EnvironmentPayload, _ string) (*EnvironmentData, error) {
+func (l *DefaultLocalProvider) UpdateEnvironment(_ *http.Request, _ *environments.EnvironmentPayload, _ string) (*environments.EnvironmentData, error) {
 	return nil, ErrLocalProviderSupport
 }
 
@@ -159,7 +165,7 @@ func (l *DefaultLocalProvider) RemoveConnectionFromEnvironment(_ *http.Request, 
 	return []byte(""), ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) GetUsersKeys(_, _, _, _, _, _ string) ([]byte, error) {
+func (l *DefaultLocalProvider) GetConnectionsOfEnvironment(_ *http.Request, _, _, _, _, _, _ string) ([]byte, error) {
 	return []byte(""), ErrLocalProviderSupport
 }
 
@@ -183,11 +189,11 @@ func (l *DefaultLocalProvider) HandleUnAuthenticated(w http.ResponseWriter, req 
 	http.Redirect(w, req, "/user/login", http.StatusFound)
 }
 
-func (l *DefaultLocalProvider) SaveK8sContext(_ string, k8sContext K8sContext) (K8sContext, error) {
+func (l *DefaultLocalProvider) SaveK8sContext(_ string, k8sContext K8sContext) (connections.Connection, error) {
 	return l.MeshplayK8sContextPersister.SaveMeshplayK8sContext(k8sContext)
 }
 
-func (l *DefaultLocalProvider) GetK8sContexts(_, page, pageSize, search, order string, withCredentials bool) ([]byte, error) {
+func (l *DefaultLocalProvider) GetK8sContexts(_, page, pageSize, search, order string, withStatus string, withCredentials bool) ([]byte, error) {
 	if page == "" {
 		page = "0"
 	}
@@ -222,7 +228,7 @@ func (l *DefaultLocalProvider) LoadAllK8sContext(token string) ([]*K8sContext, e
 	results := []*K8sContext{}
 
 	for {
-		res, err := l.GetK8sContexts(token, strconv.Itoa(page), strconv.Itoa(pageSize), "", "", true)
+		res, err := l.GetK8sContexts(token, strconv.Itoa(page), strconv.Itoa(pageSize), "", "", string(connections.CONNECTED), true)
 		if err != nil {
 			return results, err
 		}
@@ -315,7 +321,7 @@ func (l *DefaultLocalProvider) PublishResults(req *http.Request, result *Meshpla
 	result.PerformanceProfile = &profileUUID
 	data, err := json.Marshal(result)
 	if err != nil {
-		return "", ErrMarshal(err, "meshplay result for shipping")
+		return "", ErrMarshal(err, "meshery result for shipping")
 	}
 	user, _ := l.GetUserDetails(req)
 	pref, _ := l.ReadFromPersister(user.UserID)
@@ -466,10 +472,10 @@ func (l *DefaultLocalProvider) TokenHandler(_ http.ResponseWriter, _ *http.Reque
 // ExtractToken - Returns the auth token and the provider type
 func (l *DefaultLocalProvider) ExtractToken(w http.ResponseWriter, _ *http.Request) {
 	resp := map[string]interface{}{
-		"meshplay-provider": l.Name(),
+		"meshery-provider": l.Name(),
 		tokenName:          "",
 	}
-	logrus.Debugf("token sent for meshplay-provider %v", l.Name())
+	logrus.Debugf("token sent for meshery-provider %v", l.Name())
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		logrus.Errorf("Unable to extract auth details: %v", err)
 		http.Error(w, "unable to extract auth details", http.StatusInternalServerError)
@@ -519,6 +525,11 @@ func (l *DefaultLocalProvider) SMPTestConfigDelete(_ *http.Request, testUUID str
 		return ErrGenerateUUID(err)
 	}
 	return l.TestProfilesPersister.DeleteTestConfig(uid)
+}
+
+// SaveMeshplayPatternSourceContent nothing needs to be done as pattern is saved with source content for local provider
+func (l *DefaultLocalProvider) SaveMeshplayPatternSourceContent(_, _ string, _ []byte) error {
+	return nil
 }
 
 func (l *DefaultLocalProvider) SaveMeshplayPatternResource(_ string, resource *PatternResource) (*PatternResource, error) {
@@ -574,7 +585,7 @@ func (l *DefaultLocalProvider) SaveMeshplayPattern(_ string, pattern *MeshplayPa
 }
 
 // GetMeshplayPatterns gives the patterns stored with the provider
-func (l *DefaultLocalProvider) GetMeshplayPatterns(_, page, pageSize, search, order string, updatedAfter string) ([]byte, error) {
+func (l *DefaultLocalProvider) GetMeshplayPatterns(_, page, pageSize, search, order, updatedAfter string, visibility []string) ([]byte, error) {
 	if page == "" {
 		page = "0"
 	}
@@ -591,7 +602,7 @@ func (l *DefaultLocalProvider) GetMeshplayPatterns(_, page, pageSize, search, or
 	if err != nil {
 		return nil, ErrPageSize(err)
 	}
-	return l.MeshplayPatternPersister.GetMeshplayPatterns(search, order, pg, pgs, updatedAfter)
+	return l.MeshplayPatternPersister.GetMeshplayPatterns(search, order, pg, pgs, updatedAfter, visibility)
 }
 
 // GetCatalogMeshplayPatterns gives the catalog patterns stored with the provider
@@ -615,20 +626,26 @@ func (l *DefaultLocalProvider) GetMeshplayPattern(_ *http.Request, patternID str
 	return l.MeshplayPatternPersister.GetMeshplayPattern(id)
 }
 
-// DeleteMeshplayPattern deletes a meshplay pattern with the given id
+// DeleteMeshplayPattern deletes a meshery pattern with the given id
 func (l *DefaultLocalProvider) DeleteMeshplayPattern(_ *http.Request, patternID string) ([]byte, error) {
 	id := uuid.FromStringOrNil(patternID)
 	return l.MeshplayPatternPersister.DeleteMeshplayPattern(id)
 }
 
-// DeleteMeshplayPattern deletes a meshplay pattern with the given id
+// DeleteMeshplayPattern deletes a meshery pattern with the given id
 func (l *DefaultLocalProvider) DeleteMeshplayPatterns(_ *http.Request, patterns MeshplayPatternDeleteRequestBody) ([]byte, error) {
 	return l.MeshplayPatternPersister.DeleteMeshplayPatterns(patterns)
 }
 
-// CloneMeshplayPattern clones a meshplay pattern with the given id
+// CloneMeshplayPattern clones a meshery pattern with the given id
 func (l *DefaultLocalProvider) CloneMeshplayPattern(_ *http.Request, patternID string, clonePatternRequest *MeshplayClonePatternRequestBody) ([]byte, error) {
 	return l.MeshplayPatternPersister.CloneMeshplayPattern(patternID, clonePatternRequest)
+}
+
+// GetDesignSourceContent returns design source-content from provider
+func (l *DefaultLocalProvider) GetDesignSourceContent(_ *http.Request, designID string) ([]byte, error) {
+	id := uuid.FromStringOrNil(designID)
+	return l.MeshplayPatternPersister.GetMeshplayPatternSource(id)
 }
 
 // RemotePatternFile takes in the
@@ -689,16 +706,12 @@ func (l *DefaultLocalProvider) SaveMeshplayFilter(_ string, filter *MeshplayFilt
 }
 
 // GetMeshplayFilters gives the filters stored with the provider
-func (l *DefaultLocalProvider) GetMeshplayFilters(_, page, pageSize, search, order string, visibility string) ([]byte, error) {
+func (l *DefaultLocalProvider) GetMeshplayFilters(_, page, pageSize, search, order string, visibility []string) ([]byte, error) {
 	if page == "" {
 		page = "0"
 	}
 	if pageSize == "" {
 		pageSize = "10"
-	}
-
-	if visibility == "" {
-		visibility = Public
 	}
 
 	pg, err := strconv.ParseUint(page, 10, 32)
@@ -741,13 +754,13 @@ func (l *DefaultLocalProvider) GetMeshplayFilter(_ *http.Request, filterID strin
 	return l.MeshplayFilterPersister.GetMeshplayFilter(id)
 }
 
-// DeleteMeshplayFilter deletes a meshplay filter with the given id
+// DeleteMeshplayFilter deletes a meshery filter with the given id
 func (l *DefaultLocalProvider) DeleteMeshplayFilter(_ *http.Request, filterID string) ([]byte, error) {
 	id := uuid.FromStringOrNil(filterID)
 	return l.MeshplayFilterPersister.DeleteMeshplayFilter(id)
 }
 
-// CloneMeshplayFilter clones a meshplay filter with the given id
+// CloneMeshplayFilter clones a meshery filter with the given id
 func (l *DefaultLocalProvider) CloneMeshplayFilter(_ *http.Request, filterID string, cloneFilterRequest *MeshplayCloneFilterRequestBody) ([]byte, error) {
 	return l.MeshplayFilterPersister.CloneMeshplayFilter(filterID, cloneFilterRequest)
 }
@@ -847,7 +860,7 @@ func (l *DefaultLocalProvider) GetMeshplayApplication(_ *http.Request, applicati
 	return l.MeshplayApplicationPersister.GetMeshplayApplication(id)
 }
 
-// DeleteMeshplayApplication deletes a meshplay application with the given id
+// DeleteMeshplayApplication deletes a meshery application with the given id
 func (l *DefaultLocalProvider) DeleteMeshplayApplication(_ *http.Request, applicationID string) ([]byte, error) {
 	id := uuid.FromStringOrNil(applicationID)
 	return l.MeshplayApplicationPersister.DeleteMeshplayApplication(id)
@@ -925,7 +938,7 @@ func (l *DefaultLocalProvider) GetPerformanceProfile(_ *http.Request, performanc
 	return profileJSON, nil
 }
 
-// DeletePerformanceProfile deletes a meshplay performance profile with the given id
+// DeletePerformanceProfile deletes a meshery performance profile with the given id
 func (l *DefaultLocalProvider) DeletePerformanceProfile(_ *http.Request, performanceProfileID string) ([]byte, error) {
 	uid, err := uuid.FromString(performanceProfileID)
 	if err != nil {
@@ -955,37 +968,42 @@ func (l *DefaultLocalProvider) DeleteSchedule(_ *http.Request, _ string) ([]byte
 	return []byte{}, ErrLocalProviderSupport
 }
 
-
-
 func (l *DefaultLocalProvider) ExtensionProxy(_ *http.Request) (*ExtensionProxyResponse, error) {
 	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) SaveConnection(_ *http.Request, _ *ConnectionPayload, _ string, _ bool) error {
-	return ErrLocalProviderSupport
+func (l *DefaultLocalProvider) SaveConnection(_ *ConnectionPayload, _ string, _ bool) (*connections.Connection, error) {
+	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) GetConnections(_ *http.Request, _ string, _, _ int, _, _ string) (*ConnectionPage, error) {
+func (l *DefaultLocalProvider) GetConnections(_ *http.Request, _ string, _, _ int, _, _ string, _ string, _ []string, _ []string) (*connections.ConnectionPage, error) {
 	return nil, ErrLocalProviderSupport
+}
+func (l *DefaultLocalProvider) GetConnectionByID(token string, connectionID uuid.UUID, kind string) (*connections.Connection, int, error) {
+	return nil, http.StatusForbidden, ErrLocalProviderSupport
 }
 
 func (l *DefaultLocalProvider) GetConnectionsByKind(_ *http.Request, _ string, _, _ int, _, _, _ string) (*map[string]interface{}, error) {
 	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) GetConnectionsStatus(_ *http.Request, _ string) (*ConnectionsStatusPage, error) {
+func (l *DefaultLocalProvider) GetConnectionsStatus(_ *http.Request, _ string) (*connections.ConnectionsStatusPage, error) {
 	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) UpdateConnection(_ *http.Request, _ *Connection) (*Connection, error) {
+func (l *DefaultLocalProvider) UpdateConnection(_ *http.Request, _ *connections.Connection) (*connections.Connection, error) {
 	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) UpdateConnectionById(_ *http.Request, _ *ConnectionPayload, _ string) (*Connection, error) {
+func (l *DefaultLocalProvider) UpdateConnectionStatusByID(token string, connectionID uuid.UUID, connectionStatus connections.ConnectionStatus) (*connections.Connection, int, error) {
+	return nil, http.StatusForbidden, ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) UpdateConnectionById(_ *http.Request, _ *ConnectionPayload, _ string) (*connections.Connection, error) {
 	return nil, ErrLocalProviderSupport
 }
 
-func (l *DefaultLocalProvider) DeleteConnection(_ *http.Request, _ uuid.UUID) (*Connection, error) {
+func (l *DefaultLocalProvider) DeleteConnection(_ *http.Request, _ uuid.UUID) (*connections.Connection, error) {
 	return nil, ErrLocalProviderSupport
 }
 
@@ -998,13 +1016,13 @@ func (l *DefaultLocalProvider) GetGenericPersister() *database.Handler {
 	return l.GenericPersister
 }
 
-// SetKubeClient - to set meshplay kubernetes client
-func (l *DefaultLocalProvider) SetKubeClient(client *meshplaykube.Client) {
+// SetKubeClient - to set meshery kubernetes client
+func (l *DefaultLocalProvider) SetKubeClient(client *mesherykube.Client) {
 	l.KubeClient = client
 }
 
-// GetKubeClient - to get meshplay kubernetes client
-func (l *DefaultLocalProvider) GetKubeClient() *meshplaykube.Client {
+// GetKubeClient - to get meshery kubernetes client
+func (l *DefaultLocalProvider) GetKubeClient() *mesherykube.Client {
 	return l.KubeClient
 }
 
@@ -1111,6 +1129,23 @@ func (l *DefaultLocalProvider) SeedContent(log logger.Handler) {
 			}
 		}(seedContent, log, &seededUUIDs)
 	}
+
+	// seed default organization
+	go func() {
+		id, _ := uuid.NewV4()
+		org := &Organization{
+			ID:          &id,
+			Name:        "My Org",
+			Country:     "",
+			Region:      "",
+			Description: "This is default organization",
+			Owner:       uuid.Nil,
+		}
+		_, err := l.OrganizationPersister.SaveOrganization(org)
+		if err != nil {
+			log.Error(ErrGettingSeededComponents(err, "organization"))
+		}
+	}()
 }
 func (l *DefaultLocalProvider) Cleanup() error {
 	if err := l.MeshplayK8sContextPersister.DB.Migrator().DropTable(&K8sContext{}); err != nil {
@@ -1122,15 +1157,24 @@ func (l *DefaultLocalProvider) Cleanup() error {
 	if err := l.MeshplayK8sContextPersister.DB.Migrator().DropTable(&MeshplayApplication{}); err != nil {
 		return err
 	}
+	
+	if err := l.KeyPersister.DB.Migrator().DropTable(&Key{}); err != nil {
+		return err
+	}
+
 	return l.MeshplayK8sContextPersister.DB.Migrator().DropTable(&MeshplayFilter{})
 }
 
-func (l *DefaultLocalProvider) SaveUserCredential(_ *http.Request, credential *Credential) error {
+func (l *DefaultLocalProvider) SaveUserCredential(token string, credential *Credential) (*Credential, error) {
 	result := l.GetGenericPersister().Table("credentials").Create(&credential)
 	if result.Error != nil {
-		return fmt.Errorf("error saving user credentials: %v", result.Error)
+		return nil, fmt.Errorf("error saving user credentials: %v", result.Error)
 	}
-	return nil
+	return nil, nil
+}
+
+func (l *DefaultLocalProvider) GetCredentialByID(token string, credentialID uuid.UUID) (*Credential, int, error) {
+	return nil, http.StatusForbidden, ErrLocalProviderSupport
 }
 
 func (l *DefaultLocalProvider) GetUserCredentials(_ *http.Request, userID string, page, pageSize int, search, order string) (*CredentialsPage, error) {
@@ -1193,6 +1237,104 @@ func (l *DefaultLocalProvider) DeleteUserCredential(_ *http.Request, credentialI
 		return nil, err
 	}
 	return delCredential, nil
+}
+
+// GetOrganizations returns the list of organizations
+func (l *DefaultLocalProvider) GetOrganizations(_, page, pageSize, search, order, updatedAfter string) ([]byte, error) {
+	if page == "" {
+		page = "0"
+	}
+	if pageSize == "" {
+		pageSize = "10"
+	}
+
+	pg, err := strconv.ParseUint(page, 10, 32)
+	if err != nil {
+		return nil, ErrPageNumber(err)
+	}
+
+	pgs, err := strconv.ParseUint(pageSize, 10, 32)
+	if err != nil {
+		return nil, ErrPageSize(err)
+	}
+
+	return l.OrganizationPersister.GetOrganizations(search, order, pg, pgs, updatedAfter)
+}
+
+// GetKeys returns the list of keys
+func (l *DefaultLocalProvider) GetUsersKeys(_, _, _, search, order, updatedAfter string, _ string) ([]byte, error) {
+	keys, err := l.KeyPersister.GetUsersKeys(search, order, updatedAfter)
+	if err != nil {
+		return nil, err
+	}
+	return keys, nil
+}
+
+// GetKey returns the key for the given keyID
+func (l *DefaultLocalProvider) GetUsersKey(_ *http.Request, keyID string) ([]byte, error) {
+	id := uuid.FromStringOrNil(keyID)
+	return l.KeyPersister.GetUsersKey(id)
+}
+
+// SaveKey saves the given key with the provider
+func (l *DefaultLocalProvider) SaveUsersKey(_ string, keys []*Key) ([]*Key, error) {
+	// fmt.Printf(keys)
+	return l.KeyPersister.SaveUsersKeys(keys)
+}
+
+func (l *DefaultLocalProvider) GetWorkspaces(_, _, _, _, _, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) GetWorkspaceByID(_ *http.Request, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) DeleteWorkspace(_ *http.Request, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) SaveWorkspace(_ *http.Request, _ *WorkspacePayload, _ string, _ bool) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) UpdateWorkspace(_ *http.Request, _ *WorkspacePayload, _ string) (*Workspace, error) {
+	return nil, ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) GetEnvironmentsOfWorkspace(_ *http.Request, _, _, _, _, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) AddEnvironmentToWorkspace(_ *http.Request, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) RemoveEnvironmentFromWorkspace(_ *http.Request, _ string, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) GetDesignsOfWorkspace(_ *http.Request, _, _, _, _, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) AddDesignToWorkspace(_ *http.Request, _, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+func (l *DefaultLocalProvider) RemoveDesignFromWorkspace(_ *http.Request, _ string, _ string) ([]byte, error) {
+	return []byte(""), ErrLocalProviderSupport
+}
+
+// GetOrganization returns the organization for the given organizationID
+func (l *DefaultLocalProvider) GetOrganization(_ *http.Request, organizationId string) ([]byte, error) {
+	id := uuid.FromStringOrNil(organizationId)
+	return l.OrganizationPersister.GetOrganzation(id)
+}
+
+// SaveOrganization saves given organization with the provider
+func (l *DefaultLocalProvider) SaveOrganization(_ string, organization *Organization) ([]byte, error) {
+	return l.OrganizationPersister.SaveOrganization(organization)
 }
 
 // githubRepoPatternScan & githubRepoFilterScan takes in github repo owner, repo name, path from where the file/files are needed
@@ -1368,11 +1510,11 @@ func getSeededComponents(comp string, log logger.Handler) ([]string, []string, e
 	wd := utils.GetHome()
 	switch comp {
 	case "Pattern":
-		wd = filepath.Join(wd, ".meshplay", "content", "patterns")
+		wd = filepath.Join(wd, ".meshery", "content", "patterns")
 	case "Filter":
-		wd = filepath.Join(wd, ".meshplay", "content", "filters", "binaries")
+		wd = filepath.Join(wd, ".meshery", "content", "filters", "binaries")
 	case "Application":
-		wd = filepath.Join(wd, ".meshplay", "content", "applications")
+		wd = filepath.Join(wd, ".meshery", "content", "applications")
 	}
 	_, err := os.Stat(wd)
 	if err != nil && !os.IsNotExist(err) {
@@ -1467,8 +1609,8 @@ func getFiltersFromWasmFiltersRepo(downloadPath string) error {
 	// if err != nil {
 	// 	return err
 	// }
-	//Temporary hardcoding until https://github.com/khulnasoft/wasm-filters/issues/38 is resolved
-	downloadURL := "https://github.com/khulnasoft/wasm-filters/releases/download/v0.1.0/wasm-filters-v0.1.0.tar.gz"
+	//Temporary hardcoding until https://github.com/layer5io/wasm-filters/issues/38 is resolved
+	downloadURL := "https://github.com/layer5io/wasm-filters/releases/download/v0.1.0/wasm-filters-v0.1.0.tar.gz"
 	res, err := http.Get(downloadURL)
 	if err != nil {
 		return err
@@ -1511,7 +1653,7 @@ func extractTarGz(gzipStream io.Reader, downloadPath string) error {
 
 // // GetLatestStableReleaseTag fetches and returns the latest release tag from GitHub
 // func getLatestStableReleaseTag() (string, error) {
-// 	url := "https://github.com/khulnasoft/wasm-filters/releases/latest"
+// 	url := "https://github.com/layer5io/wasm-filters/releases/latest"
 // 	resp, err := http.Get(url)
 // 	if err != nil {
 // 		return "", errors.New("failed to get latest stable release tag")

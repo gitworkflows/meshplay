@@ -1,5 +1,5 @@
 {
-  "icon": "meshplay-logo-light.svg",
+  "icon": "meshery-logo-light.svg",
   "vm": {
     "composefile": "docker-compose.yaml"
   },

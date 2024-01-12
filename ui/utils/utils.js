@@ -5,6 +5,7 @@ import { EVENT_TYPES } from './Enum';
 import _ from 'lodash';
 import { getWebAdress } from './webApis';
 import { APPLICATION, DESIGN, FILTER } from '../constants/navigator';
+import { Tooltip } from '@mui/material';
 
 /**
  * Check if an object is empty
@@ -77,10 +78,10 @@ export function scrollToTop(behavior = 'smooth') {
 }
 
 /**
- * Generates random Pattern Name with the prefix meshplay_
+ * Generates random Pattern Name with the prefix meshery_
  */
 export function randomPatternNameGenerator() {
-  return 'meshplay_' + Math.floor(trueRandom() * 100);
+  return 'meshery_' + Math.floor(trueRandom() * 100);
 }
 
 /**
@@ -197,7 +198,7 @@ export const modifyRJSFSchema = (schema, propertyPath, newValue) => {
 };
 
 /**
- * get sharable link with same and host and protocol, here until meshplay cloud interception
+ * get sharable link with same and host and protocol, here until meshery cloud interception
  * @param {Object.<string,string>} sharedResource
  * @returns {string}
  */
@@ -215,3 +216,143 @@ export function getSharableCommonHostAndprotocolLink(sharedResource) {
 
   return '';
 }
+
+/**
+ * Retrieves the value of a specified column from a row of data.
+ *
+ * @param {Array} rowData - The array representing the row of data.
+ * @param {string} columnName - The name of the column whose value you want to retrieve.
+ * @param {Array} columns - An array of column definitions.
+ * @returns {*} The value of the specified column in the row, or undefined if not found.
+ */
+
+export const getColumnValue = (rowData, columnName, columns) => {
+  const columnIndex = columns.findIndex((column) => column.name === columnName);
+  return rowData[columnIndex];
+};
+
+/**
+ * Filter the columns to show in visibility switch.
+ *
+ * @param {string} columns - Full list of columns name.
+ *
+ */
+
+export const getVisibilityColums = (columns) => {
+  return columns.filter((col) => col?.options?.display !== false);
+};
+
+export function JsonParse(item, safe = true) {
+  if (typeof item === 'string') {
+    try {
+      return JSON.parse(item || '{}');
+    } catch (e) {
+      if (safe) {
+        return {};
+      }
+      throw e;
+    }
+  }
+
+  return item;
+}
+
+export const ConditionalTooltip = ({ value, maxLength, ...restProps }) => {
+  return value?.length > maxLength ? (
+    <Tooltip title={value} arrow placement="top">
+      <div
+        style={{
+          maxWidth: '15rem',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        }}
+        {...restProps}
+      >
+        {`${value.slice(0, maxLength)}...`}
+      </div>
+    </Tooltip>
+  ) : (
+    <div
+      style={{
+        maxWidth: '15rem',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+      {...restProps}
+    >
+      {value}
+    </div>
+  );
+};
+
+/**
+ * Handle scroll event for infinite scrolling
+ *
+ * @param {string} scrollingView - The view identifier for which scrolling is handled
+ * @param {function} setPage - The function to set the page state
+ * @param {object} scrollRef - Reference to the scroll element
+ * @param {number} buffer - The buffer value for infinite scrolling
+ * @returns {function} - Scroll event handler function
+ */
+export const createScrollHandler = (scrollingView, setPage, scrollRef, buffer) => (event) => {
+  const div = event.target;
+  if (div.scrollTop >= div.scrollHeight - div.clientHeight - buffer) {
+    setPage((prevPage) => ({
+      ...prevPage,
+      [scrollingView]: prevPage[scrollingView] + 1,
+    }));
+  }
+
+  scrollRef.current = div.scrollTop;
+};
+
+/**
+ *
+ * Add underscore to camal case variable name.
+ *
+ * @param {string} value - An array of column definitions.
+ *
+ */
+
+export const camelcaseToSnakecase = (value) => {
+  return value?.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`);
+};
+
+export const formatToTitleCase = (value) => {
+  if (typeof value === 'string') {
+    return value.substring(0, 1).toUpperCase().concat('', value.substring(1).toLowerCase());
+  }
+  return '';
+};
+
+const cellStyle = {
+  boxSizing: 'border-box',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+};
+
+const customBodyRenderStyle = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  boxSizing: 'border-box',
+  display: 'block',
+  width: '120%',
+};
+
+export const ResizableCell = ({ value }) => (
+  <div style={{ position: 'relative', height: '20px' }}>
+    <div style={customBodyRenderStyle}>
+      <div style={cellStyle}>
+        <Tooltip title={value} placement="top-start">
+          <span style={{ cursor: 'pointer' }}>{value}</span>
+        </Tooltip>
+      </div>
+    </div>
+  </div>
+);

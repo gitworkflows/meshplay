@@ -1,14 +1,37 @@
+import { CONTROLLER_STATES } from '../../../utils/Enum';
+import fetchMeshplayOperatorStatus from '../../graphql/queries/OperatorStatusQuery';
+
 export const isMeshplayOperatorConnected = ({ operatorInstalled }) => operatorInstalled;
 
 /**
- * Pings meshplay operator
+ * Pings meshery operator
  * @param {() => Function} fetchMeshplayOperatorStatus - function with which
  * we can query using graphql
  * @param  {(res) => void} successHandler
  * @param  {(err) => void} errorHandler
  */
-export const pingMeshplayOperator = (fetchMeshplayOperatorStatus, successcb, errorcb) => {
-  fetchMeshplayOperatorStatus().subscribe({ next: successcb, error: errorcb });
+export const pingMeshplayOperator = (id, successcb, errorcb) => {
+  const subscription = fetchMeshplayOperatorStatus({
+    k8scontextID: id,
+  }).subscribe({
+    next: (data) => {
+      if (
+        data === null ||
+        data?.operator === null ||
+        data?.operator?.status === CONTROLLER_STATES.UNKOWN
+      ) {
+        errorcb();
+        subscription.unsubscribe();
+        return;
+      }
+      successcb();
+      subscription.unsubscribe();
+    },
+    error: () => {
+      errorcb();
+      subscription.unsubscribe();
+    },
+  });
 };
 
 /**
@@ -38,6 +61,10 @@ export const getOperatorStatusFromQueryResult = (res) => {
 
   if (res.operator?.status === 'ENABLED') {
     res.operator?.controllers?.forEach((controller) => {
+      operatorInformation = {
+        ...operatorInformation,
+        [controller.name]: controller,
+      };
       if (controller.name === 'broker' && controller.status === 'ENABLED') {
         operatorInformation = {
           ...operatorInformation,

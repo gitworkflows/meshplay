@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 package mesh
 
-import "github.com/khulnasoft/meshplay/meshkit/errors"
+import "github.com/khulnasoft/meshkit/errors"
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGettingSessionDataCode                = "1098"
@@ -45,7 +45,7 @@ var (
 		[]string{"Unable to validate adapter"},
 		[]string{"Adapter for required mesh not found"},
 		[]string{"Unable to fetch Mesh adapter, adapter not valid."},
-		[]string{"Deploy a proper Meshplay Adapter for your service mesh. See https://docs.meshplay.khulnasoft.com/concepts/architecture/adapters for list of adapters"})
+		[]string{"Deploy a proper Meshplay Adapter for your service mesh. See https://docs.khulnasoft.com/concepts/architecture/adapters for list of adapters"})
 
 	ErrFailedDeployingMesh = errors.New(ErrFailedDeployingMeshCode, errors.Fatal,
 		[]string{"Failed to deploy the service mesh"},
@@ -65,7 +65,7 @@ var (
 		[]string{"Network error or wrong environment configurations"},
 		[]string{"Ensure your have a strong connection and the right environment configuration"})
 
-	ErrSMIConformanceTestsFailed = errors.New(ErrSMIConformanceTestsFailedCode, errors.Fatal, []string{"SMI conformance tests failed"}, []string{"SMI conformance tests failed"}, []string{}, []string{"Join https://khulnasoft.slack.com/archives/C010H0HE2E6"})
+	ErrSMIConformanceTestsFailed = errors.New(ErrSMIConformanceTestsFailedCode, errors.Fatal, []string{"SMI conformance tests failed"}, []string{"SMI conformance tests failed"}, []string{}, []string{"Join https://layer5io.slack.com/archives/C010H0HE2E6"})
 )
 
 // When unable to get release data

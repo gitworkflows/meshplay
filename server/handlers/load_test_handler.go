@@ -22,7 +22,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/helpers"
 	"github.com/khulnasoft/meshplay/server/helpers/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	SMP "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	SMP "github.com/layer5io/service-mesh-performance/spec"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	corev1 "k8s.io/api/core/v1"
@@ -381,8 +381,8 @@ func (h *Handler) loadTestHelperHandler(w http.ResponseWriter, req *http.Request
 		for data := range respChan {
 			bd, err := json.Marshal(data)
 			if err != nil {
-				h.log.Error(models.ErrMarshal(err, "meshplay result for shipping"))
-				http.Error(w, models.ErrMarshal(err, "meshplay result for shipping").Error(), http.StatusInternalServerError)
+				h.log.Error(models.ErrMarshal(err, "meshery result for shipping"))
+				http.Error(w, models.ErrMarshal(err, "meshery result for shipping").Error(), http.StatusInternalServerError)
 				return
 			}
 

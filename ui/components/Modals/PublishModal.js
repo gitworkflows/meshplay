@@ -21,7 +21,7 @@ export default function PublishModal(props) {
       async (result) => {
         try {
           const { models } = await getMeshModels();
-          const modelNames = _.uniq(models?.map((model) => model.displayName.toUpperCase()));
+          const modelNames = _.uniq(models?.map((model) => model.displayName));
           modelNames.sort();
 
           // Modify the schema using the utility function
@@ -52,7 +52,7 @@ export default function PublishModal(props) {
       submitBtnIcon={<PublicIcon data-cy="import-button" />}
       showInfoIcon={{
         text: 'Upon submitting your catalog item, an approval flow will be initiated.',
-        link: 'https://docs.meshplay.khulnasoft.com/concepts/catalog',
+        link: 'https://docs.khulnasoft.com/concepts/catalog',
       }}
     />
   );

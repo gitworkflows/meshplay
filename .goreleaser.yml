@@ -112,7 +112,7 @@ scoops:
 
   # Repository to push the app manifest to.
   - repository:
-     owner: meshplay
+     owner: meshery
      name: scoop-bucket
 
   # Git author used to commit to the repository.
@@ -123,7 +123,7 @@ scoops:
 
     # Your app's homepage.
     # Default is empty.
-    homepage: "https://meshplay.khulnasoft.com"
+    homepage: "https://khulnasoft.com"
 
     # Your app's description.
     # Default is empty.

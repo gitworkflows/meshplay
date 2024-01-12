@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,11 +59,11 @@ meshplayctl app import -f [file/URL] -s [source-type]
 			return nil
 		}
 
-		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/application"
+		appURL := mctlCfg.GetBaseMeshplayURL() + "/api/pattern"
 
 		// If app file is passed via flags
-		if !isValidSource(sourceType) {
-			return ErrValidSource(validSourceTypes)
+		if sourceType, err = getFullSourceType(sourceType); err != nil {
+			return ErrInValidSource(sourceType, validSourceTypes)
 		}
 
 		app, err := importApp(sourceType, file, appURL, true)
@@ -79,9 +79,9 @@ meshplayctl app import -f [file/URL] -s [source-type]
 	},
 }
 
-func importApp(sourceType string, file string, appURL string, save bool) (*models.MeshplayApplication, error) {
+func importApp(sourceType string, file string, appURL string, save bool) (*models.MeshplayPattern, error) {
 	var req *http.Request
-	var app *models.MeshplayApplication
+	var app *models.MeshplayPattern
 
 	// Check if the app manifest is file or URL
 	if validURL := govalidator.IsURL(file); !validURL {
@@ -92,9 +92,9 @@ func importApp(sourceType string, file string, appURL string, save bool) (*model
 		text := string(content)
 
 		jsonValues, err := json.Marshal(map[string]interface{}{
-			"application_data": map[string]interface{}{
-				"name":             path.Base(file),
-				"application_file": text,
+			"pattern_data": map[string]interface{}{
+				"name":         path.Base(file),
+				"pattern_file": text,
 			},
 			"save": save,
 		})
@@ -111,7 +111,7 @@ func importApp(sourceType string, file string, appURL string, save bool) (*model
 			return nil, err
 		}
 		utils.Log.Debug("App file saved")
-		var response []*models.MeshplayApplication
+		var response []*models.MeshplayPattern
 		defer resp.Body.Close()
 
 		body, err := io.ReadAll(resp.Body)
@@ -160,7 +160,7 @@ func importApp(sourceType string, file string, appURL string, save bool) (*model
 			return nil, utils.ErrRequestResponse(err)
 		}
 		utils.Log.Debug("remote hosted app request success")
-		var response []*models.MeshplayApplication
+		var response []*models.MeshplayPattern
 		defer resp.Body.Close()
 
 		body, err := io.ReadAll(resp.Body)

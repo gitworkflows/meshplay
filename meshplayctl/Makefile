@@ -41,11 +41,11 @@ clean:
 
 .PHONY: error
 error:
-	go run github.com/khulnasoft/meshplay/meshkit/cmd/errorutil -d . analyze -i ./helpers -o ./helpers
+	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . analyze -i ./helpers -o ./helpers
 
 ## Runs meshkit error utility to update error codes for meshplayctl.
 error-util:
-	go run github.com/khulnasoft/meshplay/meshkit/cmd/errorutil -d . update -i ./helpers/ -o ./helpers
+	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . update -i ./helpers/ -o ./helpers
 
 # Check code quality at local by using golangci-lint and return the coverage
 .PHONY: lint

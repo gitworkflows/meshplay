@@ -6,22 +6,22 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/logger"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
-// sanitizeOrderInput takes in the "order by" query, a validColums
+// SanitizeOrderInput takes in the "order by" query, a validColums
 // string slice and returns a sanitized query
 //
 // it will allow to run order by query only on the columns that are present
 // in the validColumns string slice, if any other column is requested in the
 // query then it will be IGNORED and an empty query would be returned instead
 //
-// sanitizeOrderInput also expects the query to be no longer than two words, that is
+// SanitizeOrderInput also expects the query to be no longer than two words, that is
 // the query may look like "updated_at DESC" or "name ASC"
-func sanitizeOrderInput(order string, validColumns []string) string {
+func SanitizeOrderInput(order string, validColumns []string) string {
 	parsedOrderStr := strings.Split(order, " ")
 	if len(parsedOrderStr) != 2 {
 		return ""
@@ -52,7 +52,7 @@ func setNewDBInstance() {
 	defer mx.Unlock()
 
 	// Initialize Logger instance
-	log, err := logger.New("meshplay", logger.Options{
+	log, err := logger.New("meshery", logger.Options{
 		Format: logger.SyslogLogFormat,
 	})
 	if err != nil {
@@ -61,7 +61,7 @@ func setNewDBInstance() {
 	}
 
 	dbHandler, err = database.New(database.Options{
-		Filename: fmt.Sprintf("file:%s/meshplaydb.sql?cache=private&mode=rwc&_busy_timeout=10000&_journal_mode=WAL", viper.GetString("USER_DATA_FOLDER")),
+		Filename: fmt.Sprintf("file:%s/mesherydb.sql?cache=private&mode=rwc&_busy_timeout=10000&_journal_mode=WAL", viper.GetString("USER_DATA_FOLDER")),
 		Engine:   database.SQLITE,
 		Logger:   log,
 	})

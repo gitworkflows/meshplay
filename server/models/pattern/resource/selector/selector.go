@@ -3,13 +3,13 @@ package selector
 import (
 	"fmt"
 
-	meshmodel "github.com/khulnasoft/meshplay/meshkit/models/meshmodel/registry"
+	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
 )
 
 const (
-	CoreResource = "pattern.meshplay.khulnasoft.com/core"
-	MeshResource = "pattern.meshplay.khulnasoft.com/mesh/workload"
-	K8sResource  = "pattern.meshplay.khulnasoft.com/k8s"
+	CoreResource = "pattern.khulnasoft.com/core"
+	MeshResource = "pattern.khulnasoft.com/mesh/workload"
+	K8sResource  = "pattern.khulnasoft.com/k8s"
 )
 
 type Helpers interface {
@@ -31,7 +31,7 @@ func New(reg *meshmodel.RegistryManager, helpers Helpers) *Selector {
 
 func generateTraitKey(name string) string {
 	return fmt.Sprintf(
-		"/meshplay/registry/definition/%s/%s/%s",
+		"/meshery/registry/definition/%s/%s/%s",
 		"core.oam.dev/v1alpha1",
 		"TraitDefinition",
 		name,

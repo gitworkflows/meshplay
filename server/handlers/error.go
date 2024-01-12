@@ -4,134 +4,133 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
-	ErrInvalidK8SConfigNilCode          = "1014"
-	ErrNilClientCode                    = "1015"
-	ErrPrometheusScanCode               = "1016"
-	ErrGrafanaScanCode                  = "1017"
-	ErrRecordPreferencesCode            = "1018"
-	ErrGrafanaConfigCode                = "1019"
-	ErrPrometheusConfigCode             = "1020"
-	ErrGrafanaQueryCode                 = "1021"
-	ErrPrometheusQueryCode              = "1022"
-	ErrPrometheusBoardsCode             = "1024"
-	ErrStaticBoardsCode                 = "1025"
-	ErrRequestBodyCode                  = "1026"
-	ErrParseBoolCode                    = "1030"
-	ErrStreamEventsCode                 = "1031"
-	ErrStreamClientCode                 = "1032"
-	ErrPublishSmiResultsCode            = "1033"
-	ErrPluginOpenCode                   = "1034"
-	ErrPluginLookupCode                 = "1035"
-	ErrPluginRunCode                    = "1036"
-	ErrParseFormCode                    = "1037"
-	ErrQueryGetCode                     = "1038"
-	ErrGetResultCode                    = "1039"
-	ErrConvertToSpecCode                = "1040"
-	ErrFetchSMIResultsCode              = "1041"
-	ErrFormFileCode                     = "1042"
-	ErrReadConfigCode                   = "1043"
-	ErrLoadConfigCode                   = "1044"
-	ErrOpenFileCode                     = "1045"
-	ErrKubeVersionCode                  = "1046"
-	ErrAddAdapterCode                   = "1047"
-	ErrRetrieveDataCode                 = "1048"
-	ErrValidAdapterCode                 = "1049"
-	ErrOperationIDCode                  = "1050"
-	ErrMeshClientCode                   = "1051"
-	ErrApplyChangeCode                  = "1052"
-	ErrRetrieveMeshDataCode             = "1053"
-	ErrApplicationFailureCode           = "1054"
-	ErrDecodingCode                     = "1055"
-	ErrRetrieveUserTokenCode            = "1056"
-	ErrFailToSaveCode                   = "1057"
-	ErrFailToDeleteCode                 = "1058"
-	ErrWriteResponseCode                = "1059"
-	ErrTestConfigsCode                  = "1060"
-	ErrInvalidGenValueCode              = "1061"
-	ErrFailToLoadExtensionsCode         = "1062"
-	ErrConversionCode                   = "1063"
-	ErrParseDurationCode                = "1064"
-	ErrLoadTestCode                     = "1065"
-	ErrFetchKubernetesCode              = "1066"
-	ErrPanicRecoveryCode                = "1067"
-	ErrBlankNameCode                    = "1068"
-	ErrInvalidLTURLCode                 = "1069"
-	ErrVersionCompareCode               = "1070"
-	ErrSaveSessionCode                  = "1071"
-	ErrKubeClientCode                   = "1072"
-	ErrWorkloadDefinitionCode           = "1073"
-	ErrTraitDefinitionCode              = "1074"
-	ErrScopeDefinitionCode              = "1075"
-	ErrPatternFileCode                  = "1076"
-	ErrExecutionPlanCode                = "1077"
-	ErrInvalidPatternCode               = "1078"
-	ErrCompConfigPairsCode              = "1079"
-	ErrCreateDirCode                    = "1080"
-	ErrInvalidRequestObjectCode         = "1081"
-	ErrChangeK8sContextCode             = "1082"
-	ErrSavingUserPreferenceCode         = "1083"
-	ErrGetFilterCode                    = "1084"
-	ErrSaveFilterCode                   = "1085"
-	ErrDecodeFilterCode                 = "1086"
-	ErrEncodeFilterCode                 = "1087"
-	ErrImportFilterCode                 = "1088"
-	ErrFetchFilterCode                  = "1089"
-	ErrDeleteFilterCode                 = "1090"
-	ErrSavePatternCode                  = "1091"
-	ErrSaveApplicationCode              = "1092"
-	ErrGetPatternCode                   = "1093"
-	ErrDeletePatternCode                = "1094"
-	ErrFetchPatternCode                 = "1095"
-	ErrImportPatternCode                = "1096"
-	ErrEncodePatternCode                = "1097"
-	ErrDecodePatternCode                = "1098"
-	ErrParsePatternCode                 = "1099"
-	ErrConvertPatternCode               = "1100"
-	ErrInvalidKubeConfigCode            = "1102"
-	ErrInvalidKubeHandlerCode           = "1103"
-	ErrInvalidKubeContextCode           = "1104"
-	ErrCreatingKubernetesComponentsCode = "1105"
-	ErrValidateCode                     = "1106"
-	ErrApplicationContentCode           = "1107"
-	ErrRemoteApplicationURL             = "1108"
-	ErrClonePatternCode                 = "1109"
-	ErrCloneFilterCode                  = "1110"
-	ErrGenerateComponentsCode           = "1111"
-	ErrPublishCatalogPatternCode        = "1112"
-	ErrPublishCatalogFilterCode         = "1113"
-	ErrGetMeshModelsCode                = "1114"
-	ErrGetUserDetailsCode               = "1115"
-	ErrResolvingRelationship            = "1116"
-	ErrGetLatestVersionCode             = "1117"
-	ErrCreateFileCode                   = "1118"
-	ErrLoadCertificateCode              = "1119"
-	ErrCleanupCertificateCode           = "1120"
-	ErrDownlaodWASMFileCode             = "1121"
-	ErrFetchProfileCode                 = "1122"
-	ErrPerformanceTestCode              = "1123"
-	ErrFetchApplicationCode             = "1124"
-	ErrDeleteApplicationCode            = "1125"
-	ErrGetEventsCode                    = "1126"
-	ErrUpdateEventCode                  = "1127"
-	ErrDeleteEventCode                  = "1128"
-	ErrUnsupportedEventStatusCode       = "1129"
-	ErrBulkUpdateEventCode              = "1537"
-	ErrBulkDeleteEventCode              = "1538"
-	ErrFetchMeshSyncResourcesCode       = "1539"
+	ErrInvalidK8SConfigNilCode    = "1014"
+	ErrNilClientCode              = "1015"
+	ErrRecordPreferencesCode      = "1018"
+	ErrGrafanaConfigCode          = "1019"
+	ErrPrometheusConfigCode       = "1020"
+	ErrGrafanaQueryCode           = "1021"
+	ErrPrometheusQueryCode        = "1022"
+	ErrPrometheusBoardsCode       = "1024"
+	ErrStaticBoardsCode           = "1025"
+	ErrRequestBodyCode            = "1026"
+	ErrParseBoolCode              = "1030"
+	ErrStreamEventsCode           = "1031"
+	ErrStreamClientCode           = "1032"
+	ErrPublishSmiResultsCode      = "1033"
+	ErrPluginOpenCode             = "1034"
+	ErrPluginLookupCode           = "1035"
+	ErrPluginRunCode              = "1036"
+	ErrParseFormCode              = "1037"
+	ErrQueryGetCode               = "1038"
+	ErrGetResultCode              = "1039"
+	ErrConvertToSpecCode          = "1040"
+	ErrFetchSMIResultsCode        = "1041"
+	ErrFormFileCode               = "1042"
+	ErrReadConfigCode             = "1043"
+	ErrLoadConfigCode             = "1044"
+	ErrOpenFileCode               = "1045"
+	ErrKubeVersionCode            = "1046"
+	ErrAddAdapterCode             = "1047"
+	ErrRetrieveDataCode           = "1048"
+	ErrValidAdapterCode           = "1049"
+	ErrOperationIDCode            = "1050"
+	ErrMeshClientCode             = "1051"
+	ErrApplyChangeCode            = "1052"
+	ErrRetrieveMeshDataCode       = "1053"
+	ErrApplicationFailureCode     = "1054"
+	ErrDecodingCode               = "1055"
+	ErrRetrieveUserTokenCode      = "1056"
+	ErrFailToSaveCode             = "1057"
+	ErrFailToDeleteCode           = "1058"
+	ErrWriteResponseCode          = "1059"
+	ErrTestConfigsCode            = "1060"
+	ErrInvalidGenValueCode        = "1061"
+	ErrFailToLoadExtensionsCode   = "1062"
+	ErrConversionCode             = "1063"
+	ErrParseDurationCode          = "1064"
+	ErrLoadTestCode               = "1065"
+	ErrFetchKubernetesCode        = "1066"
+	ErrPanicRecoveryCode          = "1067"
+	ErrBlankNameCode              = "1068"
+	ErrInvalidLTURLCode           = "1069"
+	ErrVersionCompareCode         = "1070"
+	ErrSaveSessionCode            = "1071"
+	ErrKubeClientCode             = "1072"
+	ErrWorkloadDefinitionCode     = "1073"
+	ErrTraitDefinitionCode        = "1074"
+	ErrScopeDefinitionCode        = "1075"
+	ErrPatternFileCode            = "1076"
+	ErrExecutionPlanCode          = "1077"
+	ErrInvalidPatternCode         = "1078"
+	ErrCompConfigPairsCode        = "1079"
+	ErrCreateDirCode              = "1080"
+	ErrInvalidRequestObjectCode   = "1081"
+	ErrChangeK8sContextCode       = "1082"
+	ErrSavingUserPreferenceCode   = "1083"
+	ErrGetFilterCode              = "1084"
+	ErrSaveFilterCode             = "1085"
+	ErrDecodeFilterCode           = "1086"
+	ErrEncodeFilterCode           = "1087"
+	ErrImportFilterCode           = "1088"
+	ErrFetchFilterCode            = "1089"
+	ErrDeleteFilterCode           = "1090"
+	ErrSavePatternCode            = "1091"
+	ErrSaveApplicationCode        = "1092"
+	ErrGetPatternCode             = "1093"
+	ErrDeletePatternCode          = "1094"
+	ErrFetchPatternCode           = "1095"
+	ErrImportPatternCode          = "1096"
+	ErrEncodePatternCode          = "1097"
+	ErrDecodePatternCode          = "1098"
+	ErrParsePatternCode           = "1099"
+	ErrConvertPatternCode         = "1100"
+	ErrInvalidKubeConfigCode      = "1102"
+	ErrInvalidKubeHandlerCode     = "1103"
+	ErrInvalidKubeContextCode     = "1104"
+	ErrValidateCode               = "1106"
+	ErrApplicationContentCode     = "1107"
+	ErrRemoteApplicationURL       = "1108"
+	ErrClonePatternCode           = "1109"
+	ErrCloneFilterCode            = "1110"
+	ErrGenerateComponentsCode     = "1111"
+	ErrPublishCatalogPatternCode  = "1112"
+	ErrPublishCatalogFilterCode   = "1113"
+	ErrGetMeshModelsCode          = "1114"
+	ErrGetUserDetailsCode         = "1115"
+	ErrResolvingRelationship      = "1116"
+	ErrGetLatestVersionCode       = "1117"
+	ErrCreateFileCode             = "1118"
+	ErrLoadCertificateCode        = "1119"
+	ErrCleanupCertificateCode     = "1120"
+	ErrDownlaodWASMFileCode       = "1121"
+	ErrFetchProfileCode           = "1122"
+	ErrPerformanceTestCode        = "1123"
+	ErrFetchApplicationCode       = "1124"
+	ErrDeleteApplicationCode      = "1125"
+	ErrGetEventsCode              = "1126"
+	ErrUpdateEventCode            = "1127"
+	ErrDeleteEventCode            = "1128"
+	ErrUnsupportedEventStatusCode = "1129"
+	ErrBulkUpdateEventCode        = "1537"
+	ErrBulkDeleteEventCode        = "1538"
+	ErrFetchMeshSyncResourcesCode = "1539"
+	ErrDesignSourceContentCode    = "1554"
+	ErrGetConnectionsCode    	  = "1555"
 )
 
 var (
-	ErrInvalidK8SConfigNil = errors.New(ErrInvalidK8SConfigNilCode, errors.Alert, []string{"No valid kubernetes config found. Make sure to pass contextIDs in query parameters."}, []string{"Kubernetes config is not initialized with Meshplay"}, []string{"Kubernetes config is not accessible to meshplay or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
-	ErrNilClient           = errors.New(ErrNilClientCode, errors.Alert, []string{"Kubernetes client not initialized"}, []string{"Kubernetes config is not initialized with Meshplay"}, []string{"Kubernetes config is not accessible to meshplay or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
-	ErrPrometheusConfig    = errors.New(ErrPrometheusConfigCode, errors.Alert, []string{"Prometheus endpoint not configured"}, []string{"Cannot find valid Prometheus endpoint in user pref"}, []string{"Prometheus endpoint might not be reachable from meshplay"}, []string{"Setup your Prometheus Endpoint via the settings dashboard"})
-	ErrGrafanaConfig       = errors.New(ErrGrafanaConfigCode, errors.Alert, []string{"Grafana endpoint not configured"}, []string{"Cannot find valid grafana endpoint in user pref"}, []string{"Grafana endpoint might not be reachable from meshplay"}, []string{"Setup your Grafana Endpoint via the settings dashboard"})
+	ErrInvalidK8SConfigNil = errors.New(ErrInvalidK8SConfigNilCode, errors.Alert, []string{"No valid kubernetes config found. Make sure to pass contextIDs in query parameters."}, []string{"Kubernetes config is not initialized with Meshplay"}, []string{"Kubernetes config is not accessible to meshery or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
+	ErrNilClient           = errors.New(ErrNilClientCode, errors.Alert, []string{"Kubernetes client not initialized"}, []string{"Kubernetes config is not initialized with Meshplay"}, []string{"Kubernetes config is not accessible to meshery or not valid"}, []string{"Upload your kubernetes config via the settings dashboard. If uploaded, wait for a minute for it to get initialized"})
+	ErrPrometheusConfig    = errors.New(ErrPrometheusConfigCode, errors.Alert, []string{"Prometheus endpoint not configured"}, []string{"Cannot find valid Prometheus endpoint in user pref"}, []string{"Prometheus endpoint might not be reachable from meshery"}, []string{"Setup your Prometheus Endpoint via the settings dashboard"})
+	ErrGrafanaConfig       = errors.New(ErrGrafanaConfigCode, errors.Alert, []string{"Grafana endpoint not configured"}, []string{"Cannot find valid grafana endpoint in user pref"}, []string{"Grafana endpoint might not be reachable from meshery"}, []string{"Setup your Grafana Endpoint via the settings dashboard"})
 	ErrStaticBoards        = errors.New(ErrStaticBoardsCode, errors.Alert, []string{"unable to get static board"}, []string{"unable to get static board"}, []string{"No boards could be available in grafana"}, []string{})
 	ErrValidAdapter        = errors.New(ErrValidAdapterCode, errors.Alert, []string{"Unable to find valid Adapter URL"}, []string{"unable to find a valid adapter for the given adapter URL"}, []string{"Given adapter URL is not valid"}, []string{"Please provide a valid Adapter URL"})
 	ErrAddAdapter          = errors.New(ErrAddAdapterCode, errors.Alert, []string{"meshLocationURL is empty"}, []string{"meshLocationURL is empty to add an adapter"}, []string{"meshLocationURL cannot be empty to add an adapter"}, []string{"please provide the meshLocationURL"})
@@ -139,7 +138,7 @@ var (
 	ErrWriteResponse       = errors.New(ErrWriteResponseCode, errors.Alert, []string{"Error writing response"}, []string{}, []string{}, []string{})
 	ErrTestConfigs         = errors.New(ErrTestConfigsCode, errors.Alert, []string{"Error fetching test configs"}, []string{}, []string{}, []string{})
 	ErrInvalidGenValue     = errors.New(ErrInvalidGenValueCode, errors.Alert, []string{"Invalid value for gen"}, []string{}, []string{}, []string{"please provide a valid value for gen (load generator)"})
-	ErrParseDuration       = errors.New(ErrParseDurationCode, errors.Alert, []string{"error parsing test duration"}, []string{}, []string{"The format of the duration passed could be incorrect"}, []string{"please refer to:  https://docs.meshplay.khulnasoft.com/guides/meshplayctl#performance-management"})
+	ErrParseDuration       = errors.New(ErrParseDurationCode, errors.Alert, []string{"error parsing test duration"}, []string{}, []string{"The format of the duration passed could be incorrect"}, []string{"please refer to:  https://docs.khulnasoft.com/guides/meshplayctl#performance-management"})
 	ErrPerformanceTest     = errors.New(ErrPerformanceTestCode, errors.Alert, []string{"Load test error"}, []string{}, []string{"Load test endpoint could be not reachable"}, []string{"Make sure load test endpoint is reachable"})
 )
 
@@ -151,28 +150,16 @@ func ErrValidate(err error) error {
 	return errors.New(ErrValidateCode, errors.Alert, []string{"failed to validate the given value against the schema"}, []string{err.Error()}, []string{"unable to validate the value against given schema", "either value or schema might not be a valid cue expression"}, []string{"Make sure that the schema and value provided are valid cue values", "Make sure both schema and value are sent", "Make sure appropriate value types are sent"})
 }
 
-func ErrCreatingKubernetesComponents(err error, ctxID string) error {
-	return errors.New(ErrCreatingKubernetesComponentsCode, errors.Alert, []string{"failed to register/create kubernetes components for contextID " + ctxID}, []string{err.Error()}, []string{"component generation was canceled due to deletion or reload of K8s context", "Invalid kubeconfig", "Filters passed incorrectly in config", "Could not fetch API resources from Kubernetes server"}, []string{"If there is the log \"Starting to register ...\" for the same contextID after this error means that for some reason the context was reloaded which caused this run to abort. In that case, this error can be ignored.", "Make sure that the configuration filters passed are in accordance with output from /openapi/v2"})
-}
-
-func ErrPrometheusScan(err error) error {
-	return errors.New(ErrPrometheusScanCode, errors.Alert, []string{"Unable to connect to prometheus"}, []string{err.Error()}, []string{"Prometheus endpoint might not be reachable from meshplay", "Prometheus endpoint is incorrect"}, []string{"Check if your Prometheus and Grafana Endpoint are correct", "Connect to Prometheus and Grafana from the settings page in the UI"})
-}
-
-func ErrGrafanaScan(err error) error {
-	return errors.New(ErrGrafanaScanCode, errors.Alert, []string{"Unable to connect to grafana"}, []string{err.Error()}, []string{"Grafana endpoint might not be reachable from meshplay", "Grafana endpoint is incorrect"}, []string{"Check if your Grafana Endpoint is correct", "Connect to Grafana from the settings page in the UI"})
-}
-
 func ErrPrometheusQuery(err error) error {
-	return errors.New(ErrPrometheusQueryCode, errors.Alert, []string{"Unable to query prometheus"}, []string{err.Error()}, []string{"Prometheus query did not get executed from meshplay", "Prometheus query is invalid"}, []string{"Check if your Prometheus query is correct", "Connect to Prometheus and Grafana from the settings page in the UI"})
+	return errors.New(ErrPrometheusQueryCode, errors.Alert, []string{"Unable to query prometheus"}, []string{err.Error()}, []string{"Prometheus query did not get executed from meshery", "Prometheus query is invalid"}, []string{"Check if your Prometheus query is correct", "Connect to Prometheus and Grafana from the settings page in the UI"})
 }
 
 func ErrGrafanaQuery(err error) error {
-	return errors.New(ErrGrafanaQueryCode, errors.Alert, []string{"Unable to query grafana"}, []string{err.Error()}, []string{"Grafana query did not get executed from meshplay", "Grafana query is invalid"}, []string{"Check if your Grafana query is correct", "Connect to Grafana from the settings page in the UI"})
+	return errors.New(ErrGrafanaQueryCode, errors.Alert, []string{"Unable to query grafana"}, []string{err.Error()}, []string{"Grafana query did not get executed from meshery", "Grafana query is invalid"}, []string{"Check if your Grafana query is correct", "Connect to Grafana from the settings page in the UI"})
 }
 
 func ErrPrometheusBoards(err error) error {
-	return errors.New(ErrPrometheusBoardsCode, errors.Alert, []string{"unable to get Prometheus boards"}, []string{err.Error()}, []string{"Prometheus endpoint might not be reachable from meshplay", "Prometheus endpoint is incorrect"}, []string{"Check if your Prometheus endpoint is correct", "Connect to Prometheus from the settings page in the UI"})
+	return errors.New(ErrPrometheusBoardsCode, errors.Alert, []string{"unable to get Prometheus boards"}, []string{err.Error()}, []string{"Prometheus endpoint might not be reachable from meshery", "Prometheus endpoint is incorrect"}, []string{"Check if your Prometheus endpoint is correct", "Connect to Prometheus from the settings page in the UI"})
 }
 
 func ErrRecordPreferences(err error) error {
@@ -180,7 +167,7 @@ func ErrRecordPreferences(err error) error {
 }
 
 func ErrKubeClient(err error) error {
-	return errors.New(ErrKubeClientCode, errors.Alert, []string{"Failed to Create Kube Client", err.Error()}, []string{err.Error()}, []string{"Check Kubernetes"}, []string{"Check your kubeconfig if valid", "Ensure meshplay is able to reach the kubernetes cluster"})
+	return errors.New(ErrKubeClientCode, errors.Alert, []string{"Failed to Create Kube Client", err.Error()}, []string{err.Error()}, []string{"Check Kubernetes"}, []string{"Check your kubeconfig if valid", "Ensure meshery is able to reach the kubernetes cluster"})
 }
 
 func ErrWorkloadDefinition(err error) error {
@@ -228,11 +215,11 @@ func ErrStreamClient(err error) error {
 }
 
 func ErrPublishSmiResults(err error) error {
-	return errors.New(ErrPublishSmiResultsCode, errors.Alert, []string{"Error publishing SMI results"}, []string{err.Error()}, []string{"Meshplay Cloud is not functional or reachable"}, []string{"Make sure meshplay cloud is up and reachable"})
+	return errors.New(ErrPublishSmiResultsCode, errors.Alert, []string{"Error publishing SMI results"}, []string{err.Error()}, []string{"Meshplay Cloud is not functional or reachable"}, []string{"Make sure meshery cloud is up and reachable"})
 }
 
 func ErrPluginOpen(err error) error {
-	return errors.New(ErrPluginOpenCode, errors.Alert, []string{"Error opening the plugin"}, []string{err.Error()}, []string{"Plugin is not available in the location", "plugin does not match with meshplay version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
+	return errors.New(ErrPluginOpenCode, errors.Alert, []string{"Error opening the plugin"}, []string{err.Error()}, []string{"Plugin is not available in the location", "plugin does not match with meshery version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
 }
 
 func ErrPluginLookup(err error) error {
@@ -240,7 +227,7 @@ func ErrPluginLookup(err error) error {
 }
 
 func ErrPluginRun(err error) error {
-	return errors.New(ErrPluginRunCode, errors.Alert, []string{"Error running meshplay plugin"}, []string{err.Error()}, []string{"plugin does not match with meshplay version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
+	return errors.New(ErrPluginRunCode, errors.Alert, []string{"Error running meshery plugin"}, []string{err.Error()}, []string{"plugin does not match with meshery version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
 }
 
 func ErrParseForm(err error) error {
@@ -280,7 +267,7 @@ func ErrOpenFile(file string) error {
 }
 
 func ErrKubeVersion(err error) error {
-	return errors.New(ErrKubeVersionCode, errors.Alert, []string{"unable to get kubernetes version"}, []string{err.Error()}, []string{"Kubernetes might not be reachable from meshplay"}, []string{"Make sure meshplay has connectivity to kubernetes"})
+	return errors.New(ErrKubeVersionCode, errors.Alert, []string{"unable to get kubernetes version"}, []string{err.Error()}, []string{"Kubernetes might not be reachable from meshery"}, []string{"Make sure meshery has connectivity to kubernetes"})
 }
 
 func ErrRetrieveData(err error) error {
@@ -305,6 +292,10 @@ func ErrApplicationFailure(err error, obj string) error {
 
 func ErrApplicationSourceContent(err error, obj string) error {
 	return errors.New(ErrApplicationContentCode, errors.Alert, []string{"failed to ", obj, "the application content"}, []string{err.Error()}, []string{"Remote provider might be not reachable", "Remote provider doesn't support this capability"}, []string{"Ensure you have required permissions or retry after sometime."})
+}
+
+func ErrDesignSourceContent(err error, obj string) error {
+	return errors.New(ErrDesignSourceContentCode, errors.Alert, []string{"failed to ", obj, "the design content"}, []string{err.Error()}, []string{"Remote provider might be not reachable", "Remote provider doesn't support this capability"}, []string{"Ensure you have required permissions or retry after sometime."})
 }
 
 func ErrDownloadWASMFile(err error, obj string) error {
@@ -339,7 +330,7 @@ func ErrLoadTest(err error, obj string) error {
 }
 
 func ErrFetchKubernetes(err error) error {
-	return errors.New(ErrFetchKubernetesCode, errors.Alert, []string{"unable to ping kubernetes", "unable to scan"}, []string{err.Error()}, []string{"Kubernetes might not be reachable from meshplay"}, []string{"Make sure meshplay has connectivity to kubernetes"})
+	return errors.New(ErrFetchKubernetesCode, errors.Alert, []string{"unable to ping kubernetes", "unable to scan"}, []string{err.Error()}, []string{"Kubernetes might not be reachable from meshery"}, []string{"Make sure meshery has connectivity to kubernetes"})
 }
 
 func ErrPanicRecovery(r interface{}) error {
@@ -347,11 +338,11 @@ func ErrPanicRecovery(r interface{}) error {
 }
 
 func ErrFailToLoadExtensions(err error) error {
-	return errors.New(ErrFailToLoadExtensionsCode, errors.Alert, []string{"Failed to Load Extensions from Package"}, []string{err.Error()}, []string{"Plugin is not available in the location", "plugin does not match with meshplay version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
+	return errors.New(ErrFailToLoadExtensionsCode, errors.Alert, []string{"Failed to Load Extensions from Package"}, []string{err.Error()}, []string{"Plugin is not available in the location", "plugin does not match with meshery version"}, []string{"Make sure the plugin is compatible with Meshplay server"})
 }
 
 func ErrInvalidLTURL(url string) error {
-	return errors.New(ErrInvalidLTURLCode, errors.Alert, []string{"invalid loadtest url: ", url}, []string{}, []string{"URL for load test could be invalid"}, []string{"please refer to: https://docs.meshplay.khulnasoft.com/tasks/performance-management"})
+	return errors.New(ErrInvalidLTURLCode, errors.Alert, []string{"invalid loadtest url: ", url}, []string{}, []string{"URL for load test could be invalid"}, []string{"please refer to: https://docs.khulnasoft.com/tasks/performance-management"})
 }
 
 func ErrVersionCompare(err error) error {
@@ -379,15 +370,15 @@ func ErrChangeK8sContext(err error) error {
 }
 
 func ErrInvalidKubeConfig(err error, content string) error {
-	return errors.New(ErrInvalidKubeConfigCode, errors.Alert, []string{"Invalid Kube Config ", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes config for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshplay can reach kubernetes API server"})
+	return errors.New(ErrInvalidKubeConfigCode, errors.Alert, []string{"Invalid Kube Config ", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes config for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshery can reach kubernetes API server"})
 }
 
 func ErrInvalidKubeHandler(err error, content string) error {
-	return errors.New(ErrInvalidKubeHandlerCode, errors.Alert, []string{"Invalid Kube Handler", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes handler for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshplay can reach kubernetes API server"})
+	return errors.New(ErrInvalidKubeHandlerCode, errors.Alert, []string{"Invalid Kube Handler", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes handler for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshery can reach kubernetes API server"})
 }
 
 func ErrInvalidKubeContext(err error, content string) error {
-	return errors.New(ErrInvalidKubeContextCode, errors.Alert, []string{"Invalid Kube Context", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes context for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshplay can reach kubernetes API server"})
+	return errors.New(ErrInvalidKubeContextCode, errors.Alert, []string{"Invalid Kube Context", content}, []string{err.Error()}, []string{"Meshplay handler failed to find a valid kubernetes context for the deployment"}, []string{"Try uploading a new kubeconfig and also ensure that meshery can reach kubernetes API server"})
 }
 
 func ErrSavingUserPreference(err error) error {
@@ -539,10 +530,14 @@ func ErrBulkDeleteEvent(err error) error {
 }
 
 func ErrUnsupportedEventStatus(err error, status string) error {
-	return errors.New(ErrUnsupportedEventStatusCode, errors.Alert, []string{fmt.Sprintf("Event status '%s' is not a supported status.", status)}, []string{err.Error()}, []string{"Unsupported event status for your current version of Meshplay Server."}, []string{"Confirm that the status you are using is valid and a supported event status. Refer to Meshplay Docs for a list of event statuses.", "Check for availability of a new version of Meshplay Server. Try upgrading to the latest version." })
+	return errors.New(ErrUnsupportedEventStatusCode, errors.Alert, []string{fmt.Sprintf("Event status '%s' is not a supported status.", status)}, []string{err.Error()}, []string{"Unsupported event status for your current version of Meshplay Server."}, []string{"Confirm that the status you are using is valid and a supported event status. Refer to Meshplay Docs for a list of event statuses.", "Check for availability of a new version of Meshplay Server. Try upgrading to the latest version."})
 }
 
 // ErrFetchMeshSyncResources
 func ErrFetchMeshSyncResources(err error) error {
-	return errors.New(ErrFetchMeshSyncResourcesCode, errors.Alert, []string{"Error fetching MeshSync resources", "DB might be corrupted"}, []string{err.Error()}, []string{"MeshSync might not be reachable from meshplay"}, []string{"Make sure meshplay has connectivity to MeshSync", "Try restarting Meshplay server"})
+	return errors.New(ErrFetchMeshSyncResourcesCode, errors.Alert, []string{"Error fetching MeshSync resources", "DB might be corrupted"}, []string{err.Error()}, []string{"MeshSync might not be reachable from meshery"}, []string{"Make sure meshery has connectivity to MeshSync", "Try restarting Meshplay server"})
+}
+
+func ErrGetConnections(err error) error {
+	return errors.New(ErrGetConnectionsCode, errors.Alert, []string{"Failed to retrieve connections"}, []string{err.Error()}, []string{"Unable to retrieve the connections"}, []string{"Check if the cluster is connected and healthy, you can check it from k8s switcher in header"})
 }

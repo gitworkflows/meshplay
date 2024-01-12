@@ -8,21 +8,17 @@ import (
 
 	"github.com/khulnasoft/meshplay/server/handlers"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/models/controllers"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	"github.com/khulnasoft/meshplay/meshkit/utils/broadcast"
-	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
-	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/models/controllers"
+	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
 // to be moved elsewhere
 const (
-	chartRepo = "https://meshplay.github.io/meshplay.khulnasoft.com/charts"
+	chartRepo = "https://meshery.github.io/khulnasoft.com/charts"
 )
 
 var (
@@ -55,135 +51,43 @@ var (
 	}
 )
 
-// listernToEvents - scale this function with the number of channels
-func ListernToEvents(log logger.Handler,
-	handler *database.Handler,
-	datach chan *broker.Message,
-	meshsyncCh chan struct{},
-	broadcast broadcast.Broadcaster,
-) {
-	var wg sync.WaitGroup
-	for msg := range datach {
-		wg.Add(1)
-		go persistData(*msg, log, handler, meshsyncCh, broadcast, &wg)
-	}
-
-	wg.Wait()
-}
-
-// persistData - scale this function with the number of events to persist
-func persistData(msg broker.Message,
-	log logger.Handler,
-	handler *database.Handler,
-	meshsyncCh chan struct{},
-	broadcaster broadcast.Broadcaster,
-	wg *sync.WaitGroup,
-) {
-	defer wg.Done()
-	objectJSON, _ := utils.Marshal(msg.Object)
-	switch msg.ObjectType {
-	case broker.MeshSync:
-		object := meshsyncmodel.KubernetesResource{}
-		err := utils.Unmarshal(string(objectJSON), &object)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-
-		// persist the object
-		log.Info("Incoming object: ", object.KubernetesResourceMeta.Name, ", kind: ", object.Kind)
-		if object.KubernetesResourceMeta.Name == "meshplay-operator" || object.KubernetesResourceMeta.Name == "meshplay-broker" || object.KubernetesResourceMeta.Name == "meshplay-meshsync" {
-			broadcaster.Submit(broadcast.BroadcastMessage{
-				Source: broadcast.OperatorSyncChannel,
-				Data:   false,
-				Type:   "health",
-			})
-		}
-
-		err = recordMeshSyncData(msg.EventType, handler, &object)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-		if meshsyncCh != nil {
-			meshsyncCh <- struct{}{}
-		}
-	case broker.SMI:
-		log.Info("Received SMI Result")
-	}
-}
-
-func PersistClusterNames(
-	ctx context.Context,
-	log logger.Handler,
-	handler *database.Handler,
-	meshsyncCh chan struct{},
-) {
-	k8sContexts, ok := ctx.Value(models.KubeClustersKey).([]models.K8sContext)
-	if !ok {
-		return
-	}
-	for _, clusterConfig := range k8sContexts {
-		clusterName := clusterConfig.Cluster["name"].(string)
-		clusterID := clusterConfig.KubernetesServerID.String()
-		object := meshsyncmodel.KubernetesResource{
-			Kind: "Cluster",
-			KubernetesResourceMeta: &meshsyncmodel.KubernetesResourceObjectMeta{
-				Name:      clusterName,
-				ClusterID: clusterID,
-			},
-			ClusterID: clusterID,
-		}
-
-		// persist the object
-		log.Info("Incoming object: ", object.KubernetesResourceMeta.Name, ", kind: ", object.Kind)
-		err := recordMeshSyncData(broker.Add, handler, &object)
-		if err != nil {
-			log.Error(err)
-		}
-	}
-	if meshsyncCh != nil {
-		meshsyncCh <- struct{}{}
-	}
-}
-
 // installs operator
 // To be depricated
-func installUsingHelm(client *meshplaykube.Client, delete bool, _ models.AdaptersTrackerInterface) error {
-	// retrieving meshplay's version to apply the appropriate chart
-	meshplayReleaseVersion := viper.GetString("BUILD")
-	if meshplayReleaseVersion == "" || meshplayReleaseVersion == "Not Set" || meshplayReleaseVersion == "edge-latest" {
-		_, latestRelease, err := handlers.CheckLatestVersion(meshplayReleaseVersion)
+func installUsingHelm(client *mesherykube.Client, delete bool, _ models.AdaptersTrackerInterface) error {
+	// retrieving meshery's version to apply the appropriate chart
+	mesheryReleaseVersion := viper.GetString("BUILD")
+	if mesheryReleaseVersion == "" || mesheryReleaseVersion == "Not Set" || mesheryReleaseVersion == "edge-latest" {
+		_, latestRelease, err := handlers.CheckLatestVersion(mesheryReleaseVersion)
 		// if unable to fetch latest release tag, meshkit helm functions handle
 		// this automatically fetch the latest one
 		if err != nil {
 			logrus.Errorf("Couldn't check release tag: %s. Will use latest version", err)
-			meshplayReleaseVersion = ""
+			mesheryReleaseVersion = ""
 		} else {
-			meshplayReleaseVersion = latestRelease
+			mesheryReleaseVersion = latestRelease
 		}
 	}
 	var (
-		act   = meshplaykube.INSTALL
-		chart = "meshplay-operator"
+		act   = mesherykube.INSTALL
+		chart = "meshery-operator"
 	)
 	if delete {
-		act = meshplaykube.UNINSTALL
+		act = mesherykube.UNINSTALL
 	}
-	// a basic check to see if meshplay is installed in cluster
+	// a basic check to see if meshery is installed in cluster
 	// this helps decide what chart should be used for installing operator
 	if viper.GetString("KUBERNETES_SERVICE_HOST") != "" {
-		// act = meshplaykube.UPGRADE
-		chart = "meshplay"
+		// act = mesherykube.UPGRADE
+		chart = "meshery"
 	}
 
-	err := client.ApplyHelmChart(meshplaykube.ApplyHelmChartConfig{
-		Namespace:   "meshplay",
-		ReleaseName: "meshplay-operator",
-		ChartLocation: meshplaykube.HelmChartLocation{
+	err := client.ApplyHelmChart(mesherykube.ApplyHelmChartConfig{
+		Namespace:   "meshery",
+		ReleaseName: "meshery-operator",
+		ChartLocation: mesherykube.HelmChartLocation{
 			Repository: chartRepo,
 			Chart:      chart,
-			Version:    meshplayReleaseVersion,
+			Version:    mesheryReleaseVersion,
 		},
 		// CreateNamespace doesn't have any effect when the action is UNINSTALL
 		CreateNamespace: true,
@@ -212,38 +116,38 @@ func SetOverrideValues(delete bool, adapterTracker models.AdaptersTrackerInterfa
 	}
 
 	overrideValues := map[string]interface{}{
-		"fullnameOverride": "meshplay-operator",
-		"meshplay": map[string]interface{}{
+		"fullnameOverride": "meshery-operator",
+		"meshery": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-istio": map[string]interface{}{
+		"meshery-istio": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-cilium": map[string]interface{}{
+		"meshery-cilium": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-linkerd": map[string]interface{}{
+		"meshery-linkerd": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-consul": map[string]interface{}{
+		"meshery-consul": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-kuma": map[string]interface{}{
+		"meshery-kuma": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nsm": map[string]interface{}{
+		"meshery-nsm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nginx-sm": map[string]interface{}{
+		"meshery-nginx-sm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-traefik-mesh": map[string]interface{}{
+		"meshery-traefik-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-app-mesh": map[string]interface{}{
+		"meshery-app-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-operator": map[string]interface{}{
+		"meshery-operator": map[string]interface{}{
 			"enabled": true,
 		},
 	}
@@ -257,7 +161,7 @@ func SetOverrideValues(delete bool, adapterTracker models.AdaptersTrackerInterfa
 	}
 
 	if delete {
-		overrideValues["meshplay-operator"] = map[string]interface{}{
+		overrideValues["meshery-operator"] = map[string]interface{}{
 			"enabled": false,
 		}
 	}
@@ -345,6 +249,18 @@ func GetInternalControllerStatus(status controllers.MeshplayControllerStatus) Me
 
 	case controllers.Unknown:
 		return MeshplayControllerStatusUnkown
+
+	case controllers.Undeployed:
+		return MeshplayControllerStatusUndeployed
+
+	case controllers.Enabled:
+		return MeshplayControllerStatusEnabled
+
+	case controllers.Running:
+		return MeshplayControllerStatusRunning
+
+	case controllers.Connected:
+		return MeshplayControllerStatusConnected
 	}
 	return ""
 }

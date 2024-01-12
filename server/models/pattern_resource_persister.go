@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/database"
+	"github.com/khulnasoft/meshkit/database"
 )
 
 type PatternResourcePersister struct {
@@ -57,7 +57,7 @@ func (prp *PatternResourcePersister) GetPatternResourceByAttributes(name, namesp
 }
 
 func (prp *PatternResourcePersister) GetPatternResources(search, order, name, namespace, typ, oamType string, page, pageSize uint64) (*PatternResourcePage, error) {
-	order = sanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
+	order = SanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
 
 	if order == "" {
 		order = "updated_at desc"
@@ -106,7 +106,7 @@ func (prp *PatternResourcePersister) Exists(name, namespace, typ, oamType string
 
 	prp.DB.
 		Raw(`
-	SELECT 
+	SELECT
 		EXISTS(SELECT 1 FROM pattern_resources WHERE name = ? AND namespace = ? AND type = ? AND oam_type = ? AND deleted = false) AS "found"`,
 			name,
 			namespace,

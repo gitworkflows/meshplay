@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import (
 	c "github.com/khulnasoft/meshplay/meshplayctl/pkg/constants"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
 	"github.com/khulnasoft/meshplay/server/models"
-	meshkitutils "github.com/khulnasoft/meshplay/meshkit/utils"
+	meshkitutils "github.com/khulnasoft/meshkit/utils"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -61,7 +61,7 @@ meshplayctl version
 			userResponse = utils.AskForConfirmation("Looks like you are using an outdated config file. Do you want to generate a new config file?")
 			if userResponse {
 				utils.BackupConfigFile(utils.DefaultConfigPath)
-				// Create config file if not present in meshplay folder
+				// Create config file if not present in meshery folder
 				err = utils.CreateConfigFile()
 				if err != nil {
 					utils.Log.Error(ErrCreatingConfigFile)

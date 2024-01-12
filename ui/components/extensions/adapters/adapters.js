@@ -145,7 +145,7 @@ const Adapters = ({ updateProgress, classes }) => {
             >
               <Typography variant="subtitle2" style={{ fontStyle: 'italic' }}>
                 <a
-                  href="https://docs.meshplay.khulnasoft.com/concepts/architecture/adapters"
+                  href="https://docs.khulnasoft.com/concepts/architecture/adapters"
                   target="_blank"
                   rel="noreferrer"
                   className={classes.link}

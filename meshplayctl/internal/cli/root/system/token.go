@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -172,7 +172,7 @@ meshplayctl system token list
 var viewTokenCmd = &cobra.Command{
 	Use:   "view",
 	Short: "View token",
-	Long:  "View a specific token in meshplay config",
+	Long:  "View a specific token in meshery config",
 	Example: `
 meshplayctl system token view [token-name]
 meshplayctl system token view (show token of current context)

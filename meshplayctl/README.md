@@ -22,7 +22,7 @@ Refer the [Meshplay CLI Commands and Documentation](https://docs.google.com/docu
 
 ## `meshplayctl` command reference
 
-Detailed documentation of the `meshplayctl` commands is available in the [Meshplay Docs](https://docs.meshplay.khulnasoft.com/reference/meshplayctl).
+Detailed documentation of the `meshplayctl` commands is available in the [Meshplay Docs](https://docs.khulnasoft.com/reference/meshplayctl).
 
 ## General guidelines and resources
 
@@ -47,4 +47,4 @@ For logs, `meshplayctl` uses [Logrus](https://github.com/sirupsen/logrus). Going
 
 `meshplayctl` uses [golangci-lint](https://github.com/golangci/golangci-lint). Refer it for lint checks.
 
-All contributors are invited to review [pull requests](https://github.com/khulnasoft/meshplay/pulls) on `meshplayctl` as on other KhulnaSoft projects.
+All contributors are invited to review [pull requests](https://github.com/khulnasoft/meshplay/pulls) on `meshplayctl` as on other Layer5 projects.

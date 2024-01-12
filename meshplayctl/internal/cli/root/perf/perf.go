@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,10 +17,8 @@ package perf
 import (
 	"fmt"
 
-	"github.com/pkg/errors"
-
-	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/system"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
+	"github.com/pkg/errors"
 
 	"github.com/spf13/cobra"
 )
@@ -36,35 +34,23 @@ var (
 var PerfCmd = &cobra.Command{
 	Use:   "perf",
 	Short: "Performance Management",
-	Long:  `Performance Management & Benchmarking`,
+	Long: `Performance Management & Benchmarking.
+Find more information at: https://docs.khulnasoft.com/reference/meshplayctl#command-reference`,
 	Example: `
-// Run performance test
+// Run performance test:
 meshplayctl perf apply test-3 --name "a quick stress test" --url http://192.168.1.15/productpage --qps 300 --concurrent-requests 2 --duration 30s
 	
-// List performance profiles
+// List performance profiles:
 meshplayctl perf profile sam-test
 
-// List performance results
+// List performance results:
 meshplayctl perf result sam-test
 
-// Display Perf profile in JSON or YAML
+// Display Perf profile in JSON or YAML:
 meshplayctl perf result -o json
 meshplayctl perf result -o yaml
-	`,
-	PreRunE: func(cmd *cobra.Command, args []string) error {
-		//Check prerequisite
-		hcOptions := &system.HealthCheckOptions{
-			IsPreRunE:  true,
-			PrintLogs:  false,
-			Subcommand: cmd.Use,
-		}
-		hc, err := system.NewHealthChecker(hcOptions)
-		if err != nil {
-			utils.Log.Error(ErrHealthChecker(err))
-			return nil
-		}
-		return hc.RunPreflightHealthChecks()
-	},
+`,
+
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) == 0 {
 			return cmd.Help()
@@ -74,16 +60,16 @@ meshplayctl perf result -o yaml
 
 			suggestedCmd := utils.FindClosestArg(args[0], availableSubCmds)
 			if suggestedCmd != "" && suggestedCmd[0] == args[0][0] {
-				return errors.New(utils.PerfError(fmt.Sprintf("'%s' is a invalid command for '%s'. Did you mean this?\n\t%s\n", args[0], cmd.CalledAs(), suggestedCmd)))
+				return errors.New(utils.PerfError(fmt.Sprintf("'%s' is an invalid command for '%s'. Did you mean this?\n\t%s\n", args[0], cmd.CalledAs(), suggestedCmd)))
 			}
-			return errors.New(utils.PerfError(fmt.Sprintf("'%s' is a invalid command for '%s'. Use 'meshplayctl perf --help' to display usage guide.\n", args[0], cmd.CalledAs())))
+			return errors.New(utils.PerfError(fmt.Sprintf("'%s' is an invalid command for '%s'. Use 'meshplayctl perf --help' to display usage guide.\n", args[0], cmd.CalledAs())))
 		}
 		return nil
 	},
 }
 
 func init() {
-	PerfCmd.PersistentFlags().StringVarP(&utils.TokenFlag, "token", "t", "", "(required) Path to meshplay auth config")
+	PerfCmd.PersistentFlags().StringVarP(&utils.TokenFlag, "token", "t", "", "(required) Path to meshery auth config")
 	PerfCmd.PersistentFlags().StringVarP(&outputFormatFlag, "output-format", "o", "", "(optional) format to display in [json|yaml]")
 	PerfCmd.PersistentFlags().BoolVarP(&utils.SilentFlag, "yes", "y", false, "(optional) assume yes for user interactive prompts.")
 

@@ -4,7 +4,7 @@ contexts:
         token: default
         platform: docker
         components:
-          - meshplay-istio  
+          - meshery-istio  
         channel: stable
         version: latest
         provider: Meshplay
@@ -13,7 +13,7 @@ contexts:
         token: default
         platform: kubernetes
         components:
-          - meshplay-istio  
+          - meshery-istio  
         channel: stable
         version: latest
         provider: Meshplay    

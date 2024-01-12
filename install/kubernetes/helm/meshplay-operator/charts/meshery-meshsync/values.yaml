@@ -1,5 +1,0 @@
-name: meshplay-meshsync
-replica: 1
-broker:
-  name: meshplay-broker
-  namespace: meshplay

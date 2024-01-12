@@ -23,6 +23,7 @@ LOCAL_PROVIDER="None"
 GOVERSION = 1.21
 GOPATH = $(shell go env GOPATH)
 GOBIN  = $(GOPATH)/bin
+KEYS_PATH="../../permissions/keys.csv"
 
 SHELL :=/bin/bash -o pipefail
 
@@ -32,15 +33,15 @@ SHELL :=/bin/bash -o pipefail
 # All Adapters
 # ADAPTER_URLS := "localhost:10000 localhost:10001 localhost:10002 localhost:10004 localhost:10005 localhost:10006 localhost:10007 localhost:10009 localhost:10010 localhost:10012"
 # No Adapters
-ADAPTER_URLS := ""
+ADAPTER_URLS := "localhost:10000 localhost:10001 localhost:10012"
 
 #-----------------------------------------------------------------------------
 # Providers
 #-----------------------------------------------------------------------------
 REMOTE_PROVIDER_LOCAL="http://localhost:9876"
 MESHPLAY_CLOUD_DEV="http://localhost:9876"
-MESHPLAY_CLOUD_PROD="https://meshplay.khulnasoft.com"
-MESHPLAY_CLOUD_STAGING="https://staging-meshplay.khulnasoft.com"
+MESHPLAY_CLOUD_PROD="https://meshery.layer5.io"
+MESHPLAY_CLOUD_STAGING="https://staging-meshery.layer5.io"
 
 #-----------------------------------------------------------------------------
 # Server

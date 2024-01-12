@@ -1,4 +1,4 @@
-// Copyright 2023 KhulnaSoft, Inc.
+// Copyright 2023 Layer5, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import (
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/khulnasoft/meshplay/meshplayctl/pkg/utils"
-	smp "github.com/khulnasoft/meshplay/service-mesh-performance/spec"
+	smp "github.com/layer5io/service-mesh-performance/spec"
 	"github.com/manifoldco/promptui"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -46,7 +46,8 @@ var (
 	MeshCmd    = &cobra.Command{
 		Use:   "mesh",
 		Short: "Cloud Native Lifecycle Management",
-		Long:  "Provisioning, configuration, and on-going operational management of service meshes",
+		Long: `Provisioning, configuration, and on-going operational management of service meshes.
+	Find more information at: https://docs.khulnasoft.com/reference/meshplayctl#command-reference`,
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 
 			// if `mesh` command is ran without any subcommands, show Help and exit
@@ -54,7 +55,7 @@ var (
 				return cmd.Help()
 			}
 
-			// get the meshplay config
+			// get the meshery config
 			mctlCfg, err = config.GetMeshplayCtl(viper.GetViper())
 			if err != nil {
 				utils.Log.Error(err)
@@ -102,7 +103,7 @@ func init() {
 }
 
 func validateAdapter(mctlCfg *config.MeshplayCtlConfig, meshName string) error {
-	// get details about the current meshplay session
+	// get details about the current meshery session
 	prefs, err := utils.GetSessionData(mctlCfg)
 	if err != nil {
 		return ErrGettingSessionData(err)
@@ -132,7 +133,7 @@ func validateMesh(mctlCfg *config.MeshplayCtlConfig, meshName string) (string, e
 		return "", ErrValidMeshName(meshName)
 	}
 
-	// get details about the current meshplay session
+	// get details about the current meshery session
 	prefs, err := utils.GetSessionData(mctlCfg)
 	if err != nil {
 		return "", ErrGettingSessionData(err)
@@ -187,7 +188,7 @@ func sendOperationRequest(mctlCfg *config.MeshplayCtlConfig, query string, delet
 		}
 	case "istio-vet":
 		{
-			if adapterURL == "meshplay-istio:10000" {
+			if adapterURL == "meshery-istio:10000" {
 				data.Set("query", "istio-vet")
 				break
 			}

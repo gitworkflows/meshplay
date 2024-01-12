@@ -14,9 +14,9 @@ import (
 	"github.com/khulnasoft/meshplay/server/internal/graphql/generated"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/resolver"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/broker"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/utils/broadcast"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/utils/broadcast"
 )
 
 type Options struct {
@@ -47,11 +47,6 @@ func New(opts Options) http.Handler {
 		user, _ := ctx.Value(models.UserCtxKey).(*models.User)
 		provider, _ := ctx.Value(models.ProviderCtxKey).(models.Provider)
 		ctx, err = handlers.KubernetesMiddleware(ctx, handler, provider, user, []string{})
-		if err != nil {
-			return nil, err
-		}
-
-		ctx, err = handlers.MeshplayControllersMiddleware(ctx, handler)
 		if err != nil {
 			return nil, err
 		}

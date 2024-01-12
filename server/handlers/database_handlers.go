@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshsyncmodel "github.com/khulnasoft/meshplay/meshsync/pkg/model"
+	"github.com/khulnasoft/meshkit/utils"
+	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
 	"gorm.io/gorm/clause"
 )
 
@@ -73,6 +73,7 @@ func (h *Handler) GetSystemDatabase(w http.ResponseWriter, r *http.Request, _ *m
 	if offset != 0 {
 		tableFinder = tableFinder.Offset(offset)
 	}
+	order = models.SanitizeOrderInput(order, []string{"created_at", "updated_at", "name"})
 	if order != "" {
 		if sort == "desc" {
 			tableFinder = tableFinder.Order(clause.OrderByColumn{Column: clause.Column{Name: order}, Desc: true})
@@ -120,16 +121,16 @@ func (h *Handler) GetSystemDatabase(w http.ResponseWriter, r *http.Request, _ *m
 // Reset the system database to its initial state.
 func (h *Handler) ResetSystemDatabase(w http.ResponseWriter, r *http.Request, _ *models.Preference, _ *models.User, provider models.Provider) {
 
-	meshplaydbPath := path.Join(utils.GetHome(), ".meshplay/config")
-	err := os.Mkdir(path.Join(meshplaydbPath, ".archive"), os.ModePerm)
+	mesherydbPath := path.Join(utils.GetHome(), ".meshery/config")
+	err := os.Mkdir(path.Join(mesherydbPath, ".archive"), os.ModePerm)
 	if err != nil && os.IsNotExist(err) {
 		http.Error(w, "Directory could not be created due to a non-existent path.", http.StatusInternalServerError)
 		return
 	}
-	src := path.Join(meshplaydbPath, "meshplaydb.sql")
+	src := path.Join(mesherydbPath, "mesherydb.sql")
 	currentTime := time.Now().Format("20060102150407")
-	newFileName := ".archive/meshplaydb" + currentTime + ".sql"
-	dst := path.Join(meshplaydbPath, newFileName)
+	newFileName := ".archive/mesherydb" + currentTime + ".sql"
+	dst := path.Join(mesherydbPath, newFileName)
 
 	fin, err := os.Open(src)
 	if err != nil {

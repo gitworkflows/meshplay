@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/gofrs/uuid"
-	"github.com/khulnasoft/meshplay/meshkit/models/events"
+	"github.com/khulnasoft/meshkit/models/events"
 )
 
 type MeshplayEvents interface {
@@ -12,5 +12,5 @@ type MeshplayEvents interface {
 	DeleteEvent(eventID uuid.UUID) error
 	UpdateEventStatus(eventID uuid.UUID, status string) (*events.Event, error)
 	BulkUpdateEventStatus(eventID []*uuid.UUID, status string) ([]*events.Event, error)
-	BulkDeleteEvent(eventID []*uuid.UUID) (error)
+	BulkDeleteEvent(eventID []*uuid.UUID) error
 }

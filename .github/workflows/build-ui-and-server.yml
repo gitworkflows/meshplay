@@ -18,11 +18,11 @@ on:
 jobs:
   build-backend:
     name: Backend build
-    if: github.repository == 'khulnasoft/meshplay'
+    if: github.repository == 'meshery/meshery'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Setup Go
@@ -38,14 +38,14 @@ jobs:
           make build-server
   ui-build:
     name: UI build
-    if: github.repository == 'khulnasoft/meshplay'
+    if: github.repository == 'meshery/meshery'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Cache node modules
@@ -72,145 +72,145 @@ jobs:
           cd ..
           cd provider-ui
           npm i
-      # - name: Cache meshplay-ui
-      #   id: meshplay-ui-cache
+      # - name: Cache meshery-ui
+      #   id: meshery-ui-cache
       #   uses: actions/cache@v3
       #   with:
       #     path: |
-      #       /home/runner/work/meshplay/meshplay/ui/out
-      #     key: ${{ runner.os }}-meshplay-ui-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-      - name: build meshplay-ui
-        # if: steps.meshplay-ui-cache.outputs.cache-hit != 'true'
+      #       /home/runner/work/meshery/meshery/ui/out
+      #     key: ${{ runner.os }}-meshery-ui-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+      - name: build meshery-ui
+        # if: steps.meshery-ui-cache.outputs.cache-hit != 'true'
         run: |
-          make ui-meshplay-build
+          make ui-meshery-build
       - name: build provider-ui
         run: |
           make ui-provider-build
-      - name: Upload meshplay-ui artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload meshery-ui artifacts
+        uses: actions/upload-artifact@v3.0.0
         with:
-          name: meshplay-ui
-          path: /home/runner/work/meshplay/meshplay/ui/out
+          name: meshery-ui
+          path: /home/runner/work/meshery/meshery/ui/out
       - name: Upload provider-ui artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: provider-ui
-          path: /home/runner/work/meshplay/meshplay/provider-ui/out
-  tests-ui-e2e:
-    needs: [build-backend, ui-build]
-    name: UI end-to-end tests
-    if: github.repository == 'khulnasoft/meshplay'
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Check out meshplay-istio code
-        uses: actions/checkout@v4
-        with:
-          repository: layer5io/meshplay-istio
-          path: ./meshplay-istio
-      - name: Check out meshplay-consul code
-        uses: actions/checkout@v4
-        with:
-          repository: layer5io/meshplay-consul
-          path: ./meshplay-consul
-      - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.8.0
-        with:
-          cluster_name: "kind-cluster"
-      - name: Setup Go
-        uses: actions/setup-go@master
-        with:
-          go-version: "1.21"
-      - name: Run meshplay-istio
-        run: |
-          mkdir -p /home/runner/.meshplay/bin
-          cd ./meshplay-istio
-          go run main.go &
-          sleep 60
-      - name: Run meshplay-consul
-        run: |
-          mkdir -p /home/runner/.meshplay/bin
-          cd ./meshplay-consul
-          go run main.go &
-          sleep 60
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Restore node modules cache
-        id: node-cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/cache
-            ~/.cache
-            /home/runner/.cache
-            !~/cache/exclude
-            **/node_modules
-            /home/runner/.cache/Cypress
-            ~/.npm
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-      - name: Download meshplay-ui artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: meshplay-ui
-          path: /home/runner/work/meshplay/meshplay/ui/out
-      - name: Download provider-ui artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: provider-ui
-          path: /home/runner/work/meshplay/meshplay/provider-ui/out
-      - name: Run Meshplay UI and Server
-        env:
-          PROVIDER_BASE_URLS: http://localhost:9876
-          PORT: 9081
-          ADAPTER_URLS: "localhost:10000 localhost:10001 localhost:10002 localhost:10003 localhost:10004 localhost:10009 localhost:10007"
-        run: |
-          make server &
-          sleep 60
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: ui
-          wait-on: http://localhost:9081
-          spec: cypress/e2e/e2e/**/*
-          browser: chrome
-          record: true
-          tag: node-18
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-ss
-          path: ./ui/cypress/screenshots
-      - name: Upload Videos
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-ss
-          path: ./ui/cypress/videos
-      - name: Upload coverage to Codecov (ui)
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./ui/coverage/coverage-summary.json
-          directory: ./ui/coverage/lcov-report
-          flags: e2etests
+          path: /home/runner/work/meshery/meshery/provider-ui/out
+  # tests-ui-e2e:
+  #   needs: [build-backend, ui-build]
+  #   name: UI end-to-end tests
+  #   if: github.repository == 'meshery/meshery'
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Check out code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Check out meshery-istio code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         repository: khulnasoft/meshplay-istio
+  #         path: ./meshery-istio
+  #     - name: Check out meshery-consul code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         repository: khulnasoft/meshplay-consul
+  #         path: ./meshery-consul
+  #     - name: Create k8s Kind Cluster
+  #       uses: helm/kind-action@v1.8.0
+  #       with:
+  #         cluster_name: "kind-cluster"
+  #     - name: Setup Go
+  #       uses: actions/setup-go@master
+  #       with:
+  #         go-version: "1.21"
+  #     - name: Run meshery-istio
+  #       run: |
+  #         mkdir -p /home/runner/.meshery/bin
+  #         cd ./meshery-istio
+  #         go run main.go &
+  #         sleep 60
+  #     - name: Run meshery-consul
+  #       run: |
+  #         mkdir -p /home/runner/.meshery/bin
+  #         cd ./meshery-consul
+  #         go run main.go &
+  #         sleep 60
+  #     - name: Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #     - name: Restore node modules cache
+  #       id: node-cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: |
+  #           ~/cache
+  #           ~/.cache
+  #           /home/runner/.cache
+  #           !~/cache/exclude
+  #           **/node_modules
+  #           /home/runner/.cache/Cypress
+  #           ~/.npm
+  #           ${{ github.workspace }}/.next/cache
+  #         key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+  #     - name: Download meshery-ui artifacts
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: meshery-ui
+  #         path: /home/runner/work/meshery/meshery/ui/out
+  #     - name: Download provider-ui artifacts
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: provider-ui
+  #         path: /home/runner/work/meshery/meshery/provider-ui/out
+  #     - name: Run Meshplay UI and Server
+  #       env:
+  #         PROVIDER_BASE_URLS: http://localhost:9876
+  #         PORT: 9081
+  #         ADAPTER_URLS: "localhost:10000 localhost:10001 localhost:10002 localhost:10003 localhost:10004 localhost:10009 localhost:10007"
+  #       run: |
+  #         make server &
+  #         sleep 60
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v5
+  #       with:
+  #         working-directory: ui
+  #         wait-on: http://localhost:9081
+  #         spec: cypress/e2e/e2e/**/*
+  #         browser: chrome
+  #         record: true
+  #         tag: node-18
+  #       env:
+  #         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Upload artifacts
+  #       if: always()
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: cypress-ss
+  #         path: ./ui/cypress/screenshots
+  #     - name: Upload Videos
+  #       uses: actions/upload-artifact@v3
+  #       if: always()
+  #       with:
+  #         name: cypress-ss
+  #         path: ./ui/cypress/videos
+  #     - name: Upload coverage to Codecov (ui)
+  #       uses: codecov/codecov-action@v3
+  #       with:
+  #         files: ./ui/coverage/coverage-summary.json
+  #         directory: ./ui/coverage/lcov-report
+  #         flags: e2etests
   docker-build-test:
     name: Docker build
-    if: github.repository == 'khulnasoft/meshplay'
+    if: github.repository == 'meshery/meshery'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Docker edge build & tag
@@ -218,8 +218,8 @@ jobs:
         env:
           RELEASE_CHANNEL: "edge"
         run: |
-          DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile --no-cache -t meshplay:edge-latest --build-arg TOKEN=test --build-arg GIT_COMMITSHA=${GITHUB_SHA::8} --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} .
-          docker tag meshplay:edge-latest meshplay:edge-${GITHUB_SHA::8}
+          DOCKER_BUILDKIT=1 docker build -f install/docker/Dockerfile --no-cache -t meshery:edge-latest --build-arg TOKEN=test --build-arg GIT_COMMITSHA=${GITHUB_SHA::8} --build-arg RELEASE_CHANNEL=${RELEASE_CHANNEL} .
+          docker tag meshery:edge-latest meshery:edge-${GITHUB_SHA::8}
       - name: Docker edge push
         if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') && success()
         run: |
@@ -228,7 +228,7 @@ jobs:
           docker push ${{ secrets.IMAGE_NAME }}:edge-${GITHUB_SHA::8}
       - name: Docker Hub Description
         if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') && success()
-        uses: peter-evans/dockerhub-description@v3.4.2
+        uses: peter-evans/dockerhub-description@v2.0.0
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -236,11 +236,11 @@ jobs:
 
   # validate the swagger docs
   swaggerci:
-    if: github.repository == 'khulnasoft/meshplay'
+    if: github.repository == 'meshery/meshery'
     name: swagger-docs
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Check if handlers were modified
         uses: dorny/paths-filter@v2
         id: changes
@@ -263,11 +263,11 @@ jobs:
   # validate graphQL schema
   garphql_validate:
     name: Validate GraphQL schema
-    if: github.repository == 'khulnasoft/meshplay'
+    if: github.repository == 'meshery/meshery'
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Check if schema was modified
@@ -289,3 +289,4 @@ jobs:
           cd docs
           bundle install
           bundle exec rake graphql:compile_docs
+

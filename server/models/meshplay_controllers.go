@@ -7,18 +7,19 @@ import (
 	"sync"
 	"time"
 
-	"github.com/khulnasoft/meshplay/meshkit/broker/nats"
-	"github.com/khulnasoft/meshplay/meshkit/database"
-	"github.com/khulnasoft/meshplay/meshkit/logger"
-	"github.com/khulnasoft/meshplay/meshkit/models/controllers"
-	"github.com/khulnasoft/meshplay/meshkit/utils"
-	meshplaykube "github.com/khulnasoft/meshplay/meshkit/utils/kubernetes"
+	"github.com/gofrs/uuid"
+	"github.com/khulnasoft/meshkit/broker/nats"
+	"github.com/khulnasoft/meshkit/database"
+	"github.com/khulnasoft/meshkit/logger"
+	"github.com/khulnasoft/meshkit/models/controllers"
+	"github.com/khulnasoft/meshkit/utils"
+	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/spf13/viper"
 )
 
 const (
-	ChartRepo                     = "https://meshplay.github.io/meshplay.khulnasoft.com/charts"
-	MeshplayServerBrokerConnection = "meshplay-server"
+	ChartRepo                     = "https://meshery.github.io/khulnasoft.com/charts"
+	MeshplayServerBrokerConnection = "meshery-server"
 )
 
 type MeshplayController int
@@ -38,7 +39,7 @@ type MeshplayControllersHelper struct {
 	// maps each context with a meshsync data handler
 	ctxMeshsyncDataHandlerMap map[string]MeshsyncDataHandler
 
-	mu sync.Mutex
+	mu                sync.Mutex
 
 	log          logger.Handler
 	oprDepConfig controllers.OperatorDeploymentConfig
@@ -72,9 +73,9 @@ func NewMeshplayControllersHelper(log logger.Handler, operatorDepConfig controll
 // initialized yet. Apart from updating the map, it also runs the handler after
 // updating the map. The presence of a handler for a context in a map indicate that
 // the meshsync data for that context is properly being handled
-func (mch *MeshplayControllersHelper) UpdateMeshsynDataHandlers() *MeshplayControllersHelper {
+func (mch *MeshplayControllersHelper) UpdateMeshsynDataHandlers(ctx context.Context, connectionID, userID, mesheryInstanceID uuid.UUID, provider Provider) *MeshplayControllersHelper {
 	// only checking those contexts whose MeshplayConrollers are active
-	go func (mch *MeshplayControllersHelper) {
+	go func(mch *MeshplayControllersHelper) {
 		mch.mu.Lock()
 		defer mch.mu.Unlock()
 		for ctxID, controllerHandlers := range mch.ctxControllerHandlersMap {
@@ -105,7 +106,8 @@ func (mch *MeshplayControllersHelper) UpdateMeshsynDataHandlers() *MeshplayContr
 					continue
 				}
 				mch.log.Info(fmt.Sprintf("Connected to Meshplay Broker (%v) for Kubernetes context (%v)", brokerEndpoint, ctxID))
-				msDataHandler := NewMeshsyncDataHandler(brokerHandler, *mch.dbHandler, mch.log)
+				token, _ := ctx.Value(TokenCtxKey).(string)
+				msDataHandler := NewMeshsyncDataHandler(brokerHandler, *mch.dbHandler, mch.log, provider, userID, connectionID, mesheryInstanceID, token)
 				err = msDataHandler.Run()
 				if err != nil {
 					mch.log.Warn(err)
@@ -128,15 +130,18 @@ func (mch *MeshplayControllersHelper) UpdateCtxControllerHandlers(ctxs []K8sCont
 	go func(mch *MeshplayControllersHelper) {
 		mch.mu.Lock()
 		defer mch.mu.Unlock()
+		
 		// resetting this value as a specific controller handler instance does not have any significance opposed to
 		// a MeshsyncDataHandler instance where it signifies whether or not a listener is attached
 		mch.ctxControllerHandlersMap = make(map[string]map[MeshplayController]controllers.IMeshplayController)
 		for _, ctx := range ctxs {
+			
 			ctxID := ctx.ID
 			cfg, _ := ctx.GenerateKubeConfig()
-			client, err := meshplaykube.New(cfg)
+			client, err := mesherykube.New(cfg)
 			// means that the config is invalid
 			if err != nil {
+				
 				// invalid configs are not added to the map
 				continue
 			}
@@ -218,7 +223,9 @@ func (mch *MeshplayControllersHelper) DeployUndeployedOperators(ot *OperatorTrac
 		defer mch.mu.Unlock()
 		for ctxID, ctrlHandler := range mch.ctxControllerHandlersMap {
 			if oprStatus, ok := mch.ctxOperatorStatusMap[ctxID]; ok {
+				
 				if oprStatus == controllers.NotDeployed {
+					
 					err := ctrlHandler[MeshplayOperator].Deploy(false)
 					if err != nil {
 						mch.log.Error(err)
@@ -231,23 +238,46 @@ func (mch *MeshplayControllersHelper) DeployUndeployedOperators(ot *OperatorTrac
 	return mch
 }
 
+func (mch *MeshplayControllersHelper) UndeployDeployedOperators(ot *OperatorTracker) *MeshplayControllersHelper {
+	go func(mch *MeshplayControllersHelper) {
+		
+		mch.mu.Lock()
+		defer mch.mu.Unlock()
+		for ctxID, ctrlHandler := range mch.ctxControllerHandlersMap {
+					
+			if oprStatus, ok := mch.ctxOperatorStatusMap[ctxID]; ok {
+				
+				if oprStatus != controllers.Undeployed {
+					
+					err := ctrlHandler[MeshplayOperator].Undeploy()
+					
+					if err != nil {
+						mch.log.Error(err)
+					}
+				}
+			}
+		}
+	}(mch)
+	return mch
+}
+
 func NewOperatorDeploymentConfig(adapterTracker AdaptersTrackerInterface) controllers.OperatorDeploymentConfig {
-	// get meshplay release version
-	meshplayReleaseVersion := viper.GetString("BUILD")
-	if meshplayReleaseVersion == "" || meshplayReleaseVersion == "Not Set" || meshplayReleaseVersion == "edge-latest" {
-		_, latestRelease, err := CheckLatestVersion(meshplayReleaseVersion)
+	// get meshery release version
+	mesheryReleaseVersion := viper.GetString("BUILD")
+	if mesheryReleaseVersion == "" || mesheryReleaseVersion == "Not Set" || mesheryReleaseVersion == "edge-latest" {
+		_, latestRelease, err := CheckLatestVersion(mesheryReleaseVersion)
 		// if unable to fetch latest release tag, meshkit helm functions handle
 		// this automatically fetch the latest one
 		if err != nil {
 			// mch.log.Error(fmt.Errorf("Couldn't check release tag: %s. Will use latest version", err))
-			meshplayReleaseVersion = ""
+			mesheryReleaseVersion = ""
 		} else {
-			meshplayReleaseVersion = latestRelease
+			mesheryReleaseVersion = latestRelease
 		}
 	}
 
 	return controllers.OperatorDeploymentConfig{
-		MeshplayReleaseVersion: meshplayReleaseVersion,
+		MeshplayReleaseVersion: mesheryReleaseVersion,
 		GetHelmOverrides: func(delete bool) map[string]interface{} {
 			return setOverrideValues(delete, adapterTracker)
 		},
@@ -259,7 +289,7 @@ func NewOperatorDeploymentConfig(adapterTracker AdaptersTrackerInterface) contro
 // and returns the (isOutdated, latestVersion, error)
 func CheckLatestVersion(serverVersion string) (*bool, string, error) {
 	// Inform user of the latest release version
-	versions, err := utils.GetLatestReleaseTagsSorted("meshplay", "meshplay")
+	versions, err := utils.GetLatestReleaseTagsSorted("meshery", "meshery")
 	latestVersion := versions[len(versions)-1]
 	isOutdated := false
 	if err != nil {
@@ -288,38 +318,38 @@ func setOverrideValues(delete bool, adapterTracker AdaptersTrackerInterface) map
 	}
 
 	overrideValues := map[string]interface{}{
-		"fullnameOverride": "meshplay-operator",
-		"meshplay": map[string]interface{}{
+		"fullnameOverride": "meshery-operator",
+		"meshery": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-istio": map[string]interface{}{
+		"meshery-istio": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-cilium": map[string]interface{}{
+		"meshery-cilium": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-linkerd": map[string]interface{}{
+		"meshery-linkerd": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-consul": map[string]interface{}{
+		"meshery-consul": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-kuma": map[string]interface{}{
+		"meshery-kuma": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nsm": map[string]interface{}{
+		"meshery-nsm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nginx-sm": map[string]interface{}{
+		"meshery-nginx-sm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-traefik-mesh": map[string]interface{}{
+		"meshery-traefik-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-app-mesh": map[string]interface{}{
+		"meshery-app-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-operator": map[string]interface{}{
+		"meshery-operator": map[string]interface{}{
 			"enabled": true,
 		},
 	}
@@ -333,7 +363,7 @@ func setOverrideValues(delete bool, adapterTracker AdaptersTrackerInterface) map
 	}
 
 	if delete {
-		overrideValues["meshplay-operator"] = map[string]interface{}{
+		overrideValues["meshery-operator"] = map[string]interface{}{
 			"enabled": false,
 		}
 	}
@@ -352,31 +382,31 @@ func SetOverrideValuesForMeshplayDeploy(adapters []Adapter, adapter Adapter, ins
 	}
 
 	overrideValues := map[string]interface{}{
-		"meshplay-istio": map[string]interface{}{
+		"meshery-istio": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-cilium": map[string]interface{}{
+		"meshery-cilium": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-linkerd": map[string]interface{}{
+		"meshery-linkerd": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-consul": map[string]interface{}{
+		"meshery-consul": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-kuma": map[string]interface{}{
+		"meshery-kuma": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nsm": map[string]interface{}{
+		"meshery-nsm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-nginx-sm": map[string]interface{}{
+		"meshery-nginx-sm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-traefik-mesh": map[string]interface{}{
+		"meshery-traefik-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshplay-app-mesh": map[string]interface{}{
+		"meshery-app-mesh": map[string]interface{}{
 			"enabled": false,
 		},
 	}

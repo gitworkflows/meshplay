@@ -1,11 +1,11 @@
 package core
 
 import (
-	"github.com/khulnasoft/meshplay/meshkit/errors"
+	"github.com/khulnasoft/meshkit/errors"
 )
 
 // Please reference the following before contributing an error code:
-// https://docs.meshplay.khulnasoft.com/project/contributing/contributing-error
+// https://docs.khulnasoft.com/project/contributing/contributing-error
 // https://github.com/khulnasoft/meshkit/blob/master/errors/errors.go
 const (
 	ErrGetK8sComponentsCode     = "1400"
@@ -23,7 +23,7 @@ func ErrParseK8sManifest(err error) error {
 }
 
 func ErrCreatePatternService(err error) error {
-	return errors.New(ErrCreatePatternServiceCode, errors.Alert, []string{"Failed to create design service from Manifest"}, []string{err.Error()}, []string{"Invalid Manifest", "Meshplay doesn't identifies the Resource mentioned in the Manifest"}, []string{"Check if all of the meshplay adapters are running", "Check if Meshplay has successfully identified and registered Kubernetes components"})
+	return errors.New(ErrCreatePatternServiceCode, errors.Alert, []string{"Failed to create design service from Manifest"}, []string{err.Error()}, []string{"Invalid Manifest", "Meshplay doesn't identifies the Resource mentioned in the Manifest"}, []string{"Check if all of the meshery adapters are running", "Check if Meshplay has successfully identified and registered Kubernetes components"})
 }
 
 func ErrPatternFromCytoscape(err error) error {

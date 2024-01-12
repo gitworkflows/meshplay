@@ -13,6 +13,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/khulnasoft/meshplay/meshplayctl/internal/cli/root/config"
 	"github.com/manifoldco/promptui"
@@ -164,7 +165,7 @@ func AddAuthDetails(req *http.Request, filepath string) error {
 	return nil
 }
 
-// UpdateAuthDetails checks gets the token (old/refreshed) from meshplay server and writes it back to the config file
+// UpdateAuthDetails checks gets the token (old/refreshed) from meshery server and writes it back to the config file
 func UpdateAuthDetails(filepath string) error {
 	mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 	if err != nil {
@@ -285,7 +286,7 @@ func InitiateLogin(mctlCfg *config.MeshplayCtlConfig, option string) ([]byte, er
 		}
 	}
 
-	// Send request with the token to the meshplay server
+	// Send request with the token to the meshery server
 	data, err := getTokenObjFromMeshplayServer(mctlCfg, provider.ProviderName, token)
 	if err != nil {
 		return nil, err
@@ -294,7 +295,7 @@ func InitiateLogin(mctlCfg *config.MeshplayCtlConfig, option string) ([]byte, er
 	return data, nil
 }
 
-// GetProviderInfo queries meshplay API for the provider info
+// GetProviderInfo queries meshery API for the provider info
 func GetProviderInfo(mctCfg *config.MeshplayCtlConfig) (map[string]Provider, error) {
 	res := map[string]Provider{}
 
@@ -432,7 +433,7 @@ func getTokenObjFromMeshplayServer(mctl *config.MeshplayCtlConfig, provider, tok
 		HttpOnly: true,
 	})
 	req.AddCookie(&http.Cookie{
-		Name:     "meshplay-provider",
+		Name:     "meshery-provider",
 		Value:    provider,
 		HttpOnly: true,
 	})
@@ -446,4 +447,16 @@ func getTokenObjFromMeshplayServer(mctl *config.MeshplayCtlConfig, provider, tok
 	defer resp.Body.Close()
 
 	return io.ReadAll(resp.Body)
+}
+
+func IsServerRunning(serverAddr string) error {
+	serverAddr, _ = strings.CutPrefix(serverAddr, "http://")
+	// Attempt to establish a connection to the server
+	conn, err := net.DialTimeout("tcp", serverAddr, 2*time.Second)
+	if err != nil {
+		// Connection failed, server is not running
+		return errors.WithMessage(err, "Meshplay server is not reachable")
+	}
+	defer conn.Close()
+	return nil
 }
