@@ -37,7 +37,7 @@ It also supports a collaborative environment, where DevOps engineers can share t
 * Delete pattern file:  `meshplayctl pattern delete --file [path to pattern file]`
 * View pattern file:  `meshplayctl pattern view [pattern name | ID]`
 * List all patterns: `meshplayctl pattern list`
-5. [Onboarding](managing-applications-through-meshery-cli) an application. `meshplayctl app onboard -f [file-path]`
+5. [Onboarding](managing-applications-through-meshplay-cli) an application. `meshplayctl app onboard -f [file-path]`
 6. Applying [WASM Filter](https://docs.khulnasoft.com/guides/configuration-management#wasm-filters). `meshplayctl exp filter apply --file [GitHub Link]`
 
 

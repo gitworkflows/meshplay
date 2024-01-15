@@ -28,14 +28,14 @@ url: "https://docs.khulnasoft.com" # the base hostname & protocol for your site
 
 # Social (First three Required)
 repo: "https://github.com/khulnasoft/meshplay"
-github_user: "meshery"
-github_repo: "meshery"
+github_user: "meshplay"
+github_repo: "meshplay"
 project: https://khulnasoft.com
 
 # Optional
-twitter: https://twitter.com/mesheryio
-linkedin: https://www.linkedin.com/company/meshery/
-dockerhub: https://hub.docker.com/r/meshery
+twitter: https://twitter.com/meshplayio
+linkedin: https://www.linkedin.com/company/meshplay/
+dockerhub: https://hub.docker.com/r/meshplay
 
 # Should there be feedback buttons at the bottom of pages?
 feedback: false

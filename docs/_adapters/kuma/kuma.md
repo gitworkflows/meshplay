@@ -6,21 +6,21 @@ mesh_name: Kuma
 earliest_version: v1.2.2
 port: 10007/gRPC
 project_status: stable
-lab: kuma-meshery-adapter
+lab: kuma-meshplay-adapter
 github_link: https://github.com/khulnasoft/meshplay-kuma
 image: /assets/img/service-meshes/kuma.svg
 white_image: /assets/img/service-meshes/kuma-white.svg
 permalink: extensibility/adapters/kuma
 language: en
 ---
-{% assign sorted_tests_group = site.compatibility | group_by: "meshery-component" %}
+{% assign sorted_tests_group = site.compatibility | group_by: "meshplay-component" %}
 {% for group in sorted_tests_group %}
-      {% if group.name == "meshery-kuma" %}
-        {% assign items = group.items | sort: "meshery-component-version" | reverse %}
+      {% if group.name == "meshplay-kuma" %}
+        {% assign items = group.items | sort: "meshplay-component-version" | reverse %}
         {% for item in items %}
-          {% if item.meshery-component-version != "edge" %}
+          {% if item.meshplay-component-version != "edge" %}
             {% if item.overall-status == "passing" %}
-              {% assign adapter_version_dynamic = item.meshery-component-version %}
+              {% assign adapter_version_dynamic = item.meshplay-component-version %}
               {% break %}
             {% elsif item.overall-status == "failing" %}
               {% continue %}

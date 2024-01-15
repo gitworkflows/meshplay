@@ -152,7 +152,7 @@ func initConfig() {
 				}
 			}
 
-			// Create config file if not present in meshery folder
+			// Create config file if not present in meshplay folder
 			err = utils.CreateConfigFile()
 			if err != nil {
 				log.Fatal(err)

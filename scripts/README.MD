@@ -18,7 +18,7 @@ export CRED=($(cat <path to JSON API token> | base64 ))
 To run the script execute following command 
 
 ```bash
-CRED=$CRED go run main.go 1DZHnzxYWOlJ69Oguz4LkRVTFM79kC2tuvdwizOJmeMw --system meshery ../../server/meshmodel
+CRED=$CRED go run main.go 1DZHnzxYWOlJ69Oguz4LkRVTFM79kC2tuvdwizOJmeMw --system meshplay ../../server/meshmodel
 ```
 
 ## Component Updater
@@ -28,7 +28,7 @@ Uses a spreadsheet, which contains centralized information about MeshModel compo
 Supported flags are:
 
 - `--system`
-    defined type of system to update. Can be one of "meshery", "docs", or "remote-provider".
+    defined type of system to update. Can be one of "meshplay", "docs", or "remote-provider".
 - `--only-published`
     Only handle components that have a value of "true" under the "Published?" column in spreadsheet.
 
@@ -50,5 +50,5 @@ cd scripts/component_updater; go build main.go
 2. To update component metadata for meshmodels:
 
 ```
-./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshery ../../server/meshmodel
+./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel
 ```

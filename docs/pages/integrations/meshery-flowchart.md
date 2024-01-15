@@ -1,7 +1,7 @@
 ---
 layout: enhanced
 title: Meshplay Flowchart
-permalink: extensibility/integrations/meshery-flowchart
+permalink: extensibility/integrations/meshplay-flowchart
 type: extensibility
 category: integrations
 integrations-category: Orchestration & Management
@@ -9,7 +9,7 @@ integrations-subcategory: Flowchart
 display-title: "false"
 language: en
 list: include
-image: /assets/img/integrations/meshery-flowchart.svg
+image: /assets/img/integrations/meshplay-flowchart.svg
 ---
 
 <h1>{{ page.title }} <img src="{{ page.image }}" style="width: 35px; height: 35px;" /></h1>

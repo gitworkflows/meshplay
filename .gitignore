@@ -37,13 +37,13 @@ provider-ui/node_modules/
 
 # meshplayctl
 meshplayctl/cmd/meshplayctl/meshplayctl
-meshplayctl/.meshery/
+meshplayctl/.meshplay/
 meshplayctl/meshplayctl
 meshplayctl/default.profraw
 main
 
 # Meshplay
-cmd/meshery
+cmd/meshplay
 
 
 # scripts

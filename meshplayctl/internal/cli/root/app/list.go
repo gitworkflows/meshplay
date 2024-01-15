@@ -82,7 +82,7 @@ meshplayctl app list
 			utils.Log.Error(err)
 			return nil
 		}
-		provider := tokenObj["meshery-provider"]
+		provider := tokenObj["meshplay-provider"]
 		var data [][]string
 
 		if verbose {
@@ -116,7 +116,7 @@ meshplayctl app list
 			return nil
 		}
 
-		// Check if meshery provider is set
+		// Check if meshplay provider is set
 		if provider == "None" {
 			for _, v := range response.Patterns {
 				AppName := strings.Trim(v.Name, filepath.Ext(v.Name))

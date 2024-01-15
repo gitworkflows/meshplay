@@ -36,7 +36,7 @@ Using Meshplay UI, you can get a copy of your authentication token by following 
        word-break: normal;
        background-color: var(--color-primary-dark);
        border-radius: 0.25rem;
-       ">http:\\{meshery-server}:9081/provider</code>)
+       ">http:\\{meshplay-server}:9081/provider</code>)
    <br/>
 
 2. Navigate to your user's avatar in the upper righthand corner and select "Get Token" from the dropdown of profile section:
@@ -71,8 +71,8 @@ Using curl, you can access Meshplay's REST API by executing this command:
   <br/>
   <pre class="codeblock-pre">
   <div class="codeblock"><div class="clipboardjs">curl --location 'localhost:9081/api/&lt;endpoint&gt;' \
---header 'meshery-token: &lt;yourToken&gt;\
---header 'Cookie: meshery-provider=Meshplay; meshery.layer5.io_ref=/;token=&lt;yourToken&gt;
+--header 'meshplay-token: &lt;yourToken&gt;\
+--header 'Cookie: meshplay-provider=Meshplay; meshplay.layer5.io_ref=/;token=&lt;yourToken&gt;
 </div>
 </div>
   </pre>

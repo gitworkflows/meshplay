@@ -31,6 +31,6 @@ Guides to using Meshplay's various features and components.
     </li>
     {% endif %}
   {% endfor %}
-    <li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading Meshplay CLI</a></li>
+    <li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading Meshplay CLI</a></li>
 </ul>
 

@@ -36,7 +36,7 @@ After making changes, run `make` in the `meshplayctl` folder to build the binary
 
 A central `struct` is maintained in the `meshplayctl/internal/cli/root/config/config.go` file. These are updated and should be used for getting the Meshplay configuration.
 
-Updates to this central `struct` is made through updates in `Context` with setter functions. The changes made in this central `struct` are reflected back in the Meshplay configuration file (`.meshery/config.yaml`).
+Updates to this central `struct` is made through updates in `Context` with setter functions. The changes made in this central `struct` are reflected back in the Meshplay configuration file (`.meshplay/config.yaml`).
 
 **Logging**
 
@@ -161,7 +161,7 @@ Short: "Start Meshplay",
 Long:  'Start Meshplay and each of its service mesh components.',
 Args:  cobra.NoArgs,
 Example:```
-// Start meshery
+// Start meshplay
 meshplayctl system start
 
 // To create a new context for in-cluster Kubernetes deployments and set the new context as your current-context
@@ -217,7 +217,7 @@ Annotations: linkDocPatternApply,
 ...
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string   path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string   path to config file (default "/home/runner/.meshplay/config.yaml")
   -t, --token string    Path to token file default from current context
   -v, --verbose         verbose output
 

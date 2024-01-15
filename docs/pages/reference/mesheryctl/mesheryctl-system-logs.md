@@ -46,7 +46,7 @@ meshplayctl system logs --follow
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl system logs meshery-istio
+meshplayctl system logs meshplay-istio
 
 </div>
 </pre> 
@@ -65,7 +65,7 @@ meshplayctl system logs meshery-istio
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string    path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string    path to config file (default "/home/runner/.meshplay/config.yaml")
   -c, --context string   (optional) temporarily change the current context.
   -v, --verbose          verbose output
   -y, --yes              (optional) assume yes for user interactive prompts.

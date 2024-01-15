@@ -86,9 +86,9 @@ Note: The numeric portion of error codes are component-scoped. The numeric porti
            {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
             {% if thecycle == 'even' %} 
             {% if component[1].component_type == 'adapter' %}
-              {% capture link %}meshery-adapter-for-{{component[1].component_name}}{% endcapture %}
+              {% capture link %}meshplay-adapter-for-{{component[1].component_name}}{% endcapture %}
             {% elsif component[1].component_type == 'component' %}
-               {% capture link %}meshery-server{% endcapture %}
+               {% capture link %}meshplay-server{% endcapture %}
             {% else %}
               {% capture link %}{{ component[1].component_name  | camelcase }}-{{ component[1].component_type }}{% endcapture %}      
             {% endif %}
@@ -123,7 +123,7 @@ Note: The numeric portion of error codes are component-scoped. The numeric porti
           {% capture heading %}
             {{ component[1].component_name }} {{ component[1].component_type | camelcase }}
           {% endcapture %}
-        {% elsif component[1].component_name == 'meshery-server' %}
+        {% elsif component[1].component_name == 'meshplay-server' %}
           {% capture heading %}
             Meshplay Server
           {% endcapture %}

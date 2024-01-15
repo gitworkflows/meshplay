@@ -9,5 +9,5 @@ list: include
 ---
 Policies offer an evaluation algorithm to ensure desired behavior enforcement. [Policies](https://github.com/khulnasoft/meshplay/tree/master/server/meshmodel/policies) can be applied to components and relationships, defining rules and actions based on predefined conditions.
 
-[![Meshplay Models Policy Evaluation]({{ site.baseurl }}/assets/img/concepts/meshery-models-policy-evaluation.svg
-)]({{ site.baseurl }}/assets/img/concepts/meshery-models-policy-evaluation.svg)
+[![Meshplay Models Policy Evaluation]({{ site.baseurl }}/assets/img/concepts/meshplay-models-policy-evaluation.svg
+)]({{ site.baseurl }}/assets/img/concepts/meshplay-models-policy-evaluation.svg)

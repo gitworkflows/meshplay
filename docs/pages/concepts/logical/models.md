@@ -31,13 +31,13 @@ Each model package can be imported and exported from the system as OCI-compatibl
 
 {% include alert.html title="Model Packaging" type="info" content="Model constructs can be packaged and exported as OCI-compatible images. This makes them portable and allows them to be shared between different environments." %}
 
-![Meshplay Models]({{ site.baseurl }}/assets/img/concepts/meshery-models.png)
+![Meshplay Models]({{ site.baseurl }}/assets/img/concepts/meshplay-models.png)
 
 ## Key aspects and characteristics
 
 You might not fully comprehend the Meshplay Models figure above. The following analogy offers an alternative viewpoint from which to comprehend the Capabilities Registry (where Models are imported and their capabilities registered for use).  
 
-![Meshplay Models Analogy]({{ site.baseurl }}/assets/img/concepts/meshery-models-analogy.svg)
+![Meshplay Models Analogy]({{ site.baseurl }}/assets/img/concepts/meshplay-models-analogy.svg)
 
 ### Models
 

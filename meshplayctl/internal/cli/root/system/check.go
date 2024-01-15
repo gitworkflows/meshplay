@@ -129,9 +129,9 @@ meshplayctl system check
 meshplayctl system check --preflight
 
 // Run checks on specific mesh adapter
-meshplayctl system check --adapter meshery-istio:10000
+meshplayctl system check --adapter meshplay-istio:10000
 // or
-meshplayctl system check --adapter meshery-istio
+meshplayctl system check --adapter meshplay-istio
 
 // Run checks for all the mesh adapters
 meshplayctl system check --adapters
@@ -196,25 +196,25 @@ meshplayctl system check --operator
 
 // Run triggers all the healthchecks according to the requirements defined from struct HealthChecks
 func (hc *HealthChecker) Run() error {
-	// Run meshery docker checks
+	// Run meshplay docker checks
 	if hc.Options.RunDockerChecks {
 		if err := hc.runDockerHealthChecks(); err != nil {
 			return err
 		}
 	}
-	// Run meshery kubernetes checks
+	// Run meshplay kubernetes checks
 	if hc.Options.RunKubernetesChecks {
 		if err := hc.runKubernetesHealthChecks(); err != nil {
 			return err
 		}
 	}
-	// Run meshery component version checks
+	// Run meshplay component version checks
 	if hc.Options.RunVersionChecks {
 		if err := hc.runMeshplayVersionHealthChecks(); err != nil {
 			return err
 		}
 	}
-	// Run meshery component health checks
+	// Run meshplay component health checks
 	if hc.Options.RunComponentChecks {
 		if err := hc.runComponentsHealthChecks(); err != nil {
 			return err
@@ -437,7 +437,7 @@ func (hc *HealthChecker) runKubernetesHealthChecks() error {
 	return err
 }
 
-// runMeshplayVersionHealthChecks runs checks regarding meshery version and meshplayctl version
+// runMeshplayVersionHealthChecks runs checks regarding meshplay version and meshplayctl version
 func (hc *HealthChecker) runMeshplayVersionHealthChecks() error {
 	skipServerLogs := false
 
@@ -524,7 +524,7 @@ func (hc *HealthChecker) runMeshplayVersionHealthChecks() error {
 	return nil
 }
 
-// runComponentsHealthChecks runs health checks for Adapters, Operator, and all deployments in meshery ecosystem
+// runComponentsHealthChecks runs health checks for Adapters, Operator, and all deployments in meshplay ecosystem
 func (hc *HealthChecker) runComponentsHealthChecks() error {
 	if hc.Options.PrintLogs {
 		log.Info("\nMeshplay Components \n--------------")
@@ -576,7 +576,7 @@ func (hc *HealthChecker) runOperatorHealthChecks() error {
 		return err
 	}
 
-	// List the pods in the `meshery` Namespace
+	// List the pods in the `meshplay` Namespace
 	podList, err := utils.GetPodList(clientMesh, utils.MeshplayNamespace)
 	if err != nil {
 		return err
@@ -591,15 +591,15 @@ func (hc *HealthChecker) runOperatorHealthChecks() error {
 	for _, pod := range podList.Items {
 		name := utils.GetCleanPodName(pod.GetName())
 
-		if name == "meshery-operator" {
+		if name == "meshplay-operator" {
 			operatorCheck = true
 		}
 
-		if name == "meshery-broker" {
+		if name == "meshplay-broker" {
 			brokerCheck = true
 		}
 
-		if name == "meshery-meshsync" {
+		if name == "meshplay-meshsync" {
 			meshsyncCheck = true
 		}
 	}
@@ -685,13 +685,13 @@ func (hc *HealthChecker) runAdapterHealthChecks(adapterName string) error {
 	return nil
 }
 
-// mesheryReadinessHealthCheck is waiting for Meshplay to start, returns (ready, error)
-func mesheryReadinessHealthCheck() (bool, error) {
+// meshplayReadinessHealthCheck is waiting for Meshplay to start, returns (ready, error)
+func meshplayReadinessHealthCheck() (bool, error) {
 	kubeClient, err := meshkitkube.New([]byte(""))
 	if err != nil {
 		return false, err
 	}
-	if err := utils.WaitForPodRunning(kubeClient, "meshery", utils.MeshplayNamespace, 300); err != nil {
+	if err := utils.WaitForPodRunning(kubeClient, "meshplay", utils.MeshplayNamespace, 300); err != nil {
 		return false, err
 	}
 
@@ -702,7 +702,7 @@ func init() {
 	checkCmd.Flags().BoolVarP(&preflight, "preflight", "", false, "Verify environment readiness to deploy Meshplay")
 	checkCmd.Flags().BoolVarP(&pre, "pre", "", false, "Verify environment readiness to deploy Meshplay")
 	checkCmd.Flags().BoolVarP(&componentsFlag, "components", "", false, "Check status of Meshplay components")
-	checkCmd.Flags().BoolVarP(&adaptersFlag, "adapters", "", false, "Check status of meshery adapters")
-	checkCmd.Flags().StringVarP(&adapter, "adapter", "", "", "Check status of specified meshery adapter")
+	checkCmd.Flags().BoolVarP(&adaptersFlag, "adapters", "", false, "Check status of meshplay adapters")
+	checkCmd.Flags().StringVarP(&adapter, "adapter", "", "", "Check status of specified meshplay adapter")
 	checkCmd.Flags().BoolVarP(&operatorsFlag, "operator", "", false, "Verify the health of Meshplay Operator's deployment with MeshSync and Broker")
 }

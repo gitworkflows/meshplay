@@ -17,8 +17,8 @@ abstract: How to upgrade Meshplay and all of its components
 Various components of Meshplay will need to be upgraded as new releases become available. Meshplay is comprised of a number of components including a server, adapters, UI, and CLI. As an application, Meshplay is a composition of different functional components.
 
 <p style="text-align:center">
-<a href="{{site.baseurl}}/assets/img/architecture/upgrading-meshery.svg">
-    <img src="{{site.baseurl}}/assets/img/architecture/upgrading-meshery.svg" style="margin: 1rem;" />
+<a href="{{site.baseurl}}/assets/img/architecture/upgrading-meshplay.svg">
+    <img src="{{site.baseurl}}/assets/img/architecture/upgrading-meshplay.svg" style="margin: 1rem;" />
 </a><br /><i><small>Figure: Meshplay components</small></i>
 </p>
 
@@ -26,7 +26,7 @@ Some of the components must be upgraded simultaneously, while others may be upgr
 
 ### Versioning of Meshplay components
 
-<table class="mesherycomponents">
+<table class="meshplaycomponents">
     <tr>
         <th>Components</th>
         <th>Sub-component</th>
@@ -63,11 +63,11 @@ Docker Deployment: Watchtower updates this component in accordance with the user
         <td></td>
         <td><code>meshplayctl</code> manages the lifecycle of Meshplay Server. <br /><br />
         <ul> 
-            <li><code>system start</code> calls system update by default, which updates server and existing adapters, but doesn’t update meshery.yaml. Unless the <code>skipUpdate</code> flag is used, operators are also updated here.</li>
+            <li><code>system start</code> calls system update by default, which updates server and existing adapters, but doesn’t update meshplay.yaml. Unless the <code>skipUpdate</code> flag is used, operators are also updated here.</li>
             <li><code>system reset</code> retrieving docker-compose.yaml from GitHub (use git tag to reset to the right Meshplay version).</li>
             <li><code>system restart</code> also updates operators, unless the <code>skipUpdate</code> flag is used.</li>
             <li><code>system update</code> updates operators in case of both docker and kubernetes deployments.</li>
-            <li><code>system context</code> manages config.yaml, which manages meshery.yaml. </li>
+            <li><code>system context</code> manages config.yaml, which manages meshplay.yaml. </li>
             <li><code>meshplayctl</code> should generally be checking for latest release and informing user.</li>
         </ul>
         </td>
@@ -131,4 +131,4 @@ To upgrade `meshplayctl`, execute the following command:
  <div class="codeblock"><div class="clipboardjs">scoop update meshplayctl</div></div>
  </pre>
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Meshplay Operator, MeshSync, Broker Troubleshooting Guide
-permalink: guides/troubleshooting/meshery-operator-meshsync
+permalink: guides/troubleshooting/meshplay-operator-meshsync
 language: en
 abstract: This documentation provides comprehensive guidance on troubleshooting in Meshplay Operator, MeshSync and Broker, ensuring you can address common issues efficiently.
 type: guides
@@ -105,4 +105,4 @@ This documentation provides comprehensive guidance on troubleshooting in Meshpla
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

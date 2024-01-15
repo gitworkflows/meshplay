@@ -21,7 +21,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/machines"
 	meshmodelhelper "github.com/khulnasoft/meshplay/server/meshmodel"
 	"github.com/khulnasoft/meshplay/server/models"
-	mesherymeshmodel "github.com/khulnasoft/meshplay/server/models/meshmodel"
+	meshplaymeshmodel "github.com/khulnasoft/meshplay/server/models/meshmodel"
 	"github.com/khulnasoft/meshplay/server/router"
 	"github.com/khulnasoft/meshkit/broker/nats"
 	"github.com/khulnasoft/meshkit/logger"
@@ -47,7 +47,7 @@ var (
 
 const (
 	// DefaultProviderURL is the provider url for the "none" provider
-	DefaultProviderURL = "https://meshery.layer5.io"
+	DefaultProviderURL = "https://meshplay.layer5.io"
 	PoliciesPath       = "../meshmodel/kubernetes/policies"
 	RelationshipsPath  = "../meshmodel/kubernetes/relationships"
 )
@@ -72,7 +72,7 @@ func main() {
 		logLevel = int(logrus.DebugLevel)
 	}
 	// Initialize Logger instance
-	log, err := logger.New("meshery", logger.Options{
+	log, err := logger.New("meshplay", logger.Options{
 		Format:   logger.SyslogLogFormat,
 		LogLevel: logLevel,
 	})
@@ -104,7 +104,7 @@ func main() {
 	viper.SetDefault("PORT", 8080)
 	viper.SetDefault("ADAPTER_URLS", "")
 	viper.SetDefault("BUILD", version)
-	viper.SetDefault("OS", "meshery")
+	viper.SetDefault("OS", "meshplay")
 	viper.SetDefault("COMMITSHA", commitsha)
 	viper.SetDefault("RELEASE_CHANNEL", releasechannel)
 	viper.SetDefault("INSTANCE_ID", &instanceID)
@@ -126,7 +126,7 @@ func main() {
 			log.Error(ErrRetrievingUserHomeDirectory(err))
 			os.Exit(1)
 		}
-		viper.SetDefault("USER_DATA_FOLDER", path.Join(home, ".meshery", "config"))
+		viper.SetDefault("USER_DATA_FOLDER", path.Join(home, ".meshplay", "config"))
 	}
 
 	errDir := os.MkdirAll(viper.GetString("USER_DATA_FOLDER"), 0755)
@@ -226,7 +226,7 @@ func main() {
 
 	hc := &models.HandlerConfig{
 		Providers:              provs,
-		ProviderCookieName:     "meshery-provider",
+		ProviderCookieName:     "meshplay-provider",
 		ProviderCookieDuration: 30 * 24 * time.Hour,
 		PlaygroundBuild:        viper.GetBool("PLAYGROUND"),
 		AdapterTracker:         adapterTracker,
@@ -247,7 +247,7 @@ func main() {
 		FilterChannel:             models.NewBroadcaster(),
 		EventBroadcaster:          models.NewBroadcaster(),
 		DashboardK8sResourcesChan: models.NewDashboardK8sResourcesHelper(),
-		MeshModelSummaryChannel:   mesherymeshmodel.NewSummaryHelper(),
+		MeshModelSummaryChannel:   meshplaymeshmodel.NewSummaryHelper(),
 
 		K8scontextChannel: models.NewContextHelper(),
 		OperatorTracker:   models.NewOperatorTracker(viper.GetBool("DISABLE_OPERATOR")),

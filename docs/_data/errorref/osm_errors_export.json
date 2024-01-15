@@ -1,6 +1,6 @@
 {
   "errors_export": {
-    "component_name": "meshery-osm",
+    "component_name": "meshplay-osm",
     "component_type": "adapter",
     "errors": {
       "1000": {
@@ -64,7 +64,7 @@
         "long_description": "Error occurred while trying to install a sample application using manifests",
         "short_description": "Error with sample app operation",
         "probable_cause": "Invalid kubeclient config\nInvalid manifest",
-        "suggested_remediation": "Reconnect your adapter to meshery server to refresh the kubeclient"
+        "suggested_remediation": "Reconnect your adapter to meshplay server to refresh the kubeclient"
       },
       "1007": {
         "name": "ErrCustomOperationCode",

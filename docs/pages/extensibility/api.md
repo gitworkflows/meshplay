@@ -63,7 +63,7 @@ There are two ways to get your authentication token:
 
 Using Meshplay UI, you can get a copy of your authentication token by following these steps:
 
-1. Log into Meshplay by selecting your identity provider of choice (typically found at `http:<meshery-server>:9081/provider`)
+1. Log into Meshplay by selecting your identity provider of choice (typically found at `http:<meshplay-server>:9081/provider`)
 2. Navigate to your user's avatar in the upper lefthand corner and select "Get Token" from the dropdown of profile section.
 
 Using Meshplay CLI, you can get a copy of your authentication token by executing this command:
@@ -73,7 +73,7 @@ Using Meshplay CLI, you can get a copy of your authentication token by executing
 In order to use this command, you must have a web browser available on your system (this command cannot be executed on a headless system).
 
 {% include alert.html type="dark" title="How to use the token for requests to Meshplay Rest API using API clients" content=" Download your token from Meshplay UI and copy the token value from the downloaded file, this will be used for authentication." %}
-{% include code.html code="meshery-provider: Meshplay
+{% include code.html code="meshplay-provider: Meshplay
 token: your token"%}
 {% include alert.html type="dark" title="" content="Navigate to the cookies section your API testing platform, to set the appropriate name and value for the cookie, then make sure to save the configured cookies to initiate the request. <p> The request will be sent to the Meshplay API using the configured cookies for authentication</p>"%}
 

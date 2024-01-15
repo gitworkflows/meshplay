@@ -36,22 +36,22 @@ Perform the following steps in order:
 1. On the **Overview** page of the project `demo-project`, click **App Store** in the upper-left corner.
 2. Search for **Meshplay** in the App Store, and click on the search result to enter the app.
 
-    ![meshery-app]({{ site.baseurl }}/assets/img/platforms/meshery-app.png)
+    ![meshplay-app]({{ site.baseurl }}/assets/img/platforms/meshplay-app.png)
 3. In the **App Information** page, click **Install** on the upper right corner.
 
-    ![meshery-install]({{ site.baseurl }}/assets/img/platforms/Meshplay-install.png)
+    ![meshplay-install]({{ site.baseurl }}/assets/img/platforms/Meshplay-install.png)
 
 4. In the App Settings page, set the application **Name**, **Location** (as your Namespace), and App Version, and then click Next on the upper right corner.
 
-    ![meshery-info]({{ site.baseurl }}/assets/img/platforms/Meshplay-info.png)
+    ![meshplay-info]({{ site.baseurl }}/assets/img/platforms/Meshplay-info.png)
 
 5. Configure the **values.yaml** file as needed, or click **Install** to use the default configuration.
 
-    ![meshery-yaml]({{ site.baseurl }}/assets/img/platforms/Meshplay-yaml.png)
+    ![meshplay-yaml]({{ site.baseurl }}/assets/img/platforms/Meshplay-yaml.png)
 
 6. Wait for the deployment to be finished. Upon completion, **Meshplay** will be shown as **Running** in KubeSphere.
 
-    ![meshery-app-running]({{ site.baseurl }}/assets/img/platforms/Meshplay-app-running.png)
+    ![meshplay-app-running]({{ site.baseurl }}/assets/img/platforms/Meshplay-app-running.png)
 
 
 
@@ -61,12 +61,12 @@ Perform the following steps in order:
 1. Go to **Services** and click the service name of Meshplay.
 2. In the **Resource Status** page, copy the **NodePort** of Meshplay.
 
-    ![meshery-service]({{ site.baseurl }}/assets/img/platforms/Meshplay-service.png)
+    ![meshplay-service]({{ site.baseurl }}/assets/img/platforms/Meshplay-service.png)
 
 3. Access the Meshplay Dashboard by entering **${NodeIP}:${NODEPORT}** in your browser.
 
-    ![meshery-dashboard]({{ site.baseurl }}/assets/img/platforms/meshery-dashboard.png)
+    ![meshplay-dashboard]({{ site.baseurl }}/assets/img/platforms/meshplay-dashboard.png)
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

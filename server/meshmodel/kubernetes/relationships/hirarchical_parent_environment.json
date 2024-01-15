@@ -20,7 +20,7 @@
       "from": [
         {
           "kind": "Environment",
-          "model": "meshery-core"
+          "model": "meshplay-core"
         }
       ],
       "to": [

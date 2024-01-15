@@ -14,13 +14,13 @@ To run this script in local, ensure you have the following prerequisites:
 1. Fork the Meshplay repository and clone the repo to your local:
 
    ```shell
-   git clone https://github.com/yourusername/meshery.git
+   git clone https://github.com/yourusername/meshplay.git
    ```
 
 2. Change to the project directory:
 
    ```shell
-   cd meshery/scripts/component_docs_generator/
+   cd meshplay/scripts/component_docs_generator/
    ```
 
 ## Usage

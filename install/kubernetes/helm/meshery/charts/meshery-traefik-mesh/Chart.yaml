@@ -1,7 +1,7 @@
 apiVersion: v2
-name: meshery-traefik-mesh
+name: meshplay-traefik-mesh
 description: Meshplay Adapter for Traefik Mesh chart.
-icon: https://khulnasoft.com/images/logos/meshery-logo.png
+icon: https://khulnasoft.com/images/logos/meshplay-logo.png
 source: 
   - https://github.com/khulnasoft/meshplay-traefik-mesh
 

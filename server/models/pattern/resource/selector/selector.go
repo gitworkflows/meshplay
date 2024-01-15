@@ -31,7 +31,7 @@ func New(reg *meshmodel.RegistryManager, helpers Helpers) *Selector {
 
 func generateTraitKey(name string) string {
 	return fmt.Sprintf(
-		"/meshery/registry/definition/%s/%s/%s",
+		"/meshplay/registry/definition/%s/%s/%s",
 		"core.oam.dev/v1alpha1",
 		"TraitDefinition",
 		name,

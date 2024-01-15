@@ -1,20 +1,20 @@
 ---
 layout: default
 title: Meshplay
-permalink: integrations/meshery
+permalink: integrations/meshplay
 type: installation
 category: integrations
 display-title: "false"
 language: en
 list: include
-image: /assets/img/integrations/meshery.svg
+image: /assets/img/integrations/meshplay.svg
 ---
 
 <h1>{{ page.title }} <img src="{{ page.image }}" style="width: 35px; height: 35px;" /></h1>
 
 
 <!-- This needs replaced with the Category property, not the sub-category.
- #### Category: meshery -->
+ #### Category: meshplay -->
 
 ### Overview & Features:
 1. Meshplay, the cloud native management plane

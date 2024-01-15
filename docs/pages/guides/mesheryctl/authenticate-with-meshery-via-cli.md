@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Authenticating with Meshplay via CLI
-permalink: guides/meshplayctl/authenticate-with-meshery-via-cli
+permalink: guides/meshplayctl/authenticate-with-meshplay-via-cli
 language: en
 type: guides
 category: meshplayctl
@@ -45,7 +45,7 @@ Guides to using Meshplay's various features and components.
 
 {% capture tag %}
 
-<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading meshplayctl</a></li>
+<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading meshplayctl</a></li>
 
 {% endcapture %}
 

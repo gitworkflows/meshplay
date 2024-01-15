@@ -182,7 +182,7 @@ const Extensions = ({ classes, toggleCatalogContent, capabilitiesRegistry }) => 
               </Typography>
 
               <Typography className={classes.frontSideDescription} variant="body">
-                <img className={classes.img} src="/static/img/meshery_catalog.svg" />
+                <img className={classes.img} src="/static/img/meshplay_catalog.svg" />
                 <div
                   style={{
                     display: 'inline',

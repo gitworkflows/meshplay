@@ -329,8 +329,8 @@ class MeshplayResults extends Component {
     // console.log(`selected rows after adjustments: ${JSON.stringify(rowsSelected)}`);
     const options = {
       filter: false,
-      sort: !(user && user.user_id === 'meshery'),
-      search: !(user && user.user_id === 'meshery'),
+      sort: !(user && user.user_id === 'meshplay'),
+      search: !(user && user.user_id === 'meshplay'),
       filterType: 'textField',
       responsive: 'standard',
       resizableColumns: true,

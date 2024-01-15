@@ -54,8 +54,8 @@ Example output of a successful upgrade.
 <pre><code>
 ➜  ~ brew upgrade meshplayctl
 ==> Upgrading 1 outdated package:
-meshery/tap/meshplayctl 0.3.2 -> 0.3.4
-==> Upgrading meshery/tap/meshplayctl
+meshplay/tap/meshplayctl 0.3.2 -> 0.3.4
+==> Upgrading meshplay/tap/meshplayctl
 ==> Downloading https://github.com/khulnasoft/meshplay/releases/download/v0.3.4/meshplayctl_0.3.4_Darwin_x86_64.zip
 ==> Downloading from https://github-production-release-asset-2e65be.s3.amazonaws.com/157554479/17522b00-2af0-11ea-8aef-cbfe8
 ######################################################################## 100.0%

@@ -1,7 +1,7 @@
 apiVersion: v2
-name: meshery-broker
+name: meshplay-broker
 description: Meshplay Broker
-icon: https://khulnasoft.com/images/logos/meshery-logo.png
+icon: https://khulnasoft.com/images/logos/meshplay-logo.png
 type: application
 version: 0.5.0
 appVersion: stable-latest

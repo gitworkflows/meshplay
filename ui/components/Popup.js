@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
-import { mesheryExtensionRoute } from '../pages/_app';
+import { meshplayExtensionRoute } from '../pages/_app';
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -126,7 +126,7 @@ export function MeshMapEarlyAccessCard({
     if (buttonText === signUpText) {
       window.open('https://layer5.io/meshmap', '_blank');
     } else {
-      push(mesheryExtensionRoute);
+      push(meshplayExtensionRoute);
     }
     e.stopPropagation();
   };

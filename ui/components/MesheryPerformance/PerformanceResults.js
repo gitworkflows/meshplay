@@ -362,7 +362,7 @@ function generateColumnsForDisplay(
 }
 
 function getSocialMessageForPerformanceTest(rps, percentile) {
-  return `I achieved ${rps.trim()} RPS running my service at a P99.9 of ${percentile} ms using @mesheryio with @smp_spec! Find out how fast your service is with`;
+  return `I achieved ${rps.trim()} RPS running my service at a P99.9 of ${percentile} ms using @meshplayio with @smp_spec! Find out how fast your service is with`;
 }
 
 function generateSelectedRows(results_selection, page, pageSize) {
@@ -685,8 +685,8 @@ function MeshplayResults({
   const options = {
     elevation: elevation,
     filter: false,
-    sort: !(user?.user_id === 'meshery'),
-    search: !(user?.user_id === 'meshery'),
+    sort: !(user?.user_id === 'meshplay'),
+    search: !(user?.user_id === 'meshplay'),
     filterType: 'textField',
     responsive: 'standard',
     resizableColumns: true,

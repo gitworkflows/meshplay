@@ -63,7 +63,7 @@ meshplayctl mesh remove linkerd --namespace linkerd-ns
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string   path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string   path to config file (default "/home/runner/.meshplay/config.yaml")
   -t, --token string    Path to token for authenticating to Meshplay API
   -v, --verbose         verbose output
 

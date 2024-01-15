@@ -22,18 +22,18 @@ Example:
 
 Usage: (order of flags matters)
 
-    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in layer5 website] [relative path to docs in meshery website] [--only-published]
+    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in layer5 website] [relative path to docs in meshplay website] [--only-published]
 
 Examples:
 
 	1. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
 	2. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system remote-provider <remote-provider>/meshmodels/models <remote-provider>/ui/public/img/meshmodels
-	3. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshery ../../server/meshmodel
+	3. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel
 
 The flags are:
 
   --system
-        defined type of system to update. Can be one of "meshery", "docs", or "remote-provider".
+        defined type of system to update. Can be one of "meshplay", "docs", or "remote-provider".
 
 	--only-published
         Only handle components that have a value of "true" under the "Published?" column in spreadsheet.
@@ -122,7 +122,7 @@ func main() {
 	case pkg.Docs.String():
 		docsUpdater(output)
 	case pkg.Meshplay.String():
-		mesheryUpdater(output)
+		meshplayUpdater(output)
 	case pkg.RemoteProvider.String():
 		remoteProviderUpdater(output)
 	default:
@@ -178,7 +178,7 @@ func docsUpdater(output []map[string]string) {
 		}
 	}
 	output = cleanupDuplicatesAndPreferEmptyComponentField(output, "model")
-	mesheryDocsJSON := "const data = ["
+	meshplayDocsJSON := "const data = ["
 	for _, out := range output {
 		var t pkg.TemplateAttributes
 		publishValue, err := strconv.ParseBool(out["Publish?"])
@@ -227,7 +227,7 @@ func docsUpdater(output []map[string]string) {
 
 		md := t.CreateMarkDown()
 		jsonItem := t.CreateJSONItem()
-		mesheryDocsJSON += jsonItem + ","
+		meshplayDocsJSON += jsonItem + ","
 		modelName := strings.TrimSpace(out["model"])
 		pathToIntegrationsLayer5, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsLayer5, modelName))
 		pathToIntegrationsMeshplay, _ := filepath.Abs(filepath.Join("../../../", pathToIntegrationsMeshplay))
@@ -292,25 +292,25 @@ func docsUpdater(output []map[string]string) {
 		}
 	}
 
-	mesheryDocsJSON = strings.TrimSuffix(mesheryDocsJSON, ",")
-	mesheryDocsJSON += "]; export default data"
-	if err := pkg.WriteToFile(filepath.Join("../../../", pathToIntegrationsMeshplay, "data.js"), mesheryDocsJSON); err != nil {
+	meshplayDocsJSON = strings.TrimSuffix(meshplayDocsJSON, ",")
+	meshplayDocsJSON += "]; export default data"
+	if err := pkg.WriteToFile(filepath.Join("../../../", pathToIntegrationsMeshplay, "data.js"), meshplayDocsJSON); err != nil {
 		log.Fatal(err)
 	}
 
-	if err := pkg.WriteToFile(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "_data/integrations/", "data.js"), mesheryDocsJSON); err != nil {
+	if err := pkg.WriteToFile(filepath.Join("../../", pathToIntegrationsMeshplayDocs, "_data/integrations/", "data.js"), meshplayDocsJSON); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func mesheryUpdater(output []map[string]string) {
+func meshplayUpdater(output []map[string]string) {
 	if len(os.Args) < 5 {
-		log.Fatal("mesheryUpdater: invalid number of arguments; missing meshmodels path in meshery server")
+		log.Fatal("meshplayUpdater: invalid number of arguments; missing meshmodels path in meshplay server")
 		return
 	}
 	OutputPath = os.Args[4]
 	if OutputPath == "" {
-		OutputPath = "../../server/meshmodel" // default path for meshery server
+		OutputPath = "../../server/meshmodel" // default path for meshplay server
 	}
 	publishedModels := make(map[string]bool)
 	countWithoutCrds := 0

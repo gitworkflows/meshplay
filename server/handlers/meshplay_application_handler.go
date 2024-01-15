@@ -68,7 +68,7 @@ func (h *Handler) ApplicationFileHandler(
 //
 // Creates a new application with source-content
 // responses:
-//  200: mesheryApplicationResponseWrapper
+//  200: meshplayApplicationResponseWrapper
 
 // ApplicationFileRequestHandler will handle requests of both type GET and POST
 // on the route /api/application
@@ -99,7 +99,7 @@ func (h *Handler) ApplicationFileRequestHandler(
 //
 // Updates the design for the provided application
 // responses:
-//  200: mesheryApplicationResponseWrapper
+//  200: meshplayApplicationResponseWrapper
 
 func (h *Handler) handleApplicationPOST(
 	rw http.ResponseWriter,
@@ -167,7 +167,7 @@ func (h *Handler) handleApplicationPOST(
 	}
 
 	format := r.URL.Query().Get("output")
-	var mesheryApplication *models.MeshplayApplication
+	var meshplayApplication *models.MeshplayApplication
 	// If Content is not empty then assume it's a local upload
 	//Note: The Application data will not be present in case of helm charts as we do not support local helm upload.
 	if parsedBody.ApplicationData != nil {
@@ -181,10 +181,10 @@ func (h *Handler) handleApplicationPOST(
 			}
 		}
 
-		mesheryApplication = parsedBody.ApplicationData
+		meshplayApplication = parsedBody.ApplicationData
 
-		bytApplication := []byte(mesheryApplication.ApplicationFile)
-		mesheryApplication.SourceContent = bytApplication
+		bytApplication := []byte(meshplayApplication.ApplicationFile)
+		meshplayApplication.SourceContent = bytApplication
 		if sourcetype == string(models.DockerCompose) || sourcetype == string(models.K8sManifest) {
 			var k8sres string
 			if sourcetype == string(models.DockerCompose) {
@@ -196,7 +196,7 @@ func (h *Handler) handleApplicationPOST(
 
 					event := eventBuilder.WithSeverity(events.Error).WithMetadata(map[string]interface{}{
 						"error": conversionErr,
-					}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s", mesheryApplication.Name)).Build()
+					}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s", meshplayApplication.Name)).Build()
 
 					_ = provider.PersistEvent(event)
 					go h.config.EventBroadcaster.Publish(userID, event)
@@ -206,13 +206,13 @@ func (h *Handler) handleApplicationPOST(
 					go h.EventsBuffer.Publish(&res)
 					return
 				}
-				mesheryApplication.Type = sql.NullString{
+				meshplayApplication.Type = sql.NullString{
 					String: string(models.DockerCompose),
 					Valid:  true,
 				}
 			} else if sourcetype == string(models.K8sManifest) {
 				k8sres = string(bytApplication)
-				mesheryApplication.Type = sql.NullString{
+				meshplayApplication.Type = sql.NullString{
 					String: string(models.K8sManifest),
 					Valid:  true,
 				}
@@ -225,7 +225,7 @@ func (h *Handler) handleApplicationPOST(
 
 				event := eventBuilder.WithSeverity(events.Error).WithMetadata(map[string]interface{}{
 					"error": conversionErr,
-				}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s to design file format.", mesheryApplication.Name)).Build()
+				}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s to design file format.", meshplayApplication.Name)).Build()
 				_ = provider.PersistEvent(event)
 				go h.config.EventBroadcaster.Publish(userID, event)
 
@@ -242,7 +242,7 @@ func (h *Handler) handleApplicationPOST(
 
 				event := eventBuilder.WithSeverity(events.Error).WithMetadata(map[string]interface{}{
 					"error": conversionErr,
-				}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s to design file format.", mesheryApplication.Name)).Build()
+				}).WithDescription(fmt.Sprintf("Failed converting Docker Compose application %s to design file format.", meshplayApplication.Name)).Build()
 				_ = provider.PersistEvent(event)
 				go h.config.EventBroadcaster.Publish(userID, event)
 
@@ -251,7 +251,7 @@ func (h *Handler) handleApplicationPOST(
 				go h.EventsBuffer.Publish(&res)
 				return
 			}
-			mesheryApplication.ApplicationFile = string(response)
+			meshplayApplication.ApplicationFile = string(response)
 		} else {
 			obj := "convert"
 			sourceTypeErr := ErrApplicationFailure(fmt.Errorf("invalid source type"), obj)
@@ -362,7 +362,7 @@ func (h *Handler) handleApplicationPOST(
 			}
 
 			url := strings.Split(parsedBody.URL, "/")
-			mesheryApplication = &models.MeshplayApplication{
+			meshplayApplication = &models.MeshplayApplication{
 				Name:            strings.TrimSuffix(url[len(url)-1], ".tgz"),
 				ApplicationFile: string(response),
 				Type: sql.NullString{
@@ -429,7 +429,7 @@ func (h *Handler) handleApplicationPOST(
 					return
 				}
 
-				mesheryApplication = &pfs[0]
+				meshplayApplication = &pfs[0]
 			} else {
 				// Fallback to generic HTTP import
 				pfs, err := genericHTTPApplicationFile(parsedBody.URL, sourcetype, h.registryManager)
@@ -446,7 +446,7 @@ func (h *Handler) handleApplicationPOST(
 					go h.EventsBuffer.Publish(&res)
 					return
 				}
-				mesheryApplication = &pfs[0]
+				meshplayApplication = &pfs[0]
 			}
 		} else {
 			obj := "convert"
@@ -469,7 +469,7 @@ func (h *Handler) handleApplicationPOST(
 	var savedApplicationID *uuid.UUID
 
 	if parsedBody.Save {
-		resp, err := provider.SaveMeshplayApplication(token, mesheryApplication)
+		resp, err := provider.SaveMeshplayApplication(token, meshplayApplication)
 		if err != nil {
 			obj := "save"
 
@@ -495,16 +495,16 @@ func (h *Handler) handleApplicationPOST(
 		go h.config.EventBroadcaster.Publish(userID, event)
 		_ = provider.PersistEvent(event)
 
-		var mesheryApplicationContent []models.MeshplayApplication
-		err = json.Unmarshal(resp, &mesheryApplicationContent)
+		var meshplayApplicationContent []models.MeshplayApplication
+		err = json.Unmarshal(resp, &meshplayApplicationContent)
 		if err != nil {
 			obj := "application"
 			h.log.Error(models.ErrEncoding(err, obj))
 			http.Error(rw, models.ErrEncoding(err, obj).Error(), http.StatusInternalServerError)
 			return
 		}
-		savedApplicationID = mesheryApplicationContent[0].ID
-		err = provider.SaveApplicationSourceContent(token, (savedApplicationID).String(), mesheryApplication.SourceContent)
+		savedApplicationID = meshplayApplicationContent[0].ID
+		err = provider.SaveApplicationSourceContent(token, (savedApplicationID).String(), meshplayApplication.SourceContent)
 
 		if err != nil {
 			obj := "upload"
@@ -525,12 +525,12 @@ func (h *Handler) handleApplicationPOST(
 		}
 		go h.config.ApplicationChannel.Publish(userID, struct{}{})
 		eb := eventBuilder
-		_ = provider.PersistEvent(eb.WithDescription(fmt.Sprintf("Application %s  Source content uploaded", mesheryApplicationContent[0].Name)).Build())
+		_ = provider.PersistEvent(eb.WithDescription(fmt.Sprintf("Application %s  Source content uploaded", meshplayApplicationContent[0].Name)).Build())
 		return
 	}
 
-	mesheryApplication.ID = savedApplicationID
-	byt, err := json.Marshal([]models.MeshplayApplication{*mesheryApplication})
+	meshplayApplication.ID = savedApplicationID
+	byt, err := json.Marshal([]models.MeshplayApplication{*meshplayApplication})
 	if err != nil {
 		obj := "application"
 		h.log.Error(models.ErrEncoding(err, obj))
@@ -640,7 +640,7 @@ func (h *Handler) handleApplicationUpdate(rw http.ResponseWriter,
 			return
 		}
 
-		mesheryApplication := &models.MeshplayApplication{
+		meshplayApplication := &models.MeshplayApplication{
 			Name:            patternName,
 			ApplicationFile: string(pfByt),
 			Location: map[string]interface{}{
@@ -654,10 +654,10 @@ func (h *Handler) handleApplicationUpdate(rw http.ResponseWriter,
 			},
 		}
 		if parsedBody.ApplicationData != nil {
-			mesheryApplication.ID = parsedBody.ApplicationData.ID
+			meshplayApplication.ID = parsedBody.ApplicationData.ID
 		}
 		if parsedBody.Save {
-			resp, err := provider.SaveMeshplayApplication(token, mesheryApplication)
+			resp, err := provider.SaveMeshplayApplication(token, meshplayApplication)
 			if err != nil {
 				errAppSave := ErrSaveApplication(err)
 				h.log.Error(errAppSave)
@@ -687,7 +687,7 @@ func (h *Handler) handleApplicationUpdate(rw http.ResponseWriter,
 			return
 		}
 
-		byt, err := json.Marshal([]models.MeshplayApplication{*mesheryApplication})
+		byt, err := json.Marshal([]models.MeshplayApplication{*meshplayApplication})
 		if err != nil {
 			h.log.Error(ErrEncodePattern(err))
 			http.Error(rw, ErrEncodePattern(err).Error(), http.StatusInternalServerError)
@@ -697,12 +697,12 @@ func (h *Handler) handleApplicationUpdate(rw http.ResponseWriter,
 		h.formatApplicationOutput(rw, byt, format, &res, eventBuilder)
 		return
 	}
-	mesheryApplication := parsedBody.ApplicationData
-	mesheryApplication.Type = sql.NullString{
+	meshplayApplication := parsedBody.ApplicationData
+	meshplayApplication.Type = sql.NullString{
 		String: sourcetype,
 		Valid:  true,
 	}
-	resp, err := provider.SaveMeshplayApplication(token, mesheryApplication)
+	resp, err := provider.SaveMeshplayApplication(token, meshplayApplication)
 	if err != nil {
 		obj := "save"
 		errAppSave := ErrSaveApplication(err)
@@ -746,7 +746,7 @@ func (h *Handler) handleApplicationUpdate(rw http.ResponseWriter,
 //
 // ```?pagesize={pagesize}``` Default pagesize is 10
 // responses:
-//  200: mesheryApplicationsResponseWrapper
+//  200: meshplayApplicationsResponseWrapper
 
 // GetMeshplayApplicationsHandler returns the list of all the applications saved by the current user
 func (h *Handler) GetMeshplayApplicationsHandler(
@@ -782,7 +782,7 @@ func (h *Handler) GetMeshplayApplicationsHandler(
 // swagger:route DELETE /api/application/{id} ApplicationsAPI idDeleteMeshplayApplicationFile
 // Handle Delete for a Meshplay Application File
 //
-// Deletes a meshery application file with ID: id
+// Deletes a meshplay application file with ID: id
 // responses:
 //  200: noContentWrapper
 
@@ -799,8 +799,8 @@ func (h *Handler) DeleteMeshplayApplicationHandler(
 	eventBuilder := events.NewEvent().FromUser(userID).FromSystem(*h.SystemID).WithCategory("application").WithAction("delete").ActedUpon(uuid.FromStringOrNil(applicationID))
 	resp, err := provider.DeleteMeshplayApplication(r, applicationID)
 
-	mesheryApplication := models.MeshplayApplication{}
-	_ = json.Unmarshal(resp, &mesheryApplication)
+	meshplayApplication := models.MeshplayApplication{}
+	_ = json.Unmarshal(resp, &meshplayApplication)
 
 	if err != nil {
 		errAppDelete := ErrDeleteApplication(err)
@@ -814,7 +814,7 @@ func (h *Handler) DeleteMeshplayApplicationHandler(
 		return
 	}
 
-	event := eventBuilder.WithSeverity(events.Informational).WithDescription(fmt.Sprintf("Application %s deleted.", mesheryApplication.Name)).Build()
+	event := eventBuilder.WithSeverity(events.Informational).WithDescription(fmt.Sprintf("Application %s deleted.", meshplayApplication.Name)).Build()
 	_ = provider.PersistEvent(event)
 	go h.config.EventBroadcaster.Publish(userID, event)
 
@@ -850,7 +850,7 @@ func (h *Handler) GetMeshplayApplicationHandler(
 // Get application file types
 // responses:
 //
-//	200: mesheryApplicationTypesResponseWrapper
+//	200: meshplayApplicationTypesResponseWrapper
 func (h *Handler) GetMeshplayApplicationTypesHandler(
 	rw http.ResponseWriter,
 	_ *http.Request,

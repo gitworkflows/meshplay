@@ -79,11 +79,11 @@ Meshplay provides performance test results alongside environment metrics, includ
 
 Connect Meshplay to your existing Grafana instance. Meshplay will auto-import the boards of your choosing:
 
-<a href="{{ site.baseurl }}/assets/img/performance-management/meshery-and-grafana.png">
-    <img src="{{ site.baseurl }}/assets/img/performance-management/meshery-and-grafana.png" style="width: 52%" />
+<a href="{{ site.baseurl }}/assets/img/performance-management/meshplay-and-grafana.png">
+    <img src="{{ site.baseurl }}/assets/img/performance-management/meshplay-and-grafana.png" style="width: 52%" />
 </a>
 
-### [Connecting to Grafana]({{ site.baseurl }}/guides/meshery-metrics#expose-grafana-service)
+### [Connecting to Grafana]({{ site.baseurl }}/guides/meshplay-metrics#expose-grafana-service)
 
 If you have an API key configured to restrict access to your Grafana boards, you will need to enter the API key when establishing Meshplay's connection to Grafana. You may also set up a [Grafana board](https://grafana.com/docs/grafana/latest/http_api/dashboard/#create-update-dashboard) and then set up an API key:
 
@@ -92,7 +92,7 @@ If you have an API key configured to restrict access to your Grafana boards, you
   - Import custom Grafana board via yaml
 - Configure graph panel preferences
 
-### [Prometheus and Meshplay]({{ site.baseurl }}/guides/meshery-metrics#expose-prometheus-service)
+### [Prometheus and Meshplay]({{ site.baseurl }}/guides/meshplay-metrics#expose-prometheus-service)
 
 Meshplay allows users to connect to one or more Prometheus instances in order to gather telemetric data (in the form of metrics). These metrics may pertain to service meshes, Kubernetes, applications on the mesh or any other metric that Prometheus has collected.
 

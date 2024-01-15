@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Accessing Meshplay UI
-permalink: tasks/accessing-meshery-ui
+permalink: tasks/accessing-meshplay-ui
 type: tasks
 language: en
 list: include
@@ -24,5 +24,5 @@ Access Meshplay UI by exposing it as a Kubernetes service or by port forwarding 
 
 #### [Optional] Port Forward to Meshplay UI
 
-{% capture code_content %}kubectl port-forward svc/meshery 9081:9081 --namespace meshery{% endcapture %}
+{% capture code_content %}kubectl port-forward svc/meshplay 9081:9081 --namespace meshplay{% endcapture %}
 {% include code.html code=code_content %}

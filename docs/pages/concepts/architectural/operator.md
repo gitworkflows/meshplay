@@ -20,19 +20,19 @@ Meshplay Operator is a Kubernetes Operator that deploys and manages the lifecycl
 
 It is recommended to deploy one Meshplay Operator per cluster.
 
-[![Meshplay Operator and MeshSync]({{ site.baseurl }}/assets/img/architecture/meshery-operator-and-meshsync.svg
-)]({{ site.baseurl }}/assets/img/architecture/meshery-operator-and-meshsync.svg)
+[![Meshplay Operator and MeshSync]({{ site.baseurl }}/assets/img/architecture/meshplay-operator-and-meshsync.svg
+)]({{ site.baseurl }}/assets/img/architecture/meshplay-operator-and-meshsync.svg)
 
 ### Initialization Sequence
 
-[![Meshplay Operator and MeshSync]({{ site.baseurl }}/assets/img/architecture/meshery-operator-deployment-sequence.svg
-)]({{ site.baseurl }}/assets/img/architecture/meshery-operator-deployment-sequence.svg)
+[![Meshplay Operator and MeshSync]({{ site.baseurl }}/assets/img/architecture/meshplay-operator-deployment-sequence.svg
+)]({{ site.baseurl }}/assets/img/architecture/meshplay-operator-deployment-sequence.svg)
 
 ## Controllers managed by Meshplay Operator
 
 ### Broker Controller
 
-Meshplay broker is one of the core components of the meshery architecture. This controller manages the lifecycle of broker that meshery uses for data streaming across the cluster and the outside world.
+Meshplay broker is one of the core components of the meshplay architecture. This controller manages the lifecycle of broker that meshplay uses for data streaming across the cluster and the outside world.
 
 See [Meshplay Broker]({{site.baseurl}}/concepts/architecture/broker) for more information.
 

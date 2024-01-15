@@ -81,7 +81,7 @@ Guides to using Meshplay's various features and components.
 
 {% capture tag %}
 
-<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading meshplayctl</a></li>
+<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading meshplayctl</a></li>
 
 {% endcapture %}
 

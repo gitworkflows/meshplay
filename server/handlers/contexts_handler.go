@@ -43,14 +43,14 @@ func (h *Handler) GetAllContexts(w http.ResponseWriter, req *http.Request, _ *mo
 		http.Error(w, "failed to get contexts", http.StatusInternalServerError)
 		return
 	}
-	var mesheryK8sContextPage models.MeshplayK8sContextPage
-	err = json.Unmarshal(vals, &mesheryK8sContextPage)
+	var meshplayK8sContextPage models.MeshplayK8sContextPage
+	err = json.Unmarshal(vals, &meshplayK8sContextPage)
 	if err != nil {
 		obj := "k8s context"
 		h.log.Error(models.ErrUnmarshal(err, obj))
 		http.Error(w, models.ErrUnmarshal(err, obj).Error(), http.StatusInternalServerError)
 	}
-	if err := json.NewEncoder(w).Encode(mesheryK8sContextPage); err != nil {
+	if err := json.NewEncoder(w).Encode(meshplayK8sContextPage); err != nil {
 		http.Error(w, "failed to encode contexts", http.StatusInternalServerError)
 		return
 	}

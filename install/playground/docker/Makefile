@@ -4,7 +4,7 @@
 
 DEBUG=true
 PROD_PLAYGROUND_PORT=80
-REMOTE_PROVIDER=https://meshery.layer5.io
+REMOTE_PROVIDER=https://meshplay.layer5.io
 
 #-----------------------------------------------------------------------------
 # Meshplay Playground Production Deployment
@@ -13,20 +13,20 @@ REMOTE_PROVIDER=https://meshery.layer5.io
 
 ## Deploys Meshplay Playground in Prod
 play-prod-run:
-	(docker rm -f meshery) || true
-	docker run -d --name meshery \
+	(docker rm -f meshplay) || true
+	docker run -d --name meshplay \
 	-e PROVIDER_BASE_URLS=$(REMOTE_PROVIDER) \
 	-e DEBUG=$(DEBUG) \
 	-e PLAYGROUND=true \
 	-e MESHPLAY_SERVER_CALLBACK_URL=https://playground.khulnasoft.com/api/user/token \ 
 	-p $(PROD_PLAYGROUND_PORT):8080 \
-	khulnasoft/meshplay:playground-latest ./meshery
+	khulnasoft/meshplay:playground-latest ./meshplay
 	
-# docker run -d --name meshery \
-# 	-e PROVIDER_BASE_URLS=https://meshery.layer5.io \
+# docker run -d --name meshplay \
+# 	-e PROVIDER_BASE_URLS=https://meshplay.layer5.io \
 # 	-e PLAYGROUND=true \
 # 	-p 80:8080 \
-# 	khulnasoft/meshplay:playground-latest ./meshery
+# 	khulnasoft/meshplay:playground-latest ./meshplay
 
 play-prod-stop:
-	docker rm -f meshery
+	docker rm -f meshplay

@@ -207,8 +207,8 @@ class MeshplaySMIResults extends Component {
     ];
 
     const smi_options = {
-      sort: !(user && user.user_id === 'meshery'),
-      search: !(user && user.user_id === 'meshery'),
+      sort: !(user && user.user_id === 'meshplay'),
+      search: !(user && user.user_id === 'meshplay'),
       filter: false,
       expandableRows: true,
       selectableRows: false,

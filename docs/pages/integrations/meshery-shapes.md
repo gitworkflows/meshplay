@@ -1,7 +1,7 @@
 ---
 layout: enhanced
 title: Meshplay Shapes
-permalink: extensibility/integrations/meshery-shapes
+permalink: extensibility/integrations/meshplay-shapes
 type: extensibility
 category: integrations
 integrations-category: Orchestration & Management
@@ -9,7 +9,7 @@ integrations-subcategory: App Definition and Development
 display-title: "false"
 language: en
 list: include
-image: /assets/img/integrations/meshery-shapes.svg
+image: /assets/img/integrations/meshplay-shapes.svg
 ---
 
 <h1>{{ page.title }} <img src="{{ page.image }}" style="width: 35px; height: 35px;" /></h1>

@@ -276,7 +276,7 @@ meshplayctl system config gke
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// TODO: move the GenerateConfigGKE logic to meshkit/client-go
 		log.Info("Configuring Meshplay to access GKE...")
-		SAName := "sa-meshery-" + utils.StringWithCharset(8)
+		SAName := "sa-meshplay-" + utils.StringWithCharset(8)
 		if err := utils.GenerateConfigGKE(utils.ConfigPath, SAName, "default"); err != nil {
 			log.Fatal("Error generating config:", err)
 			return err

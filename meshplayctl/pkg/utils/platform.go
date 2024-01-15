@@ -84,7 +84,7 @@ type Service struct {
 }
 
 type Volumes struct {
-	MeshplayConfig interface{} `yaml:"meshery-config,omitempty"`
+	MeshplayConfig interface{} `yaml:"meshplay-config,omitempty"`
 }
 
 type ManifestList struct {
@@ -169,7 +169,7 @@ func GetManifestURL(manifest Manifest, rawManifestsURL string) string {
 func DownloadManifests(manifestArr []Manifest, rawManifestsURL string) error {
 	for _, manifest := range manifestArr {
 		if manifestFile := GetManifestURL(manifest, rawManifestsURL); manifestFile != "" {
-			// download the manifest files to ~/.meshery/manifests folder
+			// download the manifest files to ~/.meshplay/manifests folder
 			filepath := filepath.Join(MeshplayFolder, ManifestsFolder, manifest.Path)
 			if err := meshkitutils.DownloadFile(filepath, manifestFile); err != nil {
 				return errors.Wrapf(err, SystemError(fmt.Sprintf("failed to download %s file from %s", filepath, manifestFile)))
@@ -273,18 +273,18 @@ func CanUseCachedOperatorManifests(_ *config.Context) error {
 
 // CanUseCachedManifests returns an error if it is not possible to use cached manifests
 func CanUseCachedManifests(currCtx *(config.Context)) error {
-	// checks if meshery folder are present
+	// checks if meshplay folder are present
 	if _, err := os.Stat(MeshplayFolder); os.IsNotExist(err) {
 		return errors.New("Manifests folder does not exist")
 	}
 
-	// check if meshery deployment file is present
+	// check if meshplay deployment file is present
 	deploymentsPath := filepath.Join(MeshplayFolder, ManifestsFolder, MeshplayDeployment)
 	if _, err := os.Stat(deploymentsPath); os.IsNotExist(err) {
 		return errors.New("Deployments file does not exist")
 	}
 
-	// compare versions in currCtx and meshery-deployment.yaml
+	// compare versions in currCtx and meshplay-deployment.yaml
 	deploymentVersion, err := GetDeploymentVersion(deploymentsPath)
 	if err != nil {
 		return errors.Wrap(err, "could not get deployment file version")
@@ -344,7 +344,7 @@ func FetchManifests(currCtx *(config.Context)) ([]Manifest, error) {
 	gitHubFolder := "https://github.com/" + constants.GetMeshplayGitHubOrg() + "/" + constants.GetMeshplayGitHubRepo() + "/tree/" + version + "/install/deployment_yamls/k8s"
 	log.Info("downloading manifest files from ", gitHubFolder)
 
-	// download all the manifest files to the ~/.meshery/manifests folder
+	// download all the manifest files to the ~/.meshplay/manifests folder
 	rawManifestsURL := "https://raw.githubusercontent.com/" + constants.GetMeshplayGitHubOrg() + "/" + constants.GetMeshplayGitHubRepo() + "/" + version + "/install/deployment_yamls/k8s/"
 	err = DownloadManifests(manifests, rawManifestsURL)
 
@@ -426,16 +426,16 @@ func ApplyManifest(manifest []byte, client *meshkitkube.Client, update bool, del
 
 // ApplyManifestFiles applies/updates/deletes all the required manifests into the Kubernetes cluster
 func ApplyManifestFiles(manifestArr []Manifest, requestedAdapters []string, client *meshkitkube.Client, update bool, delete bool) error {
-	// path to the manifest files ~/.meshery/manifests
+	// path to the manifest files ~/.meshplay/manifests
 	manifestFiles := filepath.Join(MeshplayFolder, ManifestsFolder)
 
 	// read the manifest files as strings
-	// other than the components, meshery-deployment.yaml, meshery-service.yaml and service-account.yaml should be applied
+	// other than the components, meshplay-deployment.yaml, meshplay-service.yaml and service-account.yaml should be applied
 	MeshplayDeploymentManifest, err := meshkitutils.ReadLocalFile(filepath.Join(manifestFiles, MeshplayDeployment))
 	if err != nil {
 		return errors.Wrap(err, "failed to read manifest files")
 	}
-	mesheryServiceManifest, err := meshkitutils.ReadLocalFile(filepath.Join(manifestFiles, MeshplayService))
+	meshplayServiceManifest, err := meshkitutils.ReadLocalFile(filepath.Join(manifestFiles, MeshplayService))
 	if err != nil {
 		return errors.Wrap(err, "failed to read manifest files")
 	}
@@ -465,7 +465,7 @@ func ApplyManifestFiles(manifestArr []Manifest, requestedAdapters []string, clie
 	if err = ApplyManifest(MeshplayDeploymentManifestByt, client, update, delete); err != nil {
 		return err
 	}
-	if err = ApplyManifest([]byte(mesheryServiceManifest), client, update, delete); err != nil {
+	if err = ApplyManifest([]byte(meshplayServiceManifest), client, update, delete); err != nil {
 		return err
 	}
 	if err = ApplyManifest([]byte(serviceAccountManifest), client, update, delete); err != nil {
@@ -474,7 +474,7 @@ func ApplyManifestFiles(manifestArr []Manifest, requestedAdapters []string, clie
 
 	// loop through the required components as specified in the config.yaml file and apply/update/delete each
 	for _, component := range requestedAdapters {
-		// for each component, there is a meshery-componentName-deployment.yaml and meshery-componentName-service.yaml
+		// for each component, there is a meshplay-componentName-deployment.yaml and meshplay-componentName-service.yaml
 		// manifest file. See- https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s
 		componentFile := filepath.Join(manifestFiles, component)
 		componentDeployment := componentFile + "-deployment.yaml"
@@ -509,10 +509,10 @@ func ApplyManifestFiles(manifestArr []Manifest, requestedAdapters []string, clie
 
 // ApplyOperatorManifest applies/updates/deletes the operator manifest
 func ApplyOperatorManifest(client *meshkitkube.Client, update bool, delete bool) error {
-	// path to the manifest files ~/.meshery/manifests
+	// path to the manifest files ~/.meshplay/manifests
 	manifestFiles := filepath.Join(MeshplayFolder, ManifestsFolder)
 
-	//applying meshery operator file
+	//applying meshplay operator file
 	MeshplayOperatorManifest, err := meshkitutils.ReadLocalFile(filepath.Join(manifestFiles, MeshplayOperator))
 
 	if err != nil {
@@ -605,7 +605,7 @@ func ChangeManifestVersion(channel, version, filePath string) error {
 	return nil
 }
 
-// CreateManifestsFolder creates a new folder (.meshery/manifests)
+// CreateManifestsFolder creates a new folder (.meshplay/manifests)
 func CreateManifestsFolder() error {
 	log.Debug("deleting " + ManifestsFolder + " folder...")
 	// delete manifests folder if it already exists
@@ -613,7 +613,7 @@ func CreateManifestsFolder() error {
 		return err
 	}
 	log.Debug("creating " + ManifestsFolder + "folder...")
-	// create a manifests folder under ~/.meshery to store the manifest files
+	// create a manifests folder under ~/.meshplay to store the manifest files
 	if err := os.MkdirAll(filepath.Join(MeshplayFolder, ManifestsFolder), os.ModePerm); err != nil {
 		return errors.Wrapf(err, SystemError(fmt.Sprintf("failed to make %s directory", ManifestsFolder)))
 	}
@@ -647,7 +647,7 @@ func GetRequiredPods(specifiedPods []string, availablePods []v1core.Pod) (map[st
 		if index := StringContainedInSlice(sp, availablePodsName); index != -1 {
 			requiredPodsMap[availablePodsName[index]] = availablePodsName[index]
 		} else {
-			return nil, fmt.Errorf("pod \"%s\" specified, does not exist in the 'meshery' namespace. Please  Run `meshplayctl system status` to view the available pods", sp)
+			return nil, fmt.Errorf("pod \"%s\" specified, does not exist in the 'meshplay' namespace. Please  Run `meshplayctl system status` to view the available pods", sp)
 		}
 	}
 
@@ -656,7 +656,7 @@ func GetRequiredPods(specifiedPods []string, availablePods []v1core.Pod) (map[st
 
 // GetCleanPodName cleans the pod names in the MeshplayNamespace to make it more readable
 func GetCleanPodName(name string) string {
-	// The pod names are of the form meshery-<component name>-dasd67qwe-jka244asd where the last characters are generated by kubernetes
+	// The pod names are of the form meshplay-<component name>-dasd67qwe-jka244asd where the last characters are generated by kubernetes
 	// Only the first two splits contain useful information
 	split := strings.Split(name, "-")[:2]
 
@@ -751,10 +751,10 @@ func SetKubeConfig() {
 	// Define the path where the kubeconfig.yaml will be written to
 	usr, err := user.Current()
 	if err != nil {
-		ConfigPath = filepath.Join(".meshery", KubeConfigYaml)
+		ConfigPath = filepath.Join(".meshplay", KubeConfigYaml)
 		KubeConfig = filepath.Join(".kube", "config")
 	} else {
-		ConfigPath = filepath.Join(usr.HomeDir, ".meshery", KubeConfigYaml)
+		ConfigPath = filepath.Join(usr.HomeDir, ".meshplay", KubeConfigYaml)
 		KubeConfig = filepath.Join(usr.HomeDir, ".kube", "config")
 	}
 }
@@ -830,8 +830,8 @@ func ForceCleanupCluster() error {
 
 	for _, clusterRoleBinding := range clusterRoleBindingList.Items {
 		// clusterrolebindings aren't namespaced so gotta
-		// check if "meshery" is present in the name or not
-		if strings.Contains(string(clusterRoleBinding.GetName()), "meshery") {
+		// check if "meshplay" is present in the name or not
+		if strings.Contains(string(clusterRoleBinding.GetName()), "meshplay") {
 			if err := clusterRoleBindingInterface.Delete(context.TODO(), clusterRoleBinding.GetName(), metav1.DeleteOptions{
 				PropagationPolicy: &deletePolicy,
 			}); err != nil {
@@ -848,8 +848,8 @@ func ForceCleanupCluster() error {
 
 	for _, clusterRole := range clusterRoleList.Items {
 		// clusterroles aren't namespaced so gotta
-		// check if "meshery" is present in the name or not
-		if strings.Contains(string(clusterRole.GetName()), "meshery") {
+		// check if "meshplay" is present in the name or not
+		if strings.Contains(string(clusterRole.GetName()), "meshplay") {
 			if err := clusterRoleInterface.Delete(context.TODO(), clusterRole.GetName(), metav1.DeleteOptions{
 				PropagationPolicy: &deletePolicy,
 			}); err != nil {

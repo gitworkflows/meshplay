@@ -12,8 +12,8 @@ import { Avatar } from '@mui/material'
 // import AppmeshIcon from '../../img/SVGs/appmeshIcon'
 // import CiliumIcon from '../../img/SVGs/ciliumIcon'
 // import TraefikIcon from '../../img/SVGs/traefikIcon'
-import Meshplay from '../../img/SVGs/meshery'
-import MeshplayIcon from '../../img/meshery-logo/CustomMeshplayLogo'
+import Meshplay from '../../img/SVGs/meshplay'
+import MeshplayIcon from '../../img/meshplay-logo/CustomMeshplayLogo'
 import { DockerMuiThemeProvider } from '@docker/docker-mui-theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import { LoadComp } from '../LoadingComponent/LoadComp'
@@ -35,7 +35,7 @@ import { MeshplayAnimation } from '../MeshplayAnimation/MeshplayAnimation'
 import { randomApplicationNameGenerator } from '../../utils'
 import CatalogChart from '../Catalog/Chart'
 import CatalogCard from '../Catalog/CatalogCard';
-import { MESHMAP, mesheryCloudUrl } from '../utils/constants';
+import { MESHMAP, meshplayCloudUrl } from '../utils/constants';
 
 const AuthenticatedMsg = 'Authenticated'
 const UnauthenticatedMsg = 'Unauthenticated'
@@ -124,7 +124,7 @@ const ExtensionsComponent = () => {
   //     )
   //   }
   // }, [meshAdapters])
-  const [mesheryVersion, setMeshplayVersion] = useState(null)
+  const [meshplayVersion, setMeshplayVersion] = useState(null)
 
   const logout = () => {
     fetch(proxyUrl + '/token', { method: httpDelete })
@@ -168,13 +168,13 @@ const ExtensionsComponent = () => {
             .then((result) => result.text())
             .then((result) => setMeshplayVersion(JSON.parse(result)?.build))
             .catch(console.error)
-          fetch(`${mesheryCloudUrl}/api/catalog/content/pattern`)
+          fetch(`${meshplayCloudUrl}/api/catalog/content/pattern`)
             .then((result) => result.text())
             .then((result) => {
               setPattern(JSON.parse(result))
             })
             .catch(console.error)
-          fetch(`${mesheryCloudUrl}/api/catalog/content/filter`)
+          fetch(`${meshplayCloudUrl}/api/catalog/content/filter`)
             .then((result) => result.text())
             .then((result) => {
               setFilter(JSON.parse(result))
@@ -187,7 +187,7 @@ const ExtensionsComponent = () => {
 
   useEffect(() => {
     if (user?.id) {
-      fetch(`${mesheryCloudUrl}/api/content/patterns?user_id=${user?.id}`)
+      fetch(`${meshplayCloudUrl}/api/content/patterns?user_id=${user?.id}`)
         .then((result) => result.text())
         .then((result) => {
           setUserDesigns(JSON.parse(result))
@@ -378,7 +378,7 @@ const ExtensionsComponent = () => {
                   component="span"
                   onClick={() => {
                     window.ddClient.host.openExternal(
-                      'https://meshery.layer5.io?source=aHR0cDovL2xvY2FsaG9zdDo3ODc3L3Rva2VuL3N0b3Jl&provider_version=v0.3.14',
+                      'https://meshplay.layer5.io?source=aHR0cDovL2xvY2FsaG9zdDo3ODc3L3Rva2VuL3N0b3Jl&provider_version=v0.3.14',
                     )
                   }}
                 >
@@ -540,11 +540,11 @@ const ExtensionsComponent = () => {
             <div style={{ paddingTop: isLoggedIn ? '1.2rem' : null }}>
               <Tooltip title="Meshplay Server version">
                 <VersionText variant="span" component="span" align="end">
-                  {mesheryVersion}
+                  {meshplayVersion}
                 </VersionText>
               </Tooltip>
               <a
-                href={`https://docs.khulnasoft.com/project/releases/${mesheryVersion}`}
+                href={`https://docs.khulnasoft.com/project/releases/${meshplayVersion}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: isDarkTheme ? 'white' : 'black' }}

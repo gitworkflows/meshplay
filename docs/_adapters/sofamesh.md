@@ -7,14 +7,14 @@ visibility: hidden
 language: en
 ---
 
-{% assign sorted_tests_group = site.compatibility | group_by: "meshery-component" %}
+{% assign sorted_tests_group = site.compatibility | group_by: "meshplay-component" %}
 {% for group in sorted_tests_group %}
-      {% if group.name == "meshery-sofamesh" %}
-        {% assign items = group.items | sort: "meshery-component-version" | reverse %}
+      {% if group.name == "meshplay-sofamesh" %}
+        {% assign items = group.items | sort: "meshplay-component-version" | reverse %}
         {% for item in items %}
-          {% if item.meshery-component-version != "edge" %}
+          {% if item.meshplay-component-version != "edge" %}
             {% if item.overall-status == "passing" %}
-              {% assign adapter_version_dynamic = item.meshery-component-version %}
+              {% assign adapter_version_dynamic = item.meshplay-component-version %}
               {% break %}
             {% elsif item.overall-status == "failing" %}
               {% continue %}

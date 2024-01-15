@@ -23,5 +23,5 @@ References for using Meshplay's various features and components.
       {% endif %}
     {% endfor %}
 </ul>
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}
 

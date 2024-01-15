@@ -1265,7 +1265,7 @@ const MeshplayPerformanceComponent = (props) => {
                       aria-label="download"
                       color="inherit"
                       // onClick={() => self.props.closeSnackbar(key) }
-                      href={`/api/perf/profile/result/${encodeURIComponent(result.meshery_id)}`}
+                      href={`/api/perf/profile/result/${encodeURIComponent(result.meshplay_id)}`}
                     >
                       <GetAppIcon style={iconMedium} />
                     </IconButton>

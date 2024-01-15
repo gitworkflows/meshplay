@@ -239,7 +239,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 		// append data for extended output
 		name := "None"
 		userid := uuid.Nil
-		mesheryid := uuid.Nil
+		meshplayid := uuid.Nil
 		url := "None"
 		loadGenerator := "None"
 
@@ -248,7 +248,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 		}
 
 		if result.MeshplayID != nil {
-			mesheryid = *result.MeshplayID
+			meshplayid = *result.MeshplayID
 		}
 
 		if result.Name != "" {
@@ -278,7 +278,7 @@ func performanceResultsToStringArrays(results []models.PerformanceResult) ([][]s
 				P99:     P99,
 			},
 			StartTime:     result.TestStartTime,
-			MeshplayID:     (*uuid.UUID)(mesheryid.Bytes()),
+			MeshplayID:     (*uuid.UUID)(meshplayid.Bytes()),
 			LoadGenerator: loadGenerator,
 		}
 

@@ -228,13 +228,13 @@ func (p *Proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 				HttpOnly: true,
 			})
 			req.AddCookie(&http.Cookie{
-				Name:     "meshery-provider",
+				Name:     "meshplay-provider",
 				Value:    "Meshplay",
 				Path:     "/",
 				HttpOnly: true,
 			})
 			req.AddCookie(&http.Cookie{
-				Name:     "meshery.layer5.io_ref",
+				Name:     "meshplay.layer5.io_ref",
 				Value:    "/",
 				Path:     "/",
 				HttpOnly: true,

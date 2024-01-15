@@ -8,7 +8,7 @@ language: en
 list: include
 ---
 
-![]({{site.baseurl}}/assets/img/architecture/meshery-server-registration-with-remote-providers.svg)
+![]({{site.baseurl}}/assets/img/architecture/meshplay-server-registration-with-remote-providers.svg)
 
 ## Managed and Unmanaged Connections
 Each Meshplay Model can contain one more ConnectionDefinitions (files), each Definition representing one Connection, and also, (as a matter of convenience multiple Connections can be described in the same ConnectionDefinition file).
@@ -66,7 +66,7 @@ The connection is administratively processed to be offline for maintenance tasks
 
 ### 6. Disconnected
 
-The connection was previously [discovered](#1-discovered)/[registered](#2-registered)/[connected](#3-connected) but is not available currently. This could happen due to connectivity issue/AuthN-AuthZ/connection was deleted outside meshery/administratively disconnected.
+The connection was previously [discovered](#1-discovered)/[registered](#2-registered)/[connected](#3-connected) but is not available currently. This could happen due to connectivity issue/AuthN-AuthZ/connection was deleted outside meshplay/administratively disconnected.
 
 > Example: Prometheus crashed/API token provided at time of registration is revoked.
 

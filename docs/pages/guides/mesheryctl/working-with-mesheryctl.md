@@ -21,7 +21,7 @@ Meshplay's command line interface is `meshplayctl`. Use `meshplayctl` to both ma
 
 ## Configuring Meshplay Deployments with meshconfig
 
-_Meshconfig_ refers to a configuration file found at `~/.meshery/config.yaml`. Your meshconfig file must contain one or more `contexts` in order for any `meshplayctl system` command to work. Each context represents a Meshplay deployment.
+_Meshconfig_ refers to a configuration file found at `~/.meshplay/config.yaml`. Your meshconfig file must contain one or more `contexts` in order for any `meshplayctl system` command to work. Each context represents a Meshplay deployment.
 
 Each of the `system` commands are used to control Meshplay's lifecycle like `system start`, `stop`, `status`, `reset` and so on.
 
@@ -29,7 +29,7 @@ Each of the `system` commands are used to control Meshplay's lifecycle like `sys
 
 #### Question: What is the meshconfig?
 
-Like kubeconfig for `kubectl`, meshconfig is the name of your `meshplayctl` config file. You can find your meshconfig file in its default location of `~/.meshery/config.yaml`. By default, `meshplayctl` will look to this location for your meshconfig. You can override the default location at anytime with the use of the global parameter, `--config <my-other-meshconfig>`.
+Like kubeconfig for `kubectl`, meshconfig is the name of your `meshplayctl` config file. You can find your meshconfig file in its default location of `~/.meshplay/config.yaml`. By default, `meshplayctl` will look to this location for your meshconfig. You can override the default location at anytime with the use of the global parameter, `--config <my-other-meshconfig>`.
 
 #### Question: What is a context?
 
@@ -54,7 +54,7 @@ The following template is used to create a config file from scratch. Not all of 
 ```
 contexts:
     <context1-name>:
-      endpoint: <url to meshery server rest api>
+      endpoint: <url to meshplay server rest api>
       token: <name of token variable in this config file>
       platform: <type of platform: ”docker” or “kubernetes”>
       # Future: specify type of kubernetes (e.g. eks)
@@ -62,7 +62,7 @@ contexts:
           “istio”,“linkerd”,”consul”,”nginx-sm”,”octarine”,”tanzu-sm”,”citrix-sm”,”kuma”,”osm”,”nsm”>
 
    <context2-name>:
-    endpoint: <url to meshery server rest api>
+    endpoint: <url to meshplay server rest api>
     token: <name of token variable in this config file>
     platform: <type of platform: ”docker” or “kubernetes”>
     current-context: <context name>
@@ -92,7 +92,7 @@ Aligned with the Meshplay container image, instead of leaving the implicit :stab
 {% capture code_content %}bash
 version: '3'
 services:
-  meshery:
+  meshplay:
     image: khulnasoft/meshplay:v0.5.0
     labels:
       - "com.centurylinklabs.watchtower.enable=true"{% endcapture %}
@@ -108,7 +108,7 @@ Guides to using Meshplay's various features and components.
 
 {% capture tag %}
 
-<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading meshplayctl</a></li>
+<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading meshplayctl</a></li>
 
 {% endcapture %}
 

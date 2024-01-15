@@ -82,7 +82,7 @@ meshplayctl pattern list
 			utils.Log.Error(utils.ErrReadToken(err))
 			return nil
 		}
-		provider := tokenObj["meshery-provider"]
+		provider := tokenObj["meshplay-provider"]
 		var data [][]string
 
 		if verbose {

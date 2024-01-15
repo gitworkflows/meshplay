@@ -65,9 +65,9 @@ meshplayctl perf result saturday-profile --view
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string          path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string          path to config file (default "/home/runner/.meshplay/config.yaml")
   -o, --output-format string   (optional) format to display in [json|yaml]
-  -t, --token string           (required) Path to meshery auth config
+  -t, --token string           (required) Path to meshplay auth config
   -v, --verbose                verbose output
   -y, --yes                    (optional) assume yes for user interactive prompts.
 

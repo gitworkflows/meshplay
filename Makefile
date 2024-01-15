@@ -36,29 +36,29 @@ docker-playground-build:
 ## Runs Meshplay in a container locally and points to locally-running
 docker-local-cloud:
 
-	(docker rm -f meshery) || true
-	docker run --name meshery -d \
-	--link meshery-cloud:meshery-cloud \
+	(docker rm -f meshplay) || true
+	docker run --name meshplay -d \
+	--link meshplay-cloud:meshplay-cloud \
 	-e PROVIDER_BASE_URLS=$(REMOTE_PROVIDER_LOCAL) \
 	-e DEBUG=true \
 	-e ADAPTER_URLS=$(ADAPTER_URLS) \
 	-e KEYS_PATH=$(KEYS_PATH) \
 	-p 9081:8080 \
-	khulnasoft/meshplay ./meshery
+	khulnasoft/meshplay ./meshplay
 
 ## Runs Meshplay in a container locally and points to remote
 ## Remote Provider for user authentication.
 docker-cloud:
-	(docker rm -f meshery) || true
-	docker run --name meshery -d \
+	(docker rm -f meshplay) || true
+	docker run --name meshplay -d \
 	-e PROVIDER_BASE_URLS=$(MESHPLAY_CLOUD_PROD) \
 	-e DEBUG=true \
 	-e ADAPTER_URLS=$(ADAPTER_URLS) \
 	-e KEYS_PATH=$(KEYS_PATH) \
-	-v meshery-config:/home/appuser/.meshery/config \
+	-v meshplay-config:/home/appuser/.meshplay/config \
   -v $(HOME)/.kube:/home/appuser/.kube:ro \
 	-p 9081:8080 \
-	khulnasoft/meshplay ./meshery
+	khulnasoft/meshplay ./meshplay
 
 #-----------------------------------------------------------------------------
 # Meshplay Server Native Builds
@@ -222,17 +222,17 @@ proto-build:
 error: dep-check
 	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . analyze -i ./server/helpers -o ./server/helpers --skip-dirs meshplayctl
 
-## Runs meshkit error utility to update error codes for meshery server only.
+## Runs meshkit error utility to update error codes for meshplay server only.
 server-error-util:
 	go run github.com/khulnasoft/meshkit/cmd/errorutil -d . --skip-dirs meshplayctl update -i ./server/helpers/ -o ./server/helpers
 
 ## Build Meshplay UI; Build and run Meshplay Server on your local machine.
-ui-server: ui-meshery-build ui-provider-build server
+ui-server: ui-meshplay-build ui-provider-build server
 
 #-----------------------------------------------------------------------------
 # Meshplay UI Native Builds.
 #-----------------------------------------------------------------------------
-.PHONY: ui-setup ui ui-meshery-build ui-provider ui-lint ui-provider ui-meshery ui-build ui-provider-build ui-provider-test
+.PHONY: ui-setup ui ui-meshplay-build ui-provider ui-lint ui-provider ui-meshplay ui-build ui-provider-build ui-provider-test
 
 UI_BUILD_SCRIPT = build16
 UI_DEV_SCRIPT = dev16
@@ -279,7 +279,7 @@ ui-build:
 	cd provider-ui; npm run build && npm run export; cd ..
 
 ## Build only Meshplay UI on your local machine.
-ui-meshery-build:
+ui-meshplay-build:
 	cd ui; npm run build && npm run export; cd ..
 
 ## Builds only the provider user interface on your local machine
@@ -309,7 +309,7 @@ docs-build:
 
 ## Run Meshplay Docs in a Docker container. Listen for changes.
 docs-docker:
-	cd docs; docker run --name meshery-docs --rm -p 4000:4000 -v `pwd`:"/srv/jekyll" jekyll/jekyll:4.0.0 bash -c "bundle install; jekyll serve --drafts --livereload"
+	cd docs; docker run --name meshplay-docs --rm -p 4000:4000 -v `pwd`:"/srv/jekyll" jekyll/jekyll:4.0.0 bash -c "bundle install; jekyll serve --drafts --livereload"
 
 ## Build Meshplay CLI docs
 docs-meshplayctl:
@@ -317,29 +317,29 @@ docs-meshplayctl:
 #-----------------------------------------------------------------------------
 # Meshplay Helm Charts
 #-----------------------------------------------------------------------------
-.PHONY: helm-docs helm-operator-docs helm-meshery-docs helm-operator-lint helm-lint
+.PHONY: helm-docs helm-operator-docs helm-meshplay-docs helm-operator-lint helm-lint
 ## Generate all Meshplay Helm Chart documentation in markdown format.
-helm-docs: helm-operator-docs helm-meshery-docs
+helm-docs: helm-operator-docs helm-meshplay-docs
 
 ## Generate Meshplay Operator Helm Chart documentation in markdown format.
 helm-operator-docs: dep-check
 	GO111MODULE=on go get github.com/norwoodj/helm-docs/cmd/helm-docs
-	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshery-operator
+	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshplay-operator
 
 ## Generate Meshplay Server and Adapters Helm Chart documentation in markdown format.
-helm-meshery-docs: dep-check
+helm-meshplay-docs: dep-check
 	GO111MODULE=on go get github.com/norwoodj/helm-docs/cmd/helm-docs
-	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshery
+	$(GOPATH)/bin/helm-docs -c install/kubernetes/helm/meshplay
 
 ## Lint all of Meshplay's Helm Charts
-helm-lint: helm-operator-lint helm-meshery-lint
+helm-lint: helm-operator-lint helm-meshplay-lint
 
 ## Lint Meshplay Operator Helm Chart
 helm-operator-lint:
-	helm lint install/kubernetes/helm/meshery-operator --with-subcharts
+	helm lint install/kubernetes/helm/meshplay-operator --with-subcharts
 ## Lint Meshplay Server and Adapter Helm Charts
-helm-meshery-lint:
-	helm lint install/kubernetes/helm/meshery --with-subcharts
+helm-meshplay-lint:
+	helm lint install/kubernetes/helm/meshplay --with-subcharts
 
 #-----------------------------------------------------------------------------
 # Meshplay APIs

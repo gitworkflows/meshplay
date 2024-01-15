@@ -34,19 +34,19 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the clo
 
 OR
 
-You can visit the [Docker Hub](https://hub.docker.com/extensions/meshery/docker-extension-meshery) marketplace to directly install Meshplay extension in your Docker Desktop.
+You can visit the [Docker Hub](https://hub.docker.com/extensions/meshplay/docker-extension-meshplay) marketplace to directly install Meshplay extension in your Docker Desktop.
 
 #### Using `Docker CLI`
 
 Meshplay runs as a set of containers inside your Docker Desktop virtual machine.
 
-{% capture code_content %}docker extension install meshery/docker-extension-meshery{% endcapture %}
+{% capture code_content %}docker extension install meshplay/docker-extension-meshplay{% endcapture %}
 {% include code.html code=code_content %}
 
 
 ## Set up the server
 
-In the root directory of meshery, run the following command:
+In the root directory of meshplay, run the following command:
 
 ### To install/update the UI dependencies:
 {% capture code_content %}make ui-setup{% endcapture %}
@@ -77,11 +77,11 @@ If you want to work on the Docker UI, it will be a good idea to use the included
  {% capture code_content %}make ui{% endcapture %}
 {% include code.html code=code_content %}
 
-Now the meshery docker-extension is up and running.
+Now the meshplay docker-extension is up and running.
 
 ### Linking the docker extension locally
 To see the changes reflected in the docker extension locally and open the devTools window, we can run the command:
  {% capture code_content %}make link{% endcapture %}
 {% include code.html code=code_content %}
 
-Now that our local development environment is connected with the meshery docker extension, we can start contributing to it.
+Now that our local development environment is connected with the meshplay docker extension, we can start contributing to it.

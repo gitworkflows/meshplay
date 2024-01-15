@@ -17,7 +17,7 @@ import ServiceMeshIcon from "../../assets/service-mesh";
 import WhiteDesignIcon from "../../assets/design-white";
 import DesignIcon from "../../assets/design";
 import CopyIcon from "../../assets/copy-button";
-import { mesheryCloudUrl } from '../utils/constants';
+import { meshplayCloudUrl } from '../utils/constants';
 
 function CatalogCard({ pattern, patternType, catalog }) {
   const [copied, setCopied] = useState(false);
@@ -27,7 +27,7 @@ function CatalogCard({ pattern, patternType, catalog }) {
 
     try {
       await navigator.clipboard.writeText(
-        `${mesheryCloudUrl}/catalog/${pattern.id}`
+        `${meshplayCloudUrl}/catalog/${pattern.id}`
       );
       setCopied(true);
       setTimeout(() => {

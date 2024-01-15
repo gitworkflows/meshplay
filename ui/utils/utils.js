@@ -78,10 +78,10 @@ export function scrollToTop(behavior = 'smooth') {
 }
 
 /**
- * Generates random Pattern Name with the prefix meshery_
+ * Generates random Pattern Name with the prefix meshplay_
  */
 export function randomPatternNameGenerator() {
-  return 'meshery_' + Math.floor(trueRandom() * 100);
+  return 'meshplay_' + Math.floor(trueRandom() * 100);
 }
 
 /**
@@ -198,7 +198,7 @@ export const modifyRJSFSchema = (schema, propertyPath, newValue) => {
 };
 
 /**
- * get sharable link with same and host and protocol, here until meshery cloud interception
+ * get sharable link with same and host and protocol, here until meshplay cloud interception
  * @param {Object.<string,string>} sharedResource
  * @returns {string}
  */

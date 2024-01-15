@@ -162,16 +162,16 @@ jobs:
   # call-aks-playground-deploy-workflow:
   #   needs: build
   #   name: Deploy Meshplay Playground
-  #   uses: khulnasoft/meshplay/.github/workflows/deploy-meshery-playground.yml@master
+  #   uses: khulnasoft/meshplay/.github/workflows/deploy-meshplay-playground.yml@master
   #   secrets: inherit
-  email-meshery-release-notes-workflow:
+  email-meshplay-release-notes-workflow:
     needs:
       - build
       - ctlrelease
       - call-helm-chart-releaser
       - call-dde-release-workflow
     name: Email Meshplay Release Notes
-    uses: layer5labs/meshery-extensions-packages/.github/workflows/notify-email.yml@master
+    uses: layer5labs/meshplay-extensions-packages/.github/workflows/notify-email.yml@master
     secrets:
       token: ${{ secrets.GH_ACCESS_TOKEN }}
       MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
@@ -183,11 +183,11 @@ jobs:
     needs:
       - build
     name: Deploy CNCF Playground
-    uses: khulnasoft/meshplay/.github/workflows/cncf-playground-deploy-meshery.yaml@master
+    uses: khulnasoft/meshplay/.github/workflows/cncf-playground-deploy-meshplay.yaml@master
     secrets: inherit
 
   email-on-failure:
-    needs: [update-rest-api-docs, update-graphql-docs, build, ctlrelease, call-dde-release-workflow, call-helm-chart-releaser, email-meshery-release-notes-workflow, call-cncf-playground-rollout]
+    needs: [update-rest-api-docs, update-graphql-docs, build, ctlrelease, call-dde-release-workflow, call-helm-chart-releaser, email-meshplay-release-notes-workflow, call-cncf-playground-rollout]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:

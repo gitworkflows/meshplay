@@ -38,7 +38,7 @@ func TestRootCmdIntegration(t *testing.T) {
 
 	// update all locations
 	fixturesDirPath := filepath.Join(currDir, "fixtures")
-	utils.MeshplayFolder = filepath.Join(fixturesDirPath, ".meshery")
+	utils.MeshplayFolder = filepath.Join(fixturesDirPath, ".meshplay")
 	utils.DefaultConfigPath = filepath.Join(utils.MeshplayFolder, "config.yaml")
 	testConfigPath := filepath.Join(fixturesDirPath, "testConfig.yaml")
 

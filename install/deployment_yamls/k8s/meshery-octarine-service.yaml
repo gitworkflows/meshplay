@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.17.0 ()
   creationTimestamp: null
   labels:
-    io.kompose.service: meshery-octarine
-  name: meshery-octarine
+    io.kompose.service: meshplay-octarine
+  name: meshplay-octarine
 spec:
   ports:
     - name: "10003"
       port: 10003
       targetPort: 10003
   selector:
-    io.kompose.service: meshery-octarine
+    io.kompose.service: meshplay-octarine
 status:
   loadBalancer: {}

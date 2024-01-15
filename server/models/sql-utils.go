@@ -52,7 +52,7 @@ func setNewDBInstance() {
 	defer mx.Unlock()
 
 	// Initialize Logger instance
-	log, err := logger.New("meshery", logger.Options{
+	log, err := logger.New("meshplay", logger.Options{
 		Format: logger.SyslogLogFormat,
 	})
 	if err != nil {
@@ -61,7 +61,7 @@ func setNewDBInstance() {
 	}
 
 	dbHandler, err = database.New(database.Options{
-		Filename: fmt.Sprintf("file:%s/mesherydb.sql?cache=private&mode=rwc&_busy_timeout=10000&_journal_mode=WAL", viper.GetString("USER_DATA_FOLDER")),
+		Filename: fmt.Sprintf("file:%s/meshplaydb.sql?cache=private&mode=rwc&_busy_timeout=10000&_journal_mode=WAL", viper.GetString("USER_DATA_FOLDER")),
 		Engine:   database.SQLITE,
 		Logger:   log,
 	})

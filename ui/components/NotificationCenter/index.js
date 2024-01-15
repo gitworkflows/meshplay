@@ -65,7 +65,7 @@ import UnreadIcon from '../../assets/icons/UnreadIcon';
 import DeleteIcon from '../../assets/icons/DeleteIcon';
 import subscribeEvents from '../graphql/subscriptions/EventsSubscription';
 import { useNotification } from '../../utils/hooks/useNotification';
-import { api as mesheryApi } from '../../rtk-query';
+import { api as meshplayApi } from '../../rtk-query';
 
 const EventsSubsciptionProvider_ = withSuppressedErrorBoundary(() => {
   const { notify } = useNotification();
@@ -93,7 +93,7 @@ const EventsSubsciptionProvider_ = withSuppressedErrorBoundary(() => {
         }
         try {
           dispatch(pushEvent(validatedEvent));
-          dispatch(mesheryApi.util.invalidateTags([PROVIDER_TAGS.EVENT]));
+          dispatch(meshplayApi.util.invalidateTags([PROVIDER_TAGS.EVENT]));
           notify({
             message: validatedEvent.description,
             event_type: SEVERITY_TO_NOTIFICATION_TYPE_MAPPING[validatedEvent.severity],

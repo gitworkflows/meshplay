@@ -9,7 +9,7 @@ import (
 
 const DryRunResponseKey = "dryRunResponse"
 
-var mesheryDefinedAPIVersions = map[string]bool{
+var meshplayDefinedAPIVersions = map[string]bool{
 	"core.oam.dev/v1alpha1": true,
 }
 
@@ -29,7 +29,7 @@ func DryRun(_ ServiceInfoProvider, act ServiceActionProvider) ChainStageFunction
 		var comps []v1alpha1.Component
 		processAnnotations(data.Pattern)
 		for name, svc := range data.Pattern.Services {
-			if mesheryDefinedAPIVersions[svc.APIVersion] {
+			if meshplayDefinedAPIVersions[svc.APIVersion] {
 				continue
 			}
 			comp, err := data.Pattern.GetApplicationComponent(name)

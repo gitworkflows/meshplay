@@ -1,7 +1,7 @@
 apiVersion: v2
-name: meshery-nsm
+name: meshplay-nsm
 description: Meshplay Adapter for Network Service Mesh.
-icon: https://khulnasoft.com/images/logos/meshery-logo.png
+icon: https://khulnasoft.com/images/logos/meshplay-logo.png
 source:
   - https://github.com/khulnasoft/meshplay-nsm
 

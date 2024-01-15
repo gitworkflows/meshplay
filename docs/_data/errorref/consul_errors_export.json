@@ -1,6 +1,6 @@
 {
   "errors_export": {
-    "component_name": "meshery-consul",
+    "component_name": "meshplay-consul",
     "component_type": "adapter",
     "errors": {
       "1000": {

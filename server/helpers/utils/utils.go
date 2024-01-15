@@ -18,9 +18,9 @@ import (
 
 const (
 	HelmChartURL          = "https://khulnasoft.com/charts/"
-	HelmChartName         = "meshery"
-	HelmChartOperatorName = "meshery-operator"
-	MeshplayFolder         = ".meshery"
+	HelmChartName         = "meshplay"
+	HelmChartOperatorName = "meshplay-operator"
+	MeshplayFolder         = ".meshplay"
 	ManifestsFolder       = "manifests"
 )
 

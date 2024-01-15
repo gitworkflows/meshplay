@@ -25,7 +25,7 @@ import (
 // Returns the Meshplay Filter file saved by the current user with the given id
 // responses:
 //
-//	200: mesheryFilterResponseWrapper
+//	200: meshplayFilterResponseWrapper
 func (h *Handler) GetMeshplayFilterFileHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -77,7 +77,7 @@ func (h *Handler) FilterFileRequestHandler(
 // Used to save/update a Meshplay Filter
 // responses:
 //
-//	200: mesheryFilterResponseWrapper
+//	200: meshplayFilterResponseWrapper
 func (h *Handler) handleFilterPOST(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -151,7 +151,7 @@ func (h *Handler) handleFilterPOST(
 	if parsedBody.FilterData != nil {
 		// Assign a name if no name is provided
 		if parsedBody.FilterData.Name == "" {
-			parsedBody.FilterData.Name = "meshery-filter-" + utils.GetRandomAlphabetsOfDigit(5)
+			parsedBody.FilterData.Name = "meshplay-filter-" + utils.GetRandomAlphabetsOfDigit(5)
 		}
 		// Assign a location if no location is specified
 		if parsedBody.FilterData.Location == nil || len(parsedBody.FilterData.Location) == 0 {
@@ -163,7 +163,7 @@ func (h *Handler) handleFilterPOST(
 			}
 		}
 
-		mesheryFilter := models.MeshplayFilter{
+		meshplayFilter := models.MeshplayFilter{
 			FilterFile:     parsedBody.FilterData.FilterFile,
 			Name:           parsedBody.FilterData.Name,
 			ID:             parsedBody.FilterData.ID,
@@ -175,7 +175,7 @@ func (h *Handler) handleFilterPOST(
 		}
 
 		if parsedBody.Save {
-			resp, err := provider.SaveMeshplayFilter(token, &mesheryFilter)
+			resp, err := provider.SaveMeshplayFilter(token, &meshplayFilter)
 			if err != nil {
 				errFilterSave := ErrSaveFilter(err)
 				h.log.Error(errFilterSave)
@@ -199,7 +199,7 @@ func (h *Handler) handleFilterPOST(
 			return
 		}
 
-		byt, err := json.Marshal([]models.MeshplayFilter{mesheryFilter})
+		byt, err := json.Marshal([]models.MeshplayFilter{meshplayFilter})
 		if err != nil {
 			h.log.Error(ErrEncodeFilter(err))
 			http.Error(rw, ErrEncodeFilter(err).Error(), http.StatusInternalServerError)
@@ -244,7 +244,7 @@ func (h *Handler) handleFilterPOST(
 //
 // responses:
 //
-//	200: mesheryFiltersResponseWrapper
+//	200: meshplayFiltersResponseWrapper
 func (h *Handler) GetMeshplayFiltersHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -294,7 +294,7 @@ func (h *Handler) GetMeshplayFiltersHandler(
 // ```?search={filtername}``` If search is non empty then a greedy search is performed
 // responses:
 //
-//	200: mesheryFiltersResponseWrapper
+//	200: meshplayFiltersResponseWrapper
 func (h *Handler) GetCatalogMeshplayFiltersHandler(
 	rw http.ResponseWriter,
 	r *http.Request,
@@ -319,7 +319,7 @@ func (h *Handler) GetCatalogMeshplayFiltersHandler(
 // swagger:route DELETE /api/filter/{id} FiltersAPI idDeleteMeshplayFilter
 // Handle Delete for a Meshplay Filter
 //
-// Deletes a meshery filter with ID: id
+// Deletes a meshplay filter with ID: id
 // responses:
 //
 //	200: noContentWrapper
@@ -541,7 +541,7 @@ func (h *Handler) UnPublishCatalogFilterHandler(
 //
 // Fetches the Meshplay Filter with the given id
 // responses:
-// 	200: mesheryFilterResponseWrapper
+// 	200: meshplayFilterResponseWrapper
 
 // GetMeshplayFilterHandler fetched the filter with the given id
 func (h *Handler) GetMeshplayFilterHandler(

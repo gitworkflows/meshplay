@@ -55,7 +55,7 @@ var (
 				return cmd.Help()
 			}
 
-			// get the meshery config
+			// get the meshplay config
 			mctlCfg, err = config.GetMeshplayCtl(viper.GetViper())
 			if err != nil {
 				utils.Log.Error(err)
@@ -103,7 +103,7 @@ func init() {
 }
 
 func validateAdapter(mctlCfg *config.MeshplayCtlConfig, meshName string) error {
-	// get details about the current meshery session
+	// get details about the current meshplay session
 	prefs, err := utils.GetSessionData(mctlCfg)
 	if err != nil {
 		return ErrGettingSessionData(err)
@@ -133,7 +133,7 @@ func validateMesh(mctlCfg *config.MeshplayCtlConfig, meshName string) (string, e
 		return "", ErrValidMeshName(meshName)
 	}
 
-	// get details about the current meshery session
+	// get details about the current meshplay session
 	prefs, err := utils.GetSessionData(mctlCfg)
 	if err != nil {
 		return "", ErrGettingSessionData(err)
@@ -188,7 +188,7 @@ func sendOperationRequest(mctlCfg *config.MeshplayCtlConfig, query string, delet
 		}
 	case "istio-vet":
 		{
-			if adapterURL == "meshery-istio:10000" {
+			if adapterURL == "meshplay-istio:10000" {
 				data.Set("query", "istio-vet")
 				break
 			}

@@ -2,7 +2,7 @@
 layout: default
 title: GitOps with Meshplay
 abstract: Integrating your CI/CD pipelines with Meshplay's GitHub Actions
-permalink: guides/gitops-with-meshery
+permalink: guides/gitops-with-meshplay
 type: guides
 category: gitops
 language: en
@@ -36,7 +36,7 @@ Measuring and managing the performance of a service mesh is key to efficient ope
 
 <h3>Using Meshplay's Service Mesh Performance GitHub Action</h3>
 
-The <a href="https://github.com/marketplace/actions/performance-testing-with-meshery">Service Mesh Performance GitHub Action</a> is available in the GitHub Marketplace.You can create your own performance profiles to run repeatable tests with Meshplay. You can configure this action to trigger with each of your releases, on every pull request. or any GitHub workflow trigger event. A sample configuration of the action is shown below.
+The <a href="https://github.com/marketplace/actions/performance-testing-with-meshplay">Service Mesh Performance GitHub Action</a> is available in the GitHub Marketplace.You can create your own performance profiles to run repeatable tests with Meshplay. You can configure this action to trigger with each of your releases, on every pull request. or any GitHub workflow trigger event. A sample configuration of the action is shown below.
 
 ```yaml
 name: Meshplay SMP Action
@@ -111,7 +111,7 @@ The results from the tests are updated on the Performance Management dashboard i
 
 <a href="https://smi-spec.io">Service Mesh Interface</a> provides a standard interface for service meshes on Kubernetes. These (currently) four specfications offer a common denominator set of interfaces to support most common service mesh use cases and the flexibility to evolve to support new service mesh capabilities over time.
 
-The <a href="https://github.com/khulnasoft/meshplay-smi-conformance-action">Meshplay SMI Conformance Action</a> which <a href="https://khulnasoft.com/blog/validating-smi-conformance-with-meshery">validates SMI conformance</a> in your pipeline and the <a href="https://github.com/khulnasoft/meshplay-smp-action">Meshplay SMP Action</a> which runs <a href="{{ site.baseurl }}/tasks/performance/managing-performance">SMP compatible performance benchmarks</a>.
+The <a href="https://github.com/khulnasoft/meshplay-smi-conformance-action">Meshplay SMI Conformance Action</a> which <a href="https://khulnasoft.com/blog/validating-smi-conformance-with-meshplay">validates SMI conformance</a> in your pipeline and the <a href="https://github.com/khulnasoft/meshplay-smp-action">Meshplay SMP Action</a> which runs <a href="{{ site.baseurl }}/tasks/performance/managing-performance">SMP compatible performance benchmarks</a>.
 
 <h2>Service Mesh Interface Conformance GitHub Action</h2>
 
@@ -120,7 +120,7 @@ Conformance of SMI specifications is defined as a series of test assertions. The
 
 <h3>Using Meshplay's SMI Conformance GitHub Action</h3>
 
-The <a href="https://github.com/marketplace/actions/service-mesh-interface-conformance-with-meshery">Service Mesh Interface Conformance GitHub Action</a> is available in the GitHub Marketplace. You can configure this action to trigger with each of your releases, on every pull request. or any GitHub workflow trigger event.
+The <a href="https://github.com/marketplace/actions/service-mesh-interface-conformance-with-meshplay">Service Mesh Interface Conformance GitHub Action</a> is available in the GitHub Marketplace. You can configure this action to trigger with each of your releases, on every pull request. or any GitHub workflow trigger event.
 
 An example of the action configuration which runs on every release is shown below. The action handles setting up a Kubernetes environment, deploying the service mesh (see supported service meshes), running the conformance tests and reporting back the results to the SMI Conformance dashboard in Meshplay.
 

@@ -1,4 +1,4 @@
-# meshery-perf
+# meshplay-perf
 
 > **:exclamation: This Helm Chart is deprecated!**
 

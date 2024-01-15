@@ -71,7 +71,7 @@ func (h *Handler) MeshModelGenerationHandler(rw http.ResponseWriter, r *http.Req
 		if gpi.Register {
 			for _, comp := range comps {
 				utils.WriteSVGsOnFileSystem(&comp)
-				host := fmt.Sprintf("%s.artifacthub.meshery", gpi.Name)
+				host := fmt.Sprintf("%s.artifacthub.meshplay", gpi.Name)
 				err = h.registryManager.RegisterEntity(meshmodel.Host{
 					IHost:    meshmodel.ArtifactHub{},
 					Hostname: meshmodel.ArtifactHub{}.String(),

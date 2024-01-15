@@ -28,7 +28,7 @@ Use Meshplay UI or meshplayctl to manage [designs](../tasks/patterns.md).
 
 Meshplay also comes with seed patterns when users start Meshplay for the first time. These patterns cover common use cases and examples for you as you explore Meshplay.
 
-<img src="{{ site.baseurl }}/assets/img/configuration-management/meshery-patterns.png" width="50%" />
+<img src="{{ site.baseurl }}/assets/img/configuration-management/meshplay-patterns.png" width="50%" />
 
 Users can also import these patterns to their remote provider from this [sample repository](https://github.com/service-mesh-patterns/service-mesh-patterns/tree/master/samples).
 
@@ -70,7 +70,7 @@ Meshplay can be used for managing WebAssembly Filters through the UI or the CLI.
 
 Like patterns, Meshplay also comes with some sample WebAssembly Filters for you to experiment.
 
-<img src="{{ site.baseurl }}/assets/img/configuration-management/meshery-filters.png" width="50%" />
+<img src="{{ site.baseurl }}/assets/img/configuration-management/meshplay-filters.png" width="50%" />
 
 You can also import these filters manually to your provider from the [wasm-filters](https://github.com/layer5io/wasm-filters) repo.
 
@@ -106,11 +106,11 @@ Meshplay can also manage your Kubernetes applications and deploy them to any of 
 
 Meshplay has a set of [sample applications](./deploying-sample-apps.md) which you can use to quickly test out your deployment.
 
-<img src="{{ site.baseurl }}/assets/img/configuration-management/meshery-applications-seeded.png" width="50%" />
+<img src="{{ site.baseurl }}/assets/img/configuration-management/meshplay-applications-seeded.png" width="50%" />
 
 You can also bring in your own applications by uploading it from filesystem or importing it from a URL.
 
-<img src="{{ site.baseurl }}/assets/img/configuration-management/meshery-applications.png" width="50%" />
+<img src="{{ site.baseurl }}/assets/img/configuration-management/meshplay-applications.png" width="50%" />
 
 The application files can be described in following formats:
 - Kubernetes manifest

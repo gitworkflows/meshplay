@@ -26,7 +26,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/models/environments"
 	"github.com/khulnasoft/meshkit/database"
 	"github.com/khulnasoft/meshkit/logger"
-	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -57,7 +57,7 @@ type RemoteProvider struct {
 	ProviderVersion    string
 	SmiResultPersister *SMIResultsPersister
 	GenericPersister   *database.Handler
-	KubeClient         *mesherykube.Client
+	KubeClient         *meshplaykube.Client
 	Log                logger.Handler
 }
 
@@ -164,7 +164,7 @@ func (l *RemoteProvider) downloadProviderExtensionPackage() {
 // PackageLocation returns the location of where the package for the current
 // provider is located
 func (l *RemoteProvider) PackageLocation() string {
-	return path.Join(homedir.HomeDir(), ".meshery", "provider", l.ProviderName, l.PackageVersion)
+	return path.Join(homedir.HomeDir(), ".meshplay", "provider", l.ProviderName, l.PackageVersion)
 }
 
 // Name - Returns Provider's friendly name
@@ -266,7 +266,7 @@ func (l *RemoteProvider) executePrefSync(tokenString string, sess *Preference) {
 // Every Remote Provider must offer this function
 func (l *RemoteProvider) InitiateLogin(w http.ResponseWriter, r *http.Request, _ bool) {
 	callbackURL := r.Context().Value(MeshplayServerCallbackURL).(string)
-	mesheryVersion := viper.GetString("BUILD")
+	meshplayVersion := viper.GetString("BUILD")
 
 	_, err := r.Cookie(tokenName)
 	if err != nil {
@@ -277,7 +277,7 @@ func (l *RemoteProvider) InitiateLogin(w http.ResponseWriter, r *http.Request, _
 			Path:     "/",
 			HttpOnly: true,
 		})
-		http.Redirect(w, r, l.RemoteProviderURL+"/login?source="+base64.RawURLEncoding.EncodeToString([]byte(callbackURL))+"&provider_version="+l.ProviderVersion+"&meshery_version="+mesheryVersion, http.StatusFound)
+		http.Redirect(w, r, l.RemoteProviderURL+"/login?source="+base64.RawURLEncoding.EncodeToString([]byte(callbackURL))+"&provider_version="+l.ProviderVersion+"&meshplay_version="+meshplayVersion, http.StatusFound)
 		return
 	}
 
@@ -618,7 +618,7 @@ func (l *RemoteProvider) Logout(w http.ResponseWriter, req *http.Request) error 
 //
 // Redirects to alert user of expired sesion
 func (l *RemoteProvider) HandleUnAuthenticated(w http.ResponseWriter, req *http.Request) {
-	_, err := req.Cookie("meshery-provider")
+	_, err := req.Cookie("meshplay-provider")
 	if err == nil {
 		ck, err := req.Cookie(tokenName)
 		if err == nil {
@@ -640,7 +640,7 @@ func (l *RemoteProvider) SaveK8sContext(token string, k8sContext K8sContext) (co
 	_metadata := map[string]string{
 		"id":                   k8sContext.ID,
 		"server":               k8sContext.Server,
-		"meshery_instance_id":  k8sContext.MeshplayInstanceID.String(),
+		"meshplay_instance_id":  k8sContext.MeshplayInstanceID.String(),
 		"deployment_type":      k8sContext.DeploymentType,
 		"version":              k8sContext.Version,
 		"name":                 k8sContext.Name,
@@ -707,7 +707,7 @@ func (l *RemoteProvider) GetK8sContexts(token, page, pageSize, search, order str
 	if !withCredentials {
 		q.Set("with_credentials", "false")
 	}
-	q.Set("meshery_instance_id", mi)
+	q.Set("meshplay_instance_id", mi)
 	remoteProviderURL.RawQuery = q.Encode()
 	cReq, _ := http.NewRequest(http.MethodGet, remoteProviderURL.String(), nil)
 
@@ -1106,7 +1106,7 @@ func (l *RemoteProvider) GetResult(tokenVal string, resultID uuid.UUID) (*Meshpl
 		res := &MeshplayResult{}
 		err = json.Unmarshal(bdr, res)
 		if err != nil {
-			logrus.Errorf("unable to unmarshal meshery result: %v", err)
+			logrus.Errorf("unable to unmarshal meshplay result: %v", err)
 			return nil, ErrUnmarshal(err, "Perf Result "+resultID.String())
 		}
 		return res, nil
@@ -1126,7 +1126,7 @@ func (l *RemoteProvider) PublishResults(req *http.Request, result *MeshplayResul
 
 	data, err := json.Marshal(result)
 	if err != nil {
-		return "", ErrMarshal(err, "meshery metrics for shipping")
+		return "", ErrMarshal(err, "meshplay metrics for shipping")
 	}
 
 	logrus.Debugf("Result: %s, size: %d", data, len(data))
@@ -1185,7 +1185,7 @@ func (l *RemoteProvider) PublishSmiResults(result *SmiResult) (string, error) {
 
 	data, err := json.Marshal(result)
 	if err != nil {
-		return "", ErrMarshal(err, "meshery metrics for shipping")
+		return "", ErrMarshal(err, "meshplay metrics for shipping")
 	}
 
 	logrus.Debugf("Result: %s, size: %d", data, len(data))
@@ -1236,7 +1236,7 @@ func (l *RemoteProvider) PublishMetrics(tokenString string, result *MeshplayResu
 
 	data, err := json.Marshal(result)
 	if err != nil {
-		return ErrMarshal(err, "meshery metrics for shipping")
+		return ErrMarshal(err, "meshplay metrics for shipping")
 	}
 
 	logrus.Debugf("Result: %s, size: %d", data, len(data))
@@ -1279,7 +1279,7 @@ func (l *RemoteProvider) SaveMeshplayPatternResource(token string, resource *Pat
 
 	data, err := json.Marshal(resource)
 	if err != nil {
-		return nil, ErrMarshal(err, "meshery design resource")
+		return nil, ErrMarshal(err, "meshplay design resource")
 	}
 
 	logrus.Infof("attempting to save design resource to remote provider")
@@ -1522,7 +1522,7 @@ func (l *RemoteProvider) SaveMeshplayPattern(tokenString string, pattern *Meshpl
 	})
 
 	if err != nil {
-		err = ErrMarshal(err, "meshery metrics for shipping")
+		err = ErrMarshal(err, "meshplay metrics for shipping")
 		return nil, err
 	}
 
@@ -1724,7 +1724,7 @@ func (l *RemoteProvider) GetMeshplayPattern(req *http.Request, patternID string)
 	return nil, ErrFetch(fmt.Errorf("could not retrieve design from remote provider"), fmt.Sprint(bdr), resp.StatusCode)
 }
 
-// DeleteMeshplayPattern deletes a meshery pattern with the given id
+// DeleteMeshplayPattern deletes a meshplay pattern with the given id
 func (l *RemoteProvider) DeleteMeshplayPattern(req *http.Request, patternID string) ([]byte, error) {
 	if !l.Capabilities.IsSupported(PersistMeshplayPatterns) {
 		logrus.Error("operation not available")
@@ -1769,7 +1769,7 @@ func (l *RemoteProvider) DeleteMeshplayPattern(req *http.Request, patternID stri
 	return nil, fmt.Errorf("error while getting design - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// CloneMeshplayPattern clones a meshery pattern with the given id
+// CloneMeshplayPattern clones a meshplay pattern with the given id
 func (l *RemoteProvider) CloneMeshplayPattern(req *http.Request, patternID string, clonePatternRequest *MeshplayClonePatternRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(CloneMeshplayPatterns) {
 		logrus.Error("operation not available")
@@ -1823,7 +1823,7 @@ func (l *RemoteProvider) CloneMeshplayPattern(req *http.Request, patternID strin
 	return nil, fmt.Errorf("error while cloning design - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// PublishMeshplayPattern publishes a meshery pattern with the given id to catalog
+// PublishMeshplayPattern publishes a meshplay pattern with the given id to catalog
 func (l *RemoteProvider) PublishCatalogPattern(req *http.Request, publishPatternRequest *MeshplayCatalogPatternRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(MeshplayPatternsCatalog) {
 		logrus.Error("operation not available")
@@ -1875,7 +1875,7 @@ func (l *RemoteProvider) PublishCatalogPattern(req *http.Request, publishPattern
 	return nil, fmt.Errorf("error while publishing design file to catalog - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// UnPublishMeshplayPattern publishes a meshery pattern with the given id to catalog
+// UnPublishMeshplayPattern publishes a meshplay pattern with the given id to catalog
 func (l *RemoteProvider) UnPublishCatalogPattern(req *http.Request, publishPatternRequest *MeshplayCatalogPatternRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(MeshplayPatternsCatalog) {
 		logrus.Error("operation not available")
@@ -1927,7 +1927,7 @@ func (l *RemoteProvider) UnPublishCatalogPattern(req *http.Request, publishPatte
 	return nil, fmt.Errorf("error while unpublishing design file from catalog - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// DeleteMeshplayPatterns deletes meshery patterns with the given ids and names
+// DeleteMeshplayPatterns deletes meshplay patterns with the given ids and names
 func (l *RemoteProvider) DeleteMeshplayPatterns(req *http.Request, patterns MeshplayPatternDeleteRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(PersistMeshplayPatterns) {
 		logrus.Error("operation not available")
@@ -1994,8 +1994,8 @@ func (l *RemoteProvider) RemotePatternFile(req *http.Request, resourceURL, path 
 	})
 
 	if err != nil {
-		err = ErrMarshal(err, "meshery metrics for shipping")
-		return nil, ErrMarshal(err, "meshery metrics for shipping")
+		err = ErrMarshal(err, "meshplay metrics for shipping")
+		return nil, ErrMarshal(err, "meshplay metrics for shipping")
 	}
 
 	logrus.Debugf("design: %s, size: %d", data, len(data))
@@ -2285,7 +2285,7 @@ func (l *RemoteProvider) GetMeshplayFilter(req *http.Request, filterID string) (
 	return nil, ErrFetch(fmt.Errorf("could not retrieve filter from remote provider"), fmt.Sprint(bdr), resp.StatusCode)
 }
 
-// DeleteMeshplayFilter deletes a meshery filter with the given id
+// DeleteMeshplayFilter deletes a meshplay filter with the given id
 func (l *RemoteProvider) DeleteMeshplayFilter(req *http.Request, filterID string) ([]byte, error) {
 	if !l.Capabilities.IsSupported(PersistMeshplayFilters) {
 		logrus.Error("operation not available")
@@ -2328,7 +2328,7 @@ func (l *RemoteProvider) DeleteMeshplayFilter(req *http.Request, filterID string
 	return nil, ErrDelete(fmt.Errorf("error while fetching filter: %s", bdr), fmt.Sprint(bdr), resp.StatusCode)
 }
 
-// CloneMeshplayFilter clones a meshery filter with the given id
+// CloneMeshplayFilter clones a meshplay filter with the given id
 func (l *RemoteProvider) CloneMeshplayFilter(req *http.Request, filterID string, cloneFilterRequest *MeshplayCloneFilterRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(CloneMeshplayFilters) {
 		logrus.Error("operation not available")
@@ -2381,7 +2381,7 @@ func (l *RemoteProvider) CloneMeshplayFilter(req *http.Request, filterID string,
 	return nil, fmt.Errorf("error while cloning filter - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// CloneMeshplayFilter publishes a meshery filter with the given id to catalog
+// CloneMeshplayFilter publishes a meshplay filter with the given id to catalog
 func (l *RemoteProvider) PublishCatalogFilter(req *http.Request, publishFilterRequest *MeshplayCatalogFilterRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(MeshplayFiltersCatalog) {
 		logrus.Error("operation not available")
@@ -2433,7 +2433,7 @@ func (l *RemoteProvider) PublishCatalogFilter(req *http.Request, publishFilterRe
 	return nil, fmt.Errorf("error while publishing filter file to catalog - Status code: %d, Body: %s", resp.StatusCode, bdr)
 }
 
-// UnPublishMeshplayFilter publishes a meshery filter with the given id to catalog
+// UnPublishMeshplayFilter publishes a meshplay filter with the given id to catalog
 func (l *RemoteProvider) UnPublishCatalogFilter(req *http.Request, publishFilterRequest *MeshplayCatalogFilterRequestBody) ([]byte, error) {
 	if !l.Capabilities.IsSupported(MeshplayFiltersCatalog) {
 		logrus.Error("operation not available")
@@ -2503,7 +2503,7 @@ func (l *RemoteProvider) RemoteFilterFile(req *http.Request, resourceURL, path s
 	})
 
 	if err != nil {
-		err = ErrMarshal(err, "meshery metrics for shipping")
+		err = ErrMarshal(err, "meshplay metrics for shipping")
 		return nil, err
 	}
 
@@ -2561,7 +2561,7 @@ func (l *RemoteProvider) SaveMeshplayApplication(tokenString string, application
 	})
 
 	if err != nil {
-		err = ErrMarshal(err, "meshery metrics for shipping")
+		err = ErrMarshal(err, "meshplay metrics for shipping")
 		return nil, err
 	}
 
@@ -2814,7 +2814,7 @@ func (l *RemoteProvider) GetMeshplayApplication(req *http.Request, applicationID
 	return nil, ErrFetch(fmt.Errorf("failed to retrieve application from remote provider"), fmt.Sprint(bdr), resp.StatusCode)
 }
 
-// DeleteMeshplayApplication deletes a meshery application with the given id
+// DeleteMeshplayApplication deletes a meshplay application with the given id
 func (l *RemoteProvider) DeleteMeshplayApplication(req *http.Request, applicationID string) ([]byte, error) {
 	if !l.Capabilities.IsSupported(PersistMeshplayApplications) {
 		logrus.Error("operation not available")
@@ -2899,7 +2899,7 @@ func (l *RemoteProvider) SavePerformanceProfile(tokenString string, pp *Performa
 
 	data, err := json.Marshal(pp)
 	if err != nil {
-		err = ErrMarshal(err, "meshery metrics for shipping")
+		err = ErrMarshal(err, "meshplay metrics for shipping")
 		return nil, err
 	}
 
@@ -3329,7 +3329,7 @@ func (l *RemoteProvider) TokenHandler(w http.ResponseWriter, r *http.Request, _ 
 		cred["token"] = temp
 
 		conn := &ConnectionPayload{
-			Kind:             "meshery",
+			Kind:             "meshplay",
 			Type:             "platform",
 			SubType:          "management",
 			MetaData:         metadata,
@@ -3382,10 +3382,10 @@ func (l *RemoteProvider) ExtractToken(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := map[string]interface{}{
-		"meshery-provider": l.Name(),
+		"meshplay-provider": l.Name(),
 		tokenName:          tokenString,
 	}
-	logrus.Debugf("token sent for meshery-provider %v", l.Name())
+	logrus.Debugf("token sent for meshplay-provider %v", l.Name())
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		err = ErrEncoding(err, "Auth Details")
 		logrus.Error(err)
@@ -4004,9 +4004,9 @@ func (l *RemoteProvider) DeleteMeshplayConnection() error {
 		return ErrInvalidCapability("PersistConnection", l.ProviderName)
 	}
 
-	mesheryServerID := viper.GetString("INSTANCE_ID")
+	meshplayServerID := viper.GetString("INSTANCE_ID")
 	ep, _ := l.Capabilities.GetEndpointForFeature(PersistConnection)
-	remoteProviderURL, _ := url.Parse(fmt.Sprintf("%s%s/meshery/%s", l.RemoteProviderURL, ep, mesheryServerID))
+	remoteProviderURL, _ := url.Parse(fmt.Sprintf("%s%s/meshplay/%s", l.RemoteProviderURL, ep, meshplayServerID))
 	cReq, _ := http.NewRequest(http.MethodDelete, remoteProviderURL.String(), nil)
 	cReq.Header.Set("X-API-Key", GlobalTokenForAnonymousResults)
 	cReq.Header.Set("SystemID", viper.GetString("INSTANCE_ID")) // Adds the system id to the header for event tracking
@@ -4026,7 +4026,7 @@ func (l *RemoteProvider) DeleteMeshplayConnection() error {
 		return nil
 	}
 
-	return ErrDelete(fmt.Errorf("could not delete meshery connection"), " Meshplay Connection", resp.StatusCode)
+	return ErrDelete(fmt.Errorf("could not delete meshplay connection"), " Meshplay Connection", resp.StatusCode)
 }
 
 // TarXZF takes in a source url downloads the tar.gz file
@@ -4139,13 +4139,13 @@ func (l *RemoteProvider) GetGenericPersister() *database.Handler {
 	return l.GenericPersister
 }
 
-// SetKubeClient - to set meshery kubernetes client
-func (l *RemoteProvider) SetKubeClient(client *mesherykube.Client) {
+// SetKubeClient - to set meshplay kubernetes client
+func (l *RemoteProvider) SetKubeClient(client *meshplaykube.Client) {
 	l.KubeClient = client
 }
 
-// GetKubeClient - to get meshery kubernetes client
-func (l *RemoteProvider) GetKubeClient() *mesherykube.Client {
+// GetKubeClient - to get meshplay kubernetes client
+func (l *RemoteProvider) GetKubeClient() *meshplaykube.Client {
 	return l.KubeClient
 }
 

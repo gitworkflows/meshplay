@@ -1368,7 +1368,7 @@ function MeshplayPatterns({
     filter: false,
     search: false,
     viewColumns: false,
-    sort: !(user && user.user_id === 'meshery'),
+    sort: !(user && user.user_id === 'meshplay'),
     filterType: 'textField',
     responsive: 'standard',
     resizableColumns: true,

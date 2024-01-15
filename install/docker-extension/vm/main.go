@@ -6,7 +6,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/docker/meshery-extension/vm/proxy"
+	"github.com/docker/meshplay-extension/vm/proxy"
 	"github.com/sirupsen/logrus"
 )
 

@@ -24,7 +24,7 @@ Alternatively, if you are running Windows 10, you may install the Windows Subsys
 
 - Fork and then clone the [Meshplay repository](https://github.com/khulnasoft/meshplay)
   ```bash
-  $ git clone https://github.com/YOUR-USERNAME/meshery
+  $ git clone https://github.com/YOUR-USERNAME/meshplay
   ```
 - Change to the docs directory
   ```bash

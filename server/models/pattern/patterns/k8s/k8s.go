@@ -70,7 +70,7 @@ func dryRun(rClient rest.Interface, k8sResource map[string]interface{}, namespac
 		return
 	}
 
-	req := rClient.Post().AbsPath(path).Body(data).SetHeader("Content-Type", "application/json").SetHeader("Accept", "application/json").Param("dryRun", "All").Param("fieldValidation", "Strict").Param("fieldManager", "meshery")
+	req := rClient.Post().AbsPath(path).Body(data).SetHeader("Content-Type", "application/json").SetHeader("Accept", "application/json").Param("dryRun", "All").Param("fieldValidation", "Strict").Param("fieldManager", "meshplay")
 	res := req.Do(context.Background())
 
 	// ignoring the error since this client-go treats failure of dryRun as an error

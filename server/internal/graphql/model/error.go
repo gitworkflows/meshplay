@@ -34,7 +34,7 @@ func ErrMeshSyncEventsSubscription(err error) error {
 }
 
 func ErrMeshplayControllersStatusSubscription(err error) error {
-	return errors.New(ErrMeshplayControllersStatusSubscriptionCode, errors.Alert, []string{"Could not create meshery controllers status subcription", err.Error()}, []string{"Meshplay controller handlers may not be available"}, []string{""}, []string{"Make sure the controllers are deployed and their handlers are configured"})
+	return errors.New(ErrMeshplayControllersStatusSubscriptionCode, errors.Alert, []string{"Could not create meshplay controllers status subcription", err.Error()}, []string{"Meshplay controller handlers may not be available"}, []string{""}, []string{"Make sure the controllers are deployed and their handlers are configured"})
 }
 
 func ErrCreateData(err error) error {
@@ -54,7 +54,7 @@ func ErrQuery(err error) error {
 }
 
 func ErrMeshsyncSubscription(err error) error {
-	return errors.New(ErrMeshsyncSubscriptionCode, errors.Alert, []string{"MeshSync Subscription failed", err.Error()}, []string{"GraphQL subscription for MeshSync stopped"}, []string{"Could be a network issue"}, []string{"Check if meshery server is reachable from the browser"})
+	return errors.New(ErrMeshsyncSubscriptionCode, errors.Alert, []string{"MeshSync Subscription failed", err.Error()}, []string{"GraphQL subscription for MeshSync stopped"}, []string{"Could be a network issue"}, []string{"Check if meshplay server is reachable from the browser"})
 }
 
 func ErrSubscribeChannel(err error) error {

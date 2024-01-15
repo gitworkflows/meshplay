@@ -112,7 +112,7 @@ function CustomToolbarSelect({
               key="download"
               aria-label="download"
               color="inherit"
-              href={`/api/perf/profile/result/${encodeURIComponent(fullData[0].meshery_id)}`}
+              href={`/api/perf/profile/result/${encodeURIComponent(fullData[0].meshplay_id)}`}
               download={`${fullData[0].name}_test_result.json`}
             >
               <GetAppIcon className={classes.icon} />

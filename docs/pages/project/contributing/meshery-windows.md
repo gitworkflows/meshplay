@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Setting up Meshplay Development Environment on Windows
-permalink: project/contributing/meshery-windows
+permalink: project/contributing/meshplay-windows
 abstract: How to set up Meshplay Development Environment on Windows
 language: en
 type: project
@@ -171,5 +171,5 @@ Git Bash is a terminal emulator which provides git command line experience. This
 
 - Fork and then clone the [Meshplay repository](https://github.com/khulnasoft/meshplay)
   ```bash
-  $ git clone https://github.com/YOUR-USERNAME/meshery
+  $ git clone https://github.com/YOUR-USERNAME/meshplay
   ```

@@ -11,7 +11,7 @@ import ResourcesTable from './resources/resources-table';
 import ResourcesSubMenu from './resources/resources-sub-menu';
 import Overview from './overview';
 import KubernetesIcon from '../../assets/icons/technology/kubernetes';
-import MeshplayIcon from './images/meshery-icon.js';
+import MeshplayIcon from './images/meshplay-icon.js';
 import { TabPanel } from './tabpanel';
 import { CustomTextTooltip } from '../MeshplayMeshInterface/PatternService/CustomTextTooltip';
 

@@ -8,7 +8,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshkit/models/controllers"
 	"github.com/khulnasoft/meshkit/utils/broadcast"
-	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 )
 
 type operatorStatusK8sContext struct {
@@ -36,7 +36,7 @@ func (r *Resolver) changeOperatorStatus(ctx context.Context, provider models.Pro
 		r.Log.Info("Uninstalling Operator in context ", ctxID)
 	}
 
-	var kubeclient *mesherykube.Client
+	var kubeclient *meshplaykube.Client
 	var k8scontext models.K8sContext
 	var err error
 	if ctxID != "" {
@@ -79,7 +79,7 @@ func (r *Resolver) changeOperatorStatus(ctx context.Context, provider models.Pro
 		return model.StatusUnknown, ErrNilClient
 	}
 
-	go func(del bool, kubeclient *mesherykube.Client) {
+	go func(del bool, kubeclient *meshplaykube.Client) {
 		if r.Config.OperatorTracker.DisableOperator { //Do not deploy operator is explicitly in disabled mode
 			r.Log.Info("skipping operator deployment (in disabled mode)")
 			return
@@ -180,7 +180,7 @@ func (r *Resolver) getOperatorStatus(ctx context.Context, _ models.Provider, ctx
 }
 
 func (r *Resolver) getMeshsyncStatus(ctx context.Context, provider models.Provider, connectionID string) (*model.OperatorControllerStatus, error) {
-	var kubeclient *mesherykube.Client
+	var kubeclient *meshplaykube.Client
 
 	tokenString := ctx.Value(models.TokenCtxKey).(string)
 
@@ -204,7 +204,7 @@ func (r *Resolver) getMeshsyncStatus(ctx context.Context, provider models.Provid
 }
 
 func (r *Resolver) getNatsStatus(ctx context.Context, provider models.Provider, connectionID string) (*model.OperatorControllerStatus, error) {
-	var kubeclient *mesherykube.Client
+	var kubeclient *meshplaykube.Client
 
 	tokenString := ctx.Value(models.TokenCtxKey).(string)
 

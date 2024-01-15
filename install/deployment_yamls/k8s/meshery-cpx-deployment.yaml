@@ -7,25 +7,25 @@ metadata:
     kompose.version: 1.17.0 ()
   creationTimestamp: null
   labels:
-    io.kompose.service: meshery-cpx
-  name: meshery-cpx
+    io.kompose.service: meshplay-cpx
+  name: meshplay-cpx
 spec:
   selector:
     matchLabels:
-      io.kompose.service: meshery-cpx
+      io.kompose.service: meshplay-cpx
   replicas: 1
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: meshery-cpx
+        io.kompose.service: meshplay-cpx
     spec:
-      serviceAccount: meshery-server
+      serviceAccount: meshplay-server
       containers:
         - image: khulnasoft/meshplay-cpx:stable-latest
           imagePullPolicy: Always
-          name: meshery-cpx
+          name: meshplay-cpx
           ports:
             - containerPort: 10008
           resources: {}

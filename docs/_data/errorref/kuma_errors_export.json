@@ -1,6 +1,6 @@
 {
   "errors_export": {
-    "component_name": "meshery-kuma",
+    "component_name": "meshplay-kuma",
     "component_type": "adapter",
     "errors": {
       "1000": {
@@ -97,7 +97,7 @@
         "name": "ErrGetKumactlCode",
         "code": "1010",
         "severity": "Alert",
-        "long_description": "Error occurred while downloading`kumactl` and moving it to .meshery/bin]",
+        "long_description": "Error occurred while downloading`kumactl` and moving it to .meshplay/bin]",
         "short_description": "Error getting kumactl comamndline",
         "probable_cause": "https://download.konghq.com/mesh-alpine/kuma-<release>-<platform>-<arch>.tar.gz might be deprecated",
         "suggested_remediation": ""

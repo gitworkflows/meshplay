@@ -75,7 +75,7 @@ meshplayctl system logs
 
 // Starts tailing Meshplay server debug logs (works with components also)
 meshplayctl system logs --follow
-meshplayctl system logs meshery-istio
+meshplayctl system logs meshplay-istio
 	`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		//Check prerequisite

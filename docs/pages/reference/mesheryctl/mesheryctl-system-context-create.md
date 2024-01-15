@@ -37,7 +37,7 @@ meshplayctl system context create [context-name]
 Create new context and provide list of components, platform & URL
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl system context create context-name --components meshery-nsm --platform docker --url http://localhost:9081 --set --yes
+meshplayctl system context create context-name --components meshplay-nsm --platform docker --url http://localhost:9081 --set --yes
 
 </div>
 </pre> 
@@ -59,7 +59,7 @@ meshplayctl system context create context-name --components meshery-nsm --platfo
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string    path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string    path to config file (default "/home/runner/.meshplay/config.yaml")
   -c, --context string   (optional) temporarily change the current context.
   -v, --verbose          verbose output
   -y, --yes              (optional) assume yes for user interactive prompts.

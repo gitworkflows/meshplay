@@ -15,7 +15,7 @@ jobs:
               username: root
               key: ${{ secrets.METAL_SSH_KEY }}
               script: |
-                cd meshery
+                cd meshplay
                 git pull
                 docker compose -f install/playground/docker/docker-compose.yaml pull
                 docker compose -f install/playground/docker/docker-compose.yaml up -d --remove-orphans
@@ -25,4 +25,4 @@ jobs:
 #            run: mkdir ~/.kube; touch ~/.kube/config ;echo "${{ secrets.PLAYGROUND_CONFIG }}" | base64 --decode > ~/.kube/config
 #          - name: Rollout Meshplay so that pods can restart with latest Meshplay image
 #            run: |
-#             kubectl -n meshery rollout restart deployment meshery
+#             kubectl -n meshplay rollout restart deployment meshplay

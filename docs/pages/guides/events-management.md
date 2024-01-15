@@ -56,4 +56,4 @@ You can easily collaborate with stakeholders by sharing event data, enhancing co
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

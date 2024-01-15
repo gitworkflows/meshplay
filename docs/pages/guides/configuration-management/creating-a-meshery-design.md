@@ -2,7 +2,7 @@
 layout: enhanced
 title: Creating a Meshplay Design
 abstract: Learn how to create a Meshplay design from scratch or from a template.
-permalink: guides/configuration-management/creating-a-meshery-design
+permalink: guides/configuration-management/creating-a-meshplay-design
 type: guides
 category: configuration
 language: en

@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { ErrorTypes } from '@/constants/common';
 import { useTheme } from '@material-ui/core/styles';
-// import InstallMeshplay, { MeshplayAction } from "../../dashboard/install-meshery-card";
+// import InstallMeshplay, { MeshplayAction } from "../../dashboard/install-meshplay-card";
 import Socials from './socials';
 import {
   ErrorComponent,
@@ -11,7 +11,7 @@ import {
   ErrorMain,
 } from './styles';
 
-//TODO: Add component for meshery version compatiblity error
+//TODO: Add component for meshplay version compatiblity error
 // const MeshplayVersionCompatiblity = () => {
 //   return (
 //     <div>
@@ -47,8 +47,8 @@ const DefaultError = (props) => {
           height="300px"
           src={
             theme.palette.type === 'dark'
-              ? '/static/img/meshery-logo/meshery-logo-white-text.png'
-              : '/static/img/meshery-logo/meshery-logo-light-text.png'
+              ? '/static/img/meshplay-logo/meshplay-logo-white-text.png'
+              : '/static/img/meshplay-logo/meshplay-logo-light-text.png'
           }
           alt="Meshplay logo"
         />

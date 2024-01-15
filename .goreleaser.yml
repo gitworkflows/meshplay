@@ -112,7 +112,7 @@ scoops:
 
   # Repository to push the app manifest to.
   - repository:
-     owner: meshery
+     owner: khulnasoft
      name: scoop-bucket
 
   # Git author used to commit to the repository.

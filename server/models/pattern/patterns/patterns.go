@@ -21,7 +21,7 @@ import (
 func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bool, patternName string, ec *models.Broadcast, userID string, provider models.Provider, hostname registry.IHost, skipCrdAndOperator bool) (string, error) {
 	var comps []v1alpha1.Component
 	var config v1alpha1.Configuration
-	mesheryInstanceID, _ := viper.Get("INSTANCE_ID").(*uuid.UUID)
+	meshplayInstanceID, _ := viper.Get("INSTANCE_ID").(*uuid.UUID)
 	userUUID, _ := uuid.FromString(userID)
 	action := "deploy"
 	if isDel {
@@ -70,11 +70,11 @@ func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bo
 						errs = append(errs, err)
 
 						// Format bove ProbableCause, SuggestedRemediation,..... as meshkit er and add to metadata
-						event := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Error).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).Build()
+						event := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Error).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).Build()
 						err := provider.PersistEvent(event)
 						if err != nil {
 							// When unable to persist event notify the user, not inside notification center, but have a status symbol in the center to denote whether events are being persisted/subscription is active/.. such event will have category event itself handle them especially.
-							evt := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
+							evt := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
 							go ec.Publish(userUUID, evt)
 						}
 						go ec.Publish(userUUID, event)
@@ -89,10 +89,10 @@ func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bo
 						description = fmt.Sprintf("Undeployed %s/%s", patternName, comp.Name)
 						msgs = append(msgs, "Deleted application: "+comp.Name)
 					}
-					event := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Informational).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithDescription(description).Build()
+					event := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Informational).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithDescription(description).Build()
 					err := provider.PersistEvent(event)
 					if err != nil {
-						evt := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
+						evt := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
 						go ec.Publish(userUUID, evt)
 					}
 					continue
@@ -122,10 +122,10 @@ func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bo
 						errs = append(errs, err)
 					}
 
-					event := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithMetadata(eventMetadata).Build()
+					event := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithMetadata(eventMetadata).Build()
 					err = provider.PersistEvent(event)
 					if err != nil {
-						evt := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
+						evt := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
 						go ec.Publish(userUUID, evt)
 					}
 					go ec.Publish(userUUID, event)
@@ -147,10 +147,10 @@ func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bo
 						description = fmt.Sprintf("Error deploying %s/%s", patternName, comp.Name)
 					}
 
-					event := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithMetadata(eventMetadata).Build()
+					event := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).WithMetadata(eventMetadata).Build()
 					err := provider.PersistEvent(event)
 					if err != nil {
-						evt := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(severity).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
+						evt := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(severity).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
 						go ec.Publish(userUUID, evt)
 					}
 
@@ -164,10 +164,10 @@ func ProcessOAM(kconfigs []string, oamComps []string, oamConfig string, isDel bo
 
 					msgs = append(msgs, fmt.Sprintf("Deleted %s: %s", comp.Spec.Type, comp.Name))
 				}
-				event := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).Build()
+				event := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(severity).WithCategory("pattern").WithAction(action).WithDescription(description).FromUser(userUUID).Build()
 				err := provider.PersistEvent(event)
 				if err != nil {
-					evt := events.NewEvent().FromSystem(*mesheryInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
+					evt := events.NewEvent().FromSystem(*meshplayInstanceID).WithSeverity(events.Alert).WithCategory("event").WithAction("persist").WithDescription("Failed persisting events").FromUser(userUUID).Build()
 					go ec.Publish(userUUID, evt)
 				}
 				go ec.Publish(userUUID, event)

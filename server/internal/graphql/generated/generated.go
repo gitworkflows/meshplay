@@ -1185,7 +1185,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.K8sContext.KubernetesServerID(childComplexity), true
 
-	case "K8sContext.meshery_instance_id":
+	case "K8sContext.meshplay_instance_id":
 		if e.complexity.K8sContext.MeshplayInstanceID == nil {
 			break
 		}
@@ -1388,7 +1388,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.MeshplayResult.Mesh(childComplexity), true
 
-	case "MeshplayResult.meshery_id":
+	case "MeshplayResult.meshplay_id":
 		if e.complexity.MeshplayResult.MeshplayID == nil {
 			break
 		}
@@ -2761,7 +2761,7 @@ type K8sContext {
   server: String!,
   owner: ID!,
   created_by: ID!,
-  meshery_instance_id: ID!,
+  meshplay_instance_id: ID!,
   kubernetes_server_id: ID!,
   deployment_type: String!,
   version: String!,
@@ -2926,7 +2926,7 @@ type PerfProfile {
 }
 
 type MeshplayResult {
-  meshery_id: String
+  meshplay_id: String
   name: String
   mesh: String
   performance_profile: String
@@ -3115,13 +3115,13 @@ type Subscription {
   # Listen to all results for profile ID
   subscribePerfResults(selector: PageFilter!, profileID: String!): PerfPageResult!
 
-  # Listen to changes in the status of meshery controllers
+  # Listen to changes in the status of meshplay controllers
   subscribeMeshplayControllersStatus(
     k8scontextIDs: [String!]
   ): [MeshplayControllersStatusListItem!]! @KubernetesMiddleware
 
   # Listen to the events that MeshSync is sending through Meshplay Broker.
-  # Note: It does not listen to the changes in meshery database, but to meshsync events
+  # Note: It does not listen to the changes in meshplay database, but to meshsync events
   subscribeMeshSyncEvents(
     k8scontextIDs: [String!]
     eventTypes: [MeshSyncEventType!]
@@ -3170,7 +3170,7 @@ func (ec *executionContext) field_Mutation_changeAdapterStatus_args(ctx context.
 	var arg0 *model.AdapterStatusInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalOAdapterStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAdapterStatusInput(ctx, tmp)
+		arg0, err = ec.unmarshalOAdapterStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAdapterStatusInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3185,7 +3185,7 @@ func (ec *executionContext) field_Mutation_changeOperatorStatus_args(ctx context
 	var arg0 *model.OperatorStatusInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusInput(ctx, tmp)
+		arg0, err = ec.unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3215,7 +3215,7 @@ func (ec *executionContext) field_Query_fetchAllResults_args(ctx context.Context
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3230,7 +3230,7 @@ func (ec *executionContext) field_Query_fetchFilterCatalogContent_args(ctx conte
 	var arg0 *model.CatalogSelector
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx, tmp)
+		arg0, err = ec.unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3245,7 +3245,7 @@ func (ec *executionContext) field_Query_fetchPatternCatalogContent_args(ctx cont
 	var arg0 *model.CatalogSelector
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx, tmp)
+		arg0, err = ec.unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3260,7 +3260,7 @@ func (ec *executionContext) field_Query_fetchPatterns_args(ctx context.Context, 
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3275,7 +3275,7 @@ func (ec *executionContext) field_Query_fetchResults_args(ctx context.Context, r
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3314,7 +3314,7 @@ func (ec *executionContext) field_Query_getAvailableAddons_args(ctx context.Cont
 	var arg0 *model.ServiceMeshFilter
 	if tmp, ok := rawArgs["filter"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
-		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
+		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3344,7 +3344,7 @@ func (ec *executionContext) field_Query_getControlPlanes_args(ctx context.Contex
 	var arg0 *model.ServiceMeshFilter
 	if tmp, ok := rawArgs["filter"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
-		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
+		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3359,7 +3359,7 @@ func (ec *executionContext) field_Query_getDataPlanes_args(ctx context.Context, 
 	var arg0 *model.ServiceMeshFilter
 	if tmp, ok := rawArgs["filter"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filter"))
-		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
+		arg0, err = ec.unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3407,7 +3407,7 @@ func (ec *executionContext) field_Query_getMeshModelSummary_args(ctx context.Con
 	var arg0 model.MeshModelSummarySelector
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx, tmp)
+		arg0, err = ec.unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3482,7 +3482,7 @@ func (ec *executionContext) field_Query_getPerformanceProfiles_args(ctx context.
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3497,7 +3497,7 @@ func (ec *executionContext) field_Query_resyncCluster_args(ctx context.Context, 
 	var arg0 *model.ReSyncActions
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalOReSyncActions2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐReSyncActions(ctx, tmp)
+		arg0, err = ec.unmarshalOReSyncActions2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐReSyncActions(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3560,7 +3560,7 @@ func (ec *executionContext) field_Subscription_subscribeConfiguration_args(ctx c
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["patternSelector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("patternSelector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3569,7 +3569,7 @@ func (ec *executionContext) field_Subscription_subscribeConfiguration_args(ctx c
 	var arg1 model.PageFilter
 	if tmp, ok := rawArgs["filterSelector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("filterSelector"))
-		arg1, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg1, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3584,7 +3584,7 @@ func (ec *executionContext) field_Subscription_subscribeK8sContext_args(ctx cont
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3599,7 +3599,7 @@ func (ec *executionContext) field_Subscription_subscribeMeshModelSummary_args(ct
 	var arg0 model.MeshModelSummarySelector
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx, tmp)
+		arg0, err = ec.unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3623,7 +3623,7 @@ func (ec *executionContext) field_Subscription_subscribeMeshSyncEvents_args(ctx 
 	var arg1 []model.MeshSyncEventType
 	if tmp, ok := rawArgs["eventTypes"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("eventTypes"))
-		arg1, err = ec.unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx, tmp)
+		arg1, err = ec.unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3653,7 +3653,7 @@ func (ec *executionContext) field_Subscription_subscribePerfProfiles_args(ctx co
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3668,7 +3668,7 @@ func (ec *executionContext) field_Subscription_subscribePerfResults_args(ctx con
 	var arg0 model.PageFilter
 	if tmp, ok := rawArgs["selector"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3969,7 +3969,7 @@ func (ec *executionContext) _ApplicationPage_applications(ctx context.Context, f
 	}
 	res := resTmp.([]*model.ApplicationResult)
 	fc.Result = res
-	return ec.marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx, field.Selections, res)
+	return ec.marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationPage_applications(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4165,7 +4165,7 @@ func (ec *executionContext) _ApplicationResult_type(ctx context.Context, field g
 	}
 	res := resTmp.(*model.NullString)
 	fc.Result = res
-	return ec.marshalNNullString2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx, field.Selections, res)
+	return ec.marshalNNullString2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationResult_type(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4259,7 +4259,7 @@ func (ec *executionContext) _ApplicationResult_location(ctx context.Context, fie
 	}
 	res := resTmp.(*model.Location)
 	fc.Result = res
-	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
+	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ApplicationResult_location(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -4615,7 +4615,7 @@ func (ec *executionContext) _CatalogFilter_location(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Location)
 	fc.Result = res
-	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
+	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CatalogFilter_location(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5056,7 +5056,7 @@ func (ec *executionContext) _CatalogPattern_location(ctx context.Context, field 
 	}
 	res := resTmp.(*model.Location)
 	fc.Result = res
-	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
+	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_CatalogPattern_location(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5277,7 +5277,7 @@ func (ec *executionContext) _ClusterResources_resources(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.Resource)
 	fc.Result = res
-	return ec.marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐResourceᚄ(ctx, field.Selections, res)
+	return ec.marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐResourceᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ClusterResources_resources(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5324,7 +5324,7 @@ func (ec *executionContext) _ConfigurationPage_applications(ctx context.Context,
 	}
 	res := resTmp.(*model.ApplicationPage)
 	fc.Result = res
-	return ec.marshalOApplicationPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationPage(ctx, field.Selections, res)
+	return ec.marshalOApplicationPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationPage(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConfigurationPage_applications(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5375,7 +5375,7 @@ func (ec *executionContext) _ConfigurationPage_patterns(ctx context.Context, fie
 	}
 	res := resTmp.(*model.PatternPageResult)
 	fc.Result = res
-	return ec.marshalOPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx, field.Selections, res)
+	return ec.marshalOPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConfigurationPage_patterns(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5426,7 +5426,7 @@ func (ec *executionContext) _ConfigurationPage_filters(ctx context.Context, fiel
 	}
 	res := resTmp.(*model.FilterPage)
 	fc.Result = res
-	return ec.marshalOFilterPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterPage(ctx, field.Selections, res)
+	return ec.marshalOFilterPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterPage(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ConfigurationPage_filters(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5609,7 +5609,7 @@ func (ec *executionContext) _Container_status(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.ContainerStatus)
 	fc.Result = res
-	return ec.marshalOContainer_Status2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerStatus(ctx, field.Selections, res)
+	return ec.marshalOContainer_Status2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Container_status(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5670,7 +5670,7 @@ func (ec *executionContext) _Container_ports(ctx context.Context, field graphql.
 	}
 	res := resTmp.([]*model.ContainerPort)
 	fc.Result = res
-	return ec.marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx, field.Selections, res)
+	return ec.marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Container_ports(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6317,7 +6317,7 @@ func (ec *executionContext) _ControlPlane_members(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.ControlPlaneMember)
 	fc.Result = res
-	return ec.marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMemberᚄ(ctx, field.Selections, res)
+	return ec.marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMemberᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlPlane_members(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6546,7 +6546,7 @@ func (ec *executionContext) _ControlPlaneMember_data_planes(ctx context.Context,
 	}
 	res := resTmp.([]*model.Container)
 	fc.Result = res
-	return ec.marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx, field.Selections, res)
+	return ec.marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlPlaneMember_data_planes(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6648,7 +6648,7 @@ func (ec *executionContext) _DataPlane_proxies(ctx context.Context, field graphq
 	}
 	res := resTmp.([]*model.Container)
 	fc.Result = res
-	return ec.marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx, field.Selections, res)
+	return ec.marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_DataPlane_proxies(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7014,7 +7014,7 @@ func (ec *executionContext) _Event_severity(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(model.Severity)
 	fc.Result = res
-	return ec.marshalNSeverity2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx, field.Selections, res)
+	return ec.marshalNSeverity2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Event_severity(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7533,7 +7533,7 @@ func (ec *executionContext) _FilterPage_filters(ctx context.Context, field graph
 	}
 	res := resTmp.([]*model.FilterResult)
 	fc.Result = res
-	return ec.marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx, field.Selections, res)
+	return ec.marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FilterPage_filters(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7819,7 +7819,7 @@ func (ec *executionContext) _FilterResult_location(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Location)
 	fc.Result = res
-	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
+	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_FilterResult_location(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8232,8 +8232,8 @@ func (ec *executionContext) fieldContext_K8sContext_created_by(ctx context.Conte
 	return fc, nil
 }
 
-func (ec *executionContext) _K8sContext_meshery_instance_id(ctx context.Context, field graphql.CollectedField, obj *model.K8sContext) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_K8sContext_meshery_instance_id(ctx, field)
+func (ec *executionContext) _K8sContext_meshplay_instance_id(ctx context.Context, field graphql.CollectedField, obj *model.K8sContext) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_K8sContext_meshplay_instance_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -8263,7 +8263,7 @@ func (ec *executionContext) _K8sContext_meshery_instance_id(ctx context.Context,
 	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_K8sContext_meshery_instance_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_K8sContext_meshplay_instance_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "K8sContext",
 		Field:      field,
@@ -8612,7 +8612,7 @@ func (ec *executionContext) _K8sContextsPage_contexts(ctx context.Context, field
 	}
 	res := resTmp.([]*model.K8sContext)
 	fc.Result = res
-	return ec.marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx, field.Selections, res)
+	return ec.marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_K8sContextsPage_contexts(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8633,8 +8633,8 @@ func (ec *executionContext) fieldContext_K8sContextsPage_contexts(ctx context.Co
 				return ec.fieldContext_K8sContext_owner(ctx, field)
 			case "created_by":
 				return ec.fieldContext_K8sContext_created_by(ctx, field)
-			case "meshery_instance_id":
-				return ec.fieldContext_K8sContext_meshery_instance_id(ctx, field)
+			case "meshplay_instance_id":
+				return ec.fieldContext_K8sContext_meshplay_instance_id(ctx, field)
 			case "kubernetes_server_id":
 				return ec.fieldContext_K8sContext_kubernetes_server_id(ctx, field)
 			case "deployment_type":
@@ -9101,7 +9101,7 @@ func (ec *executionContext) _MeshModelSummary_components(ctx context.Context, fi
 	}
 	res := resTmp.([]*model.MeshModelComponent)
 	fc.Result = res
-	return ec.marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponentᚄ(ctx, field.Selections, res)
+	return ec.marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponentᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MeshModelSummary_components(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9148,7 +9148,7 @@ func (ec *executionContext) _MeshModelSummary_relationships(ctx context.Context,
 	}
 	res := resTmp.([]*model.MeshModelRelationship)
 	fc.Result = res
-	return ec.marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationshipᚄ(ctx, field.Selections, res)
+	return ec.marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationshipᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MeshModelSummary_relationships(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9374,7 +9374,7 @@ func (ec *executionContext) _MeshplayControllersStatusListItem_controller(ctx co
 	}
 	res := resTmp.(model.MeshplayController)
 	fc.Result = res
-	return ec.marshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx, field.Selections, res)
+	return ec.marshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MeshplayControllersStatusListItem_controller(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9418,7 +9418,7 @@ func (ec *executionContext) _MeshplayControllersStatusListItem_status(ctx contex
 	}
 	res := resTmp.(model.MeshplayControllerStatus)
 	fc.Result = res
-	return ec.marshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx, field.Selections, res)
+	return ec.marshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_MeshplayControllersStatusListItem_status(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -9475,8 +9475,8 @@ func (ec *executionContext) fieldContext_MeshplayControllersStatusListItem_versi
 	return fc, nil
 }
 
-func (ec *executionContext) _MeshplayResult_meshery_id(ctx context.Context, field graphql.CollectedField, obj *model.MeshplayResult) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_MeshplayResult_meshery_id(ctx, field)
+func (ec *executionContext) _MeshplayResult_meshplay_id(ctx context.Context, field graphql.CollectedField, obj *model.MeshplayResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_MeshplayResult_meshplay_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -9503,7 +9503,7 @@ func (ec *executionContext) _MeshplayResult_meshery_id(ctx context.Context, fiel
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_MeshplayResult_meshery_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_MeshplayResult_meshplay_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "MeshplayResult",
 		Field:      field,
@@ -10015,7 +10015,7 @@ func (ec *executionContext) _Mutation_changeOperatorStatus(ctx context.Context, 
 	}
 	res := resTmp.(model.Status)
 	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
+	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_changeOperatorStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10090,7 +10090,7 @@ func (ec *executionContext) _Mutation_changeAdapterStatus(ctx context.Context, f
 	}
 	res := resTmp.(model.Status)
 	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
+	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_changeAdapterStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10611,7 +10611,7 @@ func (ec *executionContext) _OperatorControllerStatus_status(ctx context.Context
 	}
 	res := resTmp.(model.Status)
 	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
+	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorControllerStatus_status(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10652,7 +10652,7 @@ func (ec *executionContext) _OperatorControllerStatus_error(ctx context.Context,
 	}
 	res := resTmp.(*model.Error)
 	fc.Result = res
-	return ec.marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx, field.Selections, res)
+	return ec.marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorControllerStatus_error(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10790,7 +10790,7 @@ func (ec *executionContext) _OperatorControllerStatusPerK8sContext_OperatorContr
 	}
 	res := resTmp.(*model.OperatorControllerStatus)
 	fc.Result = res
-	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
+	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorControllerStatusPerK8sContext_OperatorControllerStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10846,7 +10846,7 @@ func (ec *executionContext) _OperatorStatus_status(ctx context.Context, field gr
 	}
 	res := resTmp.(model.Status)
 	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
+	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorStatus_status(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10934,7 +10934,7 @@ func (ec *executionContext) _OperatorStatus_controllers(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.OperatorControllerStatus)
 	fc.Result = res
-	return ec.marshalNOperatorControllerStatus2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatusᚄ(ctx, field.Selections, res)
+	return ec.marshalNOperatorControllerStatus2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatusᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorStatus_controllers(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -10987,7 +10987,7 @@ func (ec *executionContext) _OperatorStatus_error(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Error)
 	fc.Result = res
-	return ec.marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx, field.Selections, res)
+	return ec.marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorStatus_error(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11125,7 +11125,7 @@ func (ec *executionContext) _OperatorStatusPerK8sContext_operatorStatus(ctx cont
 	}
 	res := resTmp.(*model.OperatorStatus)
 	fc.Result = res
-	return ec.marshalNOperatorStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatus(ctx, field.Selections, res)
+	return ec.marshalNOperatorStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_OperatorStatusPerK8sContext_operatorStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11310,7 +11310,7 @@ func (ec *executionContext) _PatternPageResult_patterns(ctx context.Context, fie
 	}
 	res := resTmp.([]*model.PatternResult)
 	fc.Result = res
-	return ec.marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx, field.Selections, res)
+	return ec.marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_PatternPageResult_patterns(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11510,7 +11510,7 @@ func (ec *executionContext) _PatternResult_location(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Location)
 	fc.Result = res
-	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
+	return ec.marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_PatternResult_location(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -11989,7 +11989,7 @@ func (ec *executionContext) _PerfPageProfiles_profiles(ctx context.Context, fiel
 	}
 	res := resTmp.([]*model.PerfProfile)
 	fc.Result = res
-	return ec.marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx, field.Selections, res)
+	return ec.marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_PerfPageProfiles_profiles(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12200,7 +12200,7 @@ func (ec *executionContext) _PerfPageResult_results(ctx context.Context, field g
 	}
 	res := resTmp.([]*model.MeshplayResult)
 	fc.Result = res
-	return ec.marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, field.Selections, res)
+	return ec.marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_PerfPageResult_results(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -12211,8 +12211,8 @@ func (ec *executionContext) fieldContext_PerfPageResult_results(ctx context.Cont
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "meshery_id":
-				return ec.fieldContext_MeshplayResult_meshery_id(ctx, field)
+			case "meshplay_id":
+				return ec.fieldContext_MeshplayResult_meshplay_id(ctx, field)
 			case "name":
 				return ec.fieldContext_MeshplayResult_name(ctx, field)
 			case "mesh":
@@ -13020,7 +13020,7 @@ func (ec *executionContext) _Query_getAvailableAddons(ctx context.Context, field
 	}
 	res := resTmp.([]*model.AddonList)
 	fc.Result = res
-	return ec.marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonListᚄ(ctx, field.Selections, res)
+	return ec.marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonListᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getAvailableAddons(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13081,7 +13081,7 @@ func (ec *executionContext) _Query_getControlPlanes(ctx context.Context, field g
 	}
 	res := resTmp.([]*model.ControlPlane)
 	fc.Result = res
-	return ec.marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneᚄ(ctx, field.Selections, res)
+	return ec.marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getControlPlanes(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13142,7 +13142,7 @@ func (ec *executionContext) _Query_getDataPlanes(ctx context.Context, field grap
 	}
 	res := resTmp.([]*model.DataPlane)
 	fc.Result = res
-	return ec.marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlaneᚄ(ctx, field.Selections, res)
+	return ec.marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlaneᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getDataPlanes(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13220,7 +13220,7 @@ func (ec *executionContext) _Query_getOperatorStatus(ctx context.Context, field 
 	}
 	res := resTmp.(*model.MeshplayControllersStatusListItem)
 	fc.Result = res
-	return ec.marshalOMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx, field.Selections, res)
+	return ec.marshalOMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getOperatorStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13305,7 +13305,7 @@ func (ec *executionContext) _Query_resyncCluster(ctx context.Context, field grap
 	}
 	res := resTmp.(model.Status)
 	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
+	return ec.marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_resyncCluster(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13360,7 +13360,7 @@ func (ec *executionContext) _Query_getMeshsyncStatus(ctx context.Context, field 
 	}
 	res := resTmp.(*model.OperatorControllerStatus)
 	fc.Result = res
-	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
+	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeshsyncStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13427,7 +13427,7 @@ func (ec *executionContext) _Query_getNatsStatus(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.OperatorControllerStatus)
 	fc.Result = res
-	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
+	return ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getNatsStatus(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13494,7 +13494,7 @@ func (ec *executionContext) _Query_getAvailableNamespaces(ctx context.Context, f
 	}
 	res := resTmp.([]*model.NameSpace)
 	fc.Result = res
-	return ec.marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpaceᚄ(ctx, field.Selections, res)
+	return ec.marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpaceᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getAvailableNamespaces(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13550,7 +13550,7 @@ func (ec *executionContext) _Query_getPerfResult(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.MeshplayResult)
 	fc.Result = res
-	return ec.marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, field.Selections, res)
+	return ec.marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getPerfResult(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13561,8 +13561,8 @@ func (ec *executionContext) fieldContext_Query_getPerfResult(ctx context.Context
 		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "meshery_id":
-				return ec.fieldContext_MeshplayResult_meshery_id(ctx, field)
+			case "meshplay_id":
+				return ec.fieldContext_MeshplayResult_meshplay_id(ctx, field)
 			case "name":
 				return ec.fieldContext_MeshplayResult_name(ctx, field)
 			case "mesh":
@@ -13631,7 +13631,7 @@ func (ec *executionContext) _Query_fetchResults(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.PerfPageResult)
 	fc.Result = res
-	return ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res)
+	return ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchResults(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13696,7 +13696,7 @@ func (ec *executionContext) _Query_getPerformanceProfiles(ctx context.Context, f
 	}
 	res := resTmp.(*model.PerfPageProfiles)
 	fc.Result = res
-	return ec.marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx, field.Selections, res)
+	return ec.marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getPerformanceProfiles(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13761,7 +13761,7 @@ func (ec *executionContext) _Query_fetchAllResults(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.PerfPageResult)
 	fc.Result = res
-	return ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res)
+	return ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchAllResults(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13826,7 +13826,7 @@ func (ec *executionContext) _Query_fetchPatterns(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.PatternPageResult)
 	fc.Result = res
-	return ec.marshalNPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx, field.Selections, res)
+	return ec.marshalNPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchPatterns(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13891,7 +13891,7 @@ func (ec *executionContext) _Query_getKubectlDescribe(ctx context.Context, field
 	}
 	res := resTmp.(*model.KctlDescribeDetails)
 	fc.Result = res
-	return ec.marshalNKctlDescribeDetails2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx, field.Selections, res)
+	return ec.marshalNKctlDescribeDetails2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getKubectlDescribe(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -13952,7 +13952,7 @@ func (ec *executionContext) _Query_fetchPatternCatalogContent(ctx context.Contex
 	}
 	res := resTmp.([]*model.CatalogPattern)
 	fc.Result = res
-	return ec.marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPatternᚄ(ctx, field.Selections, res)
+	return ec.marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPatternᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchPatternCatalogContent(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14027,7 +14027,7 @@ func (ec *executionContext) _Query_fetchFilterCatalogContent(ctx context.Context
 	}
 	res := resTmp.([]*model.CatalogFilter)
 	fc.Result = res
-	return ec.marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilterᚄ(ctx, field.Selections, res)
+	return ec.marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilterᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchFilterCatalogContent(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14104,7 +14104,7 @@ func (ec *executionContext) _Query_getMeshModelSummary(ctx context.Context, fiel
 	}
 	res := resTmp.(*model.MeshModelSummary)
 	fc.Result = res
-	return ec.marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx, field.Selections, res)
+	return ec.marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_getMeshModelSummary(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14165,7 +14165,7 @@ func (ec *executionContext) _Query_fetchTelemetryComponents(ctx context.Context,
 	}
 	res := resTmp.([]*model.TelemetryComp)
 	fc.Result = res
-	return ec.marshalNTelemetryComp2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx, field.Selections, res)
+	return ec.marshalNTelemetryComp2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_fetchTelemetryComponents(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -14470,7 +14470,7 @@ func (ec *executionContext) _Subscription_listenToOperatorState(ctx context.Cont
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalOOperatorStatusPerK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusPerK8sContext(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalOOperatorStatusPerK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusPerK8sContext(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14545,7 +14545,7 @@ func (ec *executionContext) _Subscription_subscribePerfProfiles(ctx context.Cont
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14624,7 +14624,7 @@ func (ec *executionContext) _Subscription_subscribePerfResults(ctx context.Conte
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14723,7 +14723,7 @@ func (ec *executionContext) _Subscription_subscribeMeshplayControllersStatus(ctx
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNMeshplayControllersStatusListItem2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItemᚄ(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNMeshplayControllersStatusListItem2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItemᚄ(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14822,7 +14822,7 @@ func (ec *executionContext) _Subscription_subscribeMeshSyncEvents(ctx context.Co
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNMeshSyncEvent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNMeshSyncEvent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14899,7 +14899,7 @@ func (ec *executionContext) _Subscription_subscribeConfiguration(ctx context.Con
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNConfigurationPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNConfigurationPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -14976,7 +14976,7 @@ func (ec *executionContext) _Subscription_subscribeClusterResources(ctx context.
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNClusterResources2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNClusterResources2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -15049,7 +15049,7 @@ func (ec *executionContext) _Subscription_subscribeK8sContext(ctx context.Contex
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNK8sContextsPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNK8sContextsPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -15124,7 +15124,7 @@ func (ec *executionContext) _Subscription_subscribeMeshModelSummary(ctx context.
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -15199,7 +15199,7 @@ func (ec *executionContext) _Subscription_subscribeEvents(ctx context.Context, f
 				w.Write([]byte{'{'})
 				graphql.MarshalString(field.Alias).MarshalGQL(w)
 				w.Write([]byte{':'})
-				ec.marshalNEvent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx, field.Selections, res).MarshalGQL(w)
+				ec.marshalNEvent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx, field.Selections, res).MarshalGQL(w)
 				w.Write([]byte{'}'})
 			})
 		case <-ctx.Done():
@@ -17174,7 +17174,7 @@ func (ec *executionContext) unmarshalInputAdapterStatusInput(ctx context.Context
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
-			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
+			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -17221,7 +17221,7 @@ func (ec *executionContext) unmarshalInputAddonStatusInput(ctx context.Context, 
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
-			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
+			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -17239,7 +17239,7 @@ func (ec *executionContext) unmarshalInputAddonStatusInput(ctx context.Context, 
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
-			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
+			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -17353,7 +17353,7 @@ func (ec *executionContext) unmarshalInputOperatorStatusInput(ctx context.Contex
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
-			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
+			data, err := ec.unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -17530,7 +17530,7 @@ func (ec *executionContext) unmarshalInputServiceMeshFilter(ctx context.Context,
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
-			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
+			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -18563,8 +18563,8 @@ func (ec *executionContext) _K8sContext(ctx context.Context, sel ast.SelectionSe
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
-		case "meshery_instance_id":
-			out.Values[i] = ec._K8sContext_meshery_instance_id(ctx, field, obj)
+		case "meshplay_instance_id":
+			out.Values[i] = ec._K8sContext_meshplay_instance_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
@@ -18920,10 +18920,10 @@ func (ec *executionContext) _MeshSyncEvent(ctx context.Context, sel ast.Selectio
 	return out
 }
 
-var mesheryControllersStatusListItemImplementors = []string{"MeshplayControllersStatusListItem"}
+var meshplayControllersStatusListItemImplementors = []string{"MeshplayControllersStatusListItem"}
 
 func (ec *executionContext) _MeshplayControllersStatusListItem(ctx context.Context, sel ast.SelectionSet, obj *model.MeshplayControllersStatusListItem) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, mesheryControllersStatusListItemImplementors)
+	fields := graphql.CollectFields(ec.OperationContext, sel, meshplayControllersStatusListItemImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
@@ -18971,10 +18971,10 @@ func (ec *executionContext) _MeshplayControllersStatusListItem(ctx context.Conte
 	return out
 }
 
-var mesheryResultImplementors = []string{"MeshplayResult"}
+var meshplayResultImplementors = []string{"MeshplayResult"}
 
 func (ec *executionContext) _MeshplayResult(ctx context.Context, sel ast.SelectionSet, obj *model.MeshplayResult) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, mesheryResultImplementors)
+	fields := graphql.CollectFields(ec.OperationContext, sel, meshplayResultImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
@@ -18982,8 +18982,8 @@ func (ec *executionContext) _MeshplayResult(ctx context.Context, sel ast.Selecti
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("MeshplayResult")
-		case "meshery_id":
-			out.Values[i] = ec._MeshplayResult_meshery_id(ctx, field, obj)
+		case "meshplay_id":
+			out.Values[i] = ec._MeshplayResult_meshplay_id(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._MeshplayResult_name(ctx, field, obj)
 		case "mesh":
@@ -20623,7 +20623,7 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonListᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.AddonList) graphql.Marshaler {
+func (ec *executionContext) marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonListᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.AddonList) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20647,7 +20647,7 @@ func (ec *executionContext) marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNAddonList2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonList(ctx, sel, v[i])
+			ret[i] = ec.marshalNAddonList2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonList(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -20667,7 +20667,7 @@ func (ec *executionContext) marshalNAddonList2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 	return ret
 }
 
-func (ec *executionContext) marshalNAddonList2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonList(ctx context.Context, sel ast.SelectionSet, v *model.AddonList) graphql.Marshaler {
+func (ec *executionContext) marshalNAddonList2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAddonList(ctx context.Context, sel ast.SelectionSet, v *model.AddonList) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20713,7 +20713,7 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilterᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.CatalogFilter) graphql.Marshaler {
+func (ec *executionContext) marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilterᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.CatalogFilter) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20737,7 +20737,7 @@ func (ec *executionContext) marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5io�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNCatalogFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilter(ctx, sel, v[i])
+			ret[i] = ec.marshalNCatalogFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilter(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -20757,7 +20757,7 @@ func (ec *executionContext) marshalNCatalogFilter2ᚕᚖgithubᚗcomᚋlayer5io�
 	return ret
 }
 
-func (ec *executionContext) marshalNCatalogFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilter(ctx context.Context, sel ast.SelectionSet, v *model.CatalogFilter) graphql.Marshaler {
+func (ec *executionContext) marshalNCatalogFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogFilter(ctx context.Context, sel ast.SelectionSet, v *model.CatalogFilter) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20767,7 +20767,7 @@ func (ec *executionContext) marshalNCatalogFilter2ᚖgithubᚗcomᚋlayer5ioᚋm
 	return ec._CatalogFilter(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPatternᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.CatalogPattern) graphql.Marshaler {
+func (ec *executionContext) marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPatternᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.CatalogPattern) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20791,7 +20791,7 @@ func (ec *executionContext) marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5io
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNCatalogPattern2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPattern(ctx, sel, v[i])
+			ret[i] = ec.marshalNCatalogPattern2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPattern(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -20811,7 +20811,7 @@ func (ec *executionContext) marshalNCatalogPattern2ᚕᚖgithubᚗcomᚋlayer5io
 	return ret
 }
 
-func (ec *executionContext) marshalNCatalogPattern2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPattern(ctx context.Context, sel ast.SelectionSet, v *model.CatalogPattern) graphql.Marshaler {
+func (ec *executionContext) marshalNCatalogPattern2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogPattern(ctx context.Context, sel ast.SelectionSet, v *model.CatalogPattern) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20821,11 +20821,11 @@ func (ec *executionContext) marshalNCatalogPattern2ᚖgithubᚗcomᚋlayer5ioᚋ
 	return ec._CatalogPattern(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNClusterResources2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx context.Context, sel ast.SelectionSet, v model.ClusterResources) graphql.Marshaler {
+func (ec *executionContext) marshalNClusterResources2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx context.Context, sel ast.SelectionSet, v model.ClusterResources) graphql.Marshaler {
 	return ec._ClusterResources(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNClusterResources2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx context.Context, sel ast.SelectionSet, v *model.ClusterResources) graphql.Marshaler {
+func (ec *executionContext) marshalNClusterResources2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐClusterResources(ctx context.Context, sel ast.SelectionSet, v *model.ClusterResources) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20835,11 +20835,11 @@ func (ec *executionContext) marshalNClusterResources2ᚖgithubᚗcomᚋlayer5io�
 	return ec._ClusterResources(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNConfigurationPage2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx context.Context, sel ast.SelectionSet, v model.ConfigurationPage) graphql.Marshaler {
+func (ec *executionContext) marshalNConfigurationPage2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx context.Context, sel ast.SelectionSet, v model.ConfigurationPage) graphql.Marshaler {
 	return ec._ConfigurationPage(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNConfigurationPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx context.Context, sel ast.SelectionSet, v *model.ConfigurationPage) graphql.Marshaler {
+func (ec *executionContext) marshalNConfigurationPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐConfigurationPage(ctx context.Context, sel ast.SelectionSet, v *model.ConfigurationPage) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20849,7 +20849,7 @@ func (ec *executionContext) marshalNConfigurationPage2ᚖgithubᚗcomᚋlayer5io
 	return ec._ConfigurationPage(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Container) graphql.Marshaler {
+func (ec *executionContext) marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Container) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20873,7 +20873,7 @@ func (ec *executionContext) marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx, sel, v[i])
+			ret[i] = ec.marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -20893,7 +20893,7 @@ func (ec *executionContext) marshalNContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 	return ret
 }
 
-func (ec *executionContext) marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx context.Context, sel ast.SelectionSet, v *model.Container) graphql.Marshaler {
+func (ec *executionContext) marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx context.Context, sel ast.SelectionSet, v *model.Container) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20903,7 +20903,7 @@ func (ec *executionContext) marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmeshe
 	return ec._Container(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.ControlPlane) graphql.Marshaler {
+func (ec *executionContext) marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.ControlPlane) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20927,7 +20927,7 @@ func (ec *executionContext) marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5io�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNControlPlane2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlane(ctx, sel, v[i])
+			ret[i] = ec.marshalNControlPlane2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlane(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -20947,7 +20947,7 @@ func (ec *executionContext) marshalNControlPlane2ᚕᚖgithubᚗcomᚋlayer5io�
 	return ret
 }
 
-func (ec *executionContext) marshalNControlPlane2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlane(ctx context.Context, sel ast.SelectionSet, v *model.ControlPlane) graphql.Marshaler {
+func (ec *executionContext) marshalNControlPlane2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlane(ctx context.Context, sel ast.SelectionSet, v *model.ControlPlane) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -20957,7 +20957,7 @@ func (ec *executionContext) marshalNControlPlane2ᚖgithubᚗcomᚋlayer5ioᚋme
 	return ec._ControlPlane(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMemberᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.ControlPlaneMember) graphql.Marshaler {
+func (ec *executionContext) marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMemberᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.ControlPlaneMember) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -20981,7 +20981,7 @@ func (ec *executionContext) marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlaye
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNControlPlaneMember2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMember(ctx, sel, v[i])
+			ret[i] = ec.marshalNControlPlaneMember2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMember(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21001,7 +21001,7 @@ func (ec *executionContext) marshalNControlPlaneMember2ᚕᚖgithubᚗcomᚋlaye
 	return ret
 }
 
-func (ec *executionContext) marshalNControlPlaneMember2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMember(ctx context.Context, sel ast.SelectionSet, v *model.ControlPlaneMember) graphql.Marshaler {
+func (ec *executionContext) marshalNControlPlaneMember2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐControlPlaneMember(ctx context.Context, sel ast.SelectionSet, v *model.ControlPlaneMember) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21011,7 +21011,7 @@ func (ec *executionContext) marshalNControlPlaneMember2ᚖgithubᚗcomᚋlayer5i
 	return ec._ControlPlaneMember(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlaneᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.DataPlane) graphql.Marshaler {
+func (ec *executionContext) marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlaneᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.DataPlane) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21035,7 +21035,7 @@ func (ec *executionContext) marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNDataPlane2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlane(ctx, sel, v[i])
+			ret[i] = ec.marshalNDataPlane2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlane(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21055,7 +21055,7 @@ func (ec *executionContext) marshalNDataPlane2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 	return ret
 }
 
-func (ec *executionContext) marshalNDataPlane2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlane(ctx context.Context, sel ast.SelectionSet, v *model.DataPlane) graphql.Marshaler {
+func (ec *executionContext) marshalNDataPlane2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐDataPlane(ctx context.Context, sel ast.SelectionSet, v *model.DataPlane) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21065,11 +21065,11 @@ func (ec *executionContext) marshalNDataPlane2ᚖgithubᚗcomᚋlayer5ioᚋmeshe
 	return ec._DataPlane(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNEvent2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalNEvent2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v model.Event) graphql.Marshaler {
 	return ec._Event(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v *model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v *model.Event) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21109,7 +21109,7 @@ func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx context.Context, sel ast.SelectionSet, v []*model.K8sContext) graphql.Marshaler {
+func (ec *executionContext) marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx context.Context, sel ast.SelectionSet, v []*model.K8sContext) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21133,7 +21133,7 @@ func (ec *executionContext) marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋm
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx, sel, v[i])
+			ret[i] = ec.marshalOK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21147,11 +21147,11 @@ func (ec *executionContext) marshalNK8sContext2ᚕᚖgithubᚗcomᚋlayer5ioᚋm
 	return ret
 }
 
-func (ec *executionContext) marshalNK8sContextsPage2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx context.Context, sel ast.SelectionSet, v model.K8sContextsPage) graphql.Marshaler {
+func (ec *executionContext) marshalNK8sContextsPage2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx context.Context, sel ast.SelectionSet, v model.K8sContextsPage) graphql.Marshaler {
 	return ec._K8sContextsPage(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNK8sContextsPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx context.Context, sel ast.SelectionSet, v *model.K8sContextsPage) graphql.Marshaler {
+func (ec *executionContext) marshalNK8sContextsPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContextsPage(ctx context.Context, sel ast.SelectionSet, v *model.K8sContextsPage) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21161,11 +21161,11 @@ func (ec *executionContext) marshalNK8sContextsPage2ᚖgithubᚗcomᚋlayer5io�
 	return ec._K8sContextsPage(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNKctlDescribeDetails2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx context.Context, sel ast.SelectionSet, v model.KctlDescribeDetails) graphql.Marshaler {
+func (ec *executionContext) marshalNKctlDescribeDetails2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx context.Context, sel ast.SelectionSet, v model.KctlDescribeDetails) graphql.Marshaler {
 	return ec._KctlDescribeDetails(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNKctlDescribeDetails2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx context.Context, sel ast.SelectionSet, v *model.KctlDescribeDetails) graphql.Marshaler {
+func (ec *executionContext) marshalNKctlDescribeDetails2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐKctlDescribeDetails(ctx context.Context, sel ast.SelectionSet, v *model.KctlDescribeDetails) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21175,7 +21175,7 @@ func (ec *executionContext) marshalNKctlDescribeDetails2ᚖgithubᚗcomᚋlayer5
 	return ec._KctlDescribeDetails(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx context.Context, sel ast.SelectionSet, v *model.Location) graphql.Marshaler {
+func (ec *executionContext) marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐLocation(ctx context.Context, sel ast.SelectionSet, v *model.Location) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21185,7 +21185,7 @@ func (ec *executionContext) marshalNLocation2ᚖgithubᚗcomᚋlayer5ioᚋmesher
 	return ec._Location(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNMeshModelComponent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponent(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelComponent) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshModelComponent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponent(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelComponent) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21195,7 +21195,7 @@ func (ec *executionContext) marshalNMeshModelComponent2ᚖgithubᚗcomᚋlayer5i
 	return ec._MeshModelComponent(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNMeshModelRelationship2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationship(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelRelationship) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshModelRelationship2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationship(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelRelationship) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21205,11 +21205,11 @@ func (ec *executionContext) marshalNMeshModelRelationship2ᚖgithubᚗcomᚋlaye
 	return ec._MeshModelRelationship(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNMeshModelSummary2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx context.Context, sel ast.SelectionSet, v model.MeshModelSummary) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshModelSummary2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx context.Context, sel ast.SelectionSet, v model.MeshModelSummary) graphql.Marshaler {
 	return ec._MeshModelSummary(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelSummary) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummary(ctx context.Context, sel ast.SelectionSet, v *model.MeshModelSummary) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21219,16 +21219,16 @@ func (ec *executionContext) marshalNMeshModelSummary2ᚖgithubᚗcomᚋlayer5io�
 	return ec._MeshModelSummary(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx context.Context, v interface{}) (model.MeshModelSummarySelector, error) {
+func (ec *executionContext) unmarshalNMeshModelSummarySelector2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelSummarySelector(ctx context.Context, v interface{}) (model.MeshModelSummarySelector, error) {
 	res, err := ec.unmarshalInputMeshModelSummarySelector(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMeshSyncEvent2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx context.Context, sel ast.SelectionSet, v model.MeshSyncEvent) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshSyncEvent2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx context.Context, sel ast.SelectionSet, v model.MeshSyncEvent) graphql.Marshaler {
 	return ec._MeshSyncEvent(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNMeshSyncEvent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx context.Context, sel ast.SelectionSet, v *model.MeshSyncEvent) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshSyncEvent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEvent(ctx context.Context, sel ast.SelectionSet, v *model.MeshSyncEvent) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21238,37 +21238,37 @@ func (ec *executionContext) marshalNMeshSyncEvent2ᚖgithubᚗcomᚋlayer5ioᚋm
 	return ec._MeshSyncEvent(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx context.Context, v interface{}) (model.MeshSyncEventType, error) {
+func (ec *executionContext) unmarshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx context.Context, v interface{}) (model.MeshSyncEventType, error) {
 	var res model.MeshSyncEventType
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx context.Context, sel ast.SelectionSet, v model.MeshSyncEventType) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx context.Context, sel ast.SelectionSet, v model.MeshSyncEventType) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx context.Context, v interface{}) (model.MeshplayController, error) {
+func (ec *executionContext) unmarshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx context.Context, v interface{}) (model.MeshplayController, error) {
 	var res model.MeshplayController
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx context.Context, sel ast.SelectionSet, v model.MeshplayController) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshplayController2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayController(ctx context.Context, sel ast.SelectionSet, v model.MeshplayController) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx context.Context, v interface{}) (model.MeshplayControllerStatus, error) {
+func (ec *executionContext) unmarshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx context.Context, v interface{}) (model.MeshplayControllerStatus, error) {
 	var res model.MeshplayControllerStatus
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx context.Context, sel ast.SelectionSet, v model.MeshplayControllerStatus) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshplayControllerStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllerStatus(ctx context.Context, sel ast.SelectionSet, v model.MeshplayControllerStatus) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItemᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshplayControllersStatusListItem) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItemᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshplayControllersStatusListItem) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21292,7 +21292,7 @@ func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚕᚖgith
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx, sel, v[i])
+			ret[i] = ec.marshalNMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21312,7 +21312,7 @@ func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚕᚖgith
 	return ret
 }
 
-func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayControllersStatusListItem) graphql.Marshaler {
+func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayControllersStatusListItem) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21322,7 +21322,7 @@ func (ec *executionContext) marshalNMeshplayControllersStatusListItem2ᚖgithub�
 	return ec._MeshplayControllersStatusListItem(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpaceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.NameSpace) graphql.Marshaler {
+func (ec *executionContext) marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpaceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.NameSpace) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21346,7 +21346,7 @@ func (ec *executionContext) marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNNameSpace2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpace(ctx, sel, v[i])
+			ret[i] = ec.marshalNNameSpace2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpace(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21366,7 +21366,7 @@ func (ec *executionContext) marshalNNameSpace2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 	return ret
 }
 
-func (ec *executionContext) marshalNNameSpace2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpace(ctx context.Context, sel ast.SelectionSet, v *model.NameSpace) graphql.Marshaler {
+func (ec *executionContext) marshalNNameSpace2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNameSpace(ctx context.Context, sel ast.SelectionSet, v *model.NameSpace) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21376,7 +21376,7 @@ func (ec *executionContext) marshalNNameSpace2ᚖgithubᚗcomᚋlayer5ioᚋmeshe
 	return ec._NameSpace(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNNullString2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx context.Context, sel ast.SelectionSet, v *model.NullString) graphql.Marshaler {
+func (ec *executionContext) marshalNNullString2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx context.Context, sel ast.SelectionSet, v *model.NullString) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21386,11 +21386,11 @@ func (ec *executionContext) marshalNNullString2ᚖgithubᚗcomᚋlayer5ioᚋmesh
 	return ec._NullString(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNOperatorControllerStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx context.Context, sel ast.SelectionSet, v model.OperatorControllerStatus) graphql.Marshaler {
+func (ec *executionContext) marshalNOperatorControllerStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx context.Context, sel ast.SelectionSet, v model.OperatorControllerStatus) graphql.Marshaler {
 	return ec._OperatorControllerStatus(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNOperatorControllerStatus2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatusᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.OperatorControllerStatus) graphql.Marshaler {
+func (ec *executionContext) marshalNOperatorControllerStatus2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatusᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.OperatorControllerStatus) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21414,7 +21414,7 @@ func (ec *executionContext) marshalNOperatorControllerStatus2ᚕᚖgithubᚗcom�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, sel, v[i])
+			ret[i] = ec.marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21434,7 +21434,7 @@ func (ec *executionContext) marshalNOperatorControllerStatus2ᚕᚖgithubᚗcom�
 	return ret
 }
 
-func (ec *executionContext) marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx context.Context, sel ast.SelectionSet, v *model.OperatorControllerStatus) graphql.Marshaler {
+func (ec *executionContext) marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorControllerStatus(ctx context.Context, sel ast.SelectionSet, v *model.OperatorControllerStatus) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21444,7 +21444,7 @@ func (ec *executionContext) marshalNOperatorControllerStatus2ᚖgithubᚗcomᚋl
 	return ec._OperatorControllerStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNOperatorStatus2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatus(ctx context.Context, sel ast.SelectionSet, v *model.OperatorStatus) graphql.Marshaler {
+func (ec *executionContext) marshalNOperatorStatus2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatus(ctx context.Context, sel ast.SelectionSet, v *model.OperatorStatus) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21454,16 +21454,16 @@ func (ec *executionContext) marshalNOperatorStatus2ᚖgithubᚗcomᚋlayer5ioᚋ
 	return ec._OperatorStatus(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx context.Context, v interface{}) (model.PageFilter, error) {
+func (ec *executionContext) unmarshalNPageFilter2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPageFilter(ctx context.Context, v interface{}) (model.PageFilter, error) {
 	res, err := ec.unmarshalInputPageFilter(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNPatternPageResult2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v model.PatternPageResult) graphql.Marshaler {
+func (ec *executionContext) marshalNPatternPageResult2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v model.PatternPageResult) graphql.Marshaler {
 	return ec._PatternPageResult(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternPageResult) graphql.Marshaler {
+func (ec *executionContext) marshalNPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternPageResult) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21473,11 +21473,11 @@ func (ec *executionContext) marshalNPatternPageResult2ᚖgithubᚗcomᚋlayer5io
 	return ec._PatternPageResult(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNPerfPageProfiles2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx context.Context, sel ast.SelectionSet, v model.PerfPageProfiles) graphql.Marshaler {
+func (ec *executionContext) marshalNPerfPageProfiles2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx context.Context, sel ast.SelectionSet, v model.PerfPageProfiles) graphql.Marshaler {
 	return ec._PerfPageProfiles(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx context.Context, sel ast.SelectionSet, v *model.PerfPageProfiles) graphql.Marshaler {
+func (ec *executionContext) marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageProfiles(ctx context.Context, sel ast.SelectionSet, v *model.PerfPageProfiles) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21487,11 +21487,11 @@ func (ec *executionContext) marshalNPerfPageProfiles2ᚖgithubᚗcomᚋlayer5io�
 	return ec._PerfPageProfiles(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNPerfPageResult2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx context.Context, sel ast.SelectionSet, v model.PerfPageResult) graphql.Marshaler {
+func (ec *executionContext) marshalNPerfPageResult2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx context.Context, sel ast.SelectionSet, v model.PerfPageResult) graphql.Marshaler {
 	return ec._PerfPageResult(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PerfPageResult) graphql.Marshaler {
+func (ec *executionContext) marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PerfPageResult) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21501,7 +21501,7 @@ func (ec *executionContext) marshalNPerfPageResult2ᚖgithubᚗcomᚋlayer5ioᚋ
 	return ec._PerfPageResult(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐResourceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Resource) graphql.Marshaler {
+func (ec *executionContext) marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐResourceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Resource) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21525,7 +21525,7 @@ func (ec *executionContext) marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmes
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNResource2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐResource(ctx, sel, v[i])
+			ret[i] = ec.marshalNResource2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐResource(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21545,7 +21545,7 @@ func (ec *executionContext) marshalNResource2ᚕᚖgithubᚗcomᚋlayer5ioᚋmes
 	return ret
 }
 
-func (ec *executionContext) marshalNResource2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐResource(ctx context.Context, sel ast.SelectionSet, v *model.Resource) graphql.Marshaler {
+func (ec *executionContext) marshalNResource2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐResource(ctx context.Context, sel ast.SelectionSet, v *model.Resource) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -21555,23 +21555,23 @@ func (ec *executionContext) marshalNResource2ᚖgithubᚗcomᚋlayer5ioᚋmesher
 	return ec._Resource(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNSeverity2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx context.Context, v interface{}) (model.Severity, error) {
+func (ec *executionContext) unmarshalNSeverity2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx context.Context, v interface{}) (model.Severity, error) {
 	var res model.Severity
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSeverity2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx context.Context, sel ast.SelectionSet, v model.Severity) graphql.Marshaler {
+func (ec *executionContext) marshalNSeverity2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐSeverity(ctx context.Context, sel ast.SelectionSet, v model.Severity) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx context.Context, v interface{}) (model.Status, error) {
+func (ec *executionContext) unmarshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx context.Context, v interface{}) (model.Status, error) {
 	var res model.Status
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNStatus2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx context.Context, sel ast.SelectionSet, v model.Status) graphql.Marshaler {
+func (ec *executionContext) marshalNStatus2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx context.Context, sel ast.SelectionSet, v model.Status) graphql.Marshaler {
 	return v
 }
 
@@ -21590,7 +21590,7 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNTelemetryComp2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx context.Context, sel ast.SelectionSet, v []*model.TelemetryComp) graphql.Marshaler {
+func (ec *executionContext) marshalNTelemetryComp2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx context.Context, sel ast.SelectionSet, v []*model.TelemetryComp) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -21614,7 +21614,7 @@ func (ec *executionContext) marshalNTelemetryComp2ᚕᚖgithubᚗcomᚋlayer5io�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOTelemetryComp2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx, sel, v[i])
+			ret[i] = ec.marshalOTelemetryComp2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21896,7 +21896,7 @@ func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel a
 	return res
 }
 
-func (ec *executionContext) unmarshalOAdapterStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐAdapterStatusInput(ctx context.Context, v interface{}) (*model.AdapterStatusInput, error) {
+func (ec *executionContext) unmarshalOAdapterStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐAdapterStatusInput(ctx context.Context, v interface{}) (*model.AdapterStatusInput, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -21920,14 +21920,14 @@ func (ec *executionContext) marshalOAny2interface(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalOApplicationPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationPage(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationPage) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationPage(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationPage) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._ApplicationPage(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationResult) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx context.Context, sel ast.SelectionSet, v []*model.ApplicationResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -21954,7 +21954,7 @@ func (ec *executionContext) marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOApplicationResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx, sel, v[i])
+			ret[i] = ec.marshalOApplicationResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -21968,7 +21968,7 @@ func (ec *executionContext) marshalOApplicationResult2ᚕᚖgithubᚗcomᚋlayer
 	return ret
 }
 
-func (ec *executionContext) marshalOApplicationResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationResult) graphql.Marshaler {
+func (ec *executionContext) marshalOApplicationResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐApplicationResult(ctx context.Context, sel ast.SelectionSet, v *model.ApplicationResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22001,7 +22001,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx context.Context, v interface{}) (*model.CatalogSelector, error) {
+func (ec *executionContext) unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐCatalogSelector(ctx context.Context, v interface{}) (*model.CatalogSelector, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22009,7 +22009,7 @@ func (ec *executionContext) unmarshalOCatalogSelector2ᚖgithubᚗcomᚋlayer5io
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Container) graphql.Marshaler {
+func (ec *executionContext) marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Container) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22036,7 +22036,7 @@ func (ec *executionContext) marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx, sel, v[i])
+			ret[i] = ec.marshalNContainer2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainer(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22056,7 +22056,7 @@ func (ec *executionContext) marshalOContainer2ᚕᚖgithubᚗcomᚋlayer5ioᚋme
 	return ret
 }
 
-func (ec *executionContext) marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx context.Context, sel ast.SelectionSet, v []*model.ContainerPort) graphql.Marshaler {
+func (ec *executionContext) marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx context.Context, sel ast.SelectionSet, v []*model.ContainerPort) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22083,7 +22083,7 @@ func (ec *executionContext) marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5io
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOContainer_Port2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx, sel, v[i])
+			ret[i] = ec.marshalOContainer_Port2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22097,35 +22097,35 @@ func (ec *executionContext) marshalOContainer_Port2ᚕᚖgithubᚗcomᚋlayer5io
 	return ret
 }
 
-func (ec *executionContext) marshalOContainer_Port2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx context.Context, sel ast.SelectionSet, v *model.ContainerPort) graphql.Marshaler {
+func (ec *executionContext) marshalOContainer_Port2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerPort(ctx context.Context, sel ast.SelectionSet, v *model.ContainerPort) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Container_Port(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOContainer_Status2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerStatus(ctx context.Context, sel ast.SelectionSet, v *model.ContainerStatus) graphql.Marshaler {
+func (ec *executionContext) marshalOContainer_Status2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐContainerStatus(ctx context.Context, sel ast.SelectionSet, v *model.ContainerStatus) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Container_Status(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx context.Context, sel ast.SelectionSet, v *model.Error) graphql.Marshaler {
+func (ec *executionContext) marshalOError2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐError(ctx context.Context, sel ast.SelectionSet, v *model.Error) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Error(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOFilterPage2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterPage(ctx context.Context, sel ast.SelectionSet, v *model.FilterPage) graphql.Marshaler {
+func (ec *executionContext) marshalOFilterPage2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterPage(ctx context.Context, sel ast.SelectionSet, v *model.FilterPage) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._FilterPage(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx context.Context, sel ast.SelectionSet, v []*model.FilterResult) graphql.Marshaler {
+func (ec *executionContext) marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx context.Context, sel ast.SelectionSet, v []*model.FilterResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22152,7 +22152,7 @@ func (ec *executionContext) marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5io�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOFilterResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx, sel, v[i])
+			ret[i] = ec.marshalOFilterResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22166,7 +22166,7 @@ func (ec *executionContext) marshalOFilterResult2ᚕᚖgithubᚗcomᚋlayer5io�
 	return ret
 }
 
-func (ec *executionContext) marshalOFilterResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx context.Context, sel ast.SelectionSet, v *model.FilterResult) graphql.Marshaler {
+func (ec *executionContext) marshalOFilterResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐFilterResult(ctx context.Context, sel ast.SelectionSet, v *model.FilterResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22189,7 +22189,7 @@ func (ec *executionContext) marshalOInt2ᚖint(ctx context.Context, sel ast.Sele
 	return res
 }
 
-func (ec *executionContext) marshalOK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx context.Context, sel ast.SelectionSet, v *model.K8sContext) graphql.Marshaler {
+func (ec *executionContext) marshalOK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐK8sContext(ctx context.Context, sel ast.SelectionSet, v *model.K8sContext) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22212,7 +22212,7 @@ func (ec *executionContext) marshalOMap2map(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponentᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshModelComponent) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponentᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshModelComponent) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22239,7 +22239,7 @@ func (ec *executionContext) marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlaye
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMeshModelComponent2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponent(ctx, sel, v[i])
+			ret[i] = ec.marshalNMeshModelComponent2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelComponent(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22259,7 +22259,7 @@ func (ec *executionContext) marshalOMeshModelComponent2ᚕᚖgithubᚗcomᚋlaye
 	return ret
 }
 
-func (ec *executionContext) marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationshipᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshModelRelationship) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationshipᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.MeshModelRelationship) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22286,7 +22286,7 @@ func (ec *executionContext) marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋl
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMeshModelRelationship2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationship(ctx, sel, v[i])
+			ret[i] = ec.marshalNMeshModelRelationship2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshModelRelationship(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22306,7 +22306,7 @@ func (ec *executionContext) marshalOMeshModelRelationship2ᚕᚖgithubᚗcomᚋl
 	return ret
 }
 
-func (ec *executionContext) unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx context.Context, v interface{}) ([]model.MeshSyncEventType, error) {
+func (ec *executionContext) unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx context.Context, v interface{}) ([]model.MeshSyncEventType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22318,7 +22318,7 @@ func (ec *executionContext) unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5
 	res := make([]model.MeshSyncEventType, len(vSlice))
 	for i := range vSlice {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx, vSlice[i])
+		res[i], err = ec.unmarshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
 		}
@@ -22326,7 +22326,7 @@ func (ec *executionContext) unmarshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5
 	return res, nil
 }
 
-func (ec *executionContext) marshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx context.Context, sel ast.SelectionSet, v []model.MeshSyncEventType) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventTypeᚄ(ctx context.Context, sel ast.SelectionSet, v []model.MeshSyncEventType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22353,7 +22353,7 @@ func (ec *executionContext) marshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5io
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx, sel, v[i])
+			ret[i] = ec.marshalNMeshSyncEventType2githubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshSyncEventType(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22373,7 +22373,7 @@ func (ec *executionContext) marshalOMeshSyncEventType2ᚕgithubᚗcomᚋlayer5io
 	return ret
 }
 
-func (ec *executionContext) unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx context.Context, v interface{}) (*model.MeshType, error) {
+func (ec *executionContext) unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx context.Context, v interface{}) (*model.MeshType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22382,21 +22382,21 @@ func (ec *executionContext) unmarshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmesh
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx context.Context, sel ast.SelectionSet, v *model.MeshType) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshType2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx context.Context, sel ast.SelectionSet, v *model.MeshType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayControllersStatusListItem) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshplayControllersStatusListItem2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayControllersStatusListItem(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayControllersStatusListItem) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._MeshplayControllersStatusListItem(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx context.Context, sel ast.SelectionSet, v []*model.MeshplayResult) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx context.Context, sel ast.SelectionSet, v []*model.MeshplayResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22423,7 +22423,7 @@ func (ec *executionContext) marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5io
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, sel, v[i])
+			ret[i] = ec.marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22437,14 +22437,14 @@ func (ec *executionContext) marshalOMeshplayResult2ᚕᚖgithubᚗcomᚋlayer5io
 	return ret
 }
 
-func (ec *executionContext) marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayResult) graphql.Marshaler {
+func (ec *executionContext) marshalOMeshplayResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshplayResult(ctx context.Context, sel ast.SelectionSet, v *model.MeshplayResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._MeshplayResult(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusInput(ctx context.Context, v interface{}) (*model.OperatorStatusInput, error) {
+func (ec *executionContext) unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusInput(ctx context.Context, v interface{}) (*model.OperatorStatusInput, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22452,21 +22452,21 @@ func (ec *executionContext) unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋlaye
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOOperatorStatusPerK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusPerK8sContext(ctx context.Context, sel ast.SelectionSet, v *model.OperatorStatusPerK8sContext) graphql.Marshaler {
+func (ec *executionContext) marshalOOperatorStatusPerK8sContext2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusPerK8sContext(ctx context.Context, sel ast.SelectionSet, v *model.OperatorStatusPerK8sContext) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._OperatorStatusPerK8sContext(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternPageResult) graphql.Marshaler {
+func (ec *executionContext) marshalOPatternPageResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternPageResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternPageResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._PatternPageResult(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx context.Context, sel ast.SelectionSet, v []*model.PatternResult) graphql.Marshaler {
+func (ec *executionContext) marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx context.Context, sel ast.SelectionSet, v []*model.PatternResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22493,7 +22493,7 @@ func (ec *executionContext) marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5io�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOPatternResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx, sel, v[i])
+			ret[i] = ec.marshalOPatternResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22507,14 +22507,14 @@ func (ec *executionContext) marshalOPatternResult2ᚕᚖgithubᚗcomᚋlayer5io�
 	return ret
 }
 
-func (ec *executionContext) marshalOPatternResult2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternResult) graphql.Marshaler {
+func (ec *executionContext) marshalOPatternResult2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPatternResult(ctx context.Context, sel ast.SelectionSet, v *model.PatternResult) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._PatternResult(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx context.Context, sel ast.SelectionSet, v []*model.PerfProfile) graphql.Marshaler {
+func (ec *executionContext) marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx context.Context, sel ast.SelectionSet, v []*model.PerfProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -22541,7 +22541,7 @@ func (ec *executionContext) marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOPerfProfile2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx, sel, v[i])
+			ret[i] = ec.marshalOPerfProfile2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -22555,14 +22555,14 @@ func (ec *executionContext) marshalOPerfProfile2ᚕᚖgithubᚗcomᚋlayer5ioᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOPerfProfile2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx context.Context, sel ast.SelectionSet, v *model.PerfProfile) graphql.Marshaler {
+func (ec *executionContext) marshalOPerfProfile2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐPerfProfile(ctx context.Context, sel ast.SelectionSet, v *model.PerfProfile) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._PerfProfile(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOReSyncActions2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐReSyncActions(ctx context.Context, v interface{}) (*model.ReSyncActions, error) {
+func (ec *executionContext) unmarshalOReSyncActions2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐReSyncActions(ctx context.Context, v interface{}) (*model.ReSyncActions, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22570,7 +22570,7 @@ func (ec *executionContext) unmarshalOReSyncActions2ᚖgithubᚗcomᚋlayer5io�
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx context.Context, v interface{}) (*model.ServiceMeshFilter, error) {
+func (ec *executionContext) unmarshalOServiceMeshFilter2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐServiceMeshFilter(ctx context.Context, v interface{}) (*model.ServiceMeshFilter, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -22664,7 +22664,7 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalOTelemetryComp2ᚖgithubᚗcomᚋlayer5ioᚋmesheryᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx context.Context, sel ast.SelectionSet, v *model.TelemetryComp) graphql.Marshaler {
+func (ec *executionContext) marshalOTelemetryComp2ᚖgithubᚗcomᚋlayer5ioᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐTelemetryComp(ctx context.Context, sel ast.SelectionSet, v *model.TelemetryComp) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

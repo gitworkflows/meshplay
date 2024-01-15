@@ -43,8 +43,8 @@ const (
 	// Meshplay Kubernetes Deployment URLs
 	baseConfigURL = "https://raw.githubusercontent.com/khulnasoft/meshplay-operator/master/config/"
 	OperatorURL   = baseConfigURL + "manifests/default.yaml"
-	BrokerURL     = baseConfigURL + "samples/meshery_v1alpha1_broker.yaml"
-	MeshsyncURL   = baseConfigURL + "samples/meshery_v1alpha1_meshsync.yaml"
+	BrokerURL     = baseConfigURL + "samples/meshplay_v1alpha1_broker.yaml"
+	MeshsyncURL   = baseConfigURL + "samples/meshplay_v1alpha1_meshsync.yaml"
 
 	// Documentation URLs
 	docsBaseURL       = "https://docs.khulnasoft.com/"
@@ -134,8 +134,8 @@ const (
 
 const (
 	HelmChartURL          = "https://khulnasoft.com/charts/"
-	HelmChartName         = "meshery"
-	HelmChartOperatorName = "meshery-operator"
+	HelmChartName         = "meshplay"
+	HelmChartOperatorName = "meshplay-operator"
 )
 
 var (
@@ -149,33 +149,33 @@ var (
 	MeshplayDefaultPort = 9081
 	// MeshplayEndpoint is the default URL in which Meshplay is exposed
 	MeshplayEndpoint = fmt.Sprintf("http://%s:%v", MeshplayDefaultHost, MeshplayDefaultPort)
-	// MeshplayFolder is the default relative location of the meshery config
+	// MeshplayFolder is the default relative location of the meshplay config
 	// related configuration files.
-	MeshplayFolder = ".meshery"
+	MeshplayFolder = ".meshplay"
 	// DockerComposeFile is the default location within the MeshplayFolder
 	// where the docker compose file is located.
-	DockerComposeFile = "meshery.yaml"
+	DockerComposeFile = "meshplay.yaml"
 	// AuthConfigFile is the location of the auth file for performing perf testing
 	AuthConfigFile = "auth.json"
 	// DefaultConfigPath is the detail path to meshplayctl config
 	DefaultConfigPath = "config.yaml"
 	// MeshplayNamespace is the namespace to which Meshplay is deployed in the Kubernetes cluster
-	MeshplayNamespace = "meshery"
+	MeshplayNamespace = "meshplay"
 	// MeshplayDeployment is the name of a Kubernetes manifest file required to setup Meshplay
 	// check https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s
-	MeshplayDeployment = "meshery-deployment.yaml"
+	MeshplayDeployment = "meshplay-deployment.yaml"
 	// MeshplayService is the name of a Kubernetes manifest file required to setup Meshplay
 	// check https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s
-	MeshplayService = "meshery-service.yaml"
+	MeshplayService = "meshplay-service.yaml"
 	//MeshplayOperator is the file for default Meshplay operator
 	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/manifests/default.yaml
 	MeshplayOperator = "default.yaml"
 	//MeshplayOperatorBroker is the file for the Meshplay broker
-	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshery_v1alpha1_broker.yaml
-	MeshplayOperatorBroker = "meshery_v1alpha1_broker.yaml"
+	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_broker.yaml
+	MeshplayOperatorBroker = "meshplay_v1alpha1_broker.yaml"
 	//MeshplayOperatorMeshsync is the file for the Meshplay Meshsync Operator
-	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshery_v1alpha1_meshsync.yaml
-	MeshplayOperatorMeshsync = "meshery_v1alpha1_meshsync.yaml"
+	//check https://github.com/khulnasoft/meshplay-operator/blob/master/config/samples/meshplay_v1alpha1_meshsync.yaml
+	MeshplayOperatorMeshsync = "meshplay_v1alpha1_meshsync.yaml"
 	// ServiceAccount is the name of a Kubernetes manifest file required to setup Meshplay
 	// check https://github.com/khulnasoft/meshplay/tree/master/install/deployment_yamls/k8s
 	ServiceAccount = "service-account.yaml"
@@ -204,7 +204,7 @@ var (
 
 var CfgFile string
 
-// TODO: add "meshery-perf" as a component
+// TODO: add "meshplay-perf" as a component
 
 // ListOfComponents returns the list of components available
 var ListOfComponents = []string{}
@@ -221,64 +221,64 @@ var TemplateContext = config.Context{
 }
 
 var Services = map[string]Service{
-	"meshery": {
+	"meshplay": {
 		Image:  "khulnasoft/meshplay:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Environment: []string{
-			"PROVIDER_BASE_URLS=https://meshery.layer5.io",
-			"ADAPTER_URLS=meshery-istio:10000 meshery-linkerd:10001 meshery-consul:10002 meshery-nsm:10004 meshery-app-mesh:10005 meshery-kuma:10007 meshery-osm:10009 meshery-traefik-mesh:10006 meshery-nginx-sm:10010 meshery-cilium:10012",
-			"EVENT=mesheryLocal",
+			"PROVIDER_BASE_URLS=https://meshplay.layer5.io",
+			"ADAPTER_URLS=meshplay-istio:10000 meshplay-linkerd:10001 meshplay-consul:10002 meshplay-nsm:10004 meshplay-app-mesh:10005 meshplay-kuma:10007 meshplay-osm:10009 meshplay-traefik-mesh:10006 meshplay-nginx-sm:10010 meshplay-cilium:10012",
+			"EVENT=meshplayLocal",
 			"PORT=9081",
 		},
 		Volumes: []string{"$HOME/.kube:/home/appuser/.kube:ro", "$HOME/.minikube:$HOME/.minikube:ro"},
 		Ports:   []string{"9081:9081"},
 	},
-	"meshery-istio": {
+	"meshplay-istio": {
 		Image:  "khulnasoft/meshplay-istio:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10000:10000"},
 	},
-	"meshery-linkerd": {
+	"meshplay-linkerd": {
 		Image:  "khulnasoft/meshplay-linkerd:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10001:10001"},
 	},
-	"meshery-consul": {
+	"meshplay-consul": {
 		Image:  "khulnasoft/meshplay-consul:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10002:10002"},
 	},
-	"meshery-nsm": {
+	"meshplay-nsm": {
 		Image:  "khulnasoft/meshplay-nsm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10004:10004"},
 	},
-	"meshery-app-mesh": {
+	"meshplay-app-mesh": {
 		Image:  "khulnasoft/meshplay-app-mesh:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10005:10005"},
 	},
-	"meshery-traefik-mesh": {
+	"meshplay-traefik-mesh": {
 		Image:  "khulnasoft/meshplay-traefik-mesh:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10006:10006"},
 	},
-	"meshery-kuma": {
+	"meshplay-kuma": {
 		Image:  "khulnasoft/meshplay-kuma:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10007:10007"},
 	},
-	"meshery-osm": {
+	"meshplay-osm": {
 		Image:  "khulnasoft/meshplay-osm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10009:10009"},
 	},
-	"meshery-nginx-sm": {
+	"meshplay-nginx-sm": {
 		Image:  "khulnasoft/meshplay-nginx-sm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10010:10010"},
 	},
-	"meshery-cilium": {
+	"meshplay-cilium": {
 		Image:  "khulnasoft/meshplay-cilium:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10012:10012"},
@@ -310,7 +310,7 @@ func BackupConfigFile(cfgFile string) {
 }
 
 const tokenName = "token"
-const providerName = "meshery-provider"
+const providerName = "meshplay-provider"
 
 var seededRand = rand.New(
 	rand.NewSource(time.Now().UnixNano()))
@@ -434,7 +434,7 @@ func ContentTypeIsHTML(resp *http.Response) bool {
 	return false
 }
 
-// UpdateMeshplayContainers runs the update command for meshery client
+// UpdateMeshplayContainers runs the update command for meshplay client
 func UpdateMeshplayContainers() error {
 	log.Info("Updating Meshplay now...")
 
@@ -442,7 +442,7 @@ func UpdateMeshplayContainers() error {
 	start.Stdout = os.Stdout
 	start.Stderr = os.Stderr
 	if err := start.Run(); err != nil {
-		return errors.Wrap(err, SystemError("failed to start meshery"))
+		return errors.Wrap(err, SystemError("failed to start meshplay"))
 	}
 	return nil
 }
@@ -480,7 +480,7 @@ func CreateConfigFile() error {
 	return nil
 }
 
-// ValidateURL validates url provided for meshery backend to meshplayctl context
+// ValidateURL validates url provided for meshplay backend to meshplayctl context
 func ValidateURL(URL string) error {
 	ParsedURL, err := url.ParseRequestURI(URL)
 	if err != nil {
@@ -558,9 +558,9 @@ func StringInSlice(str string, slice []string) bool {
 	return false
 }
 
-// GetID returns a array of IDs from meshery server endpoint /api/{configurations}
-func GetID(mesheryServerUrl, configuration string) ([]string, error) {
-	url := mesheryServerUrl + "/api/" + configuration + "?page_size=10000"
+// GetID returns a array of IDs from meshplay server endpoint /api/{configurations}
+func GetID(meshplayServerUrl, configuration string) ([]string, error) {
+	url := meshplayServerUrl + "/api/" + configuration + "?page_size=10000"
 	configType := configuration + "s"
 	var idList []string
 	req, err := NewRequest("GET", url, nil)
@@ -594,9 +594,9 @@ func GetID(mesheryServerUrl, configuration string) ([]string, error) {
 	return idList, nil
 }
 
-// GetName returns a of name:id from meshery server endpoint /api/{configurations}
-func GetName(mesheryServerUrl, configuration string) (map[string]string, error) {
-	url := mesheryServerUrl + "/api/" + configuration + "?page_size=10000"
+// GetName returns a of name:id from meshplay server endpoint /api/{configurations}
+func GetName(meshplayServerUrl, configuration string) (map[string]string, error) {
+	url := meshplayServerUrl + "/api/" + configuration + "?page_size=10000"
 	configType := configuration + "s"
 	nameIdMap := make(map[string]string)
 	req, err := NewRequest("GET", url, nil)
@@ -630,9 +630,9 @@ func GetName(mesheryServerUrl, configuration string) (map[string]string, error) 
 	return nameIdMap, nil
 }
 
-// Delete configuration from meshery server endpoint /api/{configurations}/{id}
-func DeleteConfiguration(mesheryServerUrl, id, configuration string) error {
-	url := mesheryServerUrl + "/api/" + configuration + "/" + id
+// Delete configuration from meshplay server endpoint /api/{configurations}/{id}
+func DeleteConfiguration(meshplayServerUrl, id, configuration string) error {
+	url := meshplayServerUrl + "/api/" + configuration + "/" + id
 	req, err := NewRequest("DELETE", url, nil)
 	if err != nil {
 		return err
@@ -646,9 +646,9 @@ func DeleteConfiguration(mesheryServerUrl, id, configuration string) error {
 }
 
 // ValidId - Check if args is a valid ID or a valid ID prefix and returns the full ID
-func ValidId(mesheryServerUrl, args string, configuration string) (string, bool, error) {
+func ValidId(meshplayServerUrl, args string, configuration string) (string, bool, error) {
 	isID := false
-	configID, err := GetID(mesheryServerUrl, configuration)
+	configID, err := GetID(meshplayServerUrl, configuration)
 	if err == nil {
 		for _, id := range configID {
 			if strings.HasPrefix(id, args) {
@@ -666,9 +666,9 @@ func ValidId(mesheryServerUrl, args string, configuration string) (string, bool,
 }
 
 // ValidId - Check if args is a valid name or a valid name prefix and returns the full name and ID
-func ValidName(mesheryServerUrl, args string, configuration string) (string, string, bool, error) {
+func ValidName(meshplayServerUrl, args string, configuration string) (string, string, bool, error) {
 	isName := false
-	nameIdMap, err := GetName(mesheryServerUrl, configuration)
+	nameIdMap, err := GetName(meshplayServerUrl, configuration)
 
 	if err != nil {
 		return "", "", false, err
@@ -1034,35 +1034,35 @@ func ConvertMapInterfaceMapString(v interface{}) interface{} {
 }
 
 // SetOverrideValues returns the value overrides based on current context to install/upgrade helm chart
-func SetOverrideValues(ctx *config.Context, mesheryImageVersion string) map[string]interface{} {
+func SetOverrideValues(ctx *config.Context, meshplayImageVersion string) map[string]interface{} {
 	// first initialize all the components' "enabled" field to false
-	// this matches to the components listed in install/kubernetes/helm/meshery/values.yaml
+	// this matches to the components listed in install/kubernetes/helm/meshplay/values.yaml
 	valueOverrides := map[string]interface{}{
-		"meshery-istio": map[string]interface{}{
+		"meshplay-istio": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-cilium": map[string]interface{}{
+		"meshplay-cilium": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-linkerd": map[string]interface{}{
+		"meshplay-linkerd": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-consul": map[string]interface{}{
+		"meshplay-consul": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-kuma": map[string]interface{}{
+		"meshplay-kuma": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-nsm": map[string]interface{}{
+		"meshplay-nsm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-nginx-sm": map[string]interface{}{
+		"meshplay-nginx-sm": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-traefik-mesh": map[string]interface{}{
+		"meshplay-traefik-mesh": map[string]interface{}{
 			"enabled": false,
 		},
-		"meshery-app-mesh": map[string]interface{}{
+		"meshplay-app-mesh": map[string]interface{}{
 			"enabled": false,
 		},
 	}
@@ -1076,9 +1076,9 @@ func SetOverrideValues(ctx *config.Context, mesheryImageVersion string) map[stri
 		}
 	}
 
-	// set the meshery image version
+	// set the meshplay image version
 	valueOverrides["image"] = map[string]interface{}{
-		"tag": ctx.GetChannel() + "-" + mesheryImageVersion,
+		"tag": ctx.GetChannel() + "-" + meshplayImageVersion,
 	}
 
 	// set the provider

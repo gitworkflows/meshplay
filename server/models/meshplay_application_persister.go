@@ -37,21 +37,21 @@ func (maap *MeshplayApplicationPersister) GetMeshplayApplications(search, order 
 
 	if search != "" {
 		like := "%" + strings.ToLower(search) + "%"
-		query = query.Where("(lower(meshery_applications.name) like ?)", like)
+		query = query.Where("(lower(meshplay_applications.name) like ?)", like)
 	}
 
-	query.Table("meshery_applications").Count(&count)
+	query.Table("meshplay_applications").Count(&count)
 
 	Paginate(uint(page), uint(pageSize))(query).Find(&applications)
 
-	mesheryApplicationPage := &MeshplayApplicationPage{
+	meshplayApplicationPage := &MeshplayApplicationPage{
 		Page:         page,
 		PageSize:     pageSize,
 		TotalCount:   int(count),
 		Applications: applications,
 	}
 
-	return marshalMeshplayApplicationPage(mesheryApplicationPage), nil
+	return marshalMeshplayApplicationPage(meshplayApplicationPage), nil
 }
 
 // DeleteMeshplayApplication takes in an application id and delete it if it already exists
@@ -95,15 +95,15 @@ func (maap *MeshplayApplicationPersister) SaveMeshplayApplications(applications 
 }
 
 func (maap *MeshplayApplicationPersister) GetMeshplayApplication(id uuid.UUID) ([]byte, error) {
-	var mesheryApplication MeshplayApplication
-	err := maap.DB.First(&mesheryApplication, id).Error
-	return marshalMeshplayApplication(&mesheryApplication), err
+	var meshplayApplication MeshplayApplication
+	err := maap.DB.First(&meshplayApplication, id).Error
+	return marshalMeshplayApplication(&meshplayApplication), err
 }
 
 func (maap *MeshplayApplicationPersister) GetMeshplayApplicationSource(id uuid.UUID) ([]byte, error) {
-	var mesheryApplication MeshplayApplication
-	err := maap.DB.First(&mesheryApplication, id).Error
-	return mesheryApplication.SourceContent, err
+	var meshplayApplication MeshplayApplication
+	err := maap.DB.First(&meshplayApplication, id).Error
+	return meshplayApplication.SourceContent, err
 }
 
 func marshalMeshplayApplicationPage(maap *MeshplayApplicationPage) []byte {

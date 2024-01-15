@@ -8,7 +8,7 @@ language: en
 
 ---
 
-This guide will help you run SMI Conformance Tests with Meshplay through the [UI](#running-smi-conformance-tests-through-meshery-ui), CLI and a GitHub action for your CI/CD pipelines. To learn more about Meshplay and SMI Conformance, see [Meshplay and Service Mesh Interface (SMI) Conformance]({{ site.baseurl }}/tasks/service-mesh-interface)
+This guide will help you run SMI Conformance Tests with Meshplay through the [UI](#running-smi-conformance-tests-through-meshplay-ui), CLI and a GitHub action for your CI/CD pipelines. To learn more about Meshplay and SMI Conformance, see [Meshplay and Service Mesh Interface (SMI) Conformance]({{ site.baseurl }}/tasks/service-mesh-interface)
 
 ## Setup Meshplay and Install a Service Mesh
 
@@ -28,7 +28,7 @@ _Installing Istio_
 
 ## Running SMI Conformance Tests Through Meshplay UI
 
-Now that we have deployed the service mesh to validate (see [Setup Meshplay and Install a Service Mesh](#setup-meshery-and-install-a-service-mesh)), we can run an SMI conformance test through the UI.
+Now that we have deployed the service mesh to validate (see [Setup Meshplay and Install a Service Mesh](#setup-meshplay-and-install-a-service-mesh)), we can run an SMI conformance test through the UI.
 
 In the "Validate Service Mesh Configuration" click on the "+" button and select "SMI Conformance".
 
@@ -52,7 +52,7 @@ _Viewing the Results_
 
 ## Running SMI Conformance Tests Through Meshplay CLI (meshplayctl)
 
-Once we have deployed the service mesh to validate  (see [Setup Meshplay and Install a Service Mesh](#setup-meshery-and-install-a-service-mesh)), we can run an SMI conformance test through the CLI (meshplayctl).
+Once we have deployed the service mesh to validate  (see [Setup Meshplay and Install a Service Mesh](#setup-meshplay-and-install-a-service-mesh)), we can run an SMI conformance test through the CLI (meshplayctl).
 
 You can also use meshplayctl, Meshplay's CLI to deploy a service mesh. See [meshplayctl mesh]({{ site.baseurl }}/reference/meshplayctl/mesh/) documentation for details.
 
@@ -74,7 +74,7 @@ Open a terminal and run the following command.
 
  <pre class="codeblock-pre"><div class="codeblock">
  <div class="clipboardjs">
- meshplayctl mesh validate -a meshery-osm:10009 -t ~/Downloads/auth.json -s smi
+ meshplayctl mesh validate -a meshplay-osm:10009 -t ~/Downloads/auth.json -s smi
  </div></div>
  </pre>
 
@@ -94,7 +94,7 @@ _Viewing the Results_
 
 You can use [Meshplay SMI Conformance GitHub action](https://github.com/khulnasoft/meshplay-smi-conformance-action) to run SMI Conformance tests in your CI/CD pipelines.
 
-The conformance test would be run in your pipeline and the results will be published on your Meshplay Dashboard (see [Setup Meshplay and Install a Service Mesh](#setup-meshery-and-install-a-service-mesh)).
+The conformance test would be run in your pipeline and the results will be published on your Meshplay Dashboard (see [Setup Meshplay and Install a Service Mesh](#setup-meshplay-and-install-a-service-mesh)).
 
 Download the token from the Meshplay Dashboard by clicking on the profile icon on the top-right corner.
 

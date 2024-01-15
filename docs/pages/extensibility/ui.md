@@ -12,12 +12,12 @@ Meshplay UI has a number of extension points that allow for users to customize t
 
 ## Designing Custom Components for Meshplay Extension Point
 
-The Meshplay extension points are the way to extend meshery and derive the more custom use-cases out of it. We already have an extension point called MeshMap.
-Meshplay can provide the extension point in various ways by providing the feature of custom-components. One of the example where these custom components are used is RJSF forms in meshery-extension
+The Meshplay extension points are the way to extend meshplay and derive the more custom use-cases out of it. We already have an extension point called MeshMap.
+Meshplay can provide the extension point in various ways by providing the feature of custom-components. One of the example where these custom components are used is RJSF forms in meshplay-extension
 
 ### Extensibility: RJSF Custom Component
 
-RJSFWrapperComponent are the customizations done on RJSF forms overriding the default behaviour of meshery-ui rjsf forms.
+RJSFWrapperComponent are the customizations done on RJSF forms overriding the default behaviour of meshplay-ui rjsf forms.
 The [Rjsf forms are wrapped](https://github.com/khulnasoft/meshplay/blob/0bc68d1cd0ba80a565afa68bce80899c22db9a2e/ui/components/MeshplayMeshInterface/PatternService/RJSF.js#L66) under these component to receive the custom-props from Meshplay-extension.
 {% capture code_content %} <RJSFWrapperComponent {...props}>
 <RJSFForm

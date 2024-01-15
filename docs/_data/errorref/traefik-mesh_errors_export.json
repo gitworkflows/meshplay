@@ -1,6 +1,6 @@
 {
   "errors_export": {
-    "component_name": "meshery-traefik-mesh",
+    "component_name": "meshplay-traefik-mesh",
     "component_type": "adapter",
     "errors": {
       "1012": {

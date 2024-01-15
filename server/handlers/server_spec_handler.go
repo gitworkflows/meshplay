@@ -25,7 +25,7 @@ type Version struct {
 //
 // Returns the running Meshplay version
 // responses:
-// 	200: mesheryVersionRespWrapper
+// 	200: meshplayVersionRespWrapper
 
 // ServerVersionHandler handles the version api request for the server
 func (h *Handler) ServerVersionHandler(w http.ResponseWriter, _ *http.Request) {

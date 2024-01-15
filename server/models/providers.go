@@ -9,7 +9,7 @@ import (
 	"github.com/khulnasoft/meshkit/broker"
 	"github.com/khulnasoft/meshkit/database"
 	"github.com/khulnasoft/meshkit/logger"
-	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
+	meshplaykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 )
 
@@ -243,25 +243,25 @@ const (
 
 	PersistSMPTestProfile Feature = "persist-smp-test-profile" // /user/test-config
 
-	PersistMeshplayPatterns Feature = "persist-meshery-patterns" // /patterns
+	PersistMeshplayPatterns Feature = "persist-meshplay-patterns" // /patterns
 
-	PersistMeshplayPatternResources Feature = "persist-meshery-pattern-resources" // /patterns/resources
+	PersistMeshplayPatternResources Feature = "persist-meshplay-pattern-resources" // /patterns/resources
 
-	PersistMeshplayFilters Feature = "persist-meshery-filters" // /filter
+	PersistMeshplayFilters Feature = "persist-meshplay-filters" // /filter
 
-	PersistMeshplayApplications Feature = "persist-meshery-applications" // /applications
+	PersistMeshplayApplications Feature = "persist-meshplay-applications" // /applications
 
 	PersistPerformanceProfiles Feature = "persist-performance-profiles" // /user/performance/profile
 
 	PersistSchedules Feature = "persist-schedules" // /user/schedules
 
-	MeshplayPatternsCatalog Feature = "meshery-patterns-catalog" // /patterns/catalog
+	MeshplayPatternsCatalog Feature = "meshplay-patterns-catalog" // /patterns/catalog
 
-	MeshplayFiltersCatalog Feature = "meshery-filters-catalog" // /filters/catalog
+	MeshplayFiltersCatalog Feature = "meshplay-filters-catalog" // /filters/catalog
 
-	CloneMeshplayPatterns Feature = "clone-meshery-patterns" // /patterns/clone
+	CloneMeshplayPatterns Feature = "clone-meshplay-patterns" // /patterns/clone
 
-	CloneMeshplayFilters Feature = "clone-meshery-filters" // /filters/clone
+	CloneMeshplayFilters Feature = "clone-meshplay-filters" // /filters/clone
 
 	ShareDesigns Feature = "share-designs"
 
@@ -309,15 +309,15 @@ const (
 	KubeClustersKey   ContextKey = "kubeclusters"
 	AllKubeClusterKey ContextKey = "allkubeclusters"
 
-	MeshplayControllerHandlersKey ContextKey = "mesherycontrollerhandlerskey"
+	MeshplayControllerHandlersKey ContextKey = "meshplaycontrollerhandlerskey"
 	MeshSyncDataHandlersKey      ContextKey = "meshsyncdatahandlerskey"
 
 	RegistryManagerKey ContextKey = "registrymanagerkey"
 
 	HandlerKey               ContextKey = "handlerkey"
 	SystemIDKey              ContextKey = "systemidKey"
-	MeshplayServerURL         ContextKey = "mesheryserverurl"
-	MeshplayServerCallbackURL ContextKey = "mesheryservercallbackurl"
+	MeshplayServerURL         ContextKey = "meshplayserverurl"
+	MeshplayServerCallbackURL ContextKey = "meshplayservercallbackurl"
 )
 
 // IsSupported returns true if the given feature is listed as one of
@@ -403,8 +403,8 @@ type Provider interface {
 
 	GetGenericPersister() *database.Handler
 
-	SetKubeClient(client *mesherykube.Client)
-	GetKubeClient() *mesherykube.Client
+	SetKubeClient(client *meshplaykube.Client)
+	GetKubeClient() *meshplaykube.Client
 
 	SaveMeshplayPattern(tokenString string, pattern *MeshplayPattern) ([]byte, error)
 	GetMeshplayPatterns(tokenString, page, pageSize, search, order string, updatedAfter string, visbility []string) ([]byte, error)

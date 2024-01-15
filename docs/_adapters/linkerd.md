@@ -6,7 +6,7 @@ mesh_name: Linkerd
 earliest_version: v2.10.2
 port: 10001/gRPC
 project_status: stable
-lab: linkerd-meshery-adapter
+lab: linkerd-meshplay-adapter
 github_link: https://github.com/khulnasoft/meshplay-linkerd
 image: /assets/img/service-meshes/linkerd.svg
 white_image: /assets/img/service-meshes/linkerd-white.svg
@@ -14,14 +14,14 @@ permalink: extensibility/adapters/linkerd
 language: en
 ---
 
-{% assign sorted_tests_group = site.compatibility | group_by: "meshery-component" %}
+{% assign sorted_tests_group = site.compatibility | group_by: "meshplay-component" %}
 {% for group in sorted_tests_group %}
-      {% if group.name == "meshery-linkerd" %}
-        {% assign items = group.items | sort: "meshery-component-version" | reverse %}
+      {% if group.name == "meshplay-linkerd" %}
+        {% assign items = group.items | sort: "meshplay-component-version" | reverse %}
         {% for item in items %}
-          {% if item.meshery-component-version != "edge" %}
+          {% if item.meshplay-component-version != "edge" %}
             {% if item.overall-status == "passing" %}
-              {% assign adapter_version_dynamic = item.meshery-component-version %}
+              {% assign adapter_version_dynamic = item.meshplay-component-version %}
               {% break %}
             {% elsif item.overall-status == "failing" %}
               {% continue %}

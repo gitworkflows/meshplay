@@ -40,7 +40,7 @@ The following principles are upheld in the design of Meshplay's extensibility.
 
 Meshplay is not just an application. It is a set of microservices where the central component is itself called Meshplay. Integrators may extend Meshplay by taking advantage of designated Extension Points. Extension points come in various forms and are available through Meshplay’s architecture.
 
-![Meshplay Extension Points]({{site.baseurl}}/assets/img/architecture/meshery_extension_points.svg)
+![Meshplay Extension Points]({{site.baseurl}}/assets/img/architecture/meshplay_extension_points.svg)
 
 _Figure: Extension points available throughout Meshplay_
 

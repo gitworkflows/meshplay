@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "meshery-perf.name" -}}
+{{- define "meshplay-perf.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "meshery-perf.fullname" -}}
+{{- define "meshplay-perf.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -27,16 +27,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "meshery-perf.chart" -}}
+{{- define "meshplay-perf.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "meshery-perf.labels" -}}
-helm.sh/chart: {{ include "meshery-perf.chart" . }}
-{{ include "meshery-perf.selectorLabels" . }}
+{{- define "meshplay-perf.labels" -}}
+helm.sh/chart: {{ include "meshplay-perf.chart" . }}
+{{ include "meshplay-perf.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,20 +46,20 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "meshery-perf.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "meshery-perf.name" . }}
+{{- define "meshplay-perf.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "meshplay-perf.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "meshery-perf.serviceAccountName" -}}
+{{- define "meshplay-perf.serviceAccountName" -}}
 {{- if .Values.serviceAccountNameOverride -}}
     {{- .Values.serviceAccountNameOverride -}}
 {{- else -}}
 {{- if .Values.serviceAccount.create }}
-    {{- default (include "meshery-perf.fullname" .) .Values.serviceAccount.name }}
+    {{- default (include "meshplay-perf.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

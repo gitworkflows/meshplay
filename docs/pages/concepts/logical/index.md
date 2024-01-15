@@ -50,6 +50,6 @@ Every construct is represented in multiple forms:
     {% endfor %}
 </ul>
 
-[![Meshplay Extension Points]({{site.baseurl}}/assets/img/architecture/meshery_extension_points.svg)]({{site.baseurl}}/assets/img/architecture/meshery_extension_points.svg)
+[![Meshplay Extension Points]({{site.baseurl}}/assets/img/architecture/meshplay_extension_points.svg)]({{site.baseurl}}/assets/img/architecture/meshplay_extension_points.svg)
 
 _Figure: Extension points available throughout Meshplay_

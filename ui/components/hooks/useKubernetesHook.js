@@ -3,7 +3,7 @@ import { updateProgress } from '../../lib/store';
 import { useNotification } from '../../utils/hooks/useNotification';
 import { errorHandlerGenerator, successHandlerGenerator } from '../ConnectionWizard/helpers/common';
 import { pingKubernetes } from '../ConnectionWizard/helpers/kubernetesHelpers';
-import { pingMeshplayOperator } from '../ConnectionWizard/helpers/mesheryOperator';
+import { pingMeshplayOperator } from '../ConnectionWizard/helpers/meshplayOperator';
 import { EVENT_TYPES } from '../../lib/event-types';
 import MeshsyncStatusQuery from '../graphql/queries/MeshsyncStatusQuery';
 import { useEffect, useState } from 'react';

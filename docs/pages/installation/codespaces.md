@@ -19,7 +19,7 @@ Use Minikube in GitHub Codespace to setup your development environment for Meshp
 
 <div class="prereqs"><p><strong style="font-size: 20px;">Prerequisites</strong> </p> 
   <ol>
-    <li>Install the Meshplay command line client, <a href="{{ site.baseurl }}/installation/meshplayctl" class="meshery-light">meshplayctl</a>.</li>
+    <li>Install the Meshplay command line client, <a href="{{ site.baseurl }}/installation/meshplayctl" class="meshplay-light">meshplayctl</a>.</li>
   </ol>
 </div>
 
@@ -31,7 +31,7 @@ Use Minikube in GitHub Codespace to setup your development environment for Meshp
   - [Installation: Using `meshplayctl`](#installation-using-meshplayctl)
   - [Installation: Using Helm](#installation-using-helm)
   - [Installation: Manual Steps](#installation-manual-steps)
-  - [Access Meshplay UI](#access-meshery-ui)
+  - [Access Meshplay UI](#access-meshplay-ui)
 
 # In-cluster Installation
 
@@ -75,7 +75,7 @@ Once configured, execute the following command to start Meshplay.
 {% capture code_content %}$ meshplayctl system start{% endcapture %}
 {% include code.html code=code_content %}
 
-If you encounter any authentication issues, you can use `meshplayctl system login`. For more information, click [here](/guides/meshplayctl/authenticate-with-meshery-via-cli) to learn more.
+If you encounter any authentication issues, you can use `meshplayctl system login`. For more information, click [here](/guides/meshplayctl/authenticate-with-meshplay-via-cli) to learn more.
 
 ## Installation: Using Helm
 
@@ -121,10 +121,10 @@ Meshplay should now be connected with your managed Kubernetes instance. Take a l
 
 ## Access Meshplay UI
 
-To access Meshplay's UI, please refer to the [instruction](/tasks/accessing-meshery-ui) for detailed guidance.
+To access Meshplay's UI, please refer to the [instruction](/tasks/accessing-meshplay-ui) for detailed guidance.
 
-For further information to access meshery-ui/port-forwarding in Github Codespace, read the [docs](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=vscode)
+For further information to access meshplay-ui/port-forwarding in Github Codespace, read the [docs](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=vscode)
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

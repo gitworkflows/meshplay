@@ -6,7 +6,7 @@ mesh_name: Istio
 earliest_version: v1.6.0
 port: 10000/gRPC
 project_status: stable
-lab: istio-meshery-adapter
+lab: istio-meshplay-adapter
 github_link: https://github.com/khulnasoft/meshplay-istio
 image: /assets/img/service-meshes/istio.svg
 white_image: /assets/img/service-meshes/istio-white.svg
@@ -14,14 +14,14 @@ permalink: extensibility/adapters/istio
 language: en
 ---
 
-{% assign sorted_tests_group = site.compatibility | group_by: "meshery-component" %}
+{% assign sorted_tests_group = site.compatibility | group_by: "meshplay-component" %}
 {% for group in sorted_tests_group %}
-      {% if group.name == "meshery-istio" %}
-        {% assign items = group.items | sort: "meshery-component-version" | reverse %}
+      {% if group.name == "meshplay-istio" %}
+        {% assign items = group.items | sort: "meshplay-component-version" | reverse %}
         {% for item in items %}
-          {% if item.meshery-component-version != "edge" %}
+          {% if item.meshplay-component-version != "edge" %}
             {% if item.overall-status == "passing" %}
-              {% assign adapter_version_dynamic = item.meshery-component-version %}
+              {% assign adapter_version_dynamic = item.meshplay-component-version %}
               {% break %}
             {% elsif item.overall-status == "failing" %}
               {% continue %}

@@ -78,8 +78,8 @@ Orchestration & Management    	kusk-gateway                         	0.0.65
 Provisioning                  	kyverno-monitor                      	0.1.2             	
 Observability and Analysis    	litmus-core                          	2.14.0            	
 Tools                         	mattermost-operator                  	0.3.3             	
-Uncategorized                 	meshery                              	v1.0.0            	
-Orchestration & Management    	meshery                              	0.6.66            	
+Uncategorized                 	meshplay                              	v1.0.0            	
+Orchestration & Management    	meshplay                              	0.6.66            	
 App Definition and Development	minio-operator                       	4.3.7             	
 Machine Learning              	mpi-operator                         	1.2.2             	
 App Definition and Development	mysql-operator                       	2.0.8             	

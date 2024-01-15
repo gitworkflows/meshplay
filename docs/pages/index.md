@@ -11,7 +11,7 @@ language: en
 
 <div class="flex flex-col--1">
   <div style="align-self:center; margin-bottom:0px; margin-top:0px;padding-top:0px; padding-bottom:0px;width:clamp(170px, 50%, 800px);">
-    {% include svg/meshery-logo.html %}
+    {% include svg/meshplay-logo.html %}
   </div>
   <h3>As a self-service engineering platform, Meshplay enables collaborative design and operation of cloud and cloud native infrastructure.</h3>
 </div>
@@ -359,7 +359,7 @@ language: en
 
 </div>
 
-<p width="100%">Follow on <a href="https://twitter.com/mesheryio">Twitter</a> or subscribe to our <a href="https://khulnasoft.com/subscribe">newsletter</a> for the latest updates. Get support on our <a href="http://discuss.khulnasoft.com">forum</a>. Join our <a href="https://slack.khulnasoft.com">Slack</a> to interact directly with other users and contributors.</p>
+<p width="100%">Follow on <a href="https://twitter.com/meshplayio">Twitter</a> or subscribe to our <a href="https://khulnasoft.com/subscribe">newsletter</a> for the latest updates. Get support on our <a href="http://discuss.khulnasoft.com">forum</a>. Join our <a href="https://slack.khulnasoft.com">Slack</a> to interact directly with other users and contributors.</p>
 
 <!-- <div style="text-align:center;padding:0;margin:0;">
 <img src="https://layer5.io/assets/images/khulnasoft/meshplay-logo-shadow-light-white-text-side.svg" width="60%" />

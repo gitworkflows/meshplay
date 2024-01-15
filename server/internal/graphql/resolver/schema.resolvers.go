@@ -222,7 +222,7 @@ func (r *subscriptionResolver) SubscribeMeshplayControllersStatus(ctx context.Co
 					ctrlsStatusList = make([]*model.MeshplayControllersStatusListItem, 0)
 				}
 			}
-			// establish a watch connection to get updates, ideally in meshery-operator
+			// establish a watch connection to get updates, ideally in meshplay-operator
 			time.Sleep(time.Second * 5)
 		}
 	}()

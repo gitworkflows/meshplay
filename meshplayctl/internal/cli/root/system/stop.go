@@ -38,7 +38,7 @@ import (
 )
 
 var (
-	// forceDelete used to clean-up meshery resources forcefully
+	// forceDelete used to clean-up meshplay resources forcefully
 	forceDelete bool
 )
 
@@ -131,7 +131,7 @@ func stop() error {
 		stop.Stderr = os.Stderr
 
 		if err := stop.Run(); err != nil {
-			return errors.Wrap(err, utils.SystemError("failed to stop meshery - could not stop some containers."))
+			return errors.Wrap(err, utils.SystemError("failed to stop meshplay - could not stop some containers."))
 		}
 
 		// Remove all Docker containers
@@ -190,7 +190,7 @@ func stop() error {
 			// 	}
 			// }
 
-			// Dry run passed; now delete meshery components with the helm pkg
+			// Dry run passed; now delete meshplay components with the helm pkg
 			err := applyHelmCharts(client, currCtx, currCtx.GetVersion(), false, meshkitkube.UNINSTALL)
 			if err != nil {
 				return errors.Wrap(err, "cannot stop Meshplay")
@@ -233,9 +233,9 @@ func stop() error {
 func invokeDeleteCRs(client *meshkitkube.Client) error {
 	const (
 		brokerResourceName   = "brokers"
-		brokerInstanceName   = "meshery-broker"
+		brokerInstanceName   = "meshplay-broker"
 		meshsyncResourceName = "meshsyncs"
-		meshsyncInstanceName = "meshery-meshsync"
+		meshsyncInstanceName = "meshplay-meshsync"
 	)
 
 	if err := deleteCR(brokerResourceName, brokerInstanceName, client); err != nil {
@@ -271,8 +271,8 @@ func deleteCR(resourceName, instanceName string, client *meshkitkube.Client) err
 // invokeDeleteCRs is a wrapper of deleteCRD to delete CRDs (brokers and meshsyncs)
 func invokeDeleteCRDs() error {
 	const (
-		brokerCRDName   = "brokers.meshery.layer5.io"
-		meshsyncCRDName = "meshsyncs.meshery.layer5.io"
+		brokerCRDName   = "brokers.meshplay.layer5.io"
+		meshsyncCRDName = "meshsyncs.meshplay.layer5.io"
 	)
 
 	cfg := controllerConfig.GetConfigOrDie()

@@ -51,23 +51,23 @@ The predefined operation types are:
 The code hierarchy is pluggable and independent from one another. There can be N number of packages depending upon the use case.
 - `errors/` - holds the implementations and the error handlers and error codes which are used across projects.
 - `logger/` - holds the implementations of logging handler and custom attributes to add if any.
-- `utils/` - holds all the utility functions that are specific to meshery projects and are to be used generically across all of them.
+- `utils/` - holds all the utility functions that are specific to meshplay projects and are to be used generically across all of them.
 - `tracing/` - holds the implementations of tracing handlers with different tracing providers like jaeger,newrelic, etc.
 
 Each package inside a meshkit is a handler interface implementation, the implementation could be from any third-party packages or the go-kit.
 
 ### [Meshplay Adapter Library](https://github.com/khulnasoft/meshplay-adapter-library)
 
-This section contains a high level overview of the meshery-adapter-library, its purpose and architecture. For details, the reader is referred to the documentation and the code in the repository.
+This section contains a high level overview of the meshplay-adapter-library, its purpose and architecture. For details, the reader is referred to the documentation and the code in the repository.
 
-The main purpose of the meshery-adapter-library is to:
+The main purpose of the meshplay-adapter-library is to:
 - provide a set of interfaces, some with default implementations, to be used and extended by adapters.
 - implement common cross cutting concerns like logging, errors, and tracing
 - provide a mini framework implementing the gRPC server that allows plugging in the mesh specific configuration and - operations implemented in the adapters.
 - provide middleware extension points
 
-[![Meshplay Adapter Library]({{ site.baseurl }}/assets/img/adapters/meshery-adapter-library.svg
-)]({{ site.baseurl }}/assets/img/adapters/meshery-adapter-library.svg)
+[![Meshplay Adapter Library]({{ site.baseurl }}/assets/img/adapters/meshplay-adapter-library.svg
+)]({{ site.baseurl }}/assets/img/adapters/meshplay-adapter-library.svg)
 
 _Figure: Displaying Meshplay Adapter library architecture along with an example of integration_
 

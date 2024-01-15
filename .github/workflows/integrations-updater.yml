@@ -9,7 +9,7 @@ on:
     - cron:  '0 0 * * *'  # Run the job every day at midnight
   workflow_dispatch:
 
-# This workflow uses the service account: meshery-integrations-sheet@meshery-237716.iam.gserviceaccount.com
+# This workflow uses the service account: meshplay-integrations-sheet@meshplay-237716.iam.gserviceaccount.com
 # See these instructions for setup - https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Meshplay repo
         uses: actions/checkout@master
         with:
-          path: meshery
+          path: meshplay
       - name: Checkout Layer5.io repo
         uses: actions/checkout@master
         with:
@@ -34,11 +34,11 @@ jobs:
       - name: Checkout Meshplay.io repo
         uses: actions/checkout@master
         with:
-          repository: meshery/khulnasoft.com
+          repository: meshplay/khulnasoft.com
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           path: khulnasoft.com
       - name: Run utility
-        run: cd meshery/scripts/component_updater; go build main.go; ./main "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub?gid=0&single=true&output=csv" --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
+        run: cd meshplay/scripts/component_updater; go build main.go; ./main "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub?gid=0&single=true&output=csv" --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
       - name: Commit changes to Layer5.io repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:

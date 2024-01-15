@@ -35,7 +35,7 @@ paths:
 
                 ```?status={status}``` Status takes array as param to filter connections based on status, eg /api/integrations/connections?status=["connected", "deleted"]
 
-                ```?kind={kind}``` Kind takes array as param to filter connections based on kind, eg /api/integrations/connections?kind=["meshery", "kubernetes"]
+                ```?kind={kind}``` Kind takes array as param to filter connections based on kind, eg /api/integrations/connections?kind=["meshplay", "kubernetes"]
             tags:
                 - GetConnections
             summary: Handle GET request for getting all connections
@@ -107,7 +107,7 @@ paths:
             operationId: idGetFilterFile
             responses:
                 "200":
-                    description: Returns a single meshery filter
+                    description: Returns a single meshplay filter
     /api/pattern/clone/{id}:
         post:
             summary: Handle Clone for a Meshplay Pattern
@@ -399,7 +399,7 @@ paths:
                   in: body
             responses:
                 "200":
-                    description: Returns all the meshery adapters
+                    description: Returns all the meshplay adapters
                     schema:
                         items: {}
                         type: array
@@ -645,12 +645,12 @@ paths:
                   format: uuid
             responses:
                 "200":
-                    description: Returns a single meshery filter
+                    description: Returns a single meshplay filter
         delete:
             responses:
                 "200":
                     description: ""
-            description: 'Deletes a meshery filter with ID: id'
+            description: 'Deletes a meshplay filter with ID: id'
             tags:
                 - FiltersAPI
             summary: Handle Delete for a Meshplay Filter
@@ -893,7 +893,7 @@ paths:
             responses:
                 "200":
                     description: ""
-            description: 'Deletes a meshery application file with ID: id'
+            description: 'Deletes a meshplay application file with ID: id'
             tags:
                 - ApplicationsAPI
             summary: Handle Delete for a Meshplay Application File
@@ -903,7 +903,7 @@ paths:
             operationId: idUpdateMeshplayPattern
             responses:
                 "200":
-                    description: Returns a single meshery pattern
+                    description: Returns a single meshplay pattern
             description: Updates the pattern with the given payload
             tags:
                 - PatternsAPI
@@ -915,7 +915,7 @@ paths:
             operationId: idPostPatternFileRequest
             responses:
                 "200":
-                    description: Returns a single meshery pattern
+                    description: Returns a single meshplay pattern
     /api/workspaces/{id}/designs:
         get:
             description: |-
@@ -934,7 +934,7 @@ paths:
             operationId: idGetWorkspaceMeshplayDesigns
             responses:
                 "200":
-                    description: Returns all meshery patterns
+                    description: Returns all meshplay patterns
     /api/meshmodels/categories/{category}/components:
         get:
             description: |-
@@ -1604,10 +1604,10 @@ paths:
                     description: Returns user info
     /api/workspaces/{id}/designs/{designID}:
         post:
-            description: Adds a meshery design to a workspace
+            description: Adds a meshplay design to a workspace
             tags:
                 - WorkspacesAPI
-            summary: Handle POST request for adding a meshery design to a workspace
+            summary: Handle POST request for adding a meshplay design to a workspace
             operationId: idAddMeshplayDesignToWorkspace
             responses:
                 "201":
@@ -1617,10 +1617,10 @@ paths:
             responses:
                 "201":
                     description: Returns workspace designs mapping
-            description: Removes a meshery design from a workspace
+            description: Removes a meshplay design from a workspace
             tags:
                 - WorkspacesAPI
-            summary: Handle DELETE request for removing a meshery design from a workspace
+            summary: Handle DELETE request for removing a meshplay design from a workspace
     /api/meshmodel/components/register:
         post:
             responses:
@@ -1744,7 +1744,7 @@ paths:
                   x-go-name: ID
             responses:
                 "200":
-                    description: Returns a single meshery pattern
+                    description: Returns a single meshplay pattern
     /api/environments/{environmentID}/connections:
         get:
             responses:
@@ -1944,7 +1944,7 @@ paths:
             operationId: idGetFilterFiles
             responses:
                 "200":
-                    description: Returns all meshery filters
+                    description: Returns all meshplay filters
         post:
             description: Used to save/update a Meshplay Filter
             tags:
@@ -1953,7 +1953,7 @@ paths:
             operationId: idPostFilterFile
             responses:
                 "200":
-                    description: Returns a single meshery filter
+                    description: Returns a single meshplay filter
     /api/integrations/connections/status:
         get:
             tags:
@@ -1982,7 +1982,7 @@ paths:
             operationId: idGetCatalogMeshplayPatternsHandler
             responses:
                 "200":
-                    description: Returns all meshery patterns
+                    description: Returns all meshplay patterns
     /api/system/adapters:
         get:
             tags:
@@ -2185,7 +2185,7 @@ paths:
             operationId: idGetCatalogMeshplayFiltersHandler
             responses:
                 "200":
-                    description: Returns all meshery filters
+                    description: Returns all meshplay filters
     /api/meshmodels/categories:
         get:
             responses:
@@ -2293,7 +2293,7 @@ paths:
             operationId: idGetPatternFiles
             responses:
                 "200":
-                    description: Returns all meshery patterns
+                    description: Returns all meshplay patterns
             description: |-
                 Returns the list of all the patterns saved by the current user
                 This will return all the patterns with their details
@@ -2311,14 +2311,14 @@ paths:
             tags:
                 - PatternsAPI
         post:
-            description: Edit/update a meshery pattern
+            description: Edit/update a meshplay pattern
             tags:
                 - PatternsAPI
             summary: Handle POST requests for patterns
             operationId: idPostPatternFile
             responses:
                 "200":
-                    description: Returns a single meshery pattern
+                    description: Returns a single meshplay pattern
     /api/system/version:
         get:
             description: Returns the running Meshplay version
@@ -2333,7 +2333,7 @@ paths:
         get:
             responses:
                 "200":
-                    description: Returns all meshery applications
+                    description: Returns all meshplay applications
             description: |-
                 Fetches the list of all applications saved by the current user
 
@@ -2532,7 +2532,7 @@ definitions:
         title: PluginSettings Settings that can be modified by users.
         x-go-package: github.com/docker/docker/api/types
 responses:
-    mesheryApplicationResponseWrapper:
+    meshplayApplicationResponseWrapper:
         description: Fetches a single Meshplay Application
     meshmodelComponentsResponseWrapper:
         description: Return meshmodel components
@@ -2576,7 +2576,7 @@ responses:
                 type: string
             kind:
                 type: string
-    mesheryConnectionResponseWrapper:
+    meshplayConnectionResponseWrapper:
         description: Returns a single connection
     meshmodelPoliciesResponseWrapper:
         description: Returns meshmodel policies
@@ -2605,7 +2605,7 @@ responses:
         description: Returns user info
     grafanaConfigResponseWrapper:
         description: Returns Grafana configs
-    mesheryVersionRespWrapper:
+    meshplayVersionRespWrapper:
         description: Returns Meshplay version
     prometheusStaticBoardRespWrapper:
         description: Returns Prometheus static board
@@ -2637,8 +2637,8 @@ responses:
         description: Returns all environements
     k8sConfigRespWrapper:
         description: Returns saved kubernetes config
-    mesheryPatternsResponseWrapper:
-        description: Returns all meshery patterns
+    meshplayPatternsResponseWrapper:
+        description: Returns all meshplay patterns
     workspaceResponseWrapper:
         description: Returns workspace
     RelationshipDefinition:
@@ -2679,14 +2679,14 @@ responses:
             Body: {}
     meshmodelComponentsDuplicateResponseWrapper:
         description: Return meshmoddel components with the count of duplicates
-    mesheryApplicationTypesResponseWrapper:
+    meshplayApplicationTypesResponseWrapper:
         description: Returns Meshplay application types
         schema:
             type: array
             items: {}
-    mesheryPatternResponseWrapper:
-        description: Returns a single meshery pattern
-    mesheryPatternSourceContentResponseWrapper:
+    meshplayPatternResponseWrapper:
+        description: Returns a single meshplay pattern
+    meshplayPatternSourceContentResponseWrapper:
         description: Returns Design Source Content
         schema:
             type: array
@@ -2723,7 +2723,7 @@ responses:
                 format: int64
     applicationFilesResponseWrapper:
         description: Returns the response of the application files
-    mesheryConnectionsStatusPage:
+    meshplayConnectionsStatusPage:
         description: Returns all connections Status
     Model:
         description: ""
@@ -2799,10 +2799,10 @@ responses:
                 items: {}
     eventResponseWrapper:
         description: Returns event
-    mesheryFilterResponseWrapper:
-        description: Returns a single meshery filter
-    mesheryFiltersResponseWrapper:
-        description: Returns all meshery filters
+    meshplayFilterResponseWrapper:
+        description: Returns a single meshplay filter
+    meshplayFiltersResponseWrapper:
+        description: Returns all meshplay filters
     eventsResponseWrapper:
         description: Returns all events
     grafanaBoardsResponseWrapper:
@@ -2821,19 +2821,19 @@ responses:
         schema:
             type: object
             additionalProperties: false
-    mesheryAdaptersRespWrapper:
+    meshplayAdaptersRespWrapper:
         schema:
             type: array
             items: {}
-        description: Returns all the meshery adapters
-    mesheryConnectionsResponseWrapper:
+        description: Returns all the meshplay adapters
+    meshplayConnectionsResponseWrapper:
         description: Returns all connections
     perfTestPrefsRespWrapper:
         description: Returns Perf test preference
     environmentResponseWrapper:
         description: Returns environment
-    mesheryApplicationsResponseWrapper:
-        description: Returns all meshery applications
+    meshplayApplicationsResponseWrapper:
+        description: Returns all meshplay applications
 securityDefinitions:
     token:
         type: apiKey

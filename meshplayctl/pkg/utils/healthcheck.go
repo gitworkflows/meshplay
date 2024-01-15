@@ -119,7 +119,7 @@ func parseKubectlShortVersion(version string) ([3]int, error) {
 	return getK8sVersion(versionString)
 }
 
-// IsMeshplayRunning checks if the meshery server containers are up and running
+// IsMeshplayRunning checks if the meshplay server containers are up and running
 func IsMeshplayRunning(currPlatform string) (bool, error) {
 	// Get viper instance used for context to extract the endpoint from config file
 	mctlCfg, _ := config.GetMeshplayCtl(viper.GetViper())
@@ -145,7 +145,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshery"), nil
+			return strings.Contains(string(op), "meshplay"), nil
 		}
 	case "kubernetes":
 		{
@@ -164,7 +164,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if deployment.GetName() == "meshery" {
+				if deployment.GetName() == "meshplay" {
 					return true, nil
 				}
 			}
@@ -176,7 +176,7 @@ func IsMeshplayRunning(currPlatform string) (bool, error) {
 	return false, nil
 }
 
-// AreMeshplayComponentsRunning checks if the meshery containers are up and running
+// AreMeshplayComponentsRunning checks if the meshplay containers are up and running
 func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 	//If not, use the platforms to check if Meshplay is running or not
 	switch currPlatform {
@@ -186,7 +186,7 @@ func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 			if err != nil {
 				return false, errors.Wrap(err, " required dependency, docker-compose, is not present or docker is not available. Please run `meshplayctl system check --preflight` to verify system readiness")
 			}
-			return strings.Contains(string(op), "meshery"), nil
+			return strings.Contains(string(op), "meshplay"), nil
 		}
 	case "kubernetes":
 		{
@@ -203,7 +203,7 @@ func AreMeshplayComponentsRunning(currPlatform string) (bool, error) {
 				return false, err
 			}
 			for _, deployment := range deploymentList.Items {
-				if strings.Contains(string(deployment.GetName()), "meshery") {
+				if strings.Contains(string(deployment.GetName()), "meshplay") {
 					return true, nil
 				}
 			}

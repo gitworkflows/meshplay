@@ -85,16 +85,16 @@ async function fetchContexts(number = 10, search = '') {
   );
 }
 
-export const mesheryExtensionRoute = '/extension/meshmap';
+export const meshplayExtensionRoute = '/extension/meshmap';
 function isMeshplayUiRestrictedAndThePageIsNotPlayground(capabilitiesRegistry) {
   return (
-    !window.location.pathname.startsWith(mesheryExtensionRoute) &&
+    !window.location.pathname.startsWith(meshplayExtensionRoute) &&
     capabilitiesRegistry?.restrictedAccess?.isMeshplayUiRestricted
   );
 }
 
 export function isExtensionOpen() {
-  return window.location.pathname.startsWith(mesheryExtensionRoute);
+  return window.location.pathname.startsWith(meshplayExtensionRoute);
 }
 
 class MeshplayApp extends App {
@@ -111,7 +111,7 @@ class MeshplayApp extends App {
       k8sContexts: [],
       activeK8sContexts: [],
       operatorSubscription: null,
-      mesheryControllerSubscription: null,
+      meshplayControllerSubscription: null,
       meshSyncSubscription: null,
       disposeK8sContextSubscription: null,
       theme: 'light',
@@ -294,13 +294,13 @@ class MeshplayApp extends App {
   componentDidUpdate(prevProps) {
     const { k8sConfig, capabilitiesRegistry } = this.props;
 
-    // in case the meshery-ui is restricted, the user will be redirected to signup/extension page
+    // in case the meshplay-ui is restricted, the user will be redirected to signup/extension page
     if (isMeshplayUiRestrictedAndThePageIsNotPlayground(capabilitiesRegistry)) {
-      Router.push(mesheryExtensionRoute);
+      Router.push(meshplayExtensionRoute);
     }
 
     if (!_.isEqual(prevProps.k8sConfig, k8sConfig)) {
-      const { meshSyncSubscription, mesheryControllerSubscription } = this.state;
+      const { meshSyncSubscription, meshplayControllerSubscription } = this.state;
       console.log(
         'k8sconfig changed, re-initialising subscriptions',
         k8sConfig,
@@ -311,8 +311,8 @@ class MeshplayApp extends App {
       //   operatorSubscription.updateSubscription(ids);
       // }
 
-      if (mesheryControllerSubscription) {
-        mesheryControllerSubscription.updateSubscription(ids);
+      if (meshplayControllerSubscription) {
+        meshplayControllerSubscription.updateSubscription(ids);
       }
       if (meshSyncSubscription) {
         meshSyncSubscription.updateSubscription(ids);
@@ -325,7 +325,7 @@ class MeshplayApp extends App {
   }
 
   initSubscriptions = (contexts) => {
-    const mesheryControllerSubscription = new GQLSubscription({
+    const meshplayControllerSubscription = new GQLSubscription({
       type: MESHPLAY_CONTROLLER_SUBSCRIPTION,
       contextIds: contexts,
       callbackFunction: (data) => {
@@ -336,7 +336,7 @@ class MeshplayApp extends App {
       },
     });
     // const meshSyncSubscription = new GQLSubscription({ type : MESHSYNC_EVENT_SUBSCRIPTION, contextIds : contexts, callbackFunction : meshSyncCallback }) above uses old listenToMeshSyncEvents subscription, instead new subscribeMeshSyncEvents is used
-    this.setState({ mesheryControllerSubscription });
+    this.setState({ meshplayControllerSubscription });
     // this.setState({ operatorSubscription });
   };
 
@@ -751,7 +751,7 @@ const MeshplayAppWrapper = (props) => {
   return (
     <Provider store={props.store}>
       <Head>
-        <link rel="shortcut icon" href="/static/img/meshery-logo/meshery-logo.svg" />
+        <link rel="shortcut icon" href="/static/img/meshplay-logo/meshplay-logo.svg" />
         <title>Meshplay</title>
       </Head>
       <MuiPickersUtilsProvider utils={MomentUtils}>

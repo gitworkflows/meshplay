@@ -158,7 +158,7 @@ type Pattern struct {
 // Service represents the services defined within the appfile
 type Service struct {
 	// ID is the id of the service and is completely internal to
-	// Meshplay Server and meshery providers
+	// Meshplay Server and meshplay providers
 	ID *uuid.UUID `yaml:"id,omitempty" json:"id,omitempty"`
 	// Name is the name of the service and is an optional parameter
 	// If given then this supercedes the name of the service inherited

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { updateProgress } from '../../../lib/store';
-import { pingMeshplayOperator } from '../helpers/mesheryOperator';
+import { pingMeshplayOperator } from '../helpers/meshplayOperator';
 import fetchMeshplayOperatorStatus from '../../graphql/queries/OperatorStatusQuery';
 import AdapterChip from './AdapterChip';
 import { useNotification } from '../../../utils/hooks/useNotification';
@@ -32,7 +32,7 @@ const MeshplayOperatorDataPanel = ({ operatorInformation }) => {
 
     const errorCb = (err) => {
       notify({
-        message: 'Unable to ping meshery operator!',
+        message: 'Unable to ping meshplay operator!',
         type: EVENT_TYPES.ERROR,
         details: err.toString(),
       });
@@ -46,7 +46,7 @@ const MeshplayOperatorDataPanel = ({ operatorInformation }) => {
       <AdapterChip
         handleClick={handleMeshplayOperatorClick}
         isActive={true}
-        image="/static/img/meshery-operator.svg"
+        image="/static/img/meshplay-operator.svg"
         label="Meshplay Operator"
       />
       <Grid container spacing={1}>

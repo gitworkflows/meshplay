@@ -75,7 +75,7 @@ meshplayctl system dashboard --port-forward
 meshplayctl system dashboard --skip-browser
 	`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		// check if meshery is running or not
+		// check if meshplay is running or not
 		mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 		if err != nil {
 			utils.Log.Error(err)
@@ -88,7 +88,7 @@ meshplayctl system dashboard --skip-browser
 		}
 		running, _ := utils.IsMeshplayRunning(currCtx.GetPlatform())
 		if !running {
-			return errors.New(`meshery server is not running. run "meshplayctl system start" to start meshery`)
+			return errors.New(`meshplay server is not running. run "meshplayctl system start" to start meshplay`)
 		}
 
 		return nil
@@ -134,7 +134,7 @@ meshplayctl system dashboard --skip-browser
 					cmd.Context(),
 					client,
 					utils.MeshplayNamespace,
-					"meshery",
+					"meshplay",
 					options.host,
 					port,
 					options.podPort,
@@ -152,7 +152,7 @@ meshplayctl system dashboard --skip-browser
 				}
 				log.Info("Starting Port-forwarding for Meshplay UI")
 
-				mesheryURL := portforward.URLFor("")
+				meshplayURL := portforward.URLFor("")
 
 				// ticker for keeping connection alive with pod each 10 seconds
 				ticker := time.NewTicker(10 * time.Second)
@@ -164,14 +164,14 @@ meshplayctl system dashboard --skip-browser
 							ticker.Stop()
 							return
 						case <-ticker.C:
-							keepConnectionAlive(mesheryURL)
+							keepConnectionAlive(meshplayURL)
 						}
 					}
 				}()
 				log.Info(fmt.Sprintf("Forwarding ports %v -> %v", options.podPort, port))
-				log.Info("Meshplay UI available at: ", mesheryURL)
+				log.Info("Meshplay UI available at: ", meshplayURL)
 				log.Info("Opening Meshplay UI in the default browser.")
-				err = utils.NavigateToBrowser(mesheryURL)
+				err = utils.NavigateToBrowser(meshplayURL)
 				if err != nil {
 					log.Warn("Failed to open Meshplay in browser, please point your browser to " + currCtx.GetEndpoint() + " to access Meshplay.")
 				}
@@ -180,11 +180,11 @@ meshplayctl system dashboard --skip-browser
 				return nil
 			}
 
-			var mesheryEndpoint string
+			var meshplayEndpoint string
 			var endpoint *meshkitutils.Endpoint
 			clientset := client.KubeClient
 			var opts meshkitkube.ServiceOptions
-			opts.Name = "meshery"
+			opts.Name = "meshplay"
 			opts.Namespace = utils.MeshplayNamespace
 			opts.APIServerURL = client.RestConfig.Host
 
@@ -194,8 +194,8 @@ meshplayctl system dashboard --skip-browser
 				return nil
 			}
 
-			mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
-			currCtx.SetEndpoint(mesheryEndpoint)
+			meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, endpoint.Internal.Address, endpoint.Internal.Port)
+			currCtx.SetEndpoint(meshplayEndpoint)
 			if !meshkitutils.TcpCheck(&meshkitutils.HostPort{
 				Address: endpoint.Internal.Address,
 				Port:    endpoint.Internal.Port,
@@ -210,8 +210,8 @@ meshplayctl system dashboard --skip-browser
 						Address: u.Hostname(),
 						Port:    endpoint.External.Port,
 					}, nil) {
-						mesheryEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
-						currCtx.SetEndpoint(mesheryEndpoint)
+						meshplayEndpoint = fmt.Sprintf("%s://%s:%d", utils.EndpointProtocol, u.Hostname(), endpoint.External.Port)
+						currCtx.SetEndpoint(meshplayEndpoint)
 					}
 				}
 			}

@@ -25,7 +25,7 @@ Meshplay and its components are written using the following languages and techno
 | &nbsp;&nbsp;&nbsp;&nbsp; [MeshSync](/concepts/architecture/meshsync) | Golang                                                                            |
 | &nbsp;&nbsp;&nbsp;&nbsp; [Broker](/concepts/architecture/broker)     | Golang, NATS                                                                      |
 | [Meshplay Database](/concepts/architecture/database)                  | Golang, SQLlite                                                                   | 
-| [Meshplay CLI](#meshery-cli) | Golang                                                                            |
+| [Meshplay CLI](#meshplay-cli) | Golang                                                                            |
 
 ## Deployments
 
@@ -35,8 +35,8 @@ Meshplay deploys as a set of containers. Meshplay's containers can be deployed t
 
 In Meshplay v0.6.0, Adapters will register with Meshplay Server over HTTP POST. If Meshplay Server is not available, Meshplay Adapters will backoff and retry to connect to Meshplay Server perpetually.
 
-<a href="{{ site.baseurl }}/assets/img/architecture/meshery-architecture.svg">
-<img src="{{ site.baseurl }}/assets/img/architecture/meshery-architecture.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/architecture/meshplay-architecture.svg">
+<img src="{{ site.baseurl }}/assets/img/architecture/meshplay-architecture.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay architecture</figcaption>
 </figure>
@@ -46,8 +46,8 @@ _Figure: Meshplay deploys inside or outside of a Kubernetes cluster_
 #### Adapters and Capabilities Registry
 
 Each Meshplay Adapter delivers its own unique specific functionality. As such, at time of deployment, the Meshplay Adapter will register its cloud native infrastructure-specific capabilities (its operations) with Meshplay Server's capability registry.
-<a href="{{ site.baseurl }}/assets/img/adapters/meshery-adapter-operation-registration.svg">
-<img src="{{ site.baseurl }}/assets/img/adapters/meshery-adapter-operation-registration.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/adapters/meshplay-adapter-operation-registration.svg">
+<img src="{{ site.baseurl }}/assets/img/adapters/meshplay-adapter-operation-registration.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay Adapter Operation Registratio</figcaption>
 </figure>
@@ -80,8 +80,8 @@ As a point of extension, Meshplay supports two types of providers: _Local_ and _
 
 This diagram outlines logical constructs within Meshplay and their relationships.
 
-<a href="{{ site.baseurl }}/assets/img/architecture/meshery_logical_object_model.svg">
-<img src="{{ site.baseurl }}/assets/img/architecture/meshery_logical_object_model.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/architecture/meshplay_logical_object_model.svg">
+<img src="{{ site.baseurl }}/assets/img/architecture/meshplay_logical_object_model.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay Object Model</figcaption>
 </figure>
@@ -90,8 +90,8 @@ This diagram outlines logical constructs within Meshplay and their relationships
 
 Meshplay Operator is the multi-cluster Kubernetes operator that manages MeshSync and Meshplay Broker.
 
-<a href="{{ site.baseurl }}/assets/img/architecture/meshery-operator-and-meshsync.svg">
-<img src="{{ site.baseurl }}/assets/img/architecture/meshery-operator-and-meshsync.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/architecture/meshplay-operator-and-meshsync.svg">
+<img src="{{ site.baseurl }}/assets/img/architecture/meshplay-operator-and-meshsync.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay Operator and MeshSync</figcaption>
 </figure>
@@ -102,8 +102,8 @@ See the [**Operator**]({{ site.baseurl }}/concepts/architecture/operator) sectio
 
 Meshplay Server's database is responsible for collecting and centralizing the state of all elements under management, including infrastructure, application, and Meshplay's own components. Meshplay's database, while persisted to file, is treated as a cache.
 
-<a href="{{ site.baseurl }}/assets/img/architecture/meshery-database.svg">
-<img src="{{ site.baseurl }}/assets/img/architecture/meshery-database.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/architecture/meshplay-database.svg">
+<img src="{{ site.baseurl }}/assets/img/architecture/meshplay-database.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay Docker Extension</figcaption>
 </figure>
@@ -114,8 +114,8 @@ _See the [**Database**]({{ site.baseurl }}/concepts/architecture/database) secti
 
 Meshplay's Docker extension provides a simple and flexible way to design and operate cloud native infrastructure on top of Kubernetes using Docker containers. The architecture of this extension is designed to be modular and extensible, with each component serving a specific purpose within the overall deployment process.
 
-<a href="{{ site.baseurl }}/assets/img/architecture/meshery-docker-extension.svg">
-<img src="{{ site.baseurl }}/assets/img/architecture/meshery-docker-extension.svg" width="50%" /></a>
+<a href="{{ site.baseurl }}/assets/img/architecture/meshplay-docker-extension.svg">
+<img src="{{ site.baseurl }}/assets/img/architecture/meshplay-docker-extension.svg" width="50%" /></a>
 <figure>
   <figcaption>Figure: Meshplay Docker Extension</figcaption>
 </figure>
@@ -134,7 +134,7 @@ concerned with a long-lived configuration, while others have no state at all.
 | :---------------- | :----------- | :-------------------------------------------------------------------- |
 | [meshplayctl](/guides/meshplayctl/working-with-meshplayctl)        | stateless    | command line interface that has a configuration file                  |
 | [Meshplay Adapters](/concepts/architecture/adapters)  | stateless    | interface with cloud native infrastructure on a transactional basis                |
-| Meshplay Server    | caches state | application cache is stored in `$HOME/.meshery/` folder               |
+| Meshplay Server    | caches state | application cache is stored in `$HOME/.meshplay/` folder               |
 | [Meshplay Providers](/extensibility/providers) | stateful     | location of persistent user preferences, environment, tests and so on |
 | [Meshplay Operator](/concepts/architecture/operator)  | stateless    | operator of Meshplay custom controllers, notably MeshSync              |
 | [MeshSync](/concepts/architecture/meshsync)          | stateless    | Kubernetes custom controller, continuously running discovery          |
@@ -314,4 +314,4 @@ See the [**Adapters**]({{ site.baseurl }}/concepts/architecture/adapters) sectio
 </table>
 <br>
 
-Please also see the [Troubleshooting Toolkit](https://docs.google.com/document/d/1q-aayRqx3QKIk2soTaTTTH-jmHcVXHwNYFsYkFawaME/edit#heading=h.ngupcd4j1pfm) and the [Meshplay v0.7.0: Connection States (Kubnernetes) Design Review](http://discuss.khulnasoft.com/t/meshery-v0-7-0-connection-states-kubnernetes-design-review/958)
+Please also see the [Troubleshooting Toolkit](https://docs.google.com/document/d/1q-aayRqx3QKIk2soTaTTTH-jmHcVXHwNYFsYkFawaME/edit#heading=h.ngupcd4j1pfm) and the [Meshplay v0.7.0: Connection States (Kubnernetes) Design Review](http://discuss.khulnasoft.com/t/meshplay-v0-7-0-connection-states-kubnernetes-design-review/958)

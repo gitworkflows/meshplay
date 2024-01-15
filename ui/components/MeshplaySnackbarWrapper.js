@@ -113,15 +113,15 @@ const styles = (theme) => ({
 });
 
 const generateMsgForMesh = (name) => {
-  return `I deployed ${name} service mesh with one-click using @mesheryio!\nManage your infrastructure with Meshplay`;
+  return `I deployed ${name} service mesh with one-click using @meshplayio!\nManage your infrastructure with Meshplay`;
 };
 
 const generateMsgForSampleApp = (name) => {
-  return `I deployed ${name} with one-click using @mesheryio!\nManage your infrastructure with Meshplay`;
+  return `I deployed ${name} with one-click using @meshplayio!\nManage your infrastructure with Meshplay`;
 };
 
 const generateMsgForAppsPatt = (name) => {
-  return `I deployed ${name} [design | application] in a single-click using @mesheryio!\nFind design patterns like mine in the Meshplay Catalog - https://khulnasoft.com/catalog`;
+  return `I deployed ${name} [design | application] in a single-click using @meshplayio!\nFind design patterns like mine in the Meshplay Catalog - https://khulnasoft.com/catalog`;
 };
 
 const getDefaultMessage = (message) => {
@@ -304,7 +304,7 @@ function MeshplaySnackbarWrapper(props) {
                     ERROR CODE
                   </Typography>
                   <a
-                    href={`${ERROR_DOC_LINK}#meshery-${componentType}-for-meshery-${componentName.toLowerCase()}`}
+                    href={`${ERROR_DOC_LINK}#meshplay-${componentType}-for-meshplay-${componentName.toLowerCase()}`}
                     target="_blank"
                     rel="referrer noreferrer"
                   >

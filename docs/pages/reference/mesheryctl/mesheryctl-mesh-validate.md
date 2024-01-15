@@ -37,7 +37,7 @@ meshplayctl mesh validate [mesh name] --adapter [name of the adapter] --tokenPat
 Validate Istio to service mesh standards
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl mesh validate istio --adapter meshery-istio --spec smi
+meshplayctl mesh validate istio --adapter meshplay-istio --spec smi
 
 </div>
 </pre> 
@@ -46,7 +46,7 @@ meshplayctl mesh validate istio --adapter meshery-istio --spec smi
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-  -a, --adapter string   (Required) Adapter to use for validation (default "meshery-nsm")
+  -a, --adapter string   (Required) Adapter to use for validation (default "meshplay-nsm")
   -h, --help             help for validate
   -s, --spec string      (Required) specification to be used for conformance test (smi/istio-vet) (default "smi")
   -t, --token string     Path to token for authenticating to Meshplay API
@@ -59,7 +59,7 @@ meshplayctl mesh validate istio --adapter meshery-istio --spec smi
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string   path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string   path to config file (default "/home/runner/.meshplay/config.yaml")
   -v, --verbose         verbose output
 
 </div>

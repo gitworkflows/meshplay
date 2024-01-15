@@ -100,7 +100,7 @@ type: project
 
 <details>
 <summary><h6>Question: Why is Meshplay Server only receiving MeshSync updates from one of my Kubernetes Clusters?</h6></summary>
-<p><strong>Answer:</strong> In order to receive MeshSync updates, Meshplay Server subscribes for updates Meshplay Broker. In other words, Meshplay Server connects to the `meshery-broker` service port in order to subscribe for streaming MeshSync updates. By default, the Meshplay Broker service is deployed as type Kubernetes Service type <code>LoadBalancer</code>, which requires that your Kubernetes cluster provides an external IP address to the Meshplay Broker service, exposing it external to the Kubernetes cluster.</p>
+<p><strong>Answer:</strong> In order to receive MeshSync updates, Meshplay Server subscribes for updates Meshplay Broker. In other words, Meshplay Server connects to the `meshplay-broker` service port in order to subscribe for streaming MeshSync updates. By default, the Meshplay Broker service is deployed as type Kubernetes Service type <code>LoadBalancer</code>, which requires that your Kubernetes cluster provides an external IP address to the Meshplay Broker service, exposing it external to the Kubernetes cluster.</p>
 <p>If you're running Kubernetes in Docker Desktop, an external IP address of <code>localhost</code> is assigned. If you're running Minikube, and execute <code>minikube tunnel</code> to gain access to Meshplay Broker's service, you will find that both Meshplay Broker service endpoints (from two different clusters) are sharing the same <code>localhost:4222</code> address and port number. This port sharing causes conflict and Meshplay Server is only able to connect to one of the Meshplay Brokers.</p>
 
 <p>Few ways to solve this problem:</p>
@@ -118,7 +118,7 @@ type: project
 <p><strong>Lack of Connectivity</strong></p>
 
 <ol>
-<li>Confirm that the Meshplay Broker service is exposed from your cluster using <code>kubectl get svc -n meshery</code> and that an hostname or IP address is displayed in the External Address column. Meshplay Server should be able to reach this address.</li>
+<li>Confirm that the Meshplay Broker service is exposed from your cluster using <code>kubectl get svc -n meshplay</code> and that an hostname or IP address is displayed in the External Address column. Meshplay Server should be able to reach this address.</li>
 <li>It is possible that MeshSync is not healthy and not sending cluster updates, check for MeshSync status by navigating to Settings in Meshplay UI and clicking on the MeshSync connection.</li>
 <li>If MeshSync is healthy, check the status of Meshplay Broker by clicking on the NATS connection.</li>
 </ol>
@@ -142,7 +142,7 @@ type: project
 <details>
 <summary>
 <strong>Question: Getting an error while running <code>make server</code> on Windows?</strong>
-</summary><strong>Answer:</strong> <p>On Windows, set up the project on Ubuntu WSL2 and you will be able to run the Meshplay UI and the server. For more information please visit <a href="/project/contributing/meshery-windows">Setting up Meshplay Development Environment on Windows</a>.</p>
+</summary><strong>Answer:</strong> <p>On Windows, set up the project on Ubuntu WSL2 and you will be able to run the Meshplay UI and the server. For more information please visit <a href="/project/contributing/meshplay-windows">Setting up Meshplay Development Environment on Windows</a>.</p>
 </details>
 
 {% include discuss.html %}

@@ -26,7 +26,7 @@ meshplayctl system reset [flags]
 
 ## Examples
 
-Resets meshery.yaml file with a copy from Meshplay repo
+Resets meshplay.yaml file with a copy from Meshplay repo
 <pre class='codeblock-pre'>
 <div class='codeblock'>
 meshplayctl system reset
@@ -47,7 +47,7 @@ meshplayctl system reset
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string    path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string    path to config file (default "/home/runner/.meshplay/config.yaml")
   -c, --context string   (optional) temporarily change the current context.
   -v, --verbose          verbose output
   -y, --yes              (optional) assume yes for user interactive prompts.

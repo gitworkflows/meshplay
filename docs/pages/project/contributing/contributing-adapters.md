@@ -21,7 +21,7 @@ Each commit has to be signed off, see [Contributing Overview]({{site.baseurl}}/p
 
 Testing your local changes running as a container can be accomplished in two ways:
 
-1. Define the adapter’s address in the UI: Unless the running container is named as specified in the docker-run target in the Makefile, the container has to be removed manually first. Then, run `make docker` followed by `make docker-run`. Then, connect to the adapter in the UI in “Settings > Adapters” using `localhost:<port>` if the meshery server is running as a binary, or <docker IP address>:<port> if it is running as a docker container.
+1. Define the adapter’s address in the UI: Unless the running container is named as specified in the docker-run target in the Makefile, the container has to be removed manually first. Then, run `make docker` followed by `make docker-run`. Then, connect to the adapter in the UI in “Settings > Adapters” using `localhost:<port>` if the meshplay server is running as a binary, or <docker IP address>:<port> if it is running as a docker container.
 1. Using meshplayctl: In `~/.khulnasoft/meshplay.yaml`, change the tag specifying the image of the adapter to “latest”. Run make docker, followed by `meshplayctl system start --skip-update`. This assumes meshplayctl system start has been executed at least once before.
 
 ### Running an adapter as a process

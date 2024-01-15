@@ -18,7 +18,7 @@ var b *bytes.Buffer
 func SetupContextEnv(t *testing.T) {
 	path, err := os.Getwd()
 	if err != nil {
-		t.Error("unable to locate meshery directory")
+		t.Error("unable to locate meshplay directory")
 	}
 	viper.Reset()
 	viper.SetConfigFile(path + "/../../../../pkg/utils/TestConfig.yaml")
@@ -159,7 +159,7 @@ func TestSetCmd(t *testing.T) {
 
 // 			path, err := os.Getwd()
 // 			if err != nil {
-// 				t.Error("unable to locate meshery directory")
+// 				t.Error("unable to locate meshplay directory")
 // 			}
 // 			filepath := path + "/testdata/channel/switch.output.golden"
 // 			content, err := os.ReadFile(filepath)

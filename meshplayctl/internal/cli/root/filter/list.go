@@ -80,7 +80,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 		if err != nil {
 			return errors.New(utils.FilterListError("error reading token\nUse 'meshplayctl filter list --help' to display usage guide\n" + err.Error()))
 		}
-		provider := tokenObj["meshery-provider"]
+		provider := tokenObj["meshplay-provider"]
 		var data [][]string
 
 		if verbose {
@@ -113,7 +113,7 @@ meshplayctl filter list 'Test Filter' (maximum 25 filters)
 			return nil
 		}
 
-		// Check if meshery provider is set
+		// Check if meshplay provider is set
 		if provider == "None" {
 			for _, v := range response.Filters {
 				FilterName := strings.Trim(v.Name, filepath.Ext(v.Name))

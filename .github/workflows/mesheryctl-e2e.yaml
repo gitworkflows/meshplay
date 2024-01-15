@@ -61,7 +61,7 @@ jobs:
       - name: Deploy Service Mesh
         run: |
           cat ~/auth.json
-          echo | meshplayctl mesh deploy meshery-istio --namespace istio-system -t ~/auth.json ISTIO
+          echo | meshplayctl mesh deploy meshplay-istio --namespace istio-system -t ~/auth.json ISTIO
           sleep 50
         shell: '/bin/bash {0}'
 
@@ -114,7 +114,7 @@ jobs:
       
       - name: Deploy Service Mesh
         run: |
-          echo | meshplayctl mesh deploy meshery-istio --namespace istio-system -t ~/auth.json ISTIO
+          echo | meshplayctl mesh deploy meshplay-istio --namespace istio-system -t ~/auth.json ISTIO
           sleep 50
         shell: '/bin/bash {0}'
 

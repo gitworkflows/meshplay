@@ -69,15 +69,15 @@ export const CONTROLLER_STATES = {
   DISABLED: 'DISABLED',
 };
 
-export const MeshplayPatternsCatalog = 'meshery-patterns-catalog';
+export const MeshplayPatternsCatalog = 'meshplay-patterns-catalog';
 
-export const MeshplayFiltersCatalog = 'meshery-filters-catalog';
+export const MeshplayFiltersCatalog = 'meshplay-filters-catalog';
 
 // Remove this fetch all connections initially
 export const CONNECTION_KINDS_DEF = ['MESHPLAY', 'KUBERNETES', 'PROMETHEUS', 'GRAFANA', 'GITHUB'];
 
 export const CONNECTION_KINDS = {
-  MESHPLAY: 'meshery',
+  MESHPLAY: 'meshplay',
   KUBERNETES: 'kubernetes',
   PROMETHEUS: 'prometheus',
   GRAFANA: 'grafana',

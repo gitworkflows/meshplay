@@ -11,8 +11,8 @@ list: include
 
 Broker is a custom Kubernetes controller that provides data streaming across independent components of Meshplay whether those components are running inside or outside of the Kubernetes cluster.
 
-[![Meshplay Log Viewer]({{ site.baseurl }}/assets/img/architecture/meshery-log-viewer.svg
-)]({{ site.baseurl }}/assets/img/architecture/meshery-log-viewer.svg)
+[![Meshplay Log Viewer]({{ site.baseurl }}/assets/img/architecture/meshplay-log-viewer.svg
+)]({{ site.baseurl }}/assets/img/architecture/meshplay-log-viewer.svg)
 
 ### Broker FAQs
 

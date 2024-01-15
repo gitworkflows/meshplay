@@ -25,7 +25,7 @@ import { formatToTitleCase } from '../../utils/utils';
 
 const DISABLED = 'DISABLED';
 const KUBERNETES = 'kubernetes';
-const MESHPLAY = 'meshery';
+const MESHPLAY = 'meshplay';
 
 const useKubernetesStyles = makeStyles((theme) => ({
   root: {
@@ -217,7 +217,7 @@ const KubernetesMetadataFormatter = ({ meshsyncControllerState, connection, meta
                     disabled={operatorState === CONTROLLER_STATES.UNDEPLOYED}
                     status={operatorState}
                     handlePing={() => handleOperatorClick(connection.id)}
-                    iconSrc="/static/img/meshery-operator.svg"
+                    iconSrc="/static/img/meshplay-operator.svg"
                   />
                 </ListItem>
               </List>

@@ -90,7 +90,7 @@ class MeshplayChart extends React.Component {
   }
 
   getSocialMessageForPerformanceTest(rps, percentile) {
-    return `I achieved ${rps.trim()} RPS running my service at a P99.9 of ${percentile} ms using @mesheryio with @smp_spec! Find out how fast your service is with`;
+    return `I achieved ${rps.trim()} RPS running my service at a P99.9 of ${percentile} ms using @meshplayio with @smp_spec! Find out how fast your service is with`;
   }
 
   handleSocialExpandClick(e, chartData) {

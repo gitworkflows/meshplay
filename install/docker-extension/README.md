@@ -1,7 +1,7 @@
-<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><picture align="center">
+<p style="text-align:center;" align="center"><a href="https://layer5.io/meshplay"><picture align="center">
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/khulnasoft/meshplay/blob/master/.github/assets/images/khulnasoft/meshplay-logo-dark-text-side.svg"  width="70%" align="center" style="margin-bottom:20px;">
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/khulnasoft/meshplay/blob/master/.github/assets/images/khulnasoft/meshplay-logo-light-text-side.svg" width="70%" align="center" style="margin-bottom:20px;">
-  <img alt="Shows an illustrated light mode meshery logo in light color mode and a dark mode meshery logo dark color mode." src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/khulnasoft/meshplay-logo-tag-light-text-side.png" width="70%" align="center" style="margin-bottom:20px;">
+  <img alt="Shows an illustrated light mode meshplay logo in light color mode and a dark mode meshplay logo dark color mode." src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/khulnasoft/meshplay-logo-tag-light-text-side.png" width="70%" align="center" style="margin-bottom:20px;">
 </picture></a><br /><br /></p>
 
 <p align="center">
@@ -21,8 +21,8 @@
   <img src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=https%3A%2F%2Fdiscuss.layer5.io" /></a>
 <a href="https://slack.khulnasoft.com" alt="Join Slack">
   <img src="https://img.shields.io/badge/Slack-@layer5.svg?logo=slack"></a>
-<a href="https://twitter.com/intent/follow?screen_name=mesheryio" alt="Twitter Follow">
-  <img src="https://img.shields.io/twitter/follow/mesheryio.svg?label=Follow+Meshplay&style=social" /></a>
+<a href="https://twitter.com/intent/follow?screen_name=meshplayio" alt="Twitter Follow">
+  <img src="https://img.shields.io/twitter/follow/meshplayio.svg?label=Follow+Meshplay&style=social" /></a>
 </p>
 
 [Meshplay](https://khulnasoft.com) is the cloud native management plane offering lifecycle, configuration, and performance management of Kubernetes, service meshes, and your workloads.
@@ -42,7 +42,7 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the clo
 
 <h3>Using <code>docker</code></h3>
 <p>Meshplay runs as a set of containers inside your Docker Desktop virtual machine.</p>
-<pre>docker extension install meshery/docker-extension-meshery</pre>
+<pre>docker extension install meshplay/docker-extension-meshplay</pre>
 <p>See the <a href="https://docs.khulnasoft.com/installation/quick-start">quick start</a> guide.</p>
 <p style="clear:both;">&nbsp;</p>
 
@@ -51,13 +51,13 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the clo
 1. Install any service mesh with the check of a box.
 1. Import your Docker Compose apps for visual design and deployment to Kubernetes and service meshes.
 
-<p align="center"><a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-desktop-extension-for-meshery.png"><img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-desktop-extension-for-meshery.png" width="90%" align="center" /></a></p>
+<p align="center"><a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-desktop-extension-for-meshplay.png"><img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-desktop-extension-for-meshplay.png" width="90%" align="center" /></a></p>
 
 ## Docker Extension for Meshplay Architecture
 
 The Docker Extension for Meshplay deploys Meshplay to your local Docker host as a Docker Compose application.
 
-<p align="center"><a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-extension-for-meshery-architecture.png"><img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-extension-for-meshery-architecture.png" width="90%" align="center" /></a></p>
+<p align="center"><a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-extension-for-meshplay-architecture.png"><img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/docker-extension-for-meshplay-architecture.png" width="90%" align="center" /></a></p>
 Learn more about <a href="https://docs.khulnasoft.com/architecture">Meshplay's architecture</a>.
 
 ## Docker Extension for Meshplay
@@ -76,13 +76,13 @@ make extension
 Once build is complete:
 
 ```
-docker extension install meshery/docker-extension-meshery:edge-latest
+docker extension install meshplay/docker-extension-meshplay:edge-latest
 ```
 
 Or reinstall with:
 
 ```
-docker extension update meshery/docker-extension-meshery:edge-latest
+docker extension update meshplay/docker-extension-meshplay:edge-latest
 ```
 
 <p style="text-align:center; width:100%;" align="center">

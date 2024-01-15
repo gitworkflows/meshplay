@@ -60,7 +60,7 @@ const (
 var (
 	cmdType     string
 	contextdocs string = "See https://docs.khulnasoft.com/reference/meshplayctl/system/context for usage details."
-	contextDir  string = "see that you have a correct context in your  meshconfig at `$HOME/.meshery/config.yaml`."
+	contextDir  string = "see that you have a correct context in your  meshconfig at `$HOME/.meshplay/config.yaml`."
 )
 
 // A Format reference that returns Meshplayctl's URL docs for system command and sub commands
@@ -179,7 +179,7 @@ func ErrSettingTemporaryContext(err error) error {
 }
 
 func ErrCreateManifestsFolder(err error) error {
-	return errors.New(ErrCreateManifestsFolderCode, errors.Alert, []string{"Error creating manifest folder"}, []string{err.Error()}, []string{"system error in creating manifest folder"}, []string{"Make sure manifest folder (.meshery/manifests) is created properly"})
+	return errors.New(ErrCreateManifestsFolderCode, errors.Alert, []string{"Error creating manifest folder"}, []string{err.Error()}, []string{"system error in creating manifest folder"}, []string{"Make sure manifest folder (.meshplay/manifests) is created properly"})
 }
 
 func ErrRestartMeshplay(err error) error {

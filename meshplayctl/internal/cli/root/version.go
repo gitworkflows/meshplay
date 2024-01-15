@@ -61,7 +61,7 @@ meshplayctl version
 			userResponse = utils.AskForConfirmation("Looks like you are using an outdated config file. Do you want to generate a new config file?")
 			if userResponse {
 				utils.BackupConfigFile(utils.DefaultConfigPath)
-				// Create config file if not present in meshery folder
+				// Create config file if not present in meshplay folder
 				err = utils.CreateConfigFile()
 				if err != nil {
 					utils.Log.Error(ErrCreatingConfigFile)

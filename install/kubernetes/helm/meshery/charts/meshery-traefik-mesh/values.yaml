@@ -1,4 +1,4 @@
-# Default values for meshery-traefik-mesh.
+# Default values for meshplay-traefik-mesh.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -11,7 +11,7 @@ image:
 env: {}
 
 probe:
-  #TODO: Need to confirm the health check path of meshery.
+  #TODO: Need to confirm the health check path of meshplay.
   livenessProbe:
     enabled: false
   readinessProbe:
@@ -19,9 +19,9 @@ probe:
 
 imagePullSecrets: []
 nameOverride: ""
-# By default, this is provided by the top-level chart as "meshery-consul"
+# By default, this is provided by the top-level chart as "meshplay-consul"
 fullnameOverride: ""
-# By default, this is provided by the top-level chart as "meshery-server"
+# By default, this is provided by the top-level chart as "meshplay-server"
 serviceAccountNameOverride: ""
 
 serviceAccount:

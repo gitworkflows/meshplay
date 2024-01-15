@@ -10,8 +10,8 @@ list: include
 
 [Components](https://github.com/khulnasoft/meshplay/tree/master/server/meshmodel/components) represent entities in the Meshplay ecosystem, exposing capabilities of the underlying platform. They can be registered, created, and used by users and operators. Components have definitions, instances, and associated metadata. Components having the same `kind`, `apiVersion` and `model.name` attributes are considered duplicates.
 
-[![Meshplay Components]({{ site.baseurl }}/assets/img/architecture/meshery-components.svg
-)]({{ site.baseurl }}/assets/img/architecture/meshery-components.svg)
+[![Meshplay Components]({{ site.baseurl }}/assets/img/architecture/meshplay-components.svg
+)]({{ site.baseurl }}/assets/img/architecture/meshplay-components.svg)
 
 ## Component Status
 

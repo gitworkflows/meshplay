@@ -16,7 +16,7 @@ func TestListModelCmd(t *testing.T) {
 	SetupContextEnv(t)
 	// initialize mock server for handling requests
 	utils.StartMockery(t)
-	// initialize mock meshery backend
+	// initialize mock meshplay backend
 	go utils.StartMockMeshplayServer(t) // nolint
 
 	_, filename, _, ok := runtime.Caller(0)
@@ -109,7 +109,7 @@ func TestListModelCmd(t *testing.T) {
 
 func TestModelViewCmd(t *testing.T) {
 	SetupContextEnv(t)
-	// initialize mock meshery backend
+	// initialize mock meshplay backend
 	go utils.StartMockMeshplayServer(t) // nolint
 
 	_, filename, _, ok := runtime.Caller(0)

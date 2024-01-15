@@ -362,7 +362,7 @@ export const Notification = withErrorBoundary(({ event_id }) => {
       ? [
           {
             name: 'Meshplay',
-            avatar_url: '/static/img/meshery-logo.png',
+            avatar_url: '/static/img/meshplay-logo.png',
             tooltip: `System ID: ${event.system_id}`,
           },
         ]

@@ -29,7 +29,7 @@ Flags:
 --preflight Verify environment readiness to deploy Meshplay
 
 Global Flags:
---config string path to config file (default "/Users/navendu/.meshery/config.yaml")
+--config string path to config file (default "/Users/navendu/.meshplay/config.yaml")
 -c, --context string (optional) temporarily change the current context.
 -v, --verbose verbose output
 -y, --yes (optional) assume yes for user interactive prompts.</div></div>
@@ -144,7 +144,7 @@ Guides to using Meshplay's various features and components.
 
 {% capture tag %}
 
-<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading meshplayctl</a></li>
+<li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading meshplayctl</a></li>
 
 {% endcapture %}
 

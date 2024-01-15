@@ -724,7 +724,7 @@ class Navigator extends React.Component {
         cat.children?.forEach((ch) => {
           if (ch.id === 'Designs') {
             const idx = self.props.capabilitiesRegistry?.capabilities?.findIndex(
-              (cap) => cap.feature === 'persist-meshery-patterns',
+              (cap) => cap.feature === 'persist-meshplay-patterns',
             );
             if (idx != -1) {
               ch.show = true;
@@ -821,7 +821,7 @@ class Navigator extends React.Component {
   pickIcon(aName, href) {
     aName = aName.toLowerCase();
     const { classes } = this.props;
-    let image = '/static/img/meshery-logo.png';
+    let image = '/static/img/meshplay-logo.png';
     let filter =
       window.location.pathname === href
         ? 'invert(50%) sepia(78%) saturate(2392%) hue-rotate(160deg) brightness(93%) contrast(101%)'
@@ -1027,8 +1027,8 @@ class Navigator extends React.Component {
   /**
    * getMeshplayVersionText returs a well formatted version text
    *
-   * If the meshery is running latest version then and is using "edge" channel
-   * then it will just show "edge-latest". However, if the meshery is on edge and
+   * If the meshplay is running latest version then and is using "edge" channel
+   * then it will just show "edge-latest". However, if the meshplay is on edge and
    * is running an outdated version then it will return "edge-$version".
    *
    * If on stable channel, then it will always show "stable-$version"
@@ -1051,7 +1051,7 @@ class Navigator extends React.Component {
 
   /**
    * versionUpdateMsg returns the appropriate message
-   * based on the meshery's current running version and latest available
+   * based on the meshplay's current running version and latest available
    * version.
    *
    * @returns {React.ReactNode} react component to display
@@ -1081,7 +1081,7 @@ class Navigator extends React.Component {
 
   /**
    * openReleaseNotesInNew returns the appropriate link to the release note
-   * based on the meshery's current running channel and version.
+   * based on the meshplay's current running channel and version.
    *
    * @returns {React.ReactNode} react component to display
    */
@@ -1139,12 +1139,12 @@ class Navigator extends React.Component {
         >
           <img
             className={isDrawerCollapsed ? classes.mainLogoCollapsed : classes.mainLogo}
-            src="/static/img/meshery-logo.png"
+            src="/static/img/meshplay-logo.png"
             onClick={this.handleTitleClick}
           />
           <img
             className={isDrawerCollapsed ? classes.mainLogoTextCollapsed : classes.mainLogoText}
-            src="/static/img/meshery-logo-text.png"
+            src="/static/img/meshplay-logo-text.png"
             onClick={this.handleTitleClick}
           />
 

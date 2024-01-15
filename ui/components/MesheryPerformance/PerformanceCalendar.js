@@ -103,7 +103,7 @@ const styles = (theme) => ({
  * and generate calendar events from them
  *
  * @param {{
- *  meshery_id: string,
+ *  meshplay_id: string,
  *  name: string,
  *  test_start_time: string,
  *  runner_results: {

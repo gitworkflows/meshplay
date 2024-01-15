@@ -34,7 +34,7 @@ The default configuration of a Meshplay deployment includes one instance of each
 #### Configuration: Choosing an adapter while installing Meshplayctl
 
 While installing meshplayctl using bash installation script, we can choose which adapter to be loaded.
-This is done by passing ADAPTERS environment variable to meshery bash script.
+This is done by passing ADAPTERS environment variable to meshplay bash script.
 
 *For e.g.* 
 `curl -L https://khulnasoft.com/install | ADAPTERS=consul PLATFORM=kubernetes bash -` installs meshplayctl and starts Meshplay Server in your connected Kubernetes cluster deploying only the Meshplay Adapter for Consul and not the rest of Meshplay's adapters.

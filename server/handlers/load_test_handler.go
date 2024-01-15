@@ -381,8 +381,8 @@ func (h *Handler) loadTestHelperHandler(w http.ResponseWriter, req *http.Request
 		for data := range respChan {
 			bd, err := json.Marshal(data)
 			if err != nil {
-				h.log.Error(models.ErrMarshal(err, "meshery result for shipping"))
-				http.Error(w, models.ErrMarshal(err, "meshery result for shipping").Error(), http.StatusInternalServerError)
+				h.log.Error(models.ErrMarshal(err, "meshplay result for shipping"))
+				http.Error(w, models.ErrMarshal(err, "meshplay result for shipping").Error(), http.StatusInternalServerError)
 				return
 			}
 

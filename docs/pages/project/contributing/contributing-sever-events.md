@@ -36,7 +36,7 @@ The event mechanism utilizes [builder pattern](https://en.wikipedia.org/wiki/Bui
 
 - `ActedUpon(UUID)` : it takes [UUID](https://pkg.go.dev/github.com/gofrs/uuid#UUID) of the resource being provisioned on the server, and the events are associated with that resource.
 - `FromUser()` : it takes [UUID](https://pkg.go.dev/github.com/gofrs/uuid#UUID) of the user initiating the HTTP request to the server. This enables the server to publish events intended for that specific user in response.
-- `FromSystem(UUID)` : it takes [UUID](https://pkg.go.dev/github.com/gofrs/uuid#UUID) of the running meshery instance (Handler instance contains it [`h.SystemID`](https://github.com/khulnasoft/meshplay/blob/c73d3687da3eb3b2aaaabbd27e91f99906fc5838/server/handlers/handler_instance.go#L29)).
+- `FromSystem(UUID)` : it takes [UUID](https://pkg.go.dev/github.com/gofrs/uuid#UUID) of the running meshplay instance (Handler instance contains it [`h.SystemID`](https://github.com/khulnasoft/meshplay/blob/c73d3687da3eb3b2aaaabbd27e91f99906fc5838/server/handlers/handler_instance.go#L29)).
 - `WithCategory` : The string argument to specify under which category this event falls, For example, when a user is provisioning a Kubernetes connection, the specified category for the event is "connection.
 - `WithAction` : The string argument to specify the type of action the server is performing, for instance, when registering a Kubernetes connection, the action would be "register".
 
@@ -48,7 +48,7 @@ The event mechanism utilizes [builder pattern](https://en.wikipedia.org/wiki/Bui
 
 *Note: In certain conditions you must add some fields with specific  keys:*
 - If the severity is "Error", include a field in Metadata using the key `err` with the corresponding error value.
-- When you want to add a link to meshery docs, include a field in Metadata using the key `doc` with the corresponding link value.
+- When you want to add a link to meshplay docs, include a field in Metadata using the key `doc` with the corresponding link value.
 
 - `WithDescription` : The string argument provides a detailed, descriptive message that depicts the specific operation or action being executed on the server.
 - `WithMetadata`: it takes a Map `map[string]interface{}` data structure containing any supplementary information that the developer/contributor deems essential for the user to be informed about.

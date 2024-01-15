@@ -45,7 +45,7 @@ meshplayctl system check --preflight
 Run checks on specific mesh adapter
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl system check --adapter meshery-istio:10000
+meshplayctl system check --adapter meshplay-istio:10000
 
 </div>
 </pre> 
@@ -53,7 +53,7 @@ meshplayctl system check --adapter meshery-istio:10000
 or
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl system check --adapter meshery-istio
+meshplayctl system check --adapter meshplay-istio
 
 </div>
 </pre> 
@@ -78,8 +78,8 @@ meshplayctl system check --operator
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --adapter string   Check status of specified meshery adapter
-      --adapters         Check status of meshery adapters
+      --adapter string   Check status of specified meshplay adapter
+      --adapters         Check status of meshplay adapters
       --components       Check status of Meshplay components
   -h, --help             help for check
       --operator         Verify the health of Meshplay Operator's deployment with MeshSync and Broker
@@ -93,7 +93,7 @@ meshplayctl system check --operator
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string    path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string    path to config file (default "/home/runner/.meshplay/config.yaml")
   -c, --context string   (optional) temporarily change the current context.
   -v, --verbose          verbose output
   -y, --yes              (optional) assume yes for user interactive prompts.

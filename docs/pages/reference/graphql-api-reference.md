@@ -247,7 +247,7 @@ Query status of Meshplay Operator in your cluster.
 
 Query for performance result.
 
-###### **Returns** [`MeshplayResult`](#mesheryresult).
+###### **Returns** [`MeshplayResult`](#meshplayresult).
 
 #### **Arguments**
 
@@ -433,7 +433,7 @@ Listen to changes in Broker (NATS) Connection.
 ### `Subscription.subscribeMeshSyncEvents`
 
 Listen to the events that MeshSync is sending through Meshplay Broker.
-Note: It does not listen to the changes in meshery database, but to meshsync events.
+Note: It does not listen to the changes in meshplay database, but to meshsync events.
 
 ###### **Returns** [`MeshSyncEvent!`](#meshsyncevent).
 
@@ -445,15 +445,15 @@ Note: It does not listen to the changes in meshery database, but to meshsync eve
 
 ### `Subscription.subscribeMeshplayControllersStatus`
 
-Listen to changes in the status of meshery controllers.
+Listen to changes in the status of meshplay controllers.
 
-###### **Returns** [`[MeshplayControllersStatusListItem!]!`](#mesherycontrollersstatuslistitem).
+###### **Returns** [`[MeshplayControllersStatusListItem!]!`](#meshplaycontrollersstatuslistitem).
 
 #### **Arguments**
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| <a id="subscriptionsubscribemesherycontrollersstatusk8scontextids"></a>`k8scontextIDs` | [`[String!]`](#string) |  |
+| <a id="subscriptionsubscribemeshplaycontrollersstatusk8scontextids"></a>`k8scontextIDs` | [`[String!]`](#string) |  |
 
 ### `Subscription.subscribePerfProfiles`
 
@@ -707,7 +707,7 @@ Data Plane for a particular Mesh.
 | <a id="k8scontextdeployment_type"></a>`deployment_type` | [`String!`](#string) |  |
 | <a id="k8scontextid"></a>`id` | [`String!`](#string) |  |
 | <a id="k8scontextkubernetes_server_id"></a>`kubernetes_server_id` | [`ID!`](#id) |  |
-| <a id="k8scontextmeshery_instance_id"></a>`meshery_instance_id` | [`ID!`](#id) |  |
+| <a id="k8scontextmeshplay_instance_id"></a>`meshplay_instance_id` | [`ID!`](#id) |  |
 | <a id="k8scontextname"></a>`name` | [`String!`](#string) |  |
 | <a id="k8scontextowner"></a>`owner` | [`ID!`](#id) |  |
 | <a id="k8scontextserver"></a>`server` | [`String!`](#string) |  |
@@ -788,9 +788,9 @@ Type MeshModelComponentsSummary define the summary of a Mesh Model.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| <a id="mesherycontrollersstatuslistitemcontextid"></a>`contextId` | [`String!`](#string) |  |
-| <a id="mesherycontrollersstatuslistitemcontroller"></a>`controller` | [`MeshplayController!`](#mesherycontroller) |  |
-| <a id="mesherycontrollersstatuslistitemstatus"></a>`status` | [`MeshplayControllerStatus!`](#mesherycontrollerstatus) |  |
+| <a id="meshplaycontrollersstatuslistitemcontextid"></a>`contextId` | [`String!`](#string) |  |
+| <a id="meshplaycontrollersstatuslistitemcontroller"></a>`controller` | [`MeshplayController!`](#meshplaycontroller) |  |
+| <a id="meshplaycontrollersstatuslistitemstatus"></a>`status` | [`MeshplayControllerStatus!`](#meshplaycontrollerstatus) |  |
 
 ### `MeshplayResult`
 
@@ -798,18 +798,18 @@ Type MeshModelComponentsSummary define the summary of a Mesh Model.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| <a id="mesheryresultcreated_at"></a>`created_at` | [`String`](#string) |  |
-| <a id="mesheryresultmesh"></a>`mesh` | [`String`](#string) |  |
-| <a id="mesheryresultmeshery_id"></a>`meshery_id` | [`String`](#string) |  |
-| <a id="mesheryresultname"></a>`name` | [`String`](#string) |  |
-| <a id="mesheryresultperformance_profile"></a>`performance_profile` | [`String`](#string) |  |
-| <a id="mesheryresultrunner_results"></a>`runner_results` | [`Map`](#map) |  |
-| <a id="mesheryresultserver_board_config"></a>`server_board_config` | [`String`](#string) |  |
-| <a id="mesheryresultserver_metrics"></a>`server_metrics` | [`String`](#string) |  |
-| <a id="mesheryresulttest_id"></a>`test_id` | [`String`](#string) |  |
-| <a id="mesheryresulttest_start_time"></a>`test_start_time` | [`String`](#string) |  |
-| <a id="mesheryresultupdated_at"></a>`updated_at` | [`String`](#string) |  |
-| <a id="mesheryresultuser_id"></a>`user_id` | [`String`](#string) |  |
+| <a id="meshplayresultcreated_at"></a>`created_at` | [`String`](#string) |  |
+| <a id="meshplayresultmesh"></a>`mesh` | [`String`](#string) |  |
+| <a id="meshplayresultmeshplay_id"></a>`meshplay_id` | [`String`](#string) |  |
+| <a id="meshplayresultname"></a>`name` | [`String`](#string) |  |
+| <a id="meshplayresultperformance_profile"></a>`performance_profile` | [`String`](#string) |  |
+| <a id="meshplayresultrunner_results"></a>`runner_results` | [`Map`](#map) |  |
+| <a id="meshplayresultserver_board_config"></a>`server_board_config` | [`String`](#string) |  |
+| <a id="meshplayresultserver_metrics"></a>`server_metrics` | [`String`](#string) |  |
+| <a id="meshplayresulttest_id"></a>`test_id` | [`String`](#string) |  |
+| <a id="meshplayresulttest_start_time"></a>`test_start_time` | [`String`](#string) |  |
+| <a id="meshplayresultupdated_at"></a>`updated_at` | [`String`](#string) |  |
+| <a id="meshplayresultuser_id"></a>`user_id` | [`String`](#string) |  |
 
 ### `NameSpace`
 
@@ -937,7 +937,7 @@ Status of Meshplay Operator and its controllers.
 | ---- | ---- | ----------- |
 | <a id="perfpageresultpage"></a>`page` | [`Int!`](#int) |  |
 | <a id="perfpageresultpage_size"></a>`page_size` | [`Int!`](#int) |  |
-| <a id="perfpageresultresults"></a>`results` | [`[MeshplayResult]`](#mesheryresult) |  |
+| <a id="perfpageresultresults"></a>`results` | [`[MeshplayResult]`](#meshplayresult) |  |
 | <a id="perfpageresulttotal_count"></a>`total_count` | [`Int!`](#int) |  |
 
 ### `PerfProfile`
@@ -1018,18 +1018,18 @@ Service Mesh Types.
 
 | Value | Description |
 | ----- | ----------- |
-| <a id="mesherycontrollerbroker"></a>`BROKER` |  |
-| <a id="mesherycontrollermeshsync"></a>`MESHSYNC` |  |
-| <a id="mesherycontrolleroperator"></a>`OPERATOR` |  |
+| <a id="meshplaycontrollerbroker"></a>`BROKER` |  |
+| <a id="meshplaycontrollermeshsync"></a>`MESHSYNC` |  |
+| <a id="meshplaycontrolleroperator"></a>`OPERATOR` |  |
 
 ### `MeshplayControllerStatus`
 
 | Value | Description |
 | ----- | ----------- |
-| <a id="mesherycontrollerstatusdeployed"></a>`DEPLOYED` |  |
-| <a id="mesherycontrollerstatusdeploying"></a>`DEPLOYING` |  |
-| <a id="mesherycontrollerstatusnotdeployed"></a>`NOTDEPLOYED` |  |
-| <a id="mesherycontrollerstatusunkown"></a>`UNKOWN` |  |
+| <a id="meshplaycontrollerstatusdeployed"></a>`DEPLOYED` |  |
+| <a id="meshplaycontrollerstatusdeploying"></a>`DEPLOYING` |  |
+| <a id="meshplaycontrollerstatusnotdeployed"></a>`NOTDEPLOYED` |  |
+| <a id="meshplaycontrollerstatusunkown"></a>`UNKOWN` |  |
 
 ### `Status`
 

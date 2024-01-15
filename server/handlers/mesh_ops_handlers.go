@@ -120,7 +120,7 @@ func (h *Handler) AdapterPingHandler(w http.ResponseWriter, req *http.Request, p
 //
 // Used to persist adapter config
 // responses:
-// 	200: mesheryAdaptersRespWrapper
+// 	200: meshplayAdaptersRespWrapper
 
 // swagger:route DELETE /api/system/adapter/manage SystemAPI idDeleteAdapterConfig
 // Handle DELETE requests to delete adapter config

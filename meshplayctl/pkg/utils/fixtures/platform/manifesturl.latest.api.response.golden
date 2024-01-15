@@ -73,7 +73,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b4146b74e2a34f95c3ad7ad8d3af3eba850df208"
 },
 {
-"path": ".github/ISSUE_TEMPLATE/meshery-ui_bug.md",
+"path": ".github/ISSUE_TEMPLATE/meshplay-ui_bug.md",
 "mode": "100644",
 "type": "blob",
 "sha": "c8163a1d11882f8c5a151186791ec0a54318838c",
@@ -81,7 +81,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c8163a1d11882f8c5a151186791ec0a54318838c"
 },
 {
-"path": ".github/ISSUE_TEMPLATE/meshery-ui_feature.md",
+"path": ".github/ISSUE_TEMPLATE/meshplay-ui_feature.md",
 "mode": "100644",
 "type": "blob",
 "sha": "77b93ab732e2df9b58e7000830eb0d9341a00c85",
@@ -249,7 +249,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/04696b3b978147de883fa4edce0e41e505e1ab2a"
 },
 {
-"path": ".github/assets/images/meshery",
+"path": ".github/assets/images/meshplay",
 "mode": "040000",
 "type": "tree",
 "sha": "4de0bbbcfddbc4fc00497bb5ed7330e5b41e1821",
@@ -1065,7 +1065,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/983590d2f0337f868c35feac8e49d4a3ad3eda6c"
 },
 {
-"path": "docs/_data/errorref/meshery-server_errors_export.json",
+"path": "docs/_data/errorref/meshplay-server_errors_export.json",
 "mode": "100644",
 "type": "blob",
 "sha": "63c1c8a7ed2cee4bb0fafca34197dd22a7381bed",
@@ -1081,7 +1081,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/eb7aaac402c82b774d798a52ec2be38d00d908cf"
 },
 {
-"path": "docs/_data/errorref/mesherylibrary_errors_export.json",
+"path": "docs/_data/errorref/meshplaylibrary_errors_export.json",
 "mode": "100644",
 "type": "blob",
 "sha": "d19d4a9cd7239dd2a6960ba83c4b6ffa4e9dcc73",
@@ -2496,7 +2496,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/68ab293d199482053b768b8076b45a5d3d285b8e"
 },
 {
-"path": "docs/_includes/meshery-logo-text.svg",
+"path": "docs/_includes/meshplay-logo-text.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "cb82178d28a23b0f8a920685c5aebe4625ea9bac",
@@ -4113,7 +4113,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0d3abea88dcdb60df46a0fb7e9c9bff70cdf7eae"
 },
 {
-"path": "docs/assets/img/adapters/meshery-adapter-operation-registration.svg",
+"path": "docs/assets/img/adapters/meshplay-adapter-operation-registration.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "dd52571b14907d0cbdafa0181a64b59561af28cb",
@@ -4121,7 +4121,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/dd52571b14907d0cbdafa0181a64b59561af28cb"
 },
 {
-"path": "docs/assets/img/adapters/meshery-settings.png",
+"path": "docs/assets/img/adapters/meshplay-settings.png",
 "mode": "100644",
 "type": "blob",
 "sha": "bd9e137de6d93f5a4c3d1e388f70fd71f5a23c51",
@@ -4129,7 +4129,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/bd9e137de6d93f5a4c3d1e388f70fd71f5a23c51"
 },
 {
-"path": "docs/assets/img/adapters/meshery-ui-setup.mp4",
+"path": "docs/assets/img/adapters/meshplay-ui-setup.mp4",
 "mode": "100644",
 "type": "blob",
 "sha": "e8e2fa0c7d2fb685845d3ea55273f4ea3ee51791",
@@ -4137,7 +4137,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e8e2fa0c7d2fb685845d3ea55273f4ea3ee51791"
 },
 {
-"path": "docs/assets/img/adapters/meshery-ui.png",
+"path": "docs/assets/img/adapters/meshplay-ui.png",
 "mode": "100644",
 "type": "blob",
 "sha": "7e2c915cc88a7c0b5fa3f5a97c771bdec3d624ff",
@@ -4308,7 +4308,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cf5d32dc8895c35bb1508102f1f671b3903f7146"
 },
 {
-"path": "docs/assets/img/architecture/meshery-architecture.svg",
+"path": "docs/assets/img/architecture/meshplay-architecture.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "6444aa7a79635b543a66ea17e5612ceb74617089",
@@ -4316,7 +4316,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6444aa7a79635b543a66ea17e5612ceb74617089"
 },
 {
-"path": "docs/assets/img/architecture/meshery-database.svg",
+"path": "docs/assets/img/architecture/meshplay-database.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "0da096ec78ea16289e6731276ef47bad9c1b6313",
@@ -4324,7 +4324,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0da096ec78ea16289e6731276ef47bad9c1b6313"
 },
 {
-"path": "docs/assets/img/architecture/meshery-operator-and-meshsync.svg",
+"path": "docs/assets/img/architecture/meshplay-operator-and-meshsync.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "b38a353d078a83a9d7b6808946da45f11bde07a3",
@@ -4332,7 +4332,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b38a353d078a83a9d7b6808946da45f11bde07a3"
 },
 {
-"path": "docs/assets/img/architecture/meshery-operator-deployment-sequence.svg",
+"path": "docs/assets/img/architecture/meshplay-operator-deployment-sequence.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "7010c60447552dd90f6598ea244a98d88b127d7d",
@@ -4340,7 +4340,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/7010c60447552dd90f6598ea244a98d88b127d7d"
 },
 {
-"path": "docs/assets/img/architecture/meshery-settings-and-preferences.svg",
+"path": "docs/assets/img/architecture/meshplay-settings-and-preferences.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "f36b759194e45465ba791a43233f7b6f730bb3d2",
@@ -4348,7 +4348,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f36b759194e45465ba791a43233f7b6f730bb3d2"
 },
 {
-"path": "docs/assets/img/architecture/meshery_extension_points.svg",
+"path": "docs/assets/img/architecture/meshplay_extension_points.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "6860d3f29a9eb2aeb691b4dd62dfc515fae5cfec",
@@ -4356,7 +4356,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6860d3f29a9eb2aeb691b4dd62dfc515fae5cfec"
 },
 {
-"path": "docs/assets/img/architecture/meshery_logical_object_model.svg",
+"path": "docs/assets/img/architecture/meshplay_logical_object_model.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "6860d3f29a9eb2aeb691b4dd62dfc515fae5cfec",
@@ -4364,7 +4364,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6860d3f29a9eb2aeb691b4dd62dfc515fae5cfec"
 },
 {
-"path": "docs/assets/img/architecture/upgrading-meshery.svg",
+"path": "docs/assets/img/architecture/upgrading-meshplay.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "46be9a8f2b4af8ae6b6c43ae371cd3afc031aa87",
@@ -4428,7 +4428,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0d8b2e532f490dfa31e1b6a8ff7e58c164d247db"
 },
 {
-"path": "docs/assets/img/meshery-server-page.png",
+"path": "docs/assets/img/meshplay-server-page.png",
 "mode": "100644",
 "type": "blob",
 "sha": "10aae87092cbedc13aeb3fd09db78f631eddaf41",
@@ -4436,7 +4436,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/10aae87092cbedc13aeb3fd09db78f631eddaf41"
 },
 {
-"path": "docs/assets/img/meshery",
+"path": "docs/assets/img/meshplay",
 "mode": "040000",
 "type": "tree",
 "sha": "ebb9d3dadf2ef90532757046e156f94679e7b092",
@@ -4505,7 +4505,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a57bd133816c49cd8538fdc0cdc03f3e9a39b52b"
 },
 {
-"path": "docs/assets/img/performance-management/meshery-and-grafana.png",
+"path": "docs/assets/img/performance-management/meshplay-and-grafana.png",
 "mode": "100644",
 "type": "blob",
 "sha": "67838daaf847b2d626307afb78ae59cafb30ebee",
@@ -4694,7 +4694,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/8ed454fcba965b21249fc0efb9eac80b8ef15e67"
 },
 {
-"path": "docs/assets/img/readme/deploying-linkerd-with-meshery.png",
+"path": "docs/assets/img/readme/deploying-linkerd-with-meshplay.png",
 "mode": "100644",
 "type": "blob",
 "sha": "5b7e0382fd95705284579e162538cfcc93a03211",
@@ -4710,7 +4710,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d40d9997f615296442d814df59a46a06338dcf53"
 },
 {
-"path": "docs/assets/img/readme/meshery-wasm.png",
+"path": "docs/assets/img/readme/meshplay-wasm.png",
 "mode": "100644",
 "type": "blob",
 "sha": "a92ffa81cc8d23b639cfd69cbde942fc0aa7a2a1",
@@ -4718,7 +4718,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a92ffa81cc8d23b639cfd69cbde942fc0aa7a2a1"
 },
 {
-"path": "docs/assets/img/readme/meshery_benchmark_screen.png",
+"path": "docs/assets/img/readme/meshplay_benchmark_screen.png",
 "mode": "100644",
 "type": "blob",
 "sha": "5598022f478e7656f9b5f0a2bdd3fd562723511c",
@@ -4726,7 +4726,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5598022f478e7656f9b5f0a2bdd3fd562723511c"
 },
 {
-"path": "docs/assets/img/readme/meshery_lifecycle_management.png",
+"path": "docs/assets/img/readme/meshplay_lifecycle_management.png",
 "mode": "100644",
 "type": "blob",
 "sha": "5b05f1395a088ed2ea0a7f62bde25dbb12cf7250",
@@ -4734,7 +4734,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5b05f1395a088ed2ea0a7f62bde25dbb12cf7250"
 },
 {
-"path": "docs/assets/img/readme/meshery_multi_mesh.png",
+"path": "docs/assets/img/readme/meshplay_multi_mesh.png",
 "mode": "100644",
 "type": "blob",
 "sha": "17a71b0e0bf3c13aa11cbf4d8b07e62432bd8e56",
@@ -4766,7 +4766,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e6cc7457f69c6e2c7a3f022270e2a1494ed3d52f"
 },
 {
-"path": "docs/assets/img/readme/smi-conformance-with-meshery.png",
+"path": "docs/assets/img/readme/smi-conformance-with-meshplay.png",
 "mode": "100644",
 "type": "blob",
 "sha": "dfe06989c22cb6907e83595d3bfcd6da17c3adbf",
@@ -5573,7 +5573,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/8ae8992911b0a7abfaf39959ffb6176692b0f42a"
 },
 {
-"path": "docs/pages/guides/meshery-metrics.md",
+"path": "docs/pages/guides/meshplay-metrics.md",
 "mode": "100644",
 "type": "blob",
 "sha": "4e2ee3dc9b125271a077f422f366dd04a07a9ac5",
@@ -5865,7 +5865,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/838f6922a8c683e03733072d2840912d4cebb4d6"
 },
 {
-"path": "docs/pages/project/contributing/meshery-server.md",
+"path": "docs/pages/project/contributing/meshplay-server.md",
 "mode": "100644",
 "type": "blob",
 "sha": "54dbfde79f152884567eeedf91ee910561ca8ca6",
@@ -6427,7 +6427,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/42e1dfa3ca19e55251b375328729345561b08186"
 },
 {
-"path": "server/handlers/meshery_application_handler.go",
+"path": "server/handlers/meshplay_application_handler.go",
 "mode": "100644",
 "type": "blob",
 "sha": "77d54b8cb64220fbba8aed5b67995e57fa2f1698",
@@ -6435,7 +6435,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/77d54b8cb64220fbba8aed5b67995e57fa2f1698"
 },
 {
-"path": "server/handlers/meshery_filter_handler.go",
+"path": "server/handlers/meshplay_filter_handler.go",
 "mode": "100644",
 "type": "blob",
 "sha": "239a7652fea11a28745511700a59d34b285ebd97",
@@ -6443,7 +6443,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/239a7652fea11a28745511700a59d34b285ebd97"
 },
 {
-"path": "server/handlers/meshery_pattern_handler.go",
+"path": "server/handlers/meshplay_pattern_handler.go",
 "mode": "100644",
 "type": "blob",
 "sha": "0d3adbabe727546421130c3d2d8da1131c045f40",
@@ -6670,7 +6670,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/de4c08cf5c0d30c38176cbe81dca8d9c56f80a72"
 },
 {
-"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshery-cpx-deployment.yaml",
+"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshplay-cpx-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "cf25d5a31f3004eeee728d39ec0bb7527a7cc807",
@@ -6678,7 +6678,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cf25d5a31f3004eeee728d39ec0bb7527a7cc807"
 },
 {
-"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshery-deployment.yaml",
+"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshplay-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "bf5287233bdbfdc266ea979273a0fa0fd4304c4d",
@@ -6686,7 +6686,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/bf5287233bdbfdc266ea979273a0fa0fd4304c4d"
 },
 {
-"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshery-istio-deployment.yaml",
+"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshplay-istio-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "19227f30db844697b3b2e8ed4aba5d81a3cb3132",
@@ -6694,7 +6694,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/19227f30db844697b3b2e8ed4aba5d81a3cb3132"
 },
 {
-"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshery-linkerd-deployment.yaml",
+"path": "install/deployment_yamls/k8s/k8s-1-16-deployments/meshplay-linkerd-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "315d8bb5c8c01048fcd81c2ed9261f065778a261",
@@ -6702,7 +6702,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/315d8bb5c8c01048fcd81c2ed9261f065778a261"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-consul-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-consul-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "d000418ece6776f82cb050a5fd2ecf41f17de49c",
@@ -6710,7 +6710,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d000418ece6776f82cb050a5fd2ecf41f17de49c"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-consul-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-consul-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "ef6741270323035cb921bfb5f98be24bd1ba9009",
@@ -6718,7 +6718,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/ef6741270323035cb921bfb5f98be24bd1ba9009"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-cpx-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-cpx-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "0686215afe3a252167fda98e801627faeb23df14",
@@ -6726,7 +6726,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0686215afe3a252167fda98e801627faeb23df14"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-cpx-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-cpx-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "35b0848218b7236637a2a3b51d9d7e56fbba212e",
@@ -6734,7 +6734,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/35b0848218b7236637a2a3b51d9d7e56fbba212e"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "056479c3d2bb4397bf5ae1143efc5b07ab1ce27b",
@@ -6742,7 +6742,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/056479c3d2bb4397bf5ae1143efc5b07ab1ce27b"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-istio-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-istio-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "19227f30db844697b3b2e8ed4aba5d81a3cb3132",
@@ -6750,7 +6750,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/19227f30db844697b3b2e8ed4aba5d81a3cb3132"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-istio-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-istio-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "ffd644f2ca9cf4a1699dded97d3587848f6aed2c",
@@ -6758,7 +6758,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/ffd644f2ca9cf4a1699dded97d3587848f6aed2c"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-kuma-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-kuma-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "2ef3751672fdd7504e3198937cf8750724ac5219",
@@ -6766,7 +6766,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2ef3751672fdd7504e3198937cf8750724ac5219"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-kuma-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-kuma-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "71f76ade637d8a3da10479b13970dc788c496ae0",
@@ -6774,7 +6774,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/71f76ade637d8a3da10479b13970dc788c496ae0"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-linkerd-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-linkerd-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "180da88509f788b7638acf777979056912f76712",
@@ -6782,7 +6782,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/180da88509f788b7638acf777979056912f76712"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-linkerd-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-linkerd-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "177aeaddc173ee362e9cb6b710dcc9bfd7ef232a",
@@ -6790,7 +6790,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/177aeaddc173ee362e9cb6b710dcc9bfd7ef232a"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-nsm-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-nsm-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3a7d76492904c7c5909f1456056957b16456a01e",
@@ -6798,7 +6798,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3a7d76492904c7c5909f1456056957b16456a01e"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-nsm-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-nsm-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "593256d6fd435d6a728a6980b50e1d32d146a8a7",
@@ -6806,7 +6806,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/593256d6fd435d6a728a6980b50e1d32d146a8a7"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-octarine-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-octarine-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f3aceae575cea3957703e8996f6462b84d441fab",
@@ -6814,7 +6814,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f3aceae575cea3957703e8996f6462b84d441fab"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-octarine-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-octarine-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "750a9c447577d53e410f4650f68faaf042fcf8b8",
@@ -6822,7 +6822,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/750a9c447577d53e410f4650f68faaf042fcf8b8"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-osm-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-osm-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "185e39d8ebfbebefc9a598544a0bceb76c0b20d2",
@@ -6830,7 +6830,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/185e39d8ebfbebefc9a598544a0bceb76c0b20d2"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-osm-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-osm-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "0cf2dc0d314fe4420bdba63074f5252146e6e100",
@@ -6838,7 +6838,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0cf2dc0d314fe4420bdba63074f5252146e6e100"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b8fb822a35a98a4c9060a35942d55d2a2ab4832a",
@@ -6846,7 +6846,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b8fb822a35a98a4c9060a35942d55d2a2ab4832a"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-traefik-mesh-deployment.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-traefik-mesh-deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "ef5567019fa8f9c4496ef5c60f1d50d9d6dc0c14",
@@ -6854,7 +6854,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/ef5567019fa8f9c4496ef5c60f1d50d9d6dc0c14"
 },
 {
-"path": "install/deployment_yamls/k8s/meshery-traefik-mesh-service.yaml",
+"path": "install/deployment_yamls/k8s/meshplay-traefik-mesh-service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "14159005649586e043324b09ac45afc2a75df1d5",
@@ -6884,14 +6884,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/f90882239aca68284ec950fc49cb2be4b3a3bb6d"
 },
 {
-"path": "install/kubernetes/helm/meshery",
+"path": "install/kubernetes/helm/meshplay",
 "mode": "040000",
 "type": "tree",
 "sha": "12a9d945363164f03e659483297b70c366d4acb2",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/12a9d945363164f03e659483297b70c366d4acb2"
 },
 {
-"path": "install/kubernetes/helm/meshery/.helmignore",
+"path": "install/kubernetes/helm/meshplay/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -6899,7 +6899,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/Chart.lock",
+"path": "install/kubernetes/helm/meshplay/Chart.lock",
 "mode": "100644",
 "type": "blob",
 "sha": "806d3ec3dd9ab14d219af9f6a4ab52b005ed3c19",
@@ -6907,7 +6907,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/806d3ec3dd9ab14d219af9f6a4ab52b005ed3c19"
 },
 {
-"path": "install/kubernetes/helm/meshery/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "8bb15fb1f9fc94b71669fba8d57fd77e6d9dded4",
@@ -6915,7 +6915,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/8bb15fb1f9fc94b71669fba8d57fd77e6d9dded4"
 },
 {
-"path": "install/kubernetes/helm/meshery/README.md",
+"path": "install/kubernetes/helm/meshplay/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "5bdc578564080d2745118afa75af5162694cdf0f",
@@ -6923,21 +6923,21 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5bdc578564080d2745118afa75af5162694cdf0f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts",
+"path": "install/kubernetes/helm/meshplay/charts",
 "mode": "040000",
 "type": "tree",
 "sha": "9cd16e764b72790b2c95a27cfe17e36ac1918855",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/9cd16e764b72790b2c95a27cfe17e36ac1918855"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul",
 "mode": "040000",
 "type": "tree",
 "sha": "94be468090b9ef3802bbb81f26922f8828939f76",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/94be468090b9ef3802bbb81f26922f8828939f76"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -6945,7 +6945,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b5eca5ffe8ea84a428dc489ef75eb866cdee6d6a",
@@ -6953,7 +6953,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b5eca5ffe8ea84a428dc489ef75eb866cdee6d6a"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "9ec73c0fb298248d641c272fe7edc96d00035530",
@@ -6961,14 +6961,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/9ec73c0fb298248d641c272fe7edc96d00035530"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "df86f1962573a31e88c008a6f5a8177ce8de4532",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/df86f1962573a31e88c008a6f5a8177ce8de4532"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "b4e9abf5b1a0268bf7f32739a89b86cf6a6019d9",
@@ -6976,7 +6976,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b4e9abf5b1a0268bf7f32739a89b86cf6a6019d9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "12254f4fb2b53ce4b16d246d206b9f3d81af0a89",
@@ -6984,7 +6984,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/12254f4fb2b53ce4b16d246d206b9f3d81af0a89"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "98c533a2cfab8dae18d1451f25ef61d8095d4ff8",
@@ -6992,7 +6992,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/98c533a2cfab8dae18d1451f25ef61d8095d4ff8"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "1ecbada1652d3399f3fdf4b3d465d29f5a2b4dda",
@@ -7000,7 +7000,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/1ecbada1652d3399f3fdf4b3d465d29f5a2b4dda"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "a8dcae9885d2ee572eafcb2815e15aaa690d6302",
@@ -7008,7 +7008,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a8dcae9885d2ee572eafcb2815e15aaa690d6302"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b3988bfba6c016ef34bbda2b3f782da9ebff2bdf",
@@ -7016,7 +7016,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b3988bfba6c016ef34bbda2b3f782da9ebff2bdf"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3d8f15b01009bb93d2c73ffb0b92edbd1691b308",
@@ -7024,14 +7024,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3d8f15b01009bb93d2c73ffb0b92edbd1691b308"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "7fdbd0308fe9b4dbc1bb726f89876ba4fe15af81",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/7fdbd0308fe9b4dbc1bb726f89876ba4fe15af81"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "22ef28abb811950e0de5c8b8678d06a89cd1df23",
@@ -7039,7 +7039,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/22ef28abb811950e0de5c8b8678d06a89cd1df23"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-consul/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-consul/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "60e1296d2c6aba749401003b78a1ca06347e1749",
@@ -7047,14 +7047,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/60e1296d2c6aba749401003b78a1ca06347e1749"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx",
 "mode": "040000",
 "type": "tree",
 "sha": "06ed440667dee1aa7a9bd70abefb7cad7fcfc2b9",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/06ed440667dee1aa7a9bd70abefb7cad7fcfc2b9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7062,7 +7062,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "0e61c798170c5f4b566a93c484a184adeba1c52b",
@@ -7070,7 +7070,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0e61c798170c5f4b566a93c484a184adeba1c52b"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "7bd9d55872090284e43efa37d10736093e893da0",
@@ -7078,14 +7078,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/7bd9d55872090284e43efa37d10736093e893da0"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "cbdf3a663fe60a493656563aec7ea5fe4f1fd153",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/cbdf3a663fe60a493656563aec7ea5fe4f1fd153"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "e497f4d6462446dc287d53bccd2e31187d7b0d2c",
@@ -7093,7 +7093,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e497f4d6462446dc287d53bccd2e31187d7b0d2c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "410ed83df13429203d7262033f06c5ad55791b75",
@@ -7101,7 +7101,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/410ed83df13429203d7262033f06c5ad55791b75"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/clusterrole.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/clusterrole.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "c4e5d7ca876fb21ec0e99c91facb6bafa2d7324d",
@@ -7109,7 +7109,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c4e5d7ca876fb21ec0e99c91facb6bafa2d7324d"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "9544adb266b7293fc9b37e2f82577363ce3e72e4",
@@ -7117,7 +7117,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/9544adb266b7293fc9b37e2f82577363ce3e72e4"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "bccd0af80ed4b2dfe53be75ff5063f6d94770031",
@@ -7125,7 +7125,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/bccd0af80ed4b2dfe53be75ff5063f6d94770031"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "e282568a4ea05efd6d5ad0ad675e3ebfaf77a36e",
@@ -7133,7 +7133,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e282568a4ea05efd6d5ad0ad675e3ebfaf77a36e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "cdcf32bb081c55d7a3dc13cbd00fea999557b179",
@@ -7141,7 +7141,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cdcf32bb081c55d7a3dc13cbd00fea999557b179"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "301f639ae1e473e1f04cc66b3e9635ec12d112dd",
@@ -7149,14 +7149,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/301f639ae1e473e1f04cc66b3e9635ec12d112dd"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "6a666737d366805754e399956695db6f47bf45e6",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/6a666737d366805754e399956695db6f47bf45e6"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "a67d1e6bf72c900c61840f60931f09dba40a2ab4",
@@ -7164,7 +7164,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a67d1e6bf72c900c61840f60931f09dba40a2ab4"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-cpx/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-cpx/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "4c28a2b972e24b8d6927395c6ed5935d77fd6daa",
@@ -7172,14 +7172,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/4c28a2b972e24b8d6927395c6ed5935d77fd6daa"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio",
 "mode": "040000",
 "type": "tree",
 "sha": "764d9ae1a517a4aaed877b2d2ac2b9e23c36f6da",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/764d9ae1a517a4aaed877b2d2ac2b9e23c36f6da"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7187,7 +7187,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "68337615e7489d3451d4d63836e82142dde75e56",
@@ -7195,7 +7195,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/68337615e7489d3451d4d63836e82142dde75e56"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "88e4d737ed6c2cad61259f58c8443a2b4cd50d75",
@@ -7203,14 +7203,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/88e4d737ed6c2cad61259f58c8443a2b4cd50d75"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "95755289bb6afc0b4dfdce2d8bc92daea0e7ce51",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/95755289bb6afc0b4dfdce2d8bc92daea0e7ce51"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "c59be06473e2ea78a96688612a4f7a7ce7800ae2",
@@ -7218,7 +7218,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c59be06473e2ea78a96688612a4f7a7ce7800ae2"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "c2df090e5786bc245d29450188ee2798cff5bca0",
@@ -7226,7 +7226,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c2df090e5786bc245d29450188ee2798cff5bca0"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/clusterrole.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/clusterrole.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6845fabfc8f906f1fb543ad4834937da8571d691",
@@ -7234,7 +7234,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6845fabfc8f906f1fb543ad4834937da8571d691"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "08bc081e9fee54434c82812cabb6f991ce945a05",
@@ -7242,7 +7242,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/08bc081e9fee54434c82812cabb6f991ce945a05"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "d797953c77a350dc93d0144db942e09922d5bb6f",
@@ -7250,7 +7250,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d797953c77a350dc93d0144db942e09922d5bb6f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "9ac4b1110f37bb4910a7524a7603ff84921ec566",
@@ -7258,7 +7258,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/9ac4b1110f37bb4910a7524a7603ff84921ec566"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b8a84a5830817603d2b83d773766ce964a1bdc15",
@@ -7266,7 +7266,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b8a84a5830817603d2b83d773766ce964a1bdc15"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "23c9134146d2df20296c13660076ad062f51fc5a",
@@ -7274,14 +7274,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/23c9134146d2df20296c13660076ad062f51fc5a"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "3b1d553da523696b8c146e0bf729e13912b8976f",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/3b1d553da523696b8c146e0bf729e13912b8976f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "e65d397409b4f5d3161227ac207906c86717e90e",
@@ -7289,7 +7289,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e65d397409b4f5d3161227ac207906c86717e90e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-istio/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-istio/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b5f4da5c12e97ed63093f67f6c1345d7731bf896",
@@ -7297,14 +7297,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b5f4da5c12e97ed63093f67f6c1345d7731bf896"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma",
 "mode": "040000",
 "type": "tree",
 "sha": "01c5ce90f16f4083bf5893605462c8849f35de38",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/01c5ce90f16f4083bf5893605462c8849f35de38"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7312,7 +7312,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "2e1078995cd4144bddf707f20303f472e9d12dea",
@@ -7320,7 +7320,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2e1078995cd4144bddf707f20303f472e9d12dea"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "fa0458fb0bb0cdd948de8f899f6af6c1157d818e",
@@ -7328,14 +7328,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/fa0458fb0bb0cdd948de8f899f6af6c1157d818e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "4573dc10049e18d193ac25c81957fae96752ab03",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/4573dc10049e18d193ac25c81957fae96752ab03"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "f85f7e9717a43193e10a8ce60a05c2937d548c46",
@@ -7343,7 +7343,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f85f7e9717a43193e10a8ce60a05c2937d548c46"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "37249f9b2698fccccd4c7d0131da0ef012b212f0",
@@ -7351,7 +7351,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/37249f9b2698fccccd4c7d0131da0ef012b212f0"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "cc30439d81bc73098f5e89558114eb58e939b18e",
@@ -7359,7 +7359,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cc30439d81bc73098f5e89558114eb58e939b18e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "07607392e25d77b68a219a43f3973b680743c9ff",
@@ -7367,7 +7367,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/07607392e25d77b68a219a43f3973b680743c9ff"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "79ca800799404f4cfd427c94b34e25f527af7ef9",
@@ -7375,7 +7375,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/79ca800799404f4cfd427c94b34e25f527af7ef9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6667665849853469026b7aab5b2fffae7574cb8b",
@@ -7383,14 +7383,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6667665849853469026b7aab5b2fffae7574cb8b"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "9ba3b59a0701f2276265f50a21beb6a9f26afb2e",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/9ba3b59a0701f2276265f50a21beb6a9f26afb2e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "2dc0663f8abcc07412bb2c985524a9b7fb6f09d6",
@@ -7398,7 +7398,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2dc0663f8abcc07412bb2c985524a9b7fb6f09d6"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-kuma/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-kuma/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "14e302c5173a20b552ec7bfcb8082c2a172fa47c",
@@ -7406,14 +7406,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/14e302c5173a20b552ec7bfcb8082c2a172fa47c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd",
 "mode": "040000",
 "type": "tree",
 "sha": "fc1a060d6c62c99180780b571f784e72d0d37e60",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/fc1a060d6c62c99180780b571f784e72d0d37e60"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7421,7 +7421,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3d0c3db69e10dcfd8e5ebf3ce5bb8182178881b2",
@@ -7429,7 +7429,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3d0c3db69e10dcfd8e5ebf3ce5bb8182178881b2"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "a189173cc72593d1b9908653abfd0abb0d937757",
@@ -7437,14 +7437,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a189173cc72593d1b9908653abfd0abb0d937757"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "049c4c639bd9f487ab7938ffa474e4d7829c9c98",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/049c4c639bd9f487ab7938ffa474e4d7829c9c98"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "467388860c65bdf72465b49c6071a69c76d5cac9",
@@ -7452,7 +7452,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/467388860c65bdf72465b49c6071a69c76d5cac9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "817eb4e9582b8bd03d9117058c215c798b0522c5",
@@ -7460,7 +7460,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/817eb4e9582b8bd03d9117058c215c798b0522c5"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "262fdb426d395353076e6d393d649c3879342c5d",
@@ -7468,7 +7468,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/262fdb426d395353076e6d393d649c3879342c5d"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6e0f4b903933ca7889bd99c051c28c485b7d7669",
@@ -7476,7 +7476,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6e0f4b903933ca7889bd99c051c28c485b7d7669"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "2d0f27a19f62d7f3ad8ad863e45e76c1621c625e",
@@ -7484,7 +7484,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2d0f27a19f62d7f3ad8ad863e45e76c1621c625e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "df79bb63f09336b0e39191e5ff517412826c2d59",
@@ -7492,14 +7492,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/df79bb63f09336b0e39191e5ff517412826c2d59"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "c7a4b63b94aa74562804cbd09cffd6bfd4a6ce7a",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/c7a4b63b94aa74562804cbd09cffd6bfd4a6ce7a"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "89896be72ca8fb5bc19c3817b95a2f7cbfcd879d",
@@ -7507,7 +7507,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/89896be72ca8fb5bc19c3817b95a2f7cbfcd879d"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-linkerd/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-linkerd/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "7468e31ff4ecc48e1689bb0387f57cb9f8563895",
@@ -7515,14 +7515,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/7468e31ff4ecc48e1689bb0387f57cb9f8563895"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm",
 "mode": "040000",
 "type": "tree",
 "sha": "357a79c089cd24e34405039a2f5ff1ba0468568b",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/357a79c089cd24e34405039a2f5ff1ba0468568b"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7530,7 +7530,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "28dfaff7d73903ede18e992d3ec0367b4d593850",
@@ -7538,7 +7538,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/28dfaff7d73903ede18e992d3ec0367b4d593850"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "97b2206faea02be07740c237f59a13247a2614b0",
@@ -7546,14 +7546,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/97b2206faea02be07740c237f59a13247a2614b0"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "49e15f7131f105cac59405b6f2c4231a012dcceb",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/49e15f7131f105cac59405b6f2c4231a012dcceb"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "abeb562fde38487dca592d516a8fce84d706bbea",
@@ -7561,7 +7561,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/abeb562fde38487dca592d516a8fce84d706bbea"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "05f560fa11b13100c29d6749abb21d251f5e1b1f",
@@ -7569,7 +7569,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/05f560fa11b13100c29d6749abb21d251f5e1b1f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "9fbfdcf30e48dce197ad12f14738b5f03ef9cb05",
@@ -7577,7 +7577,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/9fbfdcf30e48dce197ad12f14738b5f03ef9cb05"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f0d7a22a966460b5ab2bf0dd4aefb32d71719af4",
@@ -7585,7 +7585,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f0d7a22a966460b5ab2bf0dd4aefb32d71719af4"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "03dcc233810f8bb1eb7819059e8fab1ec18d4bdd",
@@ -7593,7 +7593,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/03dcc233810f8bb1eb7819059e8fab1ec18d4bdd"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "5ef18d961cbfe0dcc3f021449cbe6c66b9f59f7e",
@@ -7601,14 +7601,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5ef18d961cbfe0dcc3f021449cbe6c66b9f59f7e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "ddbc7675eb37d8a7009944d41f1b3fa934678031",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/ddbc7675eb37d8a7009944d41f1b3fa934678031"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "7bab9f4802a8b035c26bf2b59712184c158092dd",
@@ -7616,7 +7616,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/7bab9f4802a8b035c26bf2b59712184c158092dd"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-nsm/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-nsm/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "2e977d2e48a7cdcdfaed50def7f4dc299dae2a8b",
@@ -7624,14 +7624,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2e977d2e48a7cdcdfaed50def7f4dc299dae2a8b"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator",
 "mode": "040000",
 "type": "tree",
 "sha": "2c08fd10dce2fd537856e5bc5112db30aa5bd54e",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/2c08fd10dce2fd537856e5bc5112db30aa5bd54e"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7639,7 +7639,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "9d4c80729cd333b7d8c6acf066479af4e8f06512",
@@ -7647,7 +7647,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/9d4c80729cd333b7d8c6acf066479af4e8f06512"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "e44a449ef2f350320b06934ab36efc4b74ffad73",
@@ -7655,14 +7655,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e44a449ef2f350320b06934ab36efc4b74ffad73"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "53c178fb49a73e7d935443861b48b321d8b3d89d",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/53c178fb49a73e7d935443861b48b321d8b3d89d"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "0aac36db9a021aae6d3510a2ebbaef683cf96f94",
@@ -7670,7 +7670,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/0aac36db9a021aae6d3510a2ebbaef683cf96f94"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "c88866c049def227fd4b26617e6acd462f0a252c",
@@ -7678,7 +7678,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c88866c049def227fd4b26617e6acd462f0a252c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/clusterrole.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/clusterrole.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "226e6523054e4a65326f3be2e41702ecc438bd23",
@@ -7686,7 +7686,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/226e6523054e4a65326f3be2e41702ecc438bd23"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "a83ccf9940490382704d3c341afb913ef0385988",
@@ -7694,7 +7694,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a83ccf9940490382704d3c341afb913ef0385988"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/crds.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/crds.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "553903878063501169fb569f9c96897fc24fc1e9",
@@ -7702,7 +7702,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/553903878063501169fb569f9c96897fc24fc1e9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "93f1cede44588ffd7a7adf6370ebb440aff6c6dd",
@@ -7710,7 +7710,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/93f1cede44588ffd7a7adf6370ebb440aff6c6dd"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6170cf10f0f68c9c317b0e52707de18d22a93c94",
@@ -7718,7 +7718,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6170cf10f0f68c9c317b0e52707de18d22a93c94"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6d9614f5684c8a628bcb1ecc8f953de08b7a9320",
@@ -7726,7 +7726,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6d9614f5684c8a628bcb1ecc8f953de08b7a9320"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "a83ef81b5da6747028d4e69d7b8d76595ea07f9c",
@@ -7734,14 +7734,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a83ef81b5da6747028d4e69d7b8d76595ea07f9c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "e6e3756df2f4bbfae07066ac1d7f722d75355fc4",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/e6e3756df2f4bbfae07066ac1d7f722d75355fc4"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "c1d97e029c1c1731fb692dba80f464f03130bebe",
@@ -7749,7 +7749,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c1d97e029c1c1731fb692dba80f464f03130bebe"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-operator/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-operator/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b1143ba55a18055e2151dc10e2a3f2469d2e1c63",
@@ -7757,14 +7757,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b1143ba55a18055e2151dc10e2a3f2469d2e1c63"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm",
 "mode": "040000",
 "type": "tree",
 "sha": "32265f1ccc3400a27fadf9eb3342e6fe40daff47",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/32265f1ccc3400a27fadf9eb3342e6fe40daff47"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7772,7 +7772,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "13f60789e764b900b7d0c0345898f3c92c403d9c",
@@ -7780,7 +7780,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/13f60789e764b900b7d0c0345898f3c92c403d9c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "b4ff506c76da7734a2e8c2a711896d51deb9b714",
@@ -7788,14 +7788,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b4ff506c76da7734a2e8c2a711896d51deb9b714"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "ddfad545299ee7a420d67788e8a4c76d521e582f",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/ddfad545299ee7a420d67788e8a4c76d521e582f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "1b72773a75e65bc72c810b4672098c5a157d504d",
@@ -7803,7 +7803,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/1b72773a75e65bc72c810b4672098c5a157d504d"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "614f9e76538ced33bc111534b8ff0f6ed1da89bd",
@@ -7811,7 +7811,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/614f9e76538ced33bc111534b8ff0f6ed1da89bd"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "a8f3cd30e43afac04fd8736495d0c58ed2bd7654",
@@ -7819,7 +7819,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a8f3cd30e43afac04fd8736495d0c58ed2bd7654"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "47bfc012946460d065688a7e691079cbf035b960",
@@ -7827,7 +7827,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/47bfc012946460d065688a7e691079cbf035b960"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f401eb11d50e3d9ced28ca704df0c3d96c50f595",
@@ -7835,7 +7835,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f401eb11d50e3d9ced28ca704df0c3d96c50f595"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "e865946fccfadc6eb3f2c260ab4b5361935f5ef9",
@@ -7843,14 +7843,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e865946fccfadc6eb3f2c260ab4b5361935f5ef9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "f82fa5490f7bdce01d3b02f5087f8aa45d0ad573",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/f82fa5490f7bdce01d3b02f5087f8aa45d0ad573"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3c755ed0aac42e2d201b34e068066711c3ccd5a5",
@@ -7858,7 +7858,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3c755ed0aac42e2d201b34e068066711c3ccd5a5"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-osm/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-osm/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "d23e6d7a7718443678964aea4dd7d94798fd9e8f",
@@ -7866,14 +7866,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d23e6d7a7718443678964aea4dd7d94798fd9e8f"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh",
 "mode": "040000",
 "type": "tree",
 "sha": "20fc4d376ad366d8c1f6c6589cee23116deb2183",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/20fc4d376ad366d8c1f6c6589cee23116deb2183"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/.helmignore",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/.helmignore",
 "mode": "100644",
 "type": "blob",
 "sha": "50af0317254197a5a019f4ac2f8ecc223f93f5a7",
@@ -7881,7 +7881,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50af0317254197a5a019f4ac2f8ecc223f93f5a7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/Chart.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/Chart.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3103ffaad19f5059b55d541febdae4691c957259",
@@ -7889,7 +7889,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3103ffaad19f5059b55d541febdae4691c957259"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/README.md",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/README.md",
 "mode": "100644",
 "type": "blob",
 "sha": "00d32a67cea6d7e8d7511689ebbf953e96c4f76a",
@@ -7897,14 +7897,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/00d32a67cea6d7e8d7511689ebbf953e96c4f76a"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "2ab70a79ce990a8953cf3116b910e5d8e90212f3",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/2ab70a79ce990a8953cf3116b910e5d8e90212f3"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "99056887b6cfdb917e898b79689f65feb523b213",
@@ -7912,7 +7912,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/99056887b6cfdb917e898b79689f65feb523b213"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "a1b8f2078e6bfbc7f6e0e8b50556bb24af596077",
@@ -7920,7 +7920,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a1b8f2078e6bfbc7f6e0e8b50556bb24af596077"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/clusterrole.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/clusterrole.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "693097785c74c40fe59f5a931e4ee6e2a6b3824c",
@@ -7928,7 +7928,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/693097785c74c40fe59f5a931e4ee6e2a6b3824c"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b9365806e2a7da1419e66413f4f085c6e04212e9",
@@ -7936,7 +7936,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b9365806e2a7da1419e66413f4f085c6e04212e9"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f182137444114835346fe173c9a3c883204b50f8",
@@ -7944,7 +7944,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f182137444114835346fe173c9a3c883204b50f8"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "3df9afe444aa95d33620a34bbaa14ce5b0a07431",
@@ -7952,7 +7952,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3df9afe444aa95d33620a34bbaa14ce5b0a07431"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "b264a8caa5304d99b32b5b7d6afb4092d4d628b7",
@@ -7960,7 +7960,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b264a8caa5304d99b32b5b7d6afb4092d4d628b7"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "687da1a698e693365ad4333ec142e72da17bc289",
@@ -7968,14 +7968,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/687da1a698e693365ad4333ec142e72da17bc289"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/tests",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "4fdbf4a417592b1e2abf25a6ebf132bfe751b915",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/4fdbf4a417592b1e2abf25a6ebf132bfe751b915"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "71772aacd77443fe1ffe2ce275658af3565541aa",
@@ -7983,7 +7983,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/71772aacd77443fe1ffe2ce275658af3565541aa"
 },
 {
-"path": "install/kubernetes/helm/meshery/charts/meshery-traefik-mesh/values.yaml",
+"path": "install/kubernetes/helm/meshplay/charts/meshplay-traefik-mesh/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "da64c586756582ceca44c4c5ed40f1fb6ab6516a",
@@ -7991,14 +7991,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/da64c586756582ceca44c4c5ed40f1fb6ab6516a"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates",
+"path": "install/kubernetes/helm/meshplay/templates",
 "mode": "040000",
 "type": "tree",
 "sha": "2537b5ede10d3aefa0d14478c251b963f5d06764",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/2537b5ede10d3aefa0d14478c251b963f5d06764"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/NOTES.txt",
+"path": "install/kubernetes/helm/meshplay/templates/NOTES.txt",
 "mode": "100644",
 "type": "blob",
 "sha": "64f95b60840956008083cebd516f11c9f3118de2",
@@ -8006,7 +8006,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/64f95b60840956008083cebd516f11c9f3118de2"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/_helpers.tpl",
+"path": "install/kubernetes/helm/meshplay/templates/_helpers.tpl",
 "mode": "100644",
 "type": "blob",
 "sha": "ad99b77a3744348a0fabc2fbde10f8c5d0ff0a85",
@@ -8014,7 +8014,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/ad99b77a3744348a0fabc2fbde10f8c5d0ff0a85"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/clusterrole.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/clusterrole.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f9d32aa75f269e053672af2dd569f136b9bac6af",
@@ -8022,7 +8022,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f9d32aa75f269e053672af2dd569f136b9bac6af"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/clusterrolebinding.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/clusterrolebinding.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "cf3dfef04403b6005cb39facdf6160753ab22577",
@@ -8030,7 +8030,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cf3dfef04403b6005cb39facdf6160753ab22577"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/deployment.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/deployment.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "4273d1217ba5f99b6f913e34c16fdc36480b5ad1",
@@ -8038,7 +8038,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/4273d1217ba5f99b6f913e34c16fdc36480b5ad1"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/gateway.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/gateway.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "db5fa08c9eff58655493da45d61ff6f661f45431",
@@ -8046,7 +8046,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/db5fa08c9eff58655493da45d61ff6f661f45431"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/ingress.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/ingress.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "cf5b2873c530540082bfac637cd7d7be72d8e899",
@@ -8054,7 +8054,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/cf5b2873c530540082bfac637cd7d7be72d8e899"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/service.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/service.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "66216fc6617cf3aaf0a6cbf43b7f671c9194edb3",
@@ -8062,7 +8062,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/66216fc6617cf3aaf0a6cbf43b7f671c9194edb3"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/serviceaccount.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/serviceaccount.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "6ee076952db87526a01513086b85a439cea1f1e6",
@@ -8070,14 +8070,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6ee076952db87526a01513086b85a439cea1f1e6"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/tests",
+"path": "install/kubernetes/helm/meshplay/templates/tests",
 "mode": "040000",
 "type": "tree",
 "sha": "541dc5d05d4c50b906865e8167fac8358b654a1e",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/541dc5d05d4c50b906865e8167fac8358b654a1e"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/tests/test-connection.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/tests/test-connection.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "22956d81dbb5738a146e9991c6b2b86503adc6f2",
@@ -8085,7 +8085,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/22956d81dbb5738a146e9991c6b2b86503adc6f2"
 },
 {
-"path": "install/kubernetes/helm/meshery/templates/virtualservice.yaml",
+"path": "install/kubernetes/helm/meshplay/templates/virtualservice.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "442ca5efef8b1781f6784115d8813c326966c55e",
@@ -8093,7 +8093,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/442ca5efef8b1781f6784115d8813c326966c55e"
 },
 {
-"path": "install/kubernetes/helm/meshery/values.yaml",
+"path": "install/kubernetes/helm/meshplay/values.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "f2d58f88625a03a72f89cf571ecf2b293aa41649",
@@ -8101,14 +8101,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f2d58f88625a03a72f89cf571ecf2b293aa41649"
 },
 {
-"path": "install/mesheryapp.dockerapp",
+"path": "install/meshplayapp.dockerapp",
 "mode": "040000",
 "type": "tree",
 "sha": "8b4cb1be12a326eeba15fff6ef924e3ca579aaff",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/8b4cb1be12a326eeba15fff6ef924e3ca579aaff"
 },
 {
-"path": "install/mesheryapp.dockerapp/docker-compose.yml",
+"path": "install/meshplayapp.dockerapp/docker-compose.yml",
 "mode": "100644",
 "type": "blob",
 "sha": "969b1a2e95d5edb321e0d1078fc8982a82f91e9a",
@@ -8116,7 +8116,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/969b1a2e95d5edb321e0d1078fc8982a82f91e9a"
 },
 {
-"path": "install/mesheryapp.dockerapp/metadata.yml",
+"path": "install/meshplayapp.dockerapp/metadata.yml",
 "mode": "100644",
 "type": "blob",
 "sha": "f3003b118b00103cea49497b2f16482028885634",
@@ -8124,7 +8124,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f3003b118b00103cea49497b2f16482028885634"
 },
 {
-"path": "install/mesheryapp.dockerapp/parameters.yml",
+"path": "install/meshplayapp.dockerapp/parameters.yml",
 "mode": "100644",
 "type": "blob",
 "sha": "1d28b1ee207221caa814d94d76dc9a38c842ca9b",
@@ -8419,7 +8419,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/50161f5b364d1d56f93e43b4cbb752056bc44296"
 },
 {
-"path": "meshery",
+"path": "meshplay",
 "mode": "100644",
 "type": "blob",
 "sha": "30699526153eb4ade7bc823589273cef8b2c96aa",
@@ -9512,14 +9512,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/609fa8ecc50d9ec29c76331e9e8c2a0b39f1ad11"
 },
 {
-"path": "meshplayctl/internal/cli/root/system/context/fixtures/.meshery",
+"path": "meshplayctl/internal/cli/root/system/context/fixtures/.meshplay",
 "mode": "040000",
 "type": "tree",
 "sha": "2b788b8004a0cfcee32baf72153e8772a1d8d544",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/2b788b8004a0cfcee32baf72153e8772a1d8d544"
 },
 {
-"path": "meshplayctl/internal/cli/root/system/context/fixtures/.meshery/TestContext.yaml",
+"path": "meshplayctl/internal/cli/root/system/context/fixtures/.meshplay/TestContext.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "28490dcdf2897a47625b85e2a77e84b5e0e6c078",
@@ -9685,14 +9685,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/f749fea6867e4cffdaba0b9fbb307d46d6549310"
 },
 {
-"path": "meshplayctl/internal/cli/root/system/fixtures/.meshery",
+"path": "meshplayctl/internal/cli/root/system/fixtures/.meshplay",
 "mode": "040000",
 "type": "tree",
 "sha": "12f629a020984a9e1ec5796436f1116b7be956c4",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/12f629a020984a9e1ec5796436f1116b7be956c4"
 },
 {
-"path": "meshplayctl/internal/cli/root/system/fixtures/.meshery/config.yaml",
+"path": "meshplayctl/internal/cli/root/system/fixtures/.meshplay/config.yaml",
 "mode": "100644",
 "type": "blob",
 "sha": "71e37ca8d484b63781fa049f1d30933f5a7ee0bb",
@@ -10362,7 +10362,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/fa25a0a47dd7d9d0f8227fc3bb11319c9ef1d72e"
 },
 {
-"path": "server/models/meshery_application.go",
+"path": "server/models/meshplay_application.go",
 "mode": "100644",
 "type": "blob",
 "sha": "5c200d01c8d6405abe6f5a8b4ac1bfe322ae07c3",
@@ -10370,7 +10370,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5c200d01c8d6405abe6f5a8b4ac1bfe322ae07c3"
 },
 {
-"path": "server/models/meshery_application_persister.go",
+"path": "server/models/meshplay_application_persister.go",
 "mode": "100644",
 "type": "blob",
 "sha": "46c1cf6858097621c36cfa038b57e95739d5e581",
@@ -10378,7 +10378,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/46c1cf6858097621c36cfa038b57e95739d5e581"
 },
 {
-"path": "server/models/meshery_applications_api_response.go",
+"path": "server/models/meshplay_applications_api_response.go",
 "mode": "100644",
 "type": "blob",
 "sha": "c8bca26975edfae407fd65d2ba23089617b87425",
@@ -10386,7 +10386,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/c8bca26975edfae407fd65d2ba23089617b87425"
 },
 {
-"path": "server/models/meshery_filter.go",
+"path": "server/models/meshplay_filter.go",
 "mode": "100644",
 "type": "blob",
 "sha": "5d9190b7fa3ec80a0c8e879bb7233bf8f8e30c87",
@@ -10394,7 +10394,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5d9190b7fa3ec80a0c8e879bb7233bf8f8e30c87"
 },
 {
-"path": "server/models/meshery_filter_api_response.go",
+"path": "server/models/meshplay_filter_api_response.go",
 "mode": "100644",
 "type": "blob",
 "sha": "d74a563aaa32077d7a3382d270273b1aa157f3d8",
@@ -10402,7 +10402,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d74a563aaa32077d7a3382d270273b1aa157f3d8"
 },
 {
-"path": "server/models/meshery_filter_persister.go",
+"path": "server/models/meshplay_filter_persister.go",
 "mode": "100644",
 "type": "blob",
 "sha": "76f37d5e3352c319315378d3354ccdddb7a86f6f",
@@ -10410,7 +10410,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/76f37d5e3352c319315378d3354ccdddb7a86f6f"
 },
 {
-"path": "server/models/meshery_pattern.go",
+"path": "server/models/meshplay_pattern.go",
 "mode": "100644",
 "type": "blob",
 "sha": "3f684ec1975c0ccc9825f2f9b29491a01cd291d0",
@@ -10418,7 +10418,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/3f684ec1975c0ccc9825f2f9b29491a01cd291d0"
 },
 {
-"path": "server/models/meshery_pattern_persister.go",
+"path": "server/models/meshplay_pattern_persister.go",
 "mode": "100644",
 "type": "blob",
 "sha": "6a2ada52cc93bbe39e19c64f5e80afb9b881bc3d",
@@ -10426,7 +10426,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/6a2ada52cc93bbe39e19c64f5e80afb9b881bc3d"
 },
 {
-"path": "server/models/meshery_patterns_api_response.go",
+"path": "server/models/meshplay_patterns_api_response.go",
 "mode": "100644",
 "type": "blob",
 "sha": "78743c5ce7f7dfcc3e03e7783c51e959f8bee98e",
@@ -10434,7 +10434,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/78743c5ce7f7dfcc3e03e7783c51e959f8bee98e"
 },
 {
-"path": "server/models/meshery_performance_api_response.go",
+"path": "server/models/meshplay_performance_api_response.go",
 "mode": "100644",
 "type": "blob",
 "sha": "a162cfce6caddbb2f6c4652d6a034b206a7c7d78",
@@ -10442,7 +10442,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a162cfce6caddbb2f6c4652d6a034b206a7c7d78"
 },
 {
-"path": "server/models/meshery_results_persister.go",
+"path": "server/models/meshplay_results_persister.go",
 "mode": "100644",
 "type": "blob",
 "sha": "c00af47b274ebff6bc84e1a9f0977fae1df38ef6",
@@ -10962,7 +10962,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/0380510070f6bda6a20ce268d645c5a567210715"
 },
 {
-"path": "oam/traits/meshmap.meshery.layer5.io.schema.json",
+"path": "oam/traits/meshmap.meshplay.layer5.io.schema.json",
 "mode": "100644",
 "type": "blob",
 "sha": "071a6ebfd42affbb854395fafddd454293803d25",
@@ -10985,7 +10985,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/d41bc898de6e55a8ece331c7f251c6029f284939"
 },
 {
-"path": "oam/workloads/application.meshery.layer5.io.schema.json",
+"path": "oam/workloads/application.meshplay.layer5.io.schema.json",
 "mode": "100644",
 "type": "blob",
 "sha": "676b41291e30d8cce10bbd90c752f3d743f84de7",
@@ -11001,7 +11001,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/568e479cc330f5ac8ef3c7244e862cb71be626e8"
 },
 {
-"path": "oam/workloads/service.k8s.meshery.layer5.io.schema.json",
+"path": "oam/workloads/service.k8s.meshplay.layer5.io.schema.json",
 "mode": "100644",
 "type": "blob",
 "sha": "477db4141bd0f8c2e1340c9771519cf5d98ac3a9",
@@ -11024,7 +11024,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/da5035e9055d4dc0d83ea97b625839a358775671"
 },
 {
-"path": "proposals/meshery.md",
+"path": "proposals/meshplay.md",
 "mode": "100644",
 "type": "blob",
 "sha": "4326aac7c9ee01724bf91c774870b64470a553dd",
@@ -11315,14 +11315,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/d21a482345164a00500add51956f100856d6b4e4"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo",
+"path": "provider-ui/public/static/img/meshplay-logo",
 "mode": "040000",
 "type": "tree",
 "sha": "696b4cc4f4a12902b3b9ea3065119ab4cd1021eb",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/696b4cc4f4a12902b3b9ea3065119ab4cd1021eb"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-dark-text.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-dark-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "720f77896e8a7e86ba494c5c0bdc1e5457001ecb",
@@ -11330,7 +11330,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/720f77896e8a7e86ba494c5c0bdc1e5457001ecb"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo-dark-text.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo-dark-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "8643adc4c718df1a90093a6642c731cd14663228",
@@ -11338,7 +11338,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/8643adc4c718df1a90093a6642c731cd14663228"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo-dark.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo-dark.png",
 "mode": "100644",
 "type": "blob",
 "sha": "1806d60c8b13d5f4ca45991025cb62e9664a109d",
@@ -11346,7 +11346,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/1806d60c8b13d5f4ca45991025cb62e9664a109d"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo-light-text.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo-light-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "082cc169ef9c2514f1385aa49de8c332211a4397",
@@ -11354,7 +11354,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/082cc169ef9c2514f1385aa49de8c332211a4397"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo-shadow.svg",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo-shadow.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "2bf90f81b597f5e640f6f82bf9bd0ef6654d8b0d",
@@ -11362,7 +11362,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2bf90f81b597f5e640f6f82bf9bd0ef6654d8b0d"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo-white.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo-white.png",
 "mode": "100644",
 "type": "blob",
 "sha": "a5662bcd506e2610536368f20947b0424f5ebab5",
@@ -11370,7 +11370,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/a5662bcd506e2610536368f20947b0424f5ebab5"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-logo.svg",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-logo.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "d50149cec6dd6fc4bd5e24fdb4316970a1d468d8",
@@ -11378,7 +11378,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d50149cec6dd6fc4bd5e24fdb4316970a1d468d8"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-text-dark.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-text-dark.png",
 "mode": "100644",
 "type": "blob",
 "sha": "b0a3049084329477e1d43a7076452d9e32dc6212",
@@ -11386,7 +11386,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/b0a3049084329477e1d43a7076452d9e32dc6212"
 },
 {
-"path": "provider-ui/public/static/img/meshery-logo/meshery-text-white.png",
+"path": "provider-ui/public/static/img/meshplay-logo/meshplay-text-white.png",
 "mode": "100644",
 "type": "blob",
 "sha": "4987125aceac33186fa0eb44f469ee85917ff22b",
@@ -11500,7 +11500,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/9fba544fb276de433405006c108b2439a9a55189"
 },
 {
-"path": "ui/assets/img/readme/meshery_ui.png",
+"path": "ui/assets/img/readme/meshplay_ui.png",
 "mode": "100644",
 "type": "blob",
 "sha": "17a71b0e0bf3c13aa11cbf4d8b07e62432bd8e56",
@@ -11701,7 +11701,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/47604e4464f87f72092fad77c82abff9516c160f"
 },
 {
-"path": "ui/components/ConnectionWizard/helpers/mesheryOperator.js",
+"path": "ui/components/ConnectionWizard/helpers/meshplayOperator.js",
 "mode": "100644",
 "type": "blob",
 "sha": "b68de28a28dc711699cdf275a4d52c15b1308fda",
@@ -13340,7 +13340,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/f906f7151bede6dcb3765133671fb6b1f75e42bd"
 },
 {
-"path": "ui/public/static/img/meshery-logo-text.png",
+"path": "ui/public/static/img/meshplay-logo-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "d969c35a91acb124a77370fc79b05c439868c30d",
@@ -13348,7 +13348,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d969c35a91acb124a77370fc79b05c439868c30d"
 },
 {
-"path": "ui/public/static/img/meshery-logo.png",
+"path": "ui/public/static/img/meshplay-logo.png",
 "mode": "100644",
 "type": "blob",
 "sha": "e4788cba5afbd70f59db3db97291768db9c53521",
@@ -13356,14 +13356,14 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/e4788cba5afbd70f59db3db97291768db9c53521"
 },
 {
-"path": "ui/public/static/img/meshery-logo",
+"path": "ui/public/static/img/meshplay-logo",
 "mode": "040000",
 "type": "tree",
 "sha": "fec45e5981ed279c17c3f393f5e32f1f754d8bd0",
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/fec45e5981ed279c17c3f393f5e32f1f754d8bd0"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-dark-text.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-dark-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "5c7ca8887361397c1ef768a1506b7c1aaf73c2e2",
@@ -13371,7 +13371,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/5c7ca8887361397c1ef768a1506b7c1aaf73c2e2"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo-dark-text.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo-dark-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "be9f077a4f6f41b2edab2fed09eb75c81fc63d70",
@@ -13379,7 +13379,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/be9f077a4f6f41b2edab2fed09eb75c81fc63d70"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo-dark.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo-dark.png",
 "mode": "100644",
 "type": "blob",
 "sha": "92282c895ee65825e624558eef1517176f18c1b0",
@@ -13387,7 +13387,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/92282c895ee65825e624558eef1517176f18c1b0"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo-light-text.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo-light-text.png",
 "mode": "100644",
 "type": "blob",
 "sha": "8864d41224ad15e2d007bbdd0c957da3e179447d",
@@ -13395,7 +13395,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/8864d41224ad15e2d007bbdd0c957da3e179447d"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo-shadow.svg",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo-shadow.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "2bf90f81b597f5e640f6f82bf9bd0ef6654d8b0d",
@@ -13403,7 +13403,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/2bf90f81b597f5e640f6f82bf9bd0ef6654d8b0d"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo-white.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo-white.png",
 "mode": "100644",
 "type": "blob",
 "sha": "ad49a572ae8567585fb86de973c0693256728f3d",
@@ -13411,7 +13411,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/ad49a572ae8567585fb86de973c0693256728f3d"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-logo.svg",
+"path": "ui/public/static/img/meshplay-logo/meshplay-logo.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "d50149cec6dd6fc4bd5e24fdb4316970a1d468d8",
@@ -13419,7 +13419,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/d50149cec6dd6fc4bd5e24fdb4316970a1d468d8"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-text-dark.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-text-dark.png",
 "mode": "100644",
 "type": "blob",
 "sha": "40989de1c4efdfcc1046a9cc935f7abef6a157f7",
@@ -13427,7 +13427,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/40989de1c4efdfcc1046a9cc935f7abef6a157f7"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-text-white.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-text-white.png",
 "mode": "100644",
 "type": "blob",
 "sha": "007012c4afad8a2544ffb3555acd8c0a2a8fd5be",
@@ -13435,7 +13435,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/007012c4afad8a2544ffb3555acd8c0a2a8fd5be"
 },
 {
-"path": "ui/public/static/img/meshery-logo/meshery-white.png",
+"path": "ui/public/static/img/meshplay-logo/meshplay-white.png",
 "mode": "100644",
 "type": "blob",
 "sha": "7ccae32249592f11f0e745ecbdd3e66b0f0d8ab6",
@@ -13443,7 +13443,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/blobs/7ccae32249592f11f0e745ecbdd3e66b0f0d8ab6"
 },
 {
-"path": "ui/public/static/img/meshery-operator.svg",
+"path": "ui/public/static/img/meshplay-operator.svg",
 "mode": "100644",
 "type": "blob",
 "sha": "7894c1cd40b55c63fa780bad7c7209247a9cc24f",

@@ -196,7 +196,7 @@ func AppViewError(msg string) string {
 	return formatError(msg, cmdAppView)
 }
 
-// formatError returns a formatted error message with a link to the meshery command URL
+// formatError returns a formatted error message with a link to the meshplay command URL
 func formatError(msg string, cmd cmdType) string {
 	switch cmd {
 	case cmdRoot:
@@ -450,7 +450,7 @@ func ErrLoadConfig(err error) error {
 		[]string{"Error processing config"},
 		[]string{"Error processing config:" + err.Error()},
 		[]string{"Unable to load meshconfig due to wrong configurations"},
-		[]string{"Ensure your `config.yaml` file in your `.meshery` is valid, or run `meshplayctl system config`."})
+		[]string{"Ensure your `config.yaml` file in your `.meshplay` is valid, or run `meshplayctl system config`."})
 }
 
 func ErrParseGithubFile(err error, URL string) error {

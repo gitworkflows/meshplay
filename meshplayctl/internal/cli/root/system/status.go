@@ -120,7 +120,7 @@ meshplayctl system status --verbose
 
 			outputString := string(outputStd)
 
-			if strings.Contains(outputString, "meshery") {
+			if strings.Contains(outputString, "meshplay") {
 				log.Info(outputString)
 			}
 

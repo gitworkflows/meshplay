@@ -34,22 +34,22 @@ To install and start Meshplay, begin by [installing meshplayctl]({{ site.baseurl
 
 ## Install using Docker Meshplay Extension
 
-You can find the [Docker Meshplay Extension in Docker Hub](https://hub.docker.com/extensions/meshery/docker-extension-meshery) marketplace or use the Extensions browser in Docker Desktop to install the Docker Meshplay Extension.
+You can find the [Docker Meshplay Extension in Docker Hub](https://hub.docker.com/extensions/meshplay/docker-extension-meshplay) marketplace or use the Extensions browser in Docker Desktop to install the Docker Meshplay Extension.
 
-[![Docker Meshplay Extension]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshery-extension.png)]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshery-extension.png)
+[![Docker Meshplay Extension]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshplay-extension.png)]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshplay-extension.png)
 
 ## Access Meshplay
 
 Your default browser will be opened and directed to Meshplay's web-based user interface typically found at `http://localhost:9081`.
 
-{% include alert.html type="info" title="Accessing Meshplay UI" content="Meshplay's web-based user interface is embedded in Meshplay Server and is available as soon as Meshplay starts. The location and port that Meshplay UI is exposed varies depending upon your mode of deployment. See <a href='/tasks/accessing-meshery-ui'>accessing Meshplay UI</a> for deployment-specific details." %}
+{% include alert.html type="info" title="Accessing Meshplay UI" content="Meshplay's web-based user interface is embedded in Meshplay Server and is available as soon as Meshplay starts. The location and port that Meshplay UI is exposed varies depending upon your mode of deployment. See <a href='/tasks/accessing-meshplay-ui'>accessing Meshplay UI</a> for deployment-specific details." %}
 
 ### Select a Provider
 
 Select from the list of [Providers]({{ site.baseurl }}/extensibility/providers) in order to login to Meshplay. Authenticate with your chosen Provider.
 
-<a href="/assets/img/meshery-server-page.png">
-  <img class="center" style="width:min(100%,650px)" src="/assets/img/meshery-server-page.png" />
+<a href="/assets/img/meshplay-server-page.png">
+  <img class="center" style="width:min(100%,650px)" src="/assets/img/meshplay-server-page.png" />
 </a>
 
 ### Configure Connections to your Kubernetes Clusters
@@ -58,8 +58,8 @@ If you have deployed Meshplay out-of-cluster, Meshplay will automatically connec
 
 Visit <i class="fas fa-cog"></i> Settings:
 
-<a href="/assets/img/platforms/meshery-settings.png">
-  <img class="center" style="width:min(100%,650px);" src="/assets/img/platforms/meshery-settings.png" />
+<a href="/assets/img/platforms/meshplay-settings.png">
+  <img class="center" style="width:min(100%,650px);" src="/assets/img/platforms/meshplay-settings.png" />
 </a>
 
 If your config has not been autodetected, you can manually upload your kubeconfig file (or any number of kubeconfig files). By default, Meshplay will attempt to connect to and deploy Meshplay Operator to each reachable context contained in the imported kubeconfig files. See Managing Kubernetes Clusters for more information.
@@ -76,8 +76,8 @@ Run connectivity tests and verify the health of your Meshplay system. Verify Mes
 
 You may now proceed to managed any cloud native infrastructure supported by Meshplay. See all integrations for a complete list of supported infrastructure.
 
-<a href="{{site.baseurl}}/assets/img/platforms/meshery-designs.png">
-  <img class="center" style="width:min(100%,650px);" src="{{site.baseurl}}/assets/img/platforms/meshery-designs.png" />
+<a href="{{site.baseurl}}/assets/img/platforms/meshplay-designs.png">
+  <img class="center" style="width:min(100%,650px);" src="{{site.baseurl}}/assets/img/platforms/meshplay-designs.png" />
 </a>
 
 ## Additional Guides

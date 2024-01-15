@@ -46,7 +46,7 @@ func (h *Handler) ProviderMiddleware(next http.Handler) http.Handler {
 		callbackURL := viper.GetString("MESHPLAY_SERVER_CALLBACK_URL")
 		if callbackURL == "" {
 			// if MESHPLAY_SERVER_CALLBACK_URL is not set then we can assume standard CALLBACK_URL
-			callbackURL = "http://" + req.Host + "/api/user/token" // Hard coding the path because this is what meshery expects
+			callbackURL = "http://" + req.Host + "/api/user/token" // Hard coding the path because this is what meshplay expects
 		}
 		ctx = context.WithValue(ctx, models.MeshplayServerCallbackURL, callbackURL)
 		_url, err := url.Parse(callbackURL)

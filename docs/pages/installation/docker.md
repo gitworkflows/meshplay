@@ -48,4 +48,4 @@ Upon starting Meshplay successfully, instructions to access Meshplay will be pri
 
  {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

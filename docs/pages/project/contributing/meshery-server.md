@@ -36,18 +36,18 @@ After running Meshplay server, you will need to select your **Cloud Provider** b
 
 **Please note**: If you get error while starting the server as **"Meshplay Development Incompatible"** then follow the below guideline 👇
 
-<a href="{{ site.baseurl }}/assets/img/meshery-development-incompatible-error.png">
-  <img style= "max-width: 450px;" src="{{ site.baseurl }}/assets/img/meshery-development-incompatible-error.png" />
+<a href="{{ site.baseurl }}/assets/img/meshplay-development-incompatible-error.png">
+  <img style= "max-width: 450px;" src="{{ site.baseurl }}/assets/img/meshplay-development-incompatible-error.png" />
 </a>
 
 Potential Solution: 
 
--  Go to your meshery folder in your local-system where you’ve cloned it.
+-  Go to your meshplay folder in your local-system where you’ve cloned it.
 Execute: 
 
 - `git remote add upstream https://github.com/khulnasoft/meshplay`
 - `git fetch upstream`
-- Restart the meshery server
+- Restart the meshplay server
 - Additionally, before restarting the server, if you like to pull the latest changes, you can do: `git pull upstream master`
 #### Building Docker image
 

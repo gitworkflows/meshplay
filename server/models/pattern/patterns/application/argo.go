@@ -211,7 +211,7 @@ func createNativeService(opt RolloutEngineGenericOptions) v1.Service {
 		ObjectMeta: metav1.ObjectMeta{
 			Name: opt.Name,
 			Annotations: helpers.MergeStringMaps(map[string]string{
-				"meshery-engine": "argo",
+				"meshplay-engine": "argo",
 			}, opt.Metadata.Annotations),
 			Labels:    opt.Metadata.Labels,
 			Namespace: opt.Namespace,

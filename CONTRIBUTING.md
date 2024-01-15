@@ -18,7 +18,7 @@ All set to contribute? Grab an open issue with the [help-wanted label](../../lab
   - <a href="#commit-signing">Developer Certificate of Origin</a>
 - Meshplay Contribution Flow
   - <a href="#contributing-docs">Meshplay Documentation</a>
-  - <a href="#contributing-meshery">Meshplay Backend</a>
+  - <a href="#contributing-meshplay">Meshplay Backend</a>
     - <a href="#adapter">Writing a Meshplay Adapter</a>
   - <a href="#contributing-ui">Meshplay UI</a>
     Relevant coding style guidelines are the Go Code Review Comments and the Formatting and style section of Peter Bourgon's Go: Best Practices for Production Environments.
@@ -136,7 +136,7 @@ Please contribute! Meshplay documentation uses GitHub Pages to host the docs sit
    `git push origin <my-changes>`
 1. Open a pull request (in your web browser) against our main repo: https://github.com/khulnasoft/meshplay.
 
-## <a name="contributing-meshery">Meshplay Contribution Flow</a>
+## <a name="contributing-meshplay">Meshplay Contribution Flow</a>
 
 Meshplay is written in `Go` (Golang) and leverages Go Modules. UI is built on React and Next.js. To make building and packaging easier a `Makefile` is included in the main repository folder.
 
@@ -178,16 +178,16 @@ Once the Meshplay server is up and running, you should be able to access Meshpla
 
 **Please note**: If you see "Meshplay Development Incompatible" while trying to sign into Meshplay Server, then follow these steps:
 
-<img src="./docs/assets/img/meshery-development-incompatible-error.png" width="50%">
+<img src="./docs/assets/img/meshplay-development-incompatible-error.png" width="50%">
 
 Potential Solution:
 
--  Go to your meshery folder in your local-system where you’ve cloned it.
+-  Go to your meshplay folder in your local-system where you’ve cloned it.
 Execute:
 
 - `git remote add upstream https://github.com/khulnasoft/meshplay`
 - `git fetch upstream`
-- Restart the meshery server
+- Restart the meshplay server
 - Additionally, before restarting the server, if you like to pull the latest changes, you can do: `git pull upstream master`
 ### UI Development Server
 
@@ -250,13 +250,13 @@ Meshplay uses adapters to provision and interact with different service meshes. 
 
 _Tip:_ The [Meshplay adapter for Istio](https://github.com/khulnasoft/meshplay-istio) is a good reference adapter to use as an example of a Meshplay adapter written in Go.
 
-#### <a name="meshery-istio">Running Meshplay Adapter (Meshplay-Istio)</a>
+#### <a name="meshplay-istio">Running Meshplay Adapter (Meshplay-Istio)</a>
 
-**Meshplay-Istio** is a pre-written example of Meshplay Adapter written in Go. Follow these instructions to run meshery-istio to avoid errors related to Meshplay Adapters
+**Meshplay-Istio** is a pre-written example of Meshplay Adapter written in Go. Follow these instructions to run meshplay-istio to avoid errors related to Meshplay Adapters
 
 1. Fork [Meshplay-Istio](https://github.com/khulnasoft/meshplay-istio)
 2. Clone your fork locally
-3. Run this command from the root directory of **meshery-istio**
+3. Run this command from the root directory of **meshplay-istio**
    ```sh
    make run
    ```
@@ -266,7 +266,7 @@ _Tip:_ The [Meshplay adapter for Istio](https://github.com/khulnasoft/meshplay-i
 
 Meshplay is written in `Go` (Golang) and leverages Go Modules. UI is built on React, Billboard.js and Next.js. To make building and packaging easier a `Makefile` is included in the main repository folder.
 
-![ui/assets/img/readme/meshery_ui.png](ui/assets/img/readme/meshery_ui.png)
+![ui/assets/img/readme/meshplay_ui.png](ui/assets/img/readme/meshplay_ui.png)
 
 ### Install UI dependencies
 
@@ -311,7 +311,7 @@ Any UI changes made now will automatically be recompiled and served in the brows
 If you want to run Meshplay from IDE like Goland, VSCode. set below environment variable
 
 ```
-PROVIDER_BASE_URLS="https://meshery.layer5.io"
+PROVIDER_BASE_URLS="https://meshplay.layer5.io"
 PORT=9081
 DEBUG=true
 ADAPTER_URLS=localhost:10000 localhost:10001 localhost:10002 localhost:10003 localhost:10004 localhost:10005 localhost:10006 localhost:10007 localhost:10008 localhost:10009

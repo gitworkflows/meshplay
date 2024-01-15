@@ -525,7 +525,7 @@ theme = {
         },
       },
     },
-    // global style for body throughout meshery-ui
+    // global style for body throughout meshplay-ui
     // Global scrollbar styles
     MuiCssBaseline: {
       '@global': {

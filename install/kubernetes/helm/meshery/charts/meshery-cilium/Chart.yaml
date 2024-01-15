@@ -1,7 +1,7 @@
 apiVersion: v2
-name: meshery-cilium
+name: meshplay-cilium
 description: Meshplay Adapter for Cilium chart.
-icon: https://khulnasoft.com/images/logos/meshery-logo.png
+icon: https://khulnasoft.com/images/logos/meshplay-logo.png
 source: 
   - https://github.com/khulnasoft/meshplay-cilium
 

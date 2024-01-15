@@ -15,7 +15,7 @@ Meshplay Databases function as repositories for [MeshSync](/concepts/architectur
 
 See the figure below for additional details of the data formats supported and type of data stored.
 
-[![Architecture Diagram]({{ site.baseurl }}/assets/img/architecture/meshery-database.svg)]({{ site.baseurl }}/assets/img/architecture/meshery-database.svg)
+[![Architecture Diagram]({{ site.baseurl }}/assets/img/architecture/meshplay-database.svg)]({{ site.baseurl }}/assets/img/architecture/meshplay-database.svg)
 
 ### Components
 

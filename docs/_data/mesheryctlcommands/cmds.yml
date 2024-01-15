@@ -12,14 +12,14 @@ global:
       name: --config
       description: configures Meshplay with the meshconfig, generated with the help of user details to provide cluster access for public clouds(GKE/EKS).
       usage: meshplayctl [command] --config=[path to config file]
-      example: meshplayctl system reset --config="~/.meshery/config.yaml"
+      example: meshplayctl system reset --config="~/.meshplay/config.yaml"
     help:
       name: --help, -h
       description: Displays helpful information about any command.
       usage: meshplayctl --help
       example: |
         meshplayctl perf --help
-          meshery system start --help
+          meshplay system start --help
     verbose:
       name: --verbose, -v
       description: Sets the log level to debug for verbose output and displays verboose/debug logs.
@@ -150,7 +150,7 @@ system:
         meshplayctl system logs [component-name]
       example: |
         meshplayctl system logs --verbose
-          meshplayctl system logs meshery-istio
+          meshplayctl system logs meshplay-istio
       flags:
         follow:
           name: --follow, -f
@@ -159,7 +159,7 @@ system:
 
     reset:
       name: reset
-      description: Resets meshery.yaml file with a copy from Meshplay repo
+      description: Resets meshplay.yaml file with a copy from Meshplay repo
       usage: meshplayctl system reset
 
     restart:
@@ -229,7 +229,7 @@ system:
           name: --adapter
           description: Run checks on specific mesh adapter
           usage: meshplayctl system check --adapter [adapter-name]
-          example: meshplayctl system check --adapter meshery-istio:10000
+          example: meshplayctl system check --adapter meshplay-istio:10000
         operator:
           name: --operator
           description: Verify the health of Meshplay Operator's deployment with MeshSync and Broker
@@ -237,7 +237,7 @@ system:
           example: meshplayctl system check --operator
         adapters:
           name: --adapters
-          description: Check status of meshery adapters
+          description: Check status of meshplay adapters
           usage: meshplayctl system check --adapters
           example: meshplayctl system check --adapters
         components:
@@ -296,7 +296,7 @@ system-context:
           name: --components, -a
           description: create a new context in config.yaml file- specify the list of adapters to be added
           usage: meshplayctl system context create [context name] --adapters [list of adapters]
-          example: meshplayctl system context create k8s-sample --adapters "meshery-osm:10010", "meshery-istio:10000"
+          example: meshplayctl system context create k8s-sample --adapters "meshplay-osm:10010", "meshplay-istio:10000"
         set:
           name: --set, -s
           description: create a new context in config.yaml file- set as current context
@@ -491,7 +491,7 @@ perf:
           arg: apply
           description: (optional) Path to the certificate to be used for the load test
           usage: meshplayctl perf apply [profile-name] --url "https://google.com" --cert-path path/to/cert.pem
-          example: meshplayctl perf apply meshery-profile-new --url "https://google.com" --cert-path path/to/cert.pem
+          example: meshplayctl perf apply meshplay-profile-new --url "https://google.com" --cert-path path/to/cert.pem
         disable-cert:
           name: --disable-cert
           arg: apply
@@ -559,9 +559,9 @@ mesh:
       flags:
         adapter:
           name: --adapter, -a
-          description: (required) adapter to use for validation. Defaults to "meshery-osm:10010"
+          description: (required) adapter to use for validation. Defaults to "meshplay-osm:10010"
           usage: meshplayctl mesh validate --adapter [name of the adapter]
-          example: meshplayctl mesh validate --adapter meshery-istio:10000 -t "~/Download/auth.json"
+          example: meshplayctl mesh validate --adapter meshplay-istio:10000 -t "~/Download/auth.json"
         namespace:
           name: --namespace, -n
           description: Kubernetes namespace to be used for deploying the validation tests and sample workload
@@ -597,9 +597,9 @@ mesh:
       flags:
         adapter:
           name: --adapter, -a
-          description: (required) adapter to use for validation. Defaults to "meshery-osm:10010"
+          description: (required) adapter to use for validation. Defaults to "meshplay-osm:10010"
           usage: meshplayctl mesh deploy --adapter [name of the adapter]
-          example: meshplayctl mesh deploy --adapter meshery-istio:10000
+          example: meshplayctl mesh deploy --adapter meshplay-istio:10000
         namespace:
           name: --namespace, -n
           description: Kubernetes namespace to be used for deploying the validation tests and sample workload

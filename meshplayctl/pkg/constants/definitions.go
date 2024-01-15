@@ -2,16 +2,16 @@ package constants
 
 const (
 	// Meshplay Repository Location
-	mesheryGitHubOrg  string = "meshery"
-	mesheryGitHubRepo string = "meshery"
+	meshplayGitHubOrg  string = "meshplay"
+	meshplayGitHubRepo string = "meshplay"
 )
 
 // GetMeshplayGitHubOrg retrieves the name of the GitHub organization under which the Meshplay repository resides.
 func GetMeshplayGitHubOrg() string {
-	return mesheryGitHubOrg
+	return meshplayGitHubOrg
 }
 
 // GetMeshplayGitHubRepo retrieves the name of the Meshplay repository
 func GetMeshplayGitHubRepo() string {
-	return mesheryGitHubRepo
+	return meshplayGitHubRepo
 }

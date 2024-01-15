@@ -55,7 +55,7 @@ The designs in this specification should result in enabling:
 
 ## Setup
 
-{% include alert.html type="info" title="Windows User?" content="See <a href='https://docs.khulnasoft.com/project/contributing/meshery-windows'>Setting up Meshplay Development Environment on Windows</a>."
+{% include alert.html type="info" title="Windows User?" content="See <a href='https://docs.khulnasoft.com/project/contributing/meshplay-windows'>Setting up Meshplay Development Environment on Windows</a>."
 %}
 
 ### Node Version Recommendations
@@ -98,18 +98,18 @@ Now, Meshplay will run on the default port `http://localhost:9081`.
 
 **Please note**: If you see "Meshplay Development Incompatible" while trying to sign into Meshplay Server, then follow these steps:
 
-<a href="{{ site.baseurl }}/assets/img/meshery-development-incompatible-error.png">
-  <img style= "width: 600px;" src="{{ site.baseurl }}/assets/img/meshery-development-incompatible-error.png" />
+<a href="{{ site.baseurl }}/assets/img/meshplay-development-incompatible-error.png">
+  <img style= "width: 600px;" src="{{ site.baseurl }}/assets/img/meshplay-development-incompatible-error.png" />
 </a>
 
 Potential Solution:
 
-- Go to your meshery folder in your local-system where you’ve cloned it.
+- Go to your meshplay folder in your local-system where you’ve cloned it.
   Execute:
 
 - `git remote add upstream https://github.com/khulnasoft/meshplay`
 - `git fetch upstream`
-- Restart the meshery server
+- Restart the meshplay server
 - Additionally, before restarting the server, if you like to pull the latest changes, you can do: `git pull upstream master`
 
 ### UI Development Server
@@ -137,7 +137,7 @@ Refer to [Meshplay Cypress Testing](contributing-cypress) for details of how to 
 The Meshplay UI public folder contains static files. Its folder structure looks like this:
 
 ```
-meshery
+meshplay
 └── ui
     └── public
         └── static
@@ -165,11 +165,11 @@ Images and icons used in Meshplay UI need to be sourced from the [public directo
       e.g.: the Meshplay logo icon folder structure looks like this:
    ```
    └── img
-       └── meshery
+       └── meshplay
            ├── white
-           |   └── meshery-white.svg
+           |   └── meshplay-white.svg
            └── color
-               └── meshery-color.svg
+               └── meshplay-color.svg
    ```
 6. Avoid any kind of duplicity in the versions of icons used.
 

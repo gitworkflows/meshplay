@@ -21,7 +21,7 @@ From the Command Line: Guides to using Meshplay's various features and component
     </li>
     {% endif %}
   {% endfor %}
-    <li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshery-cli">Upgrading Meshplay CLI</a></li>
+    <li><a href="{{ site.baseurl }}/guides/upgrade#upgrading-meshplay-cli">Upgrading Meshplay CLI</a></li>
 </ul>
 
 {% include suggested-reading.html diffName="true" isDiffTag="true" diffTag=tag %}

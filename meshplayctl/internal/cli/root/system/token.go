@@ -172,7 +172,7 @@ meshplayctl system token list
 var viewTokenCmd = &cobra.Command{
 	Use:   "view",
 	Short: "View token",
-	Long:  "View a specific token in meshery config",
+	Long:  "View a specific token in meshplay config",
 	Example: `
 meshplayctl system token view [token-name]
 meshplayctl system token view (show token of current context)

@@ -1,7 +1,7 @@
 ---
 layout: enhanced
 title: Meshplay Operator
-permalink: extensibility/integrations/meshery-operator
+permalink: extensibility/integrations/meshplay-operator
 type: extensibility
 category: integrations
 integrations-category: Orchestration & Management
@@ -9,7 +9,7 @@ integrations-subcategory: App Definition and Development
 display-title: "false"
 language: en
 list: include
-image: /assets/img/integrations/meshery-operator.svg
+image: /assets/img/integrations/meshplay-operator.svg
 ---
 
 <h1>{{ page.title }} <img src="{{ page.image }}" style="width: 35px; height: 35px;" /></h1>

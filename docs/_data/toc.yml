@@ -140,7 +140,7 @@
       url: guides/configuration-management
       children:
       - title: Creating a Meshplay Design
-        url: guides/configuration-management/creating-a-meshery-design
+        url: guides/configuration-management/creating-a-meshplay-design
       - title: Working with Designs
         url: guides/configuration-management/working-with-designs
       - title: Importing Applications
@@ -150,12 +150,12 @@
     - title: Using Multiple Meshplay Adapters
       url: guides/multiple-adapters
     - title: GitOps with Meshplay
-      url: guides/gitops-with-meshery
+      url: guides/gitops-with-meshplay
     - title: Using Metrics in Meshplay ↆ
       url: guides/performance-management
       children:
         - title: Integrating Prometheus and Grafana
-          url: guides/performance-management/meshery-metrics
+          url: guides/performance-management/meshplay-metrics
         - title: Interpreting Performance Test Results 
           url: guides/performance-management/interpreting-performance-test-results
         - title: Performance Management with Meshplay 
@@ -168,7 +168,7 @@
         - title: Configure autocompletion for meshplayctl
           url: guides/meshplayctl/configuring-autocompletion-for-meshplayctl
         - title: Authenticate via Meshplay CLI
-          url: guides/meshplayctl/authenticate-with-meshery-via-cli
+          url: guides/meshplayctl/authenticate-with-meshplay-via-cli
         - title: Running system checks using Meshplay CLI
           url: guides/meshplayctl/running-system-checks-using-meshplayctl
     - title: Troubleshooting Guides ↆ
@@ -177,14 +177,14 @@
         - title: Installation
           url: guides/troubleshooting/installation
         - title: Meshplay Operator 
-          url: guides/troubleshooting/meshery-operator-meshsync
+          url: guides/troubleshooting/meshplay-operator-meshsync
         - title: Meshplay Server 
-          url: guides/troubleshooting/meshery-server
+          url: guides/troubleshooting/meshplay-server
     - title: Upgrading Meshplay ↆ
       url: guides/upgrade
       children:
         - title: Meshplay CLI
-          url: guides/upgrade#upgrading-meshery-cli
+          url: guides/upgrade#upgrading-meshplay-cli
 - title: ⚙️ Tasks (all)
   url: tasks
   links:
@@ -274,7 +274,7 @@
     - title: "CLI Command Reference"
       url: reference/meshplayctl
     - title: "Meshplay Operator CRDs"
-      url: reference/meshery-operator-crds
+      url: reference/meshplay-operator-crds
     - title: Releases
       url: project/releases
     - title: Vulnerabilities

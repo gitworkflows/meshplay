@@ -43,8 +43,8 @@ const styles = makeStyles((theme) => ({
     padding: '0rem 0.5rem',
     content:
       theme.palette.type === 'dark'
-        ? "url('/static/img/meshery-logo-text.svg')"
-        : "url('/static/img/meshery-logo-light-text.svg')",
+        ? "url('/static/img/meshplay-logo-text.svg')"
+        : "url('/static/img/meshplay-logo-light-text.svg')",
   },
   insideImgWrapperLogo: {
     padding: '0rem 0.5rem',
@@ -89,7 +89,7 @@ export default function PlaygroundMeshDeploy(props) {
               className={classes.insideImgWrapperLogo}
               width="20%"
               height="20%"
-              src="/static/img/meshery-logo.png"
+              src="/static/img/meshplay-logo.png"
             />
             <img className={classes.insideImgWrapper} width="50%" height="50%" />
           </div>

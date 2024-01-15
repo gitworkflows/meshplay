@@ -17,7 +17,7 @@ Anytime a `meshplayctl system` command is executed, a series of preflight checks
 
    Situation: `meshplayctl` fails to query for pods in the default namespace of the user's current Kubernetes context.
 
-2. Remove `~/.meshery` to reinitialize Meshplay
+2. Remove `~/.meshplay` to reinitialize Meshplay
 
    Situation: Unable to start Meshplay Server with `make run-local` due to error of `key/value size is invalid`
 
@@ -35,7 +35,7 @@ The difficulty with Minikube and Kind clusters is that they typically don't supp
 
    A simpler way to resolve this issue can be `port-forwarding`. Run the following command in terminal:
 
-   `kubectl port-forward service/meshery 9081:9081 -n meshery`
+   `kubectl port-forward service/meshplay 9081:9081 -n meshplay`
 
 3. For `kind`, you can prefer installing MetalLB with a custom configmap.
 
@@ -54,7 +54,7 @@ The env variable DISABLE_OPERATOR=true can be used to signal Meshplay server to 
 Example of a healthy Meshplay Broker server with an actively connected (subscribed) Meshplay Server:
 
 ```
-➜  ~ kubectl logs -n meshery meshery-broker-0 nats
+➜  ~ kubectl logs -n meshplay meshplay-broker-0 nats
 [8] 2021/09/08 21:46:03.070952 [INF] Starting nats-server version 2.1.9
 [8] 2021/09/08 21:46:03.070982 [INF] Git commit [7c76626]
 [8] 2021/09/08 21:46:03.071308 [INF] Starting http monitor on 0.0.0.0:8222
@@ -96,10 +96,10 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     None
 ```
 
-If you cannot see "Meshplay" Remote Provider and find such error logs in Meshplay Server's logs (`meshplayctl system logs`), please make sure that Meshplay Server is able to reach "https://meshery.layer5.io" in order to initialize the "Meshplay" Remote Provider.
+If you cannot see "Meshplay" Remote Provider and find such error logs in Meshplay Server's logs (`meshplayctl system logs`), please make sure that Meshplay Server is able to reach "https://meshplay.layer5.io" in order to initialize the "Meshplay" Remote Provider.
 
 ```bash
-time="2021-11-10T11:05:30Z" level=error msg="[Initialize Provider]: Failed to get capabilities Get \"https://meshery.layer5.io/v0.5.71/capabilities?os=meshery\": dial tcp 3.140.89.205:443: i/o timeout"
+time="2021-11-10T11:05:30Z" level=error msg="[Initialize Provider]: Failed to get capabilities Get \"https://meshplay.layer5.io/v0.5.71/capabilities?os=meshplay\": dial tcp 3.140.89.205:443: i/o timeout"
 ```
 
 For more details about Meshplay Providers:

@@ -128,12 +128,12 @@ meshplayctl system update --skip-reset
 			if err != nil {
 				return err
 			}
-			mesheryImageVersion := currCtx.GetVersion()
+			meshplayImageVersion := currCtx.GetVersion()
 			// If the user skips reset, then just restart the pods else fetch updated manifest files and apply them
 			if !utils.SkipResetFlag {
 
 				// Apply the latest helm chart along with the default image tag specified in the charts "stable-latest"
-				if err = applyHelmCharts(kubeClient, currCtx, mesheryImageVersion, false, meshkitkube.UPGRADE); err != nil {
+				if err = applyHelmCharts(kubeClient, currCtx, meshplayImageVersion, false, meshkitkube.UPGRADE); err != nil {
 					return errors.Wrap(err, "cannot update Meshplay")
 				}
 			}
@@ -190,7 +190,7 @@ meshplayctl system update --skip-reset
 			if latest != version {
 				log.Printf("A new release of meshplayctl is available: %s → %s", version, latest)
 				log.Printf("https://github.com/khulnasoft/meshplay/releases/tag/%s", latest)
-				log.Print("Check https://docs.khulnasoft.com/guides/upgrade#upgrading-meshery-cli for instructions on how to update meshplayctl\n")
+				log.Print("Check https://docs.khulnasoft.com/guides/upgrade#upgrading-meshplay-cli for instructions on how to update meshplayctl\n")
 			}
 		}
 	},

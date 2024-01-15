@@ -38,7 +38,7 @@ var resetCmd = &cobra.Command{
 	Short: "Reset Meshplay's configuration",
 	Long:  `Reset Meshplay to it's default configuration.`,
 	Example: `
-// Resets meshery.yaml file with a copy from Meshplay repo
+// Resets meshplay.yaml file with a copy from Meshplay repo
 meshplayctl system reset
 	`,
 	Annotations: linkDocReset,
@@ -50,7 +50,7 @@ meshplayctl system reset
 	},
 }
 
-// resets meshery config, skips conirmation if skipConfirmation is true
+// resets meshplay config, skips conirmation if skipConfirmation is true
 func resetMeshplayConfig() error {
 	userResponse := false
 	if utils.SilentFlag {
@@ -101,7 +101,7 @@ func resetMeshplayConfig() error {
 	return fetchManifests(mctlCfg)
 }
 
-// Fetches manifests for meshery components based on the current context
+// Fetches manifests for meshplay components based on the current context
 func fetchManifests(mctlCfg *config.MeshplayCtlConfig) error {
 	currCtx, err := mctlCfg.GetCurrentContext()
 	if err != nil {

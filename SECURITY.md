@@ -4,7 +4,7 @@ back Meshplay security vulnerabilities. We investigate every report thoroughly.
 
 ## Reporting a vulnerability
 To make a report, send an email to the private
-[security@meshery.dev](mailto:security@meshery.dev)
+[security@meshplay.dev](mailto:security@meshplay.dev)
 mailing list with the vulnerability details. For normal product bugs
 unrelated to latent security vulnerabilities, please head to
 the appropriate repository and submit a [new issue](https://github.com/khulnasoft/meshplay/issues/new/choose).
@@ -57,7 +57,7 @@ branches.
 - Meshplay team ensures all necessary binaries are promptly built and published.
 - Once the binaries are available, an announcement is sent out on the following channels:
   - The [Meshplay blog](https://khulnasoft.com/blog/)
-  - The [Meshplay Twitter feed](https://twitter.com/mesheryio)
+  - The [Meshplay Twitter feed](https://twitter.com/meshplayio)
   - The #announcements channel on Slack
 
 As much as possible this announcement will be actionable, and include any mitigating steps customers can take prior to

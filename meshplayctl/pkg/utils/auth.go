@@ -165,7 +165,7 @@ func AddAuthDetails(req *http.Request, filepath string) error {
 	return nil
 }
 
-// UpdateAuthDetails checks gets the token (old/refreshed) from meshery server and writes it back to the config file
+// UpdateAuthDetails checks gets the token (old/refreshed) from meshplay server and writes it back to the config file
 func UpdateAuthDetails(filepath string) error {
 	mctlCfg, err := config.GetMeshplayCtl(viper.GetViper())
 	if err != nil {
@@ -286,7 +286,7 @@ func InitiateLogin(mctlCfg *config.MeshplayCtlConfig, option string) ([]byte, er
 		}
 	}
 
-	// Send request with the token to the meshery server
+	// Send request with the token to the meshplay server
 	data, err := getTokenObjFromMeshplayServer(mctlCfg, provider.ProviderName, token)
 	if err != nil {
 		return nil, err
@@ -295,7 +295,7 @@ func InitiateLogin(mctlCfg *config.MeshplayCtlConfig, option string) ([]byte, er
 	return data, nil
 }
 
-// GetProviderInfo queries meshery API for the provider info
+// GetProviderInfo queries meshplay API for the provider info
 func GetProviderInfo(mctCfg *config.MeshplayCtlConfig) (map[string]Provider, error) {
 	res := map[string]Provider{}
 
@@ -433,7 +433,7 @@ func getTokenObjFromMeshplayServer(mctl *config.MeshplayCtlConfig, provider, tok
 		HttpOnly: true,
 	})
 	req.AddCookie(&http.Cookie{
-		Name:     "meshery-provider",
+		Name:     "meshplay-provider",
 		Value:    provider,
 		HttpOnly: true,
 	})

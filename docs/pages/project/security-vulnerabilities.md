@@ -47,7 +47,7 @@ We are very grateful to the security researchers and users that report
 back Meshplay security vulnerabilities. We investigate every report thoroughly.
 
 To make a report, send an email to the private
-[security@meshery.dev](mailto:security@meshery.dev)
+[security@meshplay.dev](mailto:security@meshplay.dev)
 mailing list with the vulnerability details. For normal product bugs
 unrelated to latent security vulnerabilities, please head to
 the appropriate repository and submit a [new issue](https://github.com/khulnasoft/meshplay/issues/new/choose).
@@ -104,7 +104,7 @@ branches.
 
 - Once the binaries are available, an announcement is sent out on the following channels:
   - The [Meshplay blog](https://khulnasoft.com/blog/)
-  - The [Meshplay Twitter feed](https://twitter.com/mesheryio)
+  - The [Meshplay Twitter feed](https://twitter.com/meshplayio)
   - The [#announcements](https://layer5io.slack.com/archives/CSF3PSZT9) channel on community [Slack](https://slack.khulnasoft.com/)
 
 As much as possible this announcement will be actionable, and include any mitigating steps customers can take prior to upgrading to a fixed version.

@@ -37,23 +37,23 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the dev
 
 OR
 
-You can visit the [Docker Hub](https://hub.docker.com/extensions/meshery/docker-extension-meshery) marketplace to directly install Meshplay extension in your Docker Desktop.
+You can visit the [Docker Hub](https://hub.docker.com/extensions/meshplay/docker-extension-meshplay) marketplace to directly install Meshplay extension in your Docker Desktop.
 
 ### Using Docker CLI
 
 Meshplay runs as a set of one or more containers inside your Docker Desktop virtual machine.
 
 <!--
-{% capture code_content %}docker extension install meshery/docker-extension-meshery{% endcapture %} -->
+{% capture code_content %}docker extension install meshplay/docker-extension-meshplay{% endcapture %} -->
 <!-- {% include code.html code=code_content %} -->
 
 <pre class="codeblock-pre" style="padding: 0; font-size:0px;"><div class="codeblock" style="display: block;">
  <div class="clipboardjs" style="padding: 0">
- <span style="font-size:0;">docker extension install meshery/docker-extension-meshery</span> 
+ <span style="font-size:0;">docker extension install meshplay/docker-extension-meshplay</span> 
  </div>
  <div class="window-buttons"></div>
  <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-            <span data-ty="input">docker extension install meshery/docker-extension-meshery</span>
+            <span data-ty="input">docker extension install meshplay/docker-extension-meshplay</span>
             <span data-ty="progress"></span>
             <span data-ty="">Successfully installed Meshplay</span>
             <span data-ty="input">meshplayctl system dashboard</span>
@@ -71,11 +71,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker stop meshery-container</span> 
+    <span style="font-size:0;">docker stop meshplay-container</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker stop meshery-container</span>
+      <span data-ty="input">docker stop meshplay-container</span>
     </div>
     </div>
    </pre>
@@ -86,11 +86,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker rm meshery-container</span> 
+    <span style="font-size:0;">docker rm meshplay-container</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker rm meshery-container</span>
+      <span data-ty="input">docker rm meshplay-container</span>
     </div>
     </div>
    </pre>
@@ -112,11 +112,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker rmi meshery/adapters:latest</span> 
+    <span style="font-size:0;">docker rmi meshplay/adapters:latest</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker rmi meshery/adapters:latest</span>
+      <span data-ty="input">docker rmi meshplay/adapters:latest</span>
     </div>
     </div>
    </pre>
@@ -140,11 +140,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker volume rm meshery-data-volume</span> 
+    <span style="font-size:0;">docker volume rm meshplay-data-volume</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker volume rm meshery-data-volume</span>
+      <span data-ty="input">docker volume rm meshplay-data-volume</span>
     </div>
     </div>
    </pre>
@@ -157,11 +157,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker network rm meshery-network</span> 
+    <span style="font-size:0;">docker network rm meshplay-network</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker network rm meshery-network</span>
+      <span data-ty="input">docker network rm meshplay-network</span>
     </div>
     </div>
    </pre>
@@ -173,4 +173,4 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}

@@ -6,25 +6,25 @@ metadata:
     kompose.version: 1.17.0 ()
   creationTimestamp: null
   labels:
-    io.kompose.service: meshery-osm
-  name: meshery-osm
+    io.kompose.service: meshplay-osm
+  name: meshplay-osm
 spec:
   selector:
     matchLabels:
-      io.kompose.service: meshery-osm
+      io.kompose.service: meshplay-osm
   replicas: 1
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: meshery-osm
+        io.kompose.service: meshplay-osm
     spec:
-      serviceAccount: meshery-server
+      serviceAccount: meshplay-server
       containers:
       - image: khulnasoft/meshplay-osm:stable-latest
         imagePullPolicy: Always
-        name: meshery-osm
+        name: meshplay-osm
         ports:
         - containerPort: 10009
         resources: {}

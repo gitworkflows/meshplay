@@ -40,7 +40,7 @@ Some portions of the workflow require secrets to accomplish their tasks. These s
 - `CYPRESS_RECORD_KEY`: Used for integration with the Layer5 account on Cypress.
 - `GLOBAL_TOKEN`: Used for securely transmitting performance test results for the None Provider.
 
-The Docker Hub user, `mesheryci`, belongs to the "ciusers" team in Docker Hub and acts as the service account under which these automated builds are being pushed. Every time a new Docker Hub repository is created we have to grant “Admin” (in order to update the README in the Docker Hub repository) permissions to the ciusers team.
+The Docker Hub user, `meshplayci`, belongs to the "ciusers" team in Docker Hub and acts as the service account under which these automated builds are being pushed. Every time a new Docker Hub repository is created we have to grant “Admin” (in order to update the README in the Docker Hub repository) permissions to the ciusers team.
 
 ## Checks and Tests
 
@@ -96,7 +96,7 @@ tests in adapters are end-to-end tests and use patternfile. The reusable workflo
 1. Checks out the code of the repository(on the ref of latest commit of branch which made the PR) in which it is referenced.
 2. Starts a minikube cluster
 3. Builds a docker image of the adapter and sets minikube to use docker's registry.
-4. Starts the adapter and meshery server (The url to deployment and service yaml of adapter are configurable).
+4. Starts the adapter and meshplay server (The url to deployment and service yaml of adapter are configurable).
    NOTE: The service mesh name( whose adapter we are testing ) has to passed in:
 
 ---
@@ -169,7 +169,7 @@ All Meshplay GitHub repositories are configured with GitHub Actions. Everytime a
 
 ### Building `meshplayctl`
 
-As a special case, the meshery repository contains an additional artifact produced during each build. This artifact is meshplayctl which is built as an executable binary. In order to make the job of building meshplayctl easier for a combination of different platform architectures and operating systems, we are using [GoReleaser](https://goreleaser.com). Irrespective of branch, for every git commit and git push to the meshery repository, GoReleaser will execute and generate the OS and arch-specific binaries ( but will NOT publish them to GitHub). Even though meshplayctl binaries are built each time a pull request is merged to master, only stable channel artifacts are published (persisted).
+As a special case, the meshplay repository contains an additional artifact produced during each build. This artifact is meshplayctl which is built as an executable binary. In order to make the job of building meshplayctl easier for a combination of different platform architectures and operating systems, we are using [GoReleaser](https://goreleaser.com). Irrespective of branch, for every git commit and git push to the meshplay repository, GoReleaser will execute and generate the OS and arch-specific binaries ( but will NOT publish them to GitHub). Even though meshplayctl binaries are built each time a pull request is merged to master, only stable channel artifacts are published (persisted).
 
 ### Releasing `meshplayctl` to GitHub
 
@@ -298,7 +298,7 @@ Users are empowered to switch between release channels at their leisure.
 
 #### Switching Release Channels Using meshplayctl
 
-Users can use meshplayctl to switch between release channels, e.g. `meshplayctl system channel [stable|edge]`. Alternatively, users can manually switch between channels by updating the docker image tags in their meshery.yaml / Kubernetes manifest files. This command generates a meshery.yml (a docker-compose file) with release channel-appropriate tags for the different Docker container images.
+Users can use meshplayctl to switch between release channels, e.g. `meshplayctl system channel [stable|edge]`. Alternatively, users can manually switch between channels by updating the docker image tags in their meshplay.yaml / Kubernetes manifest files. This command generates a meshplay.yml (a docker-compose file) with release channel-appropriate tags for the different Docker container images.
 
 #### Viewing Release Channel and Version Information in Meshplay UI
 

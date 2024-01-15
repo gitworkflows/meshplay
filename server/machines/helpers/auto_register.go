@@ -169,7 +169,7 @@ func getConnectionPayload(connType, objName, objID string, identifier interface{
 func (arh *AutoRegistrationHelper) getConnectionDefinitions(connType string) []v1alpha1.ComponentDefinition {
 	connectionCompFilter := &v1alpha1.ComponentFilter{
 		Name:       fmt.Sprintf("%sConnection", connType),
-		APIVersion: "meshery.layer5.io/v1alpha1",
+		APIVersion: "meshplay.layer5.io/v1alpha1",
 		Greedy:     true,
 	}
 

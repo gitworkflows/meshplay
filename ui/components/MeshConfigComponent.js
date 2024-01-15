@@ -743,7 +743,7 @@ function MeshplaySettingsNew({
                                   onClick={() => handleOperatorClick(rowMetaData.rowIndex)}
                                   icon={
                                     <img
-                                      src="/static/img/meshery-operator.svg"
+                                      src="/static/img/meshplay-operator.svg"
                                       className={classes.operatorIcon}
                                     />
                                   }

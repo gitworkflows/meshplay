@@ -81,7 +81,7 @@ func (c *ComponentTypes) Get() (names []string) {
 	return
 }
 
-// ComponentTypesSingleton is initialized per meshery instance and acts as a helper middleware between client facing API and capability registry.
+// ComponentTypesSingleton is initialized per meshplay instance and acts as a helper middleware between client facing API and capability registry.
 // Examples of names stored in this struct are: core,kubernetes,istio,linkerd
 var ComponentTypesSingleton = ComponentTypes{
 	Names:                     make(map[string]bool),
@@ -284,9 +284,9 @@ func DeleteK8sWorkloads(ctx string) {
 		}
 		var workload = value
 		//delete only the ones with given context in metadata
-		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.khulnasoft.com/k8s" && workload.Metadata["io.meshery.ctxid"] == ctx {
+		if workload.OAMDefinition.Spec.Metadata["@type"] == "pattern.khulnasoft.com/k8s" && workload.Metadata["io.meshplay.ctxid"] == ctx {
 			key := fmt.Sprintf(
-				"/meshery/registry/definition/%s/%s/%s",
+				"/meshplay/registry/definition/%s/%s/%s",
 				workload.OAMDefinition.APIVersion,
 				workload.OAMDefinition.Kind,
 				workload.OAMDefinition.Name,

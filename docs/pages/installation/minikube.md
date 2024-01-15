@@ -15,11 +15,11 @@ abstract: Install Meshplay on Minikube. Deploy Meshplay in Minikube in-cluster o
 
 <h1>Quick Start with {{ page.title }} <img src="{{ page.image }}" style="width:35px;height:35px;" /></h1>
 
-Manage your Minikube clusters with Meshplay. Deploy Meshplay in Minikube [in-cluster](#in-cluster-installation) or outside of Minikube [out-of-cluster](#out-of-cluster-installation). **_Note: It is advisable to [Install Meshplay in your Minikube clusters](#install-meshery-into-your-minikube-cluster)_**
+Manage your Minikube clusters with Meshplay. Deploy Meshplay in Minikube [in-cluster](#in-cluster-installation) or outside of Minikube [out-of-cluster](#out-of-cluster-installation). **_Note: It is advisable to [Install Meshplay in your Minikube clusters](#install-meshplay-into-your-minikube-cluster)_**
 
 <div class="prereqs"><p><strong style="font-size: 20px;">Prerequisites</strong> </p> 
   <ol>
-    <li>Install the Meshplay command line client, <a href="{{ site.baseurl }}/installation/meshplayctl" class="meshery-light">meshplayctl</a>.</li>
+    <li>Install the Meshplay command line client, <a href="{{ site.baseurl }}/installation/meshplayctl" class="meshplay-light">meshplayctl</a>.</li>
     <li>Install <a href="https://kubernetes.io/docs/tasks/tools/">kubectl</a> installed on your local machine.</li>
   </ol>
 </div>
@@ -31,16 +31,16 @@ Also see: [Install Meshplay on Kubernetes]({{ site.baseurl }}/installation/kuber
 - [In-cluster Installation](#in-cluster-installation)
   - [Preflight Checks](#preflight-checks)
     - [Preflight: Cluster Connectivity](#preflight-cluster-connectivity)
-    - [Preflight: Plan your access to Meshplay UI](#preflight-plan-your-access-to-meshery-ui)
+    - [Preflight: Plan your access to Meshplay UI](#preflight-plan-your-access-to-meshplay-ui)
   - [Installation: Using `meshplayctl`](#installation-using-meshplayctl)
   - [Installation: Using Helm](#installation-using-helm)
   - [Installation: Manual Steps](#installation-manual-steps)
   - [Installation: Docker Driver Users](#installation-docker-driver-users)
 - [Out-of-cluster Installation](#out-of-cluster-installation)
-  - [Installation: Install Meshplay on Docker](#installation-install-meshery-on-docker)
-  - [Installation: Upload Config File in Meshplay Web UI](#installation-upload-config-file-in-meshery-web-ui)
+  - [Installation: Install Meshplay on Docker](#installation-install-meshplay-on-docker)
+  - [Installation: Upload Config File in Meshplay Web UI](#installation-upload-config-file-in-meshplay-web-ui)
 - [Post-Installation Steps](#post-installation-steps)
-  - [Access Meshplay UI](#access-meshery-ui)
+  - [Access Meshplay UI](#access-meshplay-ui)
 
 # In-cluster Installation
 
@@ -70,7 +70,7 @@ Verify your kubeconfig's current context.
 {% capture code_content %}$ MESHPLAY_SERVER_CALLBACK_URL=https://custom-host meshplayctl system start{% endcapture %}
 {% include code.html code=code_content %}
 
-Meshplay should now be running in your Minikube cluster and Meshplay UI should be accessible at the `INTERNAL IP` of `meshery` service.
+Meshplay should now be running in your Minikube cluster and Meshplay UI should be accessible at the `INTERNAL IP` of `meshplay` service.
 
 ## Installation: Using `meshplayctl`
 
@@ -84,7 +84,7 @@ Once configured, execute the following command to start Meshplay.
 {% capture code_content %}$ meshplayctl system start{% endcapture %}
 {% include code.html code=code_content %}
 
-If you encounter any authentication issues, you can use `meshplayctl system login`. For more information, click [here](/guides/meshplayctl/authenticate-with-meshery-via-cli) to learn more.
+If you encounter any authentication issues, you can use `meshplayctl system login`. For more information, click [here](/guides/meshplayctl/authenticate-with-meshplay-via-cli) to learn more.
 
 ## Installation: Using Helm
 
@@ -136,13 +136,13 @@ Follow the [installation steps](/installation/quick-start) to setup the meshplay
 After completing the Meshplay installation, execute the following commands to establish connectivity between Meshplay Server and Kubernetes cluster:
 
  <pre class="codeblock-pre"><div class="codeblock">
- <div class="clipboardjs">docker network connect bridge meshery_meshery_1</div></div>
+ <div class="clipboardjs">docker network connect bridge meshplay_meshplay_1</div></div>
  </pre>
 
 <br/>
 
 <pre class="codeblock-pre"><div class="codeblock">
- <div class="clipboardjs">docker network connect minikube meshery_meshery_1</div></div>
+ <div class="clipboardjs">docker network connect minikube meshplay_meshplay_1</div></div>
  </pre>
 
 To establish connectivity between a particular Meshplay Adapter and Kubernetes server, use _"docker ps"_ to identify the name of the desired container, and execute the following commands:
@@ -187,9 +187,9 @@ Once you have verified that all the services are up and running, Meshplay UI wil
 
 ## Access Meshplay UI
 
-To access Meshplay's UI, please refer to the [instruction](/tasks/accessing-meshery-ui) for detailed guidance.
+To access Meshplay's UI, please refer to the [instruction](/tasks/accessing-meshplay-ui) for detailed guidance.
 
 {% include suggested-reading.html language="en" %}
 
-{% include related-discussions.html tag="meshery" %}
+{% include related-discussions.html tag="meshplay" %}
 

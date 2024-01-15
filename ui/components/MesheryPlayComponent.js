@@ -136,7 +136,7 @@ class MeshplayPlayComponent extends React.Component {
 
   pickImage(adapter) {
     const { classes } = this.props;
-    let image = '/static/img/meshery-logo.png';
+    let image = '/static/img/meshplay-logo.png';
     let imageIcon = <img src={image} className={classes.expTitleIcon} />;
     if (adapter && adapter.name) {
       image = '/static/img/' + adapter.name.toLowerCase() + '.svg';

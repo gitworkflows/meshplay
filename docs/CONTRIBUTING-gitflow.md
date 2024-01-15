@@ -31,7 +31,7 @@ In order to get the latest updates from the development trunk do a one-time setu
 
 `git remote add upstream https://github.com/khulnasoft/meshplay.git`
 <br><br>
-("meshery" is used as the example repo. Be sure to reference the _actual_ repo you're contributing to e.g. "meshery-linkerd").
+("meshplay" is used as the example repo. Be sure to reference the _actual_ repo you're contributing to e.g. "meshplay-linkerd").
 <br><br>
 
 <li><h3>Verify the new remote named 'upstream'</h3></li><br>

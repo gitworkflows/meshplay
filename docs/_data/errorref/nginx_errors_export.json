@@ -1,6 +1,6 @@
 {
   "errors_export": {
-    "component_name": "meshery-nginx-sm",
+    "component_name": "meshplay-nginx-sm",
     "component_type": "adapter",
     "errors": {
       "1000": {

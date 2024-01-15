@@ -114,7 +114,7 @@ export default function Provider() {
 
   return (
     <ProviderLayout>
-      <MeshplayLogo src="/provider/static/img/meshery-logo/meshery-logo-light-text.png"
+      <MeshplayLogo src="/provider/static/img/meshplay-logo/meshplay-logo-light-text.png"
         alt="logo"
       />
       <CustomDiv>

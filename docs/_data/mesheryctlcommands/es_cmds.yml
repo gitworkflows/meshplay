@@ -14,7 +14,7 @@ global:
       usage: |
         meshplayctl --help
           meshplayctl system --help
-          meshery system start --help
+          meshplay system start --help
     verbose:
       name: --verbose, -v
       description: Establece el nivel de registro para depurar la salida detallada y muestra registros detallados / de depuración.
@@ -120,11 +120,11 @@ system:
         meshplayctl system logs [component-name]
 
         # Example
-        meshplayctl system logs meshery-istio
+        meshplayctl system logs meshplay-istio
 
     reset:
       name: reset
-      description: Restablece el archivo meshery.yaml con una copia del repositorio de Meshplay
+      description: Restablece el archivo meshplay.yaml con una copia del repositorio de Meshplay
       usage: meshplayctl system reset
 
     restart:
@@ -334,7 +334,7 @@ mesh:
       flags:
         adapter:
           name: --adapter, -a
-          description: (obligatorio) adaptador que se utilizará para la validación. El valor predeterminado es "meshery-osm:10010"
+          description: (obligatorio) adaptador que se utilizará para la validación. El valor predeterminado es "meshplay-osm:10010"
           usage: meshplayctl mesh validate --adapter [name of the adapter]
         namespace:
           name: --namespace, -n
@@ -356,7 +356,7 @@ mesh:
       flags:
         adapter:
           name: --adapter, -a
-          description: (obligatorio) adaptador que se utilizará para la validación. El valor predeterminado es "meshery-osm:10010".
+          description: (obligatorio) adaptador que se utilizará para la validación. El valor predeterminado es "meshplay-osm:10010".
           usage: meshplayctl mesh deploy --adapter [name of the adapter]
         namespace:
           name: --namespace, -n

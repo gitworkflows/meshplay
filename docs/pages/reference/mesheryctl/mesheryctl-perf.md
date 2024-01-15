@@ -72,7 +72,7 @@ meshplayctl perf result -o yaml
 <div class='codeblock'>
   -h, --help                   help for perf
   -o, --output-format string   (optional) format to display in [json|yaml]
-  -t, --token string           (required) Path to meshery auth config
+  -t, --token string           (required) Path to meshplay auth config
   -y, --yes                    (optional) assume yes for user interactive prompts.
 
 </div>
@@ -82,7 +82,7 @@ meshplayctl perf result -o yaml
 
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-      --config string   path to config file (default "/home/runner/.meshery/config.yaml")
+      --config string   path to config file (default "/home/runner/.meshplay/config.yaml")
   -v, --verbose         verbose output
 
 </div>

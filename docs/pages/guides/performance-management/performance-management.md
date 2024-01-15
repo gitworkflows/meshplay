@@ -129,7 +129,7 @@ meshplayctl perf apply -f perf-config.yaml --url http://localhost:2323/productpa
 
 ## Running Performance Benchmarks in your Pipelines
 
-Meshplay also has a [meshery-smp-action](https://github.com/khulnasoft/meshplay-smp-action) which is a GitHub action that can be used to run performance tests in your CI/CD pipelines.
+Meshplay also has a [meshplay-smp-action](https://github.com/khulnasoft/meshplay-smp-action) which is a GitHub action that can be used to run performance tests in your CI/CD pipelines.
 
 Download the token from the Meshplay Dashboard by clicking on the profile icon on the top-right corner.
 

@@ -95,11 +95,11 @@ Interwoven into Meshplay’s web-based, user interface are a variety of extensio
 
 - **Name:** "navigator"
   **Type:** Menu Items  
-  **Description:** This is supposed to be a full page extension which will get a dedicated endpoint in the meshery UI. And will be listed in the meshery UI’s navigator/sidebar. Menu items may refer to full page extensions.
+  **Description:** This is supposed to be a full page extension which will get a dedicated endpoint in the meshplay UI. And will be listed in the meshplay UI’s navigator/sidebar. Menu items may refer to full page extensions.
 
 - **Name:** "user_prefs"
   **Type:** Single Component  
-  **Description:** This is supposed to be remote react components which will get placed in a pre-existing page and will not have a dedicated endpoint. As of now, the only place where this extension can be loaded is the “User Preference” section under meshery settings.
+  **Description:** This is supposed to be remote react components which will get placed in a pre-existing page and will not have a dedicated endpoint. As of now, the only place where this extension can be loaded is the “User Preference” section under meshplay settings.
 
 - **Name:** "account"
   **Type:** Full Page
@@ -122,7 +122,7 @@ Remote Providers must fulfill the following endpoints:
 
 ## UI Extension Points
 
-All UI extensions will be hosted under the endpoint <mesheryserver:port/provider>
+All UI extensions will be hosted under the endpoint <meshplayserver:port/provider>
 
 ### UserPrefs
 
@@ -139,7 +139,7 @@ Meshplay Server will proxy all requests to remote provider endpoints. Endpoints 
 {% capture code_content %}{
   "provider_type": "remote",
   "package_version": "v0.1.0",
-  "package_url": "https://layer5labs.github.io/meshery-extensions-packages/provider.tar.gz",
+  "package_url": "https://layer5labs.github.io/meshplay-extensions-packages/provider.tar.gz",
   "provider_name": "Meshplay",
   "provider_description": [
     "Persistent sessions",
@@ -261,35 +261,35 @@ Meshplay Server will proxy all requests to remote provider endpoints. Endpoints 
         "endpoint": "/user/schedules"
     },
     {
-        "feature": "persist-meshery-patterns",
+        "feature": "persist-meshplay-patterns",
         "endpoint": "/patterns"
     },
     {
-        "feature": "persist-meshery-filters",
+        "feature": "persist-meshplay-filters",
         "endpoint": "/filters"
     },
     {
-        "feature": "persist-meshery-applications",
+        "feature": "persist-meshplay-applications",
         "endpoint": "/applications"
     },
     {
-        "feature": "persist-meshery-pattern-resources",
+        "feature": "persist-meshplay-pattern-resources",
         "endpoint": "/patterns/resource"
     },
     {
-        "feature": "meshery-patterns-catalog",
+        "feature": "meshplay-patterns-catalog",
         "endpoint": "/patterns/catalog"
     },
     {
-        "feature": "meshery-filters-catalog",
+        "feature": "meshplay-filters-catalog",
         "endpoint": "/filters/catalog"
     },
     {
-        "feature": "clone-meshery-patterns",
+        "feature": "clone-meshplay-patterns",
         "endpoint": "/patterns/clone"
     },
     {
-        "feature": "clone-meshery-filters",
+        "feature": "clone-meshplay-filters",
         "endpoint": "/filters/clone"
     },
     {
@@ -331,7 +331,7 @@ User has deployed the Meshplay behind a Istio Ingress Gateway and the Istio is a
 
 **_Solution:_**
 
-You can define your custom callback URL by setting up `MESHPLAY_SERVER_CALLBACK_URL` env variable while installing meshery in your K8s cluster.
+You can define your custom callback URL by setting up `MESHPLAY_SERVER_CALLBACK_URL` env variable while installing meshplay in your K8s cluster.
 
 Example:
 
@@ -340,12 +340,12 @@ If you are deploying Meshplay using Helm, you can configure the MESHPLAY_SERVER_
 - **Custom URL:** `https://k8s-staging.test.io/`
 - **Auth Endpoint:** `api/user/token` (append at the end of your custom URL)
 
-{% capture code_content %}helm install meshery khulnasoft/meshplay --namespace meshery --set env.MESHPLAY_SERVER_CALLBACK_URL=https://k8s-staging.test.io/api/user/token{% endcapture %}
+{% capture code_content %}helm install meshplay khulnasoft/meshplay --namespace meshplay --set env.MESHPLAY_SERVER_CALLBACK_URL=https://k8s-staging.test.io/api/user/token{% endcapture %}
 {% include code.html code=code_content %}
 
 ##### Note
 
-With a path like, `https://k8s-staging.test.io/meshery`, your callback URL will be `https://k8s-staging.test.io/meshery/api/user/token`.
+With a path like, `https://k8s-staging.test.io/meshplay`, your callback URL will be `https://k8s-staging.test.io/meshplay/api/user/token`.
 
 ## Managing your Remote Provider Extension Code
 

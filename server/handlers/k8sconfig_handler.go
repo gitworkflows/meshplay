@@ -318,7 +318,7 @@ func (h *Handler) DiscoverK8SContextFromKubeConfig(userID string, token string, 
 	var contexts []*models.K8sContext
 	// userUUID := uuid.FromStringOrNil(userID)
 
-	// Get meshery instance ID
+	// Get meshplay instance ID
 	mid, ok := viper.Get("INSTANCE_ID").(*uuid.UUID)
 	if !ok {
 		return contexts, models.ErrMeshplayInstanceID

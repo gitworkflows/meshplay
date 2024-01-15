@@ -4,7 +4,7 @@ import fetchMeshplayOperatorStatus from '../../graphql/queries/OperatorStatusQue
 export const isMeshplayOperatorConnected = ({ operatorInstalled }) => operatorInstalled;
 
 /**
- * Pings meshery operator
+ * Pings meshplay operator
  * @param {() => Function} fetchMeshplayOperatorStatus - function with which
  * we can query using graphql
  * @param  {(res) => void} successHandler

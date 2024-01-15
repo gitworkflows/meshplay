@@ -652,7 +652,7 @@ class MeshplayAdapterPlayComponent extends React.Component {
    * generateMenu generates the management menus for the adapater management plane
    * @param {*} cat
    * @param {boolean} isDelete if set to true, a delete menu will be generated
-   * @param {{key: string, value: string, category?: number}[]} selectedAdapterOps is the array of the meshery adapaters
+   * @param {{key: string, value: string, category?: number}[]} selectedAdapterOps is the array of the meshplay adapaters
    *
    * @returns {JSX.Element}
    */
@@ -802,8 +802,8 @@ class MeshplayAdapterPlayComponent extends React.Component {
     ];
 
     const smi_options = {
-      sort: !(user && user.user_id === 'meshery'),
-      search: !(user && user.user_id === 'meshery'),
+      sort: !(user && user.user_id === 'meshplay'),
+      search: !(user && user.user_id === 'meshplay'),
       filterType: 'textField',
       expandableRows: true,
       selectableRows: false,

@@ -2,7 +2,7 @@
 layout: default
 title: Using Metrics in Meshplay
 abstract: How to connect and use Prometheus and Grafana metrics in Meshplay
-permalink: guides/performance/meshery-metrics
+permalink: guides/performance/meshplay-metrics
 language: en
 type: guides
 category: performance
@@ -71,7 +71,7 @@ Retreive the IP address of your Minikube cluster by executing:
  </pre>
 
 * Set up Grafana and/or Prometheus:
-1. [Connect Meshplay to metric systems](#connect-meshery-to-metric-systems)
+1. [Connect Meshplay to metric systems](#connect-meshplay-to-metric-systems)
 2. [Connect Meshplay to metric systems using Minikube](#Connect-Meshplay-to-metric-systems-using-Minikube)
 
 * Expose the service metric ports - The service ports of Grafana and Prometheus need to be exposed in order for Meshplay to connect to and interact with these visualizations and metrics systems.
@@ -148,14 +148,14 @@ The Grafana endpoint will be *http://$MINIKUBE_IP:NODE_PORT*
  </div></div>
  </pre>
 
-<a href="{{ site.baseurl }}/assets/img/meshery-metrics/grafana-server-settings.png">
-  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshery-metrics/grafana-server-settings.png" />
+<a href="{{ site.baseurl }}/assets/img/meshplay-metrics/grafana-server-settings.png">
+  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshplay-metrics/grafana-server-settings.png" />
 </a>
 
 ### **Expose Prometheus service**
 
 Meshplay allows you to expose Prometheus as a service with a single click. You can do this:
-- [Through the Meshplay UI](#meshery-ui)
+- [Through the Meshplay UI](#meshplay-ui)
 - Alternatively, you can also attempt [Manual Integration](#manual-steps)
 
 #### **Meshplay UI**
@@ -163,8 +163,8 @@ Meshplay allows you to expose Prometheus as a service with a single click. You c
 Meshplay auto-discovers all Prometheus instances available on your local system and will offer you a list of options to choose from. You can select the Prometheus Server that you wish to employ.
 
 
-<a href="{{ site.baseurl }}/assets/img/meshery-metrics/prometheus-settings.png">
-  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshery-metrics/prometheus-settings.png" />
+<a href="{{ site.baseurl }}/assets/img/meshplay-metrics/prometheus-settings.png">
+  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshplay-metrics/prometheus-settings.png" />
 </a>
 
 Meshplay also provides you the option of simply pasting in your Prometheus queries:
@@ -173,8 +173,8 @@ Meshplay also provides you the option of simply pasting in your Prometheus queri
 - Click on <i class="fas fa-caret-right fa-lg"></i>, located under **Apply Custom Configuration**
 - Paste in your Prometherus query. Click on <i class="fas fa-caret-right fa-lg"></i>
 
-<a href="{{ site.baseurl }}/assets/img/meshery-metrics/prometheus-query.png">
-  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshery-metrics/prometheus-query.png" />
+<a href="{{ site.baseurl }}/assets/img/meshplay-metrics/prometheus-query.png">
+  <img style="width:500px;" src="{{ site.baseurl }}/assets/img/meshplay-metrics/prometheus-query.png" />
 </a>
 
 #### **Manual Steps**
@@ -219,11 +219,11 @@ The `productpage` endpoint will be http://$MINIKUBE_IP:NODE_PORT
 
 After successfully setting up a connection between your metric service and Meshplay, you may proceed to run performance tests by navigating to the Performance Test tab on Meshplay:
 
-<a href="{{ site.baseurl }}/assets/img/performance-management/performance-meshery.png"><img style="width:450px;padding-top:5px;" src="{{ site.baseurl }}/assets/img/performance-management/performance-meshery.png" /></a>
+<a href="{{ site.baseurl }}/assets/img/performance-management/performance-meshplay.png"><img style="width:450px;padding-top:5px;" src="{{ site.baseurl }}/assets/img/performance-management/performance-meshplay.png" /></a>
 
 **Run Test Results**
 
-<a href="{{ site.baseurl }}/assets/img/performance-management/meshery-and-grafana.png"><img style="width:450px;padding-top:5px;" src="{{ site.baseurl }}/assets/img/performance-management/meshery-and-grafana.png" /></a> -->
+<a href="{{ site.baseurl }}/assets/img/performance-management/meshplay-and-grafana.png"><img style="width:450px;padding-top:5px;" src="{{ site.baseurl }}/assets/img/performance-management/meshplay-and-grafana.png" /></a> -->
 
 ##### Suggested Reading
 

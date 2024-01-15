@@ -20,7 +20,7 @@
       "from": [
         {
           "kind": "Section",
-          "model": "meshery-shapes"
+          "model": "meshplay-shapes"
         }
       ],
       "to": [

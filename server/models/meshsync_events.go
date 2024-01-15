@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	MeshsyncStoreUpdatesSubject = "meshery-server.meshsync.store"
-	MeshsyncRequestSubject      = "meshery.meshsync.request"
+	MeshsyncStoreUpdatesSubject = "meshplay-server.meshsync.store"
+	MeshsyncRequestSubject      = "meshplay.meshsync.request"
 )
 
 // TODO: Create proper error codes for the functionalities this struct implements
@@ -70,7 +70,7 @@ func (mh *MeshsyncDataHandler) subscribeToMeshsyncEvents() {
 		mh.log.Error(ErrBrokerSubscription(err))
 		return
 	}
-	mh.log.Info("subscribed to meshery broker for meshsync events")
+	mh.log.Info("subscribed to meshplay broker for meshsync events")
 
 	for event := range eventsChan {
 		if event.EventType == broker.ErrorEvent {
@@ -89,7 +89,7 @@ func (mh *MeshsyncDataHandler) subscribeToMeshsyncEvents() {
 }
 
 func (mh *MeshsyncDataHandler) ListenToMeshSyncEvents(out chan *broker.Message) error {
-	err := mh.broker.SubscribeWithChannel("meshery.meshsync.core", "", out)
+	err := mh.broker.SubscribeWithChannel("meshplay.meshsync.core", "", out)
 	if err != nil {
 		return err
 	}

@@ -1,13 +1,13 @@
 
-<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
- <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
-<img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg"
+<p style="text-align:center;" align="center"><a href="https://layer5.io/meshplay"><picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-light-text-side.svg">
+ <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg">
+<img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg"
 alt="Meshplay Logo" width="70%" /></picture></a><br /><br /></p>
 <p align="center">
 <a href="https://hub.docker.com/r/khulnasoft/meshplay" alt="Docker pulls">
   <img src="https://img.shields.io/docker/pulls/khulnasoft/meshplay.svg" /></a>
-<a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+org%3A+label%3A%22help+wanted%22+" alt="GitHub issues by-label">
+<a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshplay+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+org%3A+label%3A%22help+wanted%22+" alt="GitHub issues by-label">
   <img src="https://img.shields.io/github/issues/khulnasoft/meshplay/help%20wanted.svg?color=informational" /></a>
 <a href="https://github.com/khulnasoft/meshplay/blob/master/LICENSE" alt="LICENSE">
   <img src="https://img.shields.io/github/license/khulnasoft/meshplay?color=brightgreen" /></a>
@@ -23,12 +23,12 @@ alt="Meshplay Logo" width="70%" /></picture></a><br /><br /></p>
   <img src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=https%3A%2F%2Fdiscuss.layer5.io" /></a>
 <a href="https://slack.khulnasoft.com" alt="Join Slack">
   <img src="https://img.shields.io/badge/Slack-@layer5.svg?logo=slack" /></a>
-<a href="https://twitter.com/intent/follow?screen_name=mesheryio" alt="Twitter Follow">
-  <img src="https://img.shields.io/twitter/follow/mesheryio.svg?label=Follow+Meshplay&style=social" /></a>
+<a href="https://twitter.com/intent/follow?screen_name=meshplayio" alt="Twitter Follow">
+  <img src="https://img.shields.io/twitter/follow/meshplayio.svg?label=Follow+Meshplay&style=social" /></a>
 <a href="https://github.com/khulnasoft/meshplay/releases" alt="Meshplay Downloads">
   <img src="https://img.shields.io/github/downloads/khulnasoft/meshplay/total" /></a>  
-<!-- <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery?ref=badge_shield" alt="License Scan Report">
-  <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery.svg?type=shield"/></a>  
+<!-- <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fmeshplay%2Fmeshplay?ref=badge_shield" alt="License Scan Report">
+  <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmeshplay%2Fmeshplay.svg?type=shield"/></a>  
   -->
 </p>
 
@@ -49,7 +49,7 @@ A self-service engineering platform, <a href="https://khulnasoft.com">Meshplay</
 
 <!-- [Meshplay](https://khulnasoft.com) is the cloud native management plane offering lifecycle, configuration, and performance management of Kubernetes, service meshes, and your workloads. -->
 <div align="center" width="100%">
-<a href="https://youtu.be/Do7htKrRzDA"><img src="https://play.khulnasoft.com/static/media/meshery-playground-meshmap.5242722a8cd9c3855f42.png" width="800px" /></a>
+<a href="https://youtu.be/Do7htKrRzDA"><img src="https://play.khulnasoft.com/static/media/meshplay-playground-meshmap.5242722a8cd9c3855f42.png" width="800px" /></a>
  <br />Try Meshplay in the <a href="https://play.khulnasoft.com">CNCF Playground</a> (<a href="https://youtu.be/Do7htKrRzDA">teaser video</a>)
 </div>
 
@@ -57,17 +57,17 @@ A self-service engineering platform, <a href="https://khulnasoft.com">Meshplay</
 <br />
 
 - [Functionality](#functionality)
-  - [Meshplay Architecture](#meshery-architecture)
-  - [Join the Meshplay community!](#join-the-meshery-community)
+  - [Meshplay Architecture](#meshplay-architecture)
+  - [Join the Meshplay community!](#join-the-meshplay-community)
   - [Contributing](#contributing)
     - [Stargazers](#stargazers)
     - [License](#license)
 
 <!-- <p style="clear:both;">&nbsp;</p>
 <a href="https://khulnasoft.com"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
-  <img alt="Meshplay - the Cloud Native Manager" src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg" align="left" width="45%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-light-text-side.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg">
+  <img alt="Meshplay - the Cloud Native Manager" src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg" align="left" width="45%">
   </picture></a> 
 <a href="https://khulnasoft.com">
 <h3 style="margin:auto;"><br /><br />
@@ -195,7 +195,7 @@ Using a GitOps-centric approach, visually and collaboratively design and manage 
 
 Assess your cloud native infrastructure configuration against deployment and operational best practices with Meshplay's configuration validator. Manage your workloads with confidence. Check your Kubernetes configuration for anti-patterns and avoid common pitfalls.
 
-<a href="https://docs.khulnasoft.com/assets/img/readme/meshery_lifecycle_management.png"><img alt="Layer5 Service Mesh Configuration Management" src="https://docs.khulnasoft.com/assets/img/readme/meshery_lifecycle_management.png"  style="margin-right:10px;margin-bottom:10px;" width="100%" align="center"/></a>
+<a href="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"><img alt="Layer5 Service Mesh Configuration Management" src="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"  style="margin-right:10px;margin-bottom:10px;" width="100%" align="center"/></a>
 <br /><br />
 
 </p>
@@ -206,7 +206,7 @@ Assess your cloud native infrastructure configuration against deployment and ope
 <h3>Context-Aware Policies For Applications</h3>
 <br /><br />
 <p>Leverage built-in relationships to enforce configuration best practices consistently from code to Kubernetes. Enhance development process by building custom rules in Open Policy Agent's Rego query language.
-<img alt="Meshplay and Open Policy Agent Integration" src=".github/assets/images/readme/meshery-policies-2.png" style="margin-right:10px;" width="70%" />
+<img alt="Meshplay and Open Policy Agent Integration" src=".github/assets/images/readme/meshplay-policies-2.png" style="margin-right:10px;" width="70%" />
 </p>
 <br /><br />
 <p style="clear:both;">
@@ -215,7 +215,7 @@ Assess your cloud native infrastructure configuration against deployment and ope
 <h3> Manage data plane intelligence with WebAssembly filters </h3>
 <p>Dynamically load and manage your own WebAssembly filters in Envoy-based service meshes.</p>
 <br /><br />
-<a href=".github/assets/images/readme/meshery-wasm.png"><img alt="WebAssembly filters" src=".github/assets/images/readme/meshery-wasm.png"  style="margin-right:10px; margin-bottom:10px;" width="70%" /></a>
+<a href=".github/assets/images/readme/meshplay-wasm.png"><img alt="WebAssembly filters" src=".github/assets/images/readme/meshplay-wasm.png"  style="margin-right:10px; margin-bottom:10px;" width="70%" /></a>
 <p>See <a href="https://github.com/layer5io/image-hub">Image Hub</a>.</p>
 </p>
 <br /><br />
@@ -226,7 +226,7 @@ Assess your cloud native infrastructure configuration against deployment and ope
 
 <picture align="left">
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/layer5io/layer5/master/src/assets/images/service-mesh-performance/stacked/smp-light-text.svg"  width="18%" align="left" style="margin-left:10px;" />
-  <img alt="Shows an illustrated light mode meshery logo in light color mode and a dark mode meshery logo dark color mode." src="https://raw.githubusercontent.com/layer5io/layer5/master/src/assets/images/service-mesh-performance/stacked/smp-light-text.svg" width="18%" align="left" style="margin-left:10px;" />
+  <img alt="Shows an illustrated light mode meshplay logo in light color mode and a dark mode meshplay logo dark color mode." src="https://raw.githubusercontent.com/layer5io/layer5/master/src/assets/images/service-mesh-performance/stacked/smp-light-text.svg" width="18%" align="left" style="margin-left:10px;" />
 </picture>
 
 In an effort to produce service mesh agnostic tooling, Meshplay uses the <a href="https://smp-spec.io">Service Mesh Performance</a> specification as a common format to capture and measure your infrastructure's performance against a universal cloud native performance index. As an implementation of Service Mesh Interface (SMI), Meshplay participates in advancing cloud native infrastructure adoption through the standardization of APIs.
@@ -327,14 +327,14 @@ Find out more on the <a href="https://layer5.io/community#meshmate">Layer5 commu
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg"  width="110px" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg" width="110px" />
-  <img alt="Shows an illustrated light mode meshery logo in light color mode and a dark mode meshery logo dark color mode." src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg" width="110px" align="left" />
+  <img alt="Shows an illustrated light mode meshplay logo in light color mode and a dark mode meshplay logo dark color mode." src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg" width="110px" align="left" />
 </picture>
 </a>
 </div>
 </div>
 <br /><br />
 <p align="left">
-&nbsp;&nbsp;&nbsp;&nbsp; <i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+label%3A%22help+wanted%22+">help-wanted label</a>.
+&nbsp;&nbsp;&nbsp;&nbsp; <i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshplay+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+label%3A%22help+wanted%22+">help-wanted label</a>.
 </p>
 <br /><br />
 
@@ -344,7 +344,7 @@ Find out more on the <a href="https://layer5.io/community#meshmate">Layer5 commu
 
 Please do! We're a warm and welcoming community of open source contributors. Please join. All types of contributions are welcome. Be sure to read the [Contributor Guides](https://docs.khulnasoft.com/project/contributing) for a tour of resources available to you and how to get started.
 
-<!-- <a href="https://youtu.be/MXQV-i-Hkf8"><img alt="Deploying Linkerd with Meshplay" src="https://docs.khulnasoft.com/assets/img/readme/deploying-linkerd-with-meshery.png" width="100%" align="center" /></a> -->
+<!-- <a href="https://youtu.be/MXQV-i-Hkf8"><img alt="Deploying Linkerd with Meshplay" src="https://docs.khulnasoft.com/assets/img/readme/deploying-linkerd-with-meshplay.png" width="100%" align="center" /></a> -->
 
 <div>&nbsp;</div>
 

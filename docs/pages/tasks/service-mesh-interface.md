@@ -6,7 +6,7 @@ type: tasks
 language: en
 ---
 {% include alert.html type="info" title="Validating SMI Conformance with Meshplay" content="<p>Meshplay is SMI's 
-<a href='https://smi-spec.io/blog/validating-smi-conformance-with-meshery'>official tool for validating conformance</a>.</p> <p>The <a href='https://khulnasoft.com/service-mesh-interface'>SMI Conformance dashboard</a> displays the current and historical test results of each of the service mesh projects.</p>" %}
+<a href='https://smi-spec.io/blog/validating-smi-conformance-with-meshplay'>official tool for validating conformance</a>.</p> <p>The <a href='https://khulnasoft.com/service-mesh-interface'>SMI Conformance dashboard</a> displays the current and historical test results of each of the service mesh projects.</p>" %}
 
 As service mesh providers and the surrounding ecosystem start adopting Service Mesh Interface, there is a growing need for validating the SMI implementation.
 

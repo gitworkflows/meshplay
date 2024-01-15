@@ -836,7 +836,7 @@ function MeshplayFilters({
       let uint8 = new Uint8Array(event.target.result);
       handleSubmit({
         data: Array.from(uint8),
-        name: file?.name || 'meshery_' + Math.floor(trueRandom() * 100),
+        name: file?.name || 'meshplay_' + Math.floor(trueRandom() * 100),
         type: FILE_OPS.FILE_UPLOAD,
         metadata: metadata,
       });
@@ -1069,7 +1069,7 @@ function MeshplayFilters({
   const options = {
     filter: false,
     viewColumns: false,
-    sort: !(user && user.user_id === 'meshery'),
+    sort: !(user && user.user_id === 'meshplay'),
     search: false,
     filterType: 'textField',
     responsive: 'standard',
