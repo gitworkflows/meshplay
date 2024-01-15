@@ -8,7 +8,7 @@ import (
 	"github.com/khulnasoft/meshkit/logger"
 	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 	"github.com/khulnasoft/meshkit/utils"
-	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 	"gorm.io/gorm"
 )
 

@@ -10,7 +10,7 @@ import (
 	"github.com/khulnasoft/meshkit/database"
 	"github.com/khulnasoft/meshkit/logger"
 	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
-	SMP "github.com/layer5io/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 )
 
 // ContextKey is a custom type for setting context key

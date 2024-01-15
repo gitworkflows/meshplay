@@ -16,7 +16,7 @@ import (
 	"github.com/khulnasoft/meshkit/models/events"
 	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 	"github.com/khulnasoft/meshkit/utils"
-	"github.com/layer5io/meshsync/pkg/model"
+	"github.com/khulnasoft/meshsync/pkg/model"
 	"github.com/spf13/viper"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"

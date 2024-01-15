@@ -26,7 +26,7 @@ import (
 	"github.com/khulnasoft/meshkit/utils"
 	mesherykube "github.com/khulnasoft/meshkit/utils/kubernetes"
 	"github.com/khulnasoft/meshkit/utils/walker"
-	SMP "github.com/layer5io/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"

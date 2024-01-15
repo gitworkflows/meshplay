@@ -38,7 +38,7 @@ import (
 	"github.com/khulnasoft/meshplay/server/models/connections"
 	"github.com/khulnasoft/meshplay/server/models/environments"
 	"github.com/khulnasoft/meshkit/models/events"
-	SMP "github.com/layer5io/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 	v1 "k8s.io/api/core/v1"
 )
 

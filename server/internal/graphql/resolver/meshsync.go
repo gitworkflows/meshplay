@@ -12,7 +12,7 @@ import (
 	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 	"github.com/khulnasoft/meshkit/models/meshmodel/registry"
 	"github.com/khulnasoft/meshkit/utils"
-	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 )
 
 // Global singleton instance of k8s connection tracker to map Each K8sContext to a unique Broker URL

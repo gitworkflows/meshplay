@@ -30,7 +30,7 @@ import (
 	meshmodel "github.com/khulnasoft/meshkit/models/meshmodel/registry"
 	"github.com/khulnasoft/meshkit/utils/broadcast"
 	"github.com/khulnasoft/meshkit/utils/events"
-	meshsyncmodel "github.com/layer5io/meshsync/pkg/model"
+	meshsyncmodel "github.com/khulnasoft/meshsync/pkg/model"
 	"github.com/spf13/viper"
 
 	"github.com/sirupsen/logrus"

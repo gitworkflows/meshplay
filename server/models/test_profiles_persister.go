@@ -6,7 +6,7 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/khulnasoft/meshkit/database"
-	SMP "github.com/layer5io/service-mesh-performance/spec"
+	SMP "github.com/khulnasoft/service-mesh-performance/spec"
 )
 
 // TestProfilesPersister assists with persisting session in store

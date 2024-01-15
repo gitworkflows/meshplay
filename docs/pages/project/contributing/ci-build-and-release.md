@@ -25,7 +25,7 @@ Artifacts produced in the build processes are published and persisted in differe
 | GitHub     | meshplayctl                                      | [https://github.com/khulnasoft/meshplay/releases](https://github.com/khulnasoft/meshplay/releases)                         |
 | Docker Hub | Meshplay Adapter for \<service-mesh\>            | https://hub.docker.com/r/layer5/meshery-\<service-mesh\>                                                             |
 | Docs       | Meshplay Documentation                           | [https://docs.khulnasoft.com](https://docs.khulnasoft.com)                                                                   |
-| GitHub     | [Service Mesh Performance](https://smp-spec.io) | [https://github.com/layer5io/service-mesh-performance](https://github.com/layer5io/service-mesh-performance)         |
+| GitHub     | [Service Mesh Performance](https://smp-spec.io) | [https://github.com/khulnasoft/service-mesh-performance](https://github.com/khulnasoft/service-mesh-performance)         |
 | Github     | Helm charts                                     | [https://github.com/khulnasoft/meshplay.io/tree/master/charts](https://github.com/khulnasoft/meshplay.io/tree/master/charts) |
 
 ## Secrets
