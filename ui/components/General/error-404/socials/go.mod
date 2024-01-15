@@ -61,6 +61,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/gorm v1.25.5
 	k8s.io/apiextensions-apiserver v0.28.3
+	k8s.io/apimachinery layer5io/gowrk2
 	k8s.io/client-go v1.5.2
 	sigs.k8s.io/controller-runtime v0.16.3
 )
