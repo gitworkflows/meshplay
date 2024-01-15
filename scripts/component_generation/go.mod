@@ -3,7 +3,7 @@ module github.com/khulnasoft/meshmodel_ahub_gen
 go 1.21
 
 require (
-	github.com/khulnasoft/meshkit v0.7.2
+	github.com/khulnasoft/meshkit v0.0.0-20240105012431-4e00871e7db5
 	golang.org/x/oauth2 v0.15.0
 	google.golang.org/api v0.154.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -114,8 +114,8 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
-	github.com/spf13/cast v1.5.1 // indirect
-	github.com/spf13/cobra v1.7.0 // indirect
+	github.com/spf13/cast v1.6.0 // indirect
+	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
@@ -144,9 +144,9 @@ require (
 	gorm.io/driver/sqlite v1.5.4 // indirect
 	gorm.io/gorm v1.25.5 // indirect
 	helm.sh/helm/v3 v3.13.2 // indirect
-	k8s.io/api v0.28.3 // indirect
+	k8s.io/api v0.28.4 // indirect
 	k8s.io/apiextensions-apiserver v0.28.2 // indirect
-	k8s.io/apimachinery v0.28.3 // indirect
+	k8s.io/apimachinery v0.28.4 // indirect
 	k8s.io/apiserver v0.28.2 // indirect
 	k8s.io/cli-runtime v0.28.3 // indirect
 	k8s.io/client-go v0.28.3 // indirect

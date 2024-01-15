@@ -5,10 +5,10 @@ go 1.21
 replace (
 	github.com/docker/cli => github.com/docker/cli v23.0.6+incompatible
 	github.com/docker/docker => github.com/docker/docker v23.0.6+incompatible
-	github.com/kubernetes/kompose => github.com/khulnasoft/kompose v1.0.1
 	k8s.io/client-go => k8s.io/client-go v0.28.3
 	k8s.io/kubectl => k8s.io/kubectl v0.28.3
 	oras.land/oras-go v1.2.4 => oras.land/oras-go v1.2.3
+	github.com/kubernetes/kompose => github.com/khulnasoft/kompose v0.0.0
 )
 
 require (
@@ -180,7 +180,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
-	github.com/kubernetes/kompose v1.31.2 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
@@ -217,7 +216,7 @@ require (
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.1.0-rc5 // indirect
 	github.com/opencontainers/runc v1.1.9 // indirect
-	github.com/openshift/api v3.9.0+incompatible // indirect
+	github.com/openshift/api v0.0.0-20240115183315-0793e918179d // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
@@ -272,6 +271,8 @@ require (
 	gorm.io/driver/postgres v1.5.3 // indirect
 	gorm.io/driver/sqlite v1.5.4 // indirect
 	helm.sh/helm/v3 v3.13.2 // indirect
+	k8s.io/api v0.29.0 // indirect
+	k8s.io/apimachinery v0.29.0 // indirect
 	k8s.io/apiserver v0.28.3 // indirect
 	k8s.io/cli-runtime v0.28.3 // indirect
 	k8s.io/component-base v0.28.3 // indirect
