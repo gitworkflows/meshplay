@@ -180,7 +180,7 @@ type K8sContext struct {
 	Server             string `json:"server"`
 	Owner              string `json:"owner"`
 	CreatedBy          string `json:"created_by"`
-	MeshplayInstanceID  string `json:"meshplay_instance_id"`
+	MeshplayInstanceID string `json:"meshplay_instance_id"`
 	KubernetesServerID string `json:"kubernetes_server_id"`
 	DeploymentType     string `json:"deployment_type"`
 	Version            string `json:"version"`
@@ -232,14 +232,14 @@ type MeshSyncEvent struct {
 }
 
 type MeshplayControllersStatusListItem struct {
-	ContextID  string                  `json:"contextId"`
+	ContextID  string                   `json:"contextId"`
 	Controller MeshplayController       `json:"controller"`
 	Status     MeshplayControllerStatus `json:"status"`
-	Version    *string                 `json:"version,omitempty"`
+	Version    *string                  `json:"version,omitempty"`
 }
 
 type MeshplayResult struct {
-	MeshplayID          *string                `json:"meshplay_id,omitempty"`
+	MeshplayID         *string                `json:"meshplay_id,omitempty"`
 	Name               *string                `json:"name,omitempty"`
 	Mesh               *string                `json:"mesh,omitempty"`
 	PerformanceProfile *string                `json:"performance_profile,omitempty"`
@@ -251,6 +251,9 @@ type MeshplayResult struct {
 	UserID             *string                `json:"user_id,omitempty"`
 	UpdatedAt          *string                `json:"updated_at,omitempty"`
 	CreatedAt          *string                `json:"created_at,omitempty"`
+}
+
+type Mutation struct {
 }
 
 type NameSpace struct {
@@ -332,6 +335,7 @@ type PatternResult struct {
 	Errmsg      *string                `json:"errmsg,omitempty"`
 	CreatedAt   *string                `json:"created_at,omitempty"`
 	UpdatedAt   *string                `json:"updated_at,omitempty"`
+	Type        *NullString            `json:"type,omitempty"`
 }
 
 type PerfPageProfiles struct {
@@ -342,9 +346,9 @@ type PerfPageProfiles struct {
 }
 
 type PerfPageResult struct {
-	Page       int              `json:"page"`
-	PageSize   int              `json:"page_size"`
-	TotalCount int              `json:"total_count"`
+	Page       int               `json:"page"`
+	PageSize   int               `json:"page_size"`
+	TotalCount int               `json:"total_count"`
 	Results    []*MeshplayResult `json:"results,omitempty"`
 }
 
@@ -369,6 +373,9 @@ type PerfProfile struct {
 	Metadata          map[string]interface{} `json:"metadata,omitempty"`
 }
 
+type Query struct {
+}
+
 type ReSyncActions struct {
 	ClearDb   string `json:"clearDB"`
 	ReSync    string `json:"ReSync"`
@@ -383,6 +390,9 @@ type Resource struct {
 type ServiceMeshFilter struct {
 	Type          *MeshType `json:"type,omitempty"`
 	K8sClusterIDs []string  `json:"k8sClusterIDs,omitempty"`
+}
+
+type Subscription struct {
 }
 
 type TelemetryComp struct {

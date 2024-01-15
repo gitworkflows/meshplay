@@ -203,7 +203,7 @@ type ComplexityRoot struct {
 		DeploymentType     func(childComplexity int) int
 		ID                 func(childComplexity int) int
 		KubernetesServerID func(childComplexity int) int
-		MeshplayInstanceID  func(childComplexity int) int
+		MeshplayInstanceID func(childComplexity int) int
 		Name               func(childComplexity int) int
 		Owner              func(childComplexity int) int
 		Server             func(childComplexity int) int
@@ -259,7 +259,7 @@ type ComplexityRoot struct {
 	MeshplayResult struct {
 		CreatedAt          func(childComplexity int) int
 		Mesh               func(childComplexity int) int
-		MeshplayID          func(childComplexity int) int
+		MeshplayID         func(childComplexity int) int
 		Name               func(childComplexity int) int
 		PerformanceProfile func(childComplexity int) int
 		RunnerResults      func(childComplexity int) int
@@ -336,6 +336,7 @@ type ComplexityRoot struct {
 		Location    func(childComplexity int) int
 		Name        func(childComplexity int) int
 		PatternFile func(childComplexity int) int
+		Type        func(childComplexity int) int
 		UpdatedAt   func(childComplexity int) int
 		UserID      func(childComplexity int) int
 		Visibility  func(childComplexity int) int
@@ -403,16 +404,16 @@ type ComplexityRoot struct {
 	}
 
 	Subscription struct {
-		ListenToOperatorState             func(childComplexity int, k8scontextIDs []string) int
-		SubscribeClusterResources         func(childComplexity int, k8scontextIDs []string, namespace string) int
-		SubscribeConfiguration            func(childComplexity int, patternSelector model.PageFilter, filterSelector model.PageFilter) int
-		SubscribeEvents                   func(childComplexity int) int
-		SubscribeK8sContext               func(childComplexity int, selector model.PageFilter) int
-		SubscribeMeshModelSummary         func(childComplexity int, selector model.MeshModelSummarySelector) int
-		SubscribeMeshSyncEvents           func(childComplexity int, k8scontextIDs []string, eventTypes []model.MeshSyncEventType) int
+		ListenToOperatorState              func(childComplexity int, k8scontextIDs []string) int
+		SubscribeClusterResources          func(childComplexity int, k8scontextIDs []string, namespace string) int
+		SubscribeConfiguration             func(childComplexity int, patternSelector model.PageFilter, filterSelector model.PageFilter) int
+		SubscribeEvents                    func(childComplexity int) int
+		SubscribeK8sContext                func(childComplexity int, selector model.PageFilter) int
+		SubscribeMeshModelSummary          func(childComplexity int, selector model.MeshModelSummarySelector) int
+		SubscribeMeshSyncEvents            func(childComplexity int, k8scontextIDs []string, eventTypes []model.MeshSyncEventType) int
 		SubscribeMeshplayControllersStatus func(childComplexity int, k8scontextIDs []string) int
-		SubscribePerfProfiles             func(childComplexity int, selector model.PageFilter) int
-		SubscribePerfResults              func(childComplexity int, selector model.PageFilter, profileID string) int
+		SubscribePerfProfiles              func(childComplexity int, selector model.PageFilter) int
+		SubscribePerfResults               func(childComplexity int, selector model.PageFilter, profileID string) int
 	}
 
 	TelemetryComp struct {
@@ -1727,6 +1728,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.PatternResult.PatternFile(childComplexity), true
 
+	case "PatternResult.type":
+		if e.complexity.PatternResult.Type == nil {
+			break
+		}
+
+		return e.complexity.PatternResult.Type(childComplexity), true
+
 	case "PatternResult.updated_at":
 		if e.complexity.PatternResult.UpdatedAt == nil {
 			break
@@ -2865,6 +2873,7 @@ type PatternResult {
   errmsg: String
   created_at: String
   updated_at: String
+  type: NullString
 }
 
 type Location {
@@ -11343,6 +11352,8 @@ func (ec *executionContext) fieldContext_PatternPageResult_patterns(ctx context.
 				return ec.fieldContext_PatternResult_created_at(ctx, field)
 			case "updated_at":
 				return ec.fieldContext_PatternResult_updated_at(ctx, field)
+			case "type":
+				return ec.fieldContext_PatternResult_type(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type PatternResult", field.Name)
 		},
@@ -11827,6 +11838,53 @@ func (ec *executionContext) fieldContext_PatternResult_updated_at(ctx context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _PatternResult_type(ctx context.Context, field graphql.CollectedField, obj *model.PatternResult) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_PatternResult_type(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Type, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*model.NullString)
+	fc.Result = res
+	return ec.marshalONullString2ᚖgithubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_PatternResult_type(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "PatternResult",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "String":
+				return ec.fieldContext_NullString_String(ctx, field)
+			case "Valid":
+				return ec.fieldContext_NullString_Valid(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type NullString", field.Name)
 		},
 	}
 	return fc, nil
@@ -17171,8 +17229,6 @@ func (ec *executionContext) unmarshalInputAdapterStatusInput(ctx context.Context
 		}
 		switch k {
 		case "targetStatus":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
 			data, err := ec.unmarshalNStatus2githubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
@@ -17180,8 +17236,6 @@ func (ec *executionContext) unmarshalInputAdapterStatusInput(ctx context.Context
 			}
 			it.TargetStatus = data
 		case "targetPort":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetPort"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17189,8 +17243,6 @@ func (ec *executionContext) unmarshalInputAdapterStatusInput(ctx context.Context
 			}
 			it.TargetPort = data
 		case "adapter":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("adapter"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17218,8 +17270,6 @@ func (ec *executionContext) unmarshalInputAddonStatusInput(ctx context.Context, 
 		}
 		switch k {
 		case "selector":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("selector"))
 			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
 			if err != nil {
@@ -17227,8 +17277,6 @@ func (ec *executionContext) unmarshalInputAddonStatusInput(ctx context.Context, 
 			}
 			it.Selector = data
 		case "k8scontextID":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("k8scontextID"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17236,8 +17284,6 @@ func (ec *executionContext) unmarshalInputAddonStatusInput(ctx context.Context, 
 			}
 			it.K8scontextID = data
 		case "targetStatus":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
 			data, err := ec.unmarshalNStatus2githubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
@@ -17265,8 +17311,6 @@ func (ec *executionContext) unmarshalInputCatalogSelector(ctx context.Context, o
 		}
 		switch k {
 		case "page":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("page"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17274,8 +17318,6 @@ func (ec *executionContext) unmarshalInputCatalogSelector(ctx context.Context, o
 			}
 			it.Page = data
 		case "pagesize":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("pagesize"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17283,8 +17325,6 @@ func (ec *executionContext) unmarshalInputCatalogSelector(ctx context.Context, o
 			}
 			it.Pagesize = data
 		case "search":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("search"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17292,8 +17332,6 @@ func (ec *executionContext) unmarshalInputCatalogSelector(ctx context.Context, o
 			}
 			it.Search = data
 		case "order":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("order"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17321,8 +17359,6 @@ func (ec *executionContext) unmarshalInputMeshModelSummarySelector(ctx context.C
 		}
 		switch k {
 		case "type":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17350,8 +17386,6 @@ func (ec *executionContext) unmarshalInputOperatorStatusInput(ctx context.Contex
 		}
 		switch k {
 		case "targetStatus":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("targetStatus"))
 			data, err := ec.unmarshalNStatus2githubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐStatus(ctx, v)
 			if err != nil {
@@ -17359,8 +17393,6 @@ func (ec *executionContext) unmarshalInputOperatorStatusInput(ctx context.Contex
 			}
 			it.TargetStatus = data
 		case "contextID":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("contextID"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17388,8 +17420,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 		}
 		switch k {
 		case "page":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("page"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17397,8 +17427,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.Page = data
 		case "pageSize":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("pageSize"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17406,8 +17434,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.PageSize = data
 		case "order":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("order"))
 			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
@@ -17415,8 +17441,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.Order = data
 		case "search":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("search"))
 			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
@@ -17424,8 +17448,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.Search = data
 		case "from":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("from"))
 			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
@@ -17433,8 +17455,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.From = data
 		case "to":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("to"))
 			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
@@ -17442,8 +17462,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.To = data
 		case "updated_after":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("updated_after"))
 			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
@@ -17451,8 +17469,6 @@ func (ec *executionContext) unmarshalInputPageFilter(ctx context.Context, obj in
 			}
 			it.UpdatedAfter = data
 		case "visibility":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("visibility"))
 			data, err := ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
@@ -17480,8 +17496,6 @@ func (ec *executionContext) unmarshalInputReSyncActions(ctx context.Context, obj
 		}
 		switch k {
 		case "clearDB":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("clearDB"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17489,8 +17503,6 @@ func (ec *executionContext) unmarshalInputReSyncActions(ctx context.Context, obj
 			}
 			it.ClearDb = data
 		case "ReSync":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("ReSync"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17498,8 +17510,6 @@ func (ec *executionContext) unmarshalInputReSyncActions(ctx context.Context, obj
 			}
 			it.ReSync = data
 		case "hardReset":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("hardReset"))
 			data, err := ec.unmarshalNString2string(ctx, v)
 			if err != nil {
@@ -17527,8 +17537,6 @@ func (ec *executionContext) unmarshalInputServiceMeshFilter(ctx context.Context,
 		}
 		switch k {
 		case "type":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
 			data, err := ec.unmarshalOMeshType2ᚖgithubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐMeshType(ctx, v)
 			if err != nil {
@@ -17536,8 +17544,6 @@ func (ec *executionContext) unmarshalInputServiceMeshFilter(ctx context.Context,
 			}
 			it.Type = data
 		case "k8sClusterIDs":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("k8sClusterIDs"))
 			data, err := ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
@@ -19519,6 +19525,8 @@ func (ec *executionContext) _PatternResult(ctx context.Context, sel ast.Selectio
 			out.Values[i] = ec._PatternResult_created_at(ctx, field, obj)
 		case "updated_at":
 			out.Values[i] = ec._PatternResult_updated_at(ctx, field, obj)
+		case "type":
+			out.Values[i] = ec._PatternResult_type(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -22442,6 +22450,13 @@ func (ec *executionContext) marshalOMeshplayResult2ᚖgithubᚗcomᚋkhulnasoft�
 		return graphql.Null
 	}
 	return ec._MeshplayResult(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalONullString2ᚖgithubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐNullString(ctx context.Context, sel ast.SelectionSet, v *model.NullString) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._NullString(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOOperatorStatusInput2ᚖgithubᚗcomᚋkhulnasoftᚋmeshplayᚋserverᚋinternalᚋgraphqlᚋmodelᚐOperatorStatusInput(ctx context.Context, v interface{}) (*model.OperatorStatusInput, error) {
