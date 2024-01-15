@@ -1,4 +1,4 @@
-import { DialogTitle, Typography } from '@layer5/sistent-components';
+import { DialogTitle, Typography } from '@khulnasoft/sistent-components';
 
 import { styled } from '@mui/material';
 import theme from '../../themes/app';

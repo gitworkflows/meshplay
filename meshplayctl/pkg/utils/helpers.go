@@ -225,7 +225,7 @@ var Services = map[string]Service{
 		Image:  "khulnasoft/meshplay:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Environment: []string{
-			"PROVIDER_BASE_URLS=https://meshplay.layer5.io",
+			"PROVIDER_BASE_URLS=https://meshplay.khulnasoft.com",
 			"ADAPTER_URLS=meshplay-istio:10000 meshplay-linkerd:10001 meshplay-consul:10002 meshplay-nsm:10004 meshplay-app-mesh:10005 meshplay-kuma:10007 meshplay-osm:10009 meshplay-traefik-mesh:10006 meshplay-nginx-sm:10010 meshplay-cilium:10012",
 			"EVENT=meshplayLocal",
 			"PORT=9081",

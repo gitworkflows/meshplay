@@ -20,7 +20,7 @@ jobs:
     - name: Check out code for meshplay-extensions
       uses: actions/checkout@master
       with:
-        repository: layer5labs/meshplay-extensions
+        repository: khulnasoft-lab/meshplay-extensions-packages
         token: ${{ secrets.RELEASEDRAFTER_PAT }}
         path: meshplay-extensions
     - name: Setup Go
@@ -35,7 +35,7 @@ jobs:
       with:
         repository: meshplay-extensions
         commit_user_name: l5io
-        commit_user_email: ci@layer5.io
+        commit_user_email: ci@khulnasoft.com
         commit_author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         commit_options: '--signoff'
         commit_message: 'Upgrading go.mod in response to khulnasoft/meshplay'
@@ -54,7 +54,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Go Mod Sync Failed - ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
-          to: support@layer5.io
+          to: support@khulnasoft.com
           from: Meshplay extensions go.mod sync workflow
           body: |
             The workflow failed. Here are the details:

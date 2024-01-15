@@ -20,7 +20,7 @@ const INITIAL_GRID_SIZE = { lg: 6, md: 12, xs: 12 };
 
 const MeshMapSignUpcard = ({ classes, hasAccessToMeshMap = false }) => {
   const handleSignUp = (e) => {
-    window.open('https://layer5.io/meshmap', '_blank');
+    window.open('https://khulnasoft.com/meshmap', '_blank');
     e.stopPropagation();
   };
 

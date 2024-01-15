@@ -36,8 +36,8 @@ require (
 	github.com/jinzhu/copier v0.4.0
 	github.com/khulnasoft/meshkit v0.0.0-20240105012431-4e00871e7db5
 	github.com/khulnasoft/meshplay-operator v0.0.0-20240112194643-1674dc237c1e
-	github.com/layer5io/gowrk2 v0.6.1
-	github.com/layer5io/nighthawk-go v1.0.3
+	github.com/khulnasoft/gowrk2 v0.6.1
+	github.com/khulnasoft/nighthawk-go v1.0.3
 	github.com/lib/pq v1.10.9
 	github.com/manifoldco/promptui v0.9.0
 	github.com/nsf/termbox-go v1.1.1
@@ -187,7 +187,7 @@ require (
 	github.com/kubernetes/kompose v1.31.2 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
-	github.com/layer5io/meshkit v0.6.82 // indirect
+	github.com/khulnasoft/meshkit v0.6.82 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -277,6 +277,7 @@ require (
 	gorm.io/driver/postgres v1.5.3 // indirect
 	gorm.io/driver/sqlite v1.5.4 // indirect
 	helm.sh/helm/v3 v3.13.2 // indirect
+	k8s.io/api v0.29.0 // indirect
 	k8s.io/apiserver v0.28.3 // indirect
 	k8s.io/cli-runtime v0.28.3 // indirect
 	k8s.io/component-base v0.28.3 // indirect

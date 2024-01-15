@@ -35,7 +35,7 @@ Some portions of the workflow require secrets to accomplish their tasks. These s
 - `DOCKER_USERNAME`: Username of the Docker Hub user with the right privileges to push images
 - `DOCKER_PASSWORD`: Password for the Docker Hub user
 - `GO_VERSION`: As of July 21st 2021 it is 1.16
-- `IMAGE_NAME`: appropriate image name for each of the Docker container images. All are under the `layer5io` org.
+- `IMAGE_NAME`: appropriate image name for each of the Docker container images. All are under the `khulnasoft` org.
 - `SLACK_BOT_TOKEN`: Used for notification of new GitHub stars given to the Meshplay repo.
 - `CYPRESS_RECORD_KEY`: Used for integration with the Layer5 account on Cypress.
 - `GLOBAL_TOKEN`: Used for securely transmitting performance test results for the None Provider.
@@ -184,11 +184,11 @@ The artifacts will be made available as a tar.gz archive for all the operating s
 
 #### Homebrew
 
-GoReleaser facilitates the creation of a brew formula for meshplayctl. The [homebrew-tap](https://github.com/layer5io/homebrew-tap) repository is the location for Layer5’s brew formulas.
+GoReleaser facilitates the creation of a brew formula for meshplayctl. The [homebrew-tap](https://github.com/khulnasoft/homebrew-tap) repository is the location for Layer5’s brew formulas.
 
 #### Scoop
 
-GoReleaser facilitates the creation of a Scoop app for meshplayctl. The [scoop-bucket](https://github.com/layer5io/scoop-bucket) repository is the location of Layer5’s Scoop bucket.
+GoReleaser facilitates the creation of a Scoop app for meshplayctl. The [scoop-bucket](https://github.com/khulnasoft/scoop-bucket) repository is the location of Layer5’s Scoop bucket.
 
 ## Helm Charts Lint Check, Build, and Release
 

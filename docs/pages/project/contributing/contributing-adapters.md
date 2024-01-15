@@ -30,7 +30,7 @@ Another way to test your local changes is to run the adapter as a process. To do
 
 ### Creating a new Meshplay Adapter
 
-Meshplay uses adapters to manage and interact with different cloud native infrastructure. Meshplay adapters are written in Go. Whether you are creating a new adapter or modifying an existing adapter, be sure to read the [Meshplay Adapters](https://docs.google.com/document/d/1b8JAMzr3Rntu7CudRaYv6r6ccACJONAB5t7ISCaPNuA/edit#) design specification. For new adapters, start with the Repository Template(https://github.com/layer5io/layer5-repo-template). 
+Meshplay uses adapters to manage and interact with different cloud native infrastructure. Meshplay adapters are written in Go. Whether you are creating a new adapter or modifying an existing adapter, be sure to read the [Meshplay Adapters](https://docs.google.com/document/d/1b8JAMzr3Rntu7CudRaYv6r6ccACJONAB5t7ISCaPNuA/edit#) design specification. For new adapters, start with the Repository Template(https://github.com/khulnasoft/khulnasoft-repo-template). 
 
 1. Get the proto buf spec file from Meshplay repo:
    `wget https://raw.githubusercontent.com/khulnasoft/meshplay/master/meshes/meshops.proto`

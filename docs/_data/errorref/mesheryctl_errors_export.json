@@ -154,7 +154,7 @@
         "long_description": "SMI conformance tests failed",
         "short_description": "SMI conformance tests failed",
         "probable_cause": "",
-        "suggested_remediation": "Join https://layer5io.slack.com/archives/C010H0HE2E6"
+        "suggested_remediation": "Join https://khulnasoft.slack.com/archives/C010H0HE2E6"
       },
       "1022": {
         "name": "ErrRetrievingCurrentContextCode",

@@ -23,17 +23,17 @@ Please do! Thanks for your help! 🎈 Meshplay is community-built and welcomes c
 
 Follow these steps and you'll be right at home.
 
-1. See the [Newcomers Guide](https://layer5.io/community/newcomers) for how, where, and why to contribute.
+1. See the [Newcomers Guide](https://khulnasoft.com/community/newcomers) for how, where, and why to contribute.
 
-2. Sign up for a [_MeshMate_](https://layer5.io/community/meshmates) to find the perfect Mentor to help you explore the Layer5 projects and find your place in the community:
+2. Sign up for a [_MeshMate_](https://khulnasoft.com/community/meshmates) to find the perfect Mentor to help you explore the Layer5 projects and find your place in the community:
 
-- **Familiarize** yourself with the broader set of community projects (take a look at the [Repository Overview](https://layer5.io/community/handbook/repository-overview): Spend time understanding each of the initiatives through high-level overviews available in the community drive and through discussions with your MeshMate.
+- **Familiarize** yourself with the broader set of community projects (take a look at the [Repository Overview](https://khulnasoft.com/community/handbook/repository-overview): Spend time understanding each of the initiatives through high-level overviews available in the community drive and through discussions with your MeshMate.
 - **Identify** your area of interest: Use the time with your MeshMate to familiarize yourself with the architecture and technologies used in the projects. Inform your MeshMate of your current skills and what skills you aim to develop.
 - **Run** Meshplay: Put on your user hat and walk-through all of Meshplay’s features and functions as a user.
 - **Build** Meshplay: Confirm that you have a usable development environment.
 - **Discuss** with the community by engaging in the [discussion forum](http://discuss.khulnasoft.com).
 - **Contribute** by grabbing any open issue with the [help-wanted label](https://github.com/khulnasoft/meshplay/issues/) and jump in. If needed, create a [new issue](https://github.com/khulnasoft/meshplay/issues/new/choose). All [pull requests](https://github.com/khulnasoft/meshplay/pulls) should reference an open issue. Include keywords in your pull request descriptions, as well as commit messages, to [automatically close issues in GitHub](https://help.github.com/en/github/managing-your-work-on-github/closing-issues-using-keywords).
-- **Fill-in** a [community member form](https://layer5.io/newcomers) community member form to gain access to community resources.
+- **Fill-in** a [community member form](https://khulnasoft.com/newcomers) community member form to gain access to community resources.
 
 ## General Contribution Flow
 

@@ -5,7 +5,7 @@ import {
   Divider,
   IconButton,
   Tooltip,
-} from '@layer5/sistent-components';
+} from '@khulnasoft/sistent-components';
 import useStyles from './MeshplayPatterns/Cards.styles';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import FullscreenExit from '@material-ui/icons/FullscreenExit';

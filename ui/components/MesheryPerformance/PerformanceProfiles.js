@@ -18,7 +18,7 @@ import { iconMedium } from '../../css/icons.styles';
 import subscribePerformanceProfiles from '../graphql/subscriptions/PerformanceProfilesSubscription';
 import { useNotification } from '@/utils/hooks/useNotification';
 import { EVENT_TYPES } from '../../lib/event-types';
-import { ResponsiveDataTable } from '@layer5/sistent-components';
+import { ResponsiveDataTable } from '@khulnasoft/sistent-components';
 import Moment from 'react-moment';
 import { withSnackbar } from 'notistack';
 import TableSortLabel from '@material-ui/core/TableSortLabel';

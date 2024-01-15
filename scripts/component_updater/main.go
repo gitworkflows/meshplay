@@ -22,11 +22,11 @@ Example:
 
 Usage: (order of flags matters)
 
-    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in layer5 website] [relative path to docs in meshplay website] [--only-published]
+    ./main [path-to-spreadsheet] [--system] [<system-name>] [relative path to docs in khulnasoft website] [relative path to docs in meshplay website] [--only-published]
 
 Examples:
 
-	1. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
+	1. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
 	2. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system remote-provider <remote-provider>/meshmodels/models <remote-provider>/ui/public/img/meshmodels
 	3. ./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system meshplay ../../server/meshmodel
 
@@ -51,7 +51,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/layer5io/component_scraper/pkg"
+	"github.com/khulnasoft/component_scraper/pkg"
 	"github.com/khulnasoft/meshkit/models/meshmodel/core/v1alpha1"
 	"github.com/khulnasoft/meshkit/utils/manifests"
 )

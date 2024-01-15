@@ -1,4 +1,4 @@
-module github.com/layer5io/component_scraper
+module github.com/khulnasoft/component_scraper
 
 go 1.21
 

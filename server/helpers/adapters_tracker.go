@@ -92,7 +92,7 @@ func (a *AdaptersTracker) DeployAdapter(ctx context.Context, adapter models.Adap
 			}
 		}
 
-		adapterImage := "layer5/" + adapter.Name + ":stable-latest"
+		adapterImage := "khulnasoft/" + adapter.Name + ":stable-latest"
 
 		// Pull the latest image
 		resp, err := cli.ImagePull(ctx, adapterImage, types.ImagePullOptions{})

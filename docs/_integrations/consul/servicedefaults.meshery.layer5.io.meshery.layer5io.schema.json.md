@@ -1,5 +1,5 @@
 ---
-component: servicedefaults.meshplay.layer5.io.meshplay.layer5io.schema.json
+component: servicedefaults.meshplay.khulnasoft.com.meshplay.khulnasoft.schema.json
 integrations:
-    - CONTRIBUTING.md.Dockerfile .LICENSE .Makefile .README.md .build .consul .go.mod .go.sum .helpers .internal .main.go .output .servicedefaults.meshplay.layer5.io.meshplay.layer5io.schema.json.md .templates .tests
+    - CONTRIBUTING.md.Dockerfile .LICENSE .Makefile .README.md .build .consul .go.mod .go.sum .helpers .internal .main.go .output .servicedefaults.meshplay.khulnasoft.com.meshplay.khulnasoft.schema.json.md .templates .tests
 ---

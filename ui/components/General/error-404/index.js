@@ -91,8 +91,8 @@ const DefaultError = (props) => {
             <div style={{ marginTop: '0.8rem' }}>
               <Typography variant="p" component="p" align="center">
                 For help, please inquire on the
-                <ErrorLink href="https://discuss.layer5.io"> discussion forum</ErrorLink> or the{' '}
-                <ErrorLink href="https://slack.layer5.io"> Slack workspace</ErrorLink>.
+                <ErrorLink href="https://discuss.khulnasoft.com"> discussion forum</ErrorLink> or
+                the <ErrorLink href="https://slack.khulnasoft.com"> Slack workspace</ErrorLink>.
               </Typography>
             </div>
           </div>

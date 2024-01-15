@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Footer() {
   const handleL5CommunityClick = () => {
     if (typeof window !== 'undefined') {
-      const w = window.open('https://layer5.io', '_blank')
+      const w = window.open('https://khulnasoft.com', '_blank')
       w.focus()
     }
   }

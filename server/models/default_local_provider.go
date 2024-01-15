@@ -1609,8 +1609,8 @@ func getFiltersFromWasmFiltersRepo(downloadPath string) error {
 	// if err != nil {
 	// 	return err
 	// }
-	//Temporary hardcoding until https://github.com/layer5io/wasm-filters/issues/38 is resolved
-	downloadURL := "https://github.com/layer5io/wasm-filters/releases/download/v0.1.0/wasm-filters-v0.1.0.tar.gz"
+	//Temporary hardcoding until https://github.com/khulnasoft/wasm-filters/issues/38 is resolved
+	downloadURL := "https://github.com/khulnasoft/wasm-filters/releases/download/v0.1.0/wasm-filters-v0.1.0.tar.gz"
 	res, err := http.Get(downloadURL)
 	if err != nil {
 		return err
@@ -1653,7 +1653,7 @@ func extractTarGz(gzipStream io.Reader, downloadPath string) error {
 
 // // GetLatestStableReleaseTag fetches and returns the latest release tag from GitHub
 // func getLatestStableReleaseTag() (string, error) {
-// 	url := "https://github.com/layer5io/wasm-filters/releases/latest"
+// 	url := "https://github.com/khulnasoft/wasm-filters/releases/latest"
 // 	resp, err := http.Get(url)
 // 	if err != nil {
 // 		return "", errors.New("failed to get latest stable release tag")

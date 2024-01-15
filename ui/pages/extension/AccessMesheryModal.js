@@ -96,7 +96,7 @@ export default function PlaygroundMeshDeploy(props) {
           <Typography gutterBottom>
             Meshplay Playground gives you hands-on experience with designing cloud native systems -
             from your browser - using every CNCF project. Choose a{' '}
-            <a href="https://layer5.io/learn/learning-paths" style={{ color: '#00b39f' }}>
+            <a href="https://khulnasoft.com/learn/learning-paths" style={{ color: '#00b39f' }}>
               Learning Path
             </a>{' '}
             and work through labs as you visually and collaboratively learn-by-doing without having
@@ -104,8 +104,8 @@ export default function PlaygroundMeshDeploy(props) {
           </Typography>
           <Typography gutterBottom>
             To ensure that Meshplay Playground remains a clean sandbox for all to use, many of
-            Meshplay&apos;s features are disabled. For full access to all of Meshplay&apos;s features,
-            deploy your own instance of Meshplay.
+            Meshplay&apos;s features are disabled. For full access to all of Meshplay&apos;s
+            features, deploy your own instance of Meshplay.
           </Typography>
         </DialogContent>
         <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>

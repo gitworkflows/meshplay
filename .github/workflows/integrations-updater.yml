@@ -28,9 +28,9 @@ jobs:
       - name: Checkout Layer5.io repo
         uses: actions/checkout@master
         with:
-          repository: layer5io/layer5
+          repository: khulnasoft/khulnasoft
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-          path: layer5
+          path: khulnasoft
       - name: Checkout Meshplay.io repo
         uses: actions/checkout@master
         with:
@@ -38,13 +38,13 @@ jobs:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           path: khulnasoft.com
       - name: Run utility
-        run: cd meshplay/scripts/component_updater; go build main.go; ./main "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub?gid=0&single=true&output=csv" --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
+        run: cd meshplay/scripts/component_updater; go build main.go; ./main "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub?gid=0&single=true&output=csv" --system docs khulnasoft/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
       - name: Commit changes to Layer5.io repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_user_name: l5io
-          repository: ./layer5
-          commit_user_email: ci@layer5.io
+          repository: ./khulnasoft
+          commit_user_email: ci@khulnasoft.com
           commit_author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit_options: "--signoff"
           commit_message: "[Docs] Generated documentation for Integration"
@@ -54,7 +54,7 @@ jobs:
         with:
           commit_user_name: l5io
           repository: ./khulnasoft.com
-          commit_user_email: ci@layer5.io
+          commit_user_email: ci@khulnasoft.com
           commit_author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit_options: "--signoff"
           commit_message: "[Docs] Generated documentation for Integration"

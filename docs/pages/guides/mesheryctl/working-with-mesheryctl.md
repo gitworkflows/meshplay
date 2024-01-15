@@ -218,7 +218,7 @@ Add the Meshplay Scoop Bucket and install:
 
  <pre class="codeblock-pre"><div class="codeblock">
  <div class="clipboardjs">
- scoop bucket add meshplayctl https://github.com/layer5io/scoop-bucket.git
+ scoop bucket add meshplayctl https://github.com/khulnasoft/scoop-bucket.git
  scoop install meshplayctl
  </div></div>
  </pre>

@@ -38,7 +38,7 @@ meshplayctl exp filter apply --file [GitHub Link]
 Apply a remote filter file
 <pre class='codeblock-pre'>
 <div class='codeblock'>
-meshplayctl exp filter apply --file https://github.com/layer5io/wasm-filters/tree/master/http-auth
+meshplayctl exp filter apply --file https://github.com/khulnasoft/wasm-filters/tree/master/http-auth
 
 </div>
 </pre> 

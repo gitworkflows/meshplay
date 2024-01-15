@@ -44,4 +44,4 @@ It also supports a collaborative environment, where DevOps engineers can share t
 {% include alert.html
     type="info"
     title="Help with Meshplay Catalog"
-    content="If you have any questions or need assistance, please refer to the [Meshplay Documentation](https://docs.khulnasoft.com/) or reach out to our discussion form [layer5.io](http://discuss.khulnasoft.com/)." %}
+    content="If you have any questions or need assistance, please refer to the [Meshplay Documentation](https://docs.khulnasoft.com/) or reach out to our discussion form [khulnasoft.com](http://discuss.khulnasoft.com/)." %}

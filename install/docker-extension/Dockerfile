@@ -54,7 +54,7 @@ LABEL org.opencontainers.image.title="Meshplay" \
   </ul>" \
   com.docker.desktop.extension.icon="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/meshplay-logo-light.svg" \
   com.docker.extension.publisher-url="https://khulnasoft.com" \
-  com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://docs.khulnasoft.com\"},{\"title\":\"Project\",\"url\":\"https://layer5.io/meshplay\"},{\"title\":\"Slack\",\"url\":\"https://slack.khulnasoft.com\"},{\"title\":\"Discussion Forum\",\"url\":\"http://discuss.khulnasoft.com\"}]"
+  com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://docs.khulnasoft.com\"},{\"title\":\"Project\",\"url\":\"https://khulnasoft.com/meshplay\"},{\"title\":\"Slack\",\"url\":\"https://slack.khulnasoft.com\"},{\"title\":\"Discussion Forum\",\"url\":\"http://discuss.khulnasoft.com\"}]"
 COPY --from=builder /backend/bin/service /
 COPY docker-compose.yaml .
 COPY metadata.json .

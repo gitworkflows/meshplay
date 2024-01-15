@@ -17,7 +17,7 @@ Meshplay and its components are written using the following languages and techno
 | :------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
 | Meshplay Server                                                       | Golang, gRPC, GraphQL, [SMP](https://smp-spec.io)                                 |
 | [Meshplay Adapters](/concepts/architecture/adapters)                  | Golang, gRPC, [CloudEvents](https://cloudevents.io/), [SMI](https://smi-spec.io), [OAM](https://oam.dev)  |
-| [Meshplay WASM Filters](https://github.com/layer5io/wasm-filters)     | Rust and C++                                                                      |
+| [Meshplay WASM Filters](https://github.com/khulnasoft/wasm-filters)     | Rust and C++                                                                      |
 | Meshplay UI                                                           | ReactJS, NextJS, BillboardJS                                                      |
 | Meshplay Provider UI                                                  | ReactJS, NextJS                                                                   |
 | [Meshplay Remote Providers](/extensibility/providers)                 | _any_ - must adhere to Meshplay [Extension Points]({{site.baseurl}}/extensibility) |

@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	helpers "github.com/layer5io/component_docs_generator/helpers"
+	helpers "github.com/khulnasoft/component_docs_generator/helpers"
 )
 
 func main() {

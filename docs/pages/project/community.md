@@ -14,7 +14,7 @@ Meshplay is a CNCF project maintained by engineers from Layer5, VMware, Red Hat,
 
 ## Getting involved in the Community
 
-Meshplay is one of a number of open source projects originated by the <a href="https://layer5.io/community">Layer5 community</a>. Get involved with Meshplay and supporting projects. Start by reading through the [Newcomers Guide](https://layer5.io/community/newcomers), which provides details on how to participate. Seek out other community members, who will make sure you are not left out. We always have a role for everyone whether to be a code-writer, a community manager, user, advocate, or just to listen in. The Meshplay community is always open and warmly welcomes you.  If this is your first time making open source contribution, you are in the right place!
+Meshplay is one of a number of open source projects originated by the <a href="https://khulnasoft.com/community">Layer5 community</a>. Get involved with Meshplay and supporting projects. Start by reading through the [Newcomers Guide](https://khulnasoft.com/community/newcomers), which provides details on how to participate. Seek out other community members, who will make sure you are not left out. We always have a role for everyone whether to be a code-writer, a community manager, user, advocate, or just to listen in. The Meshplay community is always open and warmly welcomes you.  If this is your first time making open source contribution, you are in the right place!
 
 Please see our [contributing guide]({{ site.baseurl }}/project/contributing) for specific details about setting up your development environment and to start learning the innerworkings of a specific Meshplay component.
 
@@ -23,8 +23,8 @@ Please see our [contributing guide]({{ site.baseurl }}/project/contributing) for
 The Meshplay project is community-built and welcomes collaboration! <a href="https://github.com/khulnasoft/meshplay"><i class="fab fa-github"></i> Fork Meshplay</a>
 
 * Join any of the [community meetings](https://khulnasoft.com/calendar). 
-* Watch [meeting recordings](https://www.youtube.com/@Layer5io?sub_confirmation=1) and subscribe to the [community calendar](https://khulnasoft.com/calendar).
-* Fill-in a <a href="https://layer5.io/newcomers">community member form</a> to gain access to community resources.
+* Watch [meeting recordings](https://www.youtube.com/@khulnasoft?sub_confirmation=1) and subscribe to the [community calendar](https://khulnasoft.com/calendar).
+* Fill-in a <a href="https://khulnasoft.com/newcomers">community member form</a> to gain access to community resources.
 
 
 <!-- ## Presentations
@@ -38,7 +38,7 @@ Past presentations of Meshplay:
 - [O'Reilly OSCON 2020](https://conferences.oreilly.com/oscon/oscon-or)
 - [O'Reilly Infrastructure & Ops 2020](https://conferences.oreilly.com/infrastructure-ops/io-ca/public/schedule/speaker/226795)
 - [InnoTech Dallas 2020](https://innotechdallas2020.sched.com/event/aN7E/a-management-plane-for-service-meshes)
-- [KubeCon EU 2020](https://kccnceu20.sched.com/event/Zetg/discreetly-studying-the-effects-of-individual-traffic-control-functions-lee-calcote-layer5?iframe=no&w=100%&sidebar=yes&bg=no)
+- [KubeCon EU 2020](https://kccnceu20.sched.com/event/Zetg/discreetly-studying-the-effects-of-individual-traffic-control-functions-lee-calcote-khulnasoft?iframe=no&w=100%&sidebar=yes&bg=no)
 - DockerCon 2020 ([deck](https://calcotestudios.com/talks/decks/slides-dockercon-2020-service-meshing-with-docker-desktop-and-webassembly.html), [video](https://www.youtube.com/watch?v=5BrbbKZOctw&list=PL3A-A6hPO2IN_HSU0pSfijBboiHggs5mC&index=4&t=0s))
 - [Open Source 101 at Home](https://calcotestudios.com/talks/decks/slides-open-source-101-at-home-solving-the-service-mesh-adopters-dilemma.html)
 - [Docker Captains Roundtable 2020](https://calcotestudios.com/talks/decks/slides-docker-captains-2020-meshplay-the-multi-service-mesh-manager.html)
@@ -58,7 +58,7 @@ Giving a talk or hosting a meetup about Meshplay? Leverage existing slides or re
 
 <div class="wrapper">
     <a href="https://forms.gle/1jqY7HWveSFKCdnD6"><div class="overview">Share your event</div></a>
-    <a href="https://layer5.io/newcomers"><div class="overview">Access slides and resources</div></a>
+    <a href="https://khulnasoft.com/newcomers"><div class="overview">Access slides and resources</div></a>
 </div>
 
 <!-- 
@@ -68,19 +68,19 @@ Giving a talk or hosting a meetup about Meshplay? Leverage existing slides or re
 
 <div class="row">
 <div class="column">
-  <a target="_blank" href="https://layer5.io/landscape">
+  <a target="_blank" href="https://khulnasoft.com/landscape">
   <img class="img-thumbnail" src="/assets/img/resources/landscape.png" alt="Service Mesh Landscape" style="width:150px"><span class="caption">Service Mesh Comparison</span></a>
 </div>
 <div class="column">
-<a target="_blank" href="https://layer5.io/landscape#tools">
+<a target="_blank" href="https://khulnasoft.com/landscape#tools">
   <img class="img-thumbnail" src="/assets/img/resources/settings.svg" alt="Service Mesh Landscape Tools" style="width:150px" /><span class="caption">Service Mesh Tools</span></a>
 </div>
 <div class="column">
-<a target="_blank" href="https://layer5.io/books">
+<a target="_blank" href="https://khulnasoft.com/books">
   <img  class="img-thumbnail" src="/assets/img/resources/book.jpeg" alt="Service Mesh Books" style="width:150px" /> <span class="caption">Service Mesh Books</span> </a>
 </div>
 <div class="column">
-<a target="_blank" href="https://layer5.io/workshops">
+<a target="_blank" href="https://khulnasoft.com/workshops">
   <img  class="img-thumbnail" src="/assets/img/resources/workshops.svg" alt="Service Mesh Workshops" style="width:150px" /> <span class="caption">Service Mesh Workshops</span></a>
 </div>
 </div> -->

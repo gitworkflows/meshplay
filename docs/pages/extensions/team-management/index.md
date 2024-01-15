@@ -7,7 +7,7 @@ abstract: Learn how to efficiently add team members to Meshplay Cloud, assign ro
 display-title: "false"
 list: include
 type: extensions
-category: provider-layer5
+category: provider-khulnasoft
 published: false
 ---
 

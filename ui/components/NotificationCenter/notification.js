@@ -257,7 +257,10 @@ const BasicMenu = withSuppressedErrorBoundary(({ event }) => {
                 <FacebookShareButton url={'https://khulnasoft.com'} quote={event.description || ''}>
                   <FacebookIcon {...iconMedium} fill={theme.palette.secondary.iconMain} />
                 </FacebookShareButton>
-                <LinkedinShareButton url={'https://khulnasoft.com'} summary={event.description || ''}>
+                <LinkedinShareButton
+                  url={'https://khulnasoft.com'}
+                  summary={event.description || ''}
+                >
                   <LinkedInIcon {...iconMedium} fill={theme.palette.secondary.iconMain} />
                 </LinkedinShareButton>
                 <TwitterShareButton url={'https://khulnasoft.com'} title={event.description || ''}>

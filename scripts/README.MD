@@ -41,10 +41,10 @@ cd scripts/component_updater; go build main.go
 
 ### Usage 
 
-1. To update docs on layer5.io website:
+1. To update docs on khulnasoft.com website:
 
 ```bash
-./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs layer5/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
+./main https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub\?gid\=0\&single\=true\&output\=csv --system docs khulnasoft/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
 ```
 
 2. To update component metadata for meshmodels:

@@ -1,4 +1,4 @@
-module github.com/layer5io/meshmodel_ahub_gen
+module github.com/khulnasoft/meshmodel_ahub_gen
 
 go 1.21
 

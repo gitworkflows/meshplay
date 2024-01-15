@@ -1,5 +1,5 @@
 ---
-component: peeringdialer.meshplay.layer5.io_definition.json
+component: peeringdialer.meshplay.khulnasoft.com_definition.json
 integrations:
-    - CONTRIBUTING.md.Dockerfile .LICENSE .Makefile .README.md .build .consul .go.mod .go.sum .helpers .internal .main.go .output .peeringdialer.meshplay.layer5.io_definition.json.md .templates .tests
+    - CONTRIBUTING.md.Dockerfile .LICENSE .Makefile .README.md .build .consul .go.mod .go.sum .helpers .internal .main.go .output .peeringdialer.meshplay.khulnasoft.com_definition.json.md .templates .tests
 ---

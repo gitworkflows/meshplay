@@ -1060,4 +1060,6 @@ const mapDispatchToProps = (dispatch) => ({
   // setMeshsyncSubscription : bindActionCreators(setMeshsyncSubscription, dispatch)
 });
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(MeshplaySettingsNew));
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(MeshplaySettingsNew),
+);

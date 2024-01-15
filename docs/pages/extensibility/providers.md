@@ -139,7 +139,7 @@ Meshplay Server will proxy all requests to remote provider endpoints. Endpoints 
 {% capture code_content %}{
   "provider_type": "remote",
   "package_version": "v0.1.0",
-  "package_url": "https://layer5labs.github.io/meshplay-extensions-packages/provider.tar.gz",
+  "package_url": "https://khulnasoftlabs.github.io/meshplay-extensions-packages/provider.tar.gz",
   "provider_name": "Meshplay",
   "provider_description": [
     "Persistent sessions",
