@@ -67,7 +67,7 @@ docker-cloud:
 ## Setup wrk2 for local development.
 wrk2-setup:
 	echo "setup-wrk does not work on Mac Catalina at the moment"
-	cd server; cd cmd; git clone https://github.com/khulnasoft/wrk2.git; cd wrk2; make; cd ..
+	cd server; cd cmd; git clone https://github.com/layer5io/wrk2.git; cd wrk2; make; cd ..
 
 ## Setup nighthawk for local development.
 nighthawk-setup: dep-check
