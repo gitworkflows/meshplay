@@ -6,7 +6,7 @@ on:
 jobs:
   generate-docs:
     name: Generate Documents
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code

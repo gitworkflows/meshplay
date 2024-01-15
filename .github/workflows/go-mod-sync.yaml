@@ -14,7 +14,7 @@ jobs:
     - name: check out code for meshery
       uses: actions/checkout@master
       with:
-        repository: meshery/meshery
+        repository: khulnasoft/meshplay
         token: ${{ secrets.RELEASEDRAFTER_PAT }}
         path: meshery
     - name: Check out code for meshery-extensions
@@ -38,7 +38,7 @@ jobs:
         commit_user_email: ci@layer5.io
         commit_author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         commit_options: '--signoff'
-        commit_message: 'Upgrading go.mod in response to meshery/meshery'
+        commit_message: 'Upgrading go.mod in response to khulnasoft/meshplay'
         branch: master
   notify-via-email:
     runs-on: ubuntu-latest

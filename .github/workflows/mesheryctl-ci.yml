@@ -20,7 +20,7 @@ on:
 jobs:
   golangci:
     name: golangci-lint
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@master
@@ -38,7 +38,7 @@ jobs:
           skip-build-cache: true
   meshplayctl_build:
     name: Meshplayctl build & release
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: macos-latest
     needs: [golangci]
     steps:
@@ -66,7 +66,7 @@ jobs:
           version: latest
           args: release --snapshot --skip-publish --clean
   meshplayctl_docs:
-    if: "always() && github.event_name != 'pull_request' && github.repository == 'meshery/meshery' "
+    if: "always() && github.event_name != 'pull_request' && github.repository == 'khulnasoft/meshplay' "
     runs-on: ubuntu-22.04
     steps:
       - name: Skip if needed
@@ -80,7 +80,7 @@ jobs:
           fi
       - uses: actions/checkout@master
         with:
-          repository: meshery/meshery
+          repository: khulnasoft/meshplay
           token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Setup go
         uses: actions/setup-go@master

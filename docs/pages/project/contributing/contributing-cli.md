@@ -48,7 +48,7 @@ For logs, `meshplayctl` uses [Logrus](https://github.com/sirupsen/logrus). Going
 
 **Unit Tests**
 
-Unit test code coverage reports can be found in the [CodeCov logs](https://app.codecov.io/gh/meshery/meshery/). _Note: GitHub login may be required for access._
+Unit test code coverage reports can be found in the [CodeCov logs](https://app.codecov.io/gh/khulnasoft/meshplay/). _Note: GitHub login may be required for access._
 
 **Documentation**
 

@@ -22,7 +22,7 @@ Meshplay Adapter for NGINX Service Mesh.
 | env | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"layer5/meshery-nginx-sm:stable-latest"` |  |
+| image.repository | string | `"khulnasoft/meshplay-nginx-sm:stable-latest"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |

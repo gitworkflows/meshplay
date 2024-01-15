@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccount: meshery-server
       containers:
-        - image: layer5/meshery-octarine:stable-latest
+        - image: khulnasoft/meshplay-octarine:stable-latest
           imagePullPolicy: Always
           name: meshery-octarine
           ports:

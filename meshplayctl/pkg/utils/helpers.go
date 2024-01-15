@@ -222,7 +222,7 @@ var TemplateContext = config.Context{
 
 var Services = map[string]Service{
 	"meshery": {
-		Image:  "layer5/meshery:stable-latest",
+		Image:  "khulnasoft/meshplay:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Environment: []string{
 			"PROVIDER_BASE_URLS=https://meshery.layer5.io",
@@ -234,52 +234,52 @@ var Services = map[string]Service{
 		Ports:   []string{"9081:9081"},
 	},
 	"meshery-istio": {
-		Image:  "layer5/meshery-istio:stable-latest",
+		Image:  "khulnasoft/meshplay-istio:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10000:10000"},
 	},
 	"meshery-linkerd": {
-		Image:  "layer5/meshery-linkerd:stable-latest",
+		Image:  "khulnasoft/meshplay-linkerd:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10001:10001"},
 	},
 	"meshery-consul": {
-		Image:  "layer5/meshery-consul:stable-latest",
+		Image:  "khulnasoft/meshplay-consul:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10002:10002"},
 	},
 	"meshery-nsm": {
-		Image:  "layer5/meshery-nsm:stable-latest",
+		Image:  "khulnasoft/meshplay-nsm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10004:10004"},
 	},
 	"meshery-app-mesh": {
-		Image:  "layer5/meshery-app-mesh:stable-latest",
+		Image:  "khulnasoft/meshplay-app-mesh:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10005:10005"},
 	},
 	"meshery-traefik-mesh": {
-		Image:  "layer5/meshery-traefik-mesh:stable-latest",
+		Image:  "khulnasoft/meshplay-traefik-mesh:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10006:10006"},
 	},
 	"meshery-kuma": {
-		Image:  "layer5/meshery-kuma:stable-latest",
+		Image:  "khulnasoft/meshplay-kuma:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10007:10007"},
 	},
 	"meshery-osm": {
-		Image:  "layer5/meshery-osm:stable-latest",
+		Image:  "khulnasoft/meshplay-osm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10009:10009"},
 	},
 	"meshery-nginx-sm": {
-		Image:  "layer5/meshery-nginx-sm:stable-latest",
+		Image:  "khulnasoft/meshplay-nginx-sm:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10010:10010"},
 	},
 	"meshery-cilium": {
-		Image:  "layer5/meshery-cilium:stable-latest",
+		Image:  "khulnasoft/meshplay-cilium:stable-latest",
 		Labels: []string{"com.centurylinklabs.watchtower.enable=true"},
 		Ports:  []string{"10012:10012"},
 	},

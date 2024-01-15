@@ -21,7 +21,7 @@ Meshplay Adapter for Network Service Mesh.
 | env | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"layer5/meshery-nsm:stable-latest"` |  |
+| image.repository | string | `"khulnasoft/meshplay-nsm:stable-latest"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |

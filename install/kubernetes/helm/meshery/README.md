@@ -23,7 +23,7 @@ Meshplay chart for deploying Meshplay
 | env.PROVIDER_BASE_URLS | string | `"https://meshery.layer5.io"` | Configure your Remote Provider of choice. See the [Remote Provider documentation](https://docs.khulnasoft.com/extensibility/providers) for a description of what a Provider is. |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"layer5/meshery"` |  |
+| image.repository | string | `"khulnasoft/meshplay"` |  |
 | image.tag | string | `"stable-latest"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
@@ -102,7 +102,7 @@ To install the chart with the release name `meshery`:
 
 ```console
 kubectl create namespace meshery
-helm install meshery meshery/meshery
+helm install meshery khulnasoft/meshplay
 ```
 
 ## Uninstalling the Chart
@@ -117,7 +117,7 @@ helm delete meshery
 
 ```console
 kubectl create namespace meshery
-helm install meshery meshery/meshery --namespace meshery
+helm install meshery khulnasoft/meshplay --namespace meshery
 ```
 
 ## Installing the Chart with a custom Meshplay Adapters
@@ -125,5 +125,5 @@ helm install meshery meshery/meshery --namespace meshery
 Eg: For [Meshplay Adapter for Istio](https://github.com/khulnasoft/meshplay-istio)
 ```console
 kubectl create namespace meshery
-helm install meshery meshery/meshery --set meshery-istio.enabled=true
+helm install meshery khulnasoft/meshplay --set meshery-istio.enabled=true
 ```

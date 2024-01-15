@@ -49,7 +49,7 @@ chmod +x protect-kubelet
 
 ## Reinstalling Meshplay after a clean Meshplay uninstall
 If mistakenly or for some reason Meshplay is uninstalled (along with `meshery` namespace) then follow the below steps to bring it back up.
-1. `helm install meshery meshery/meshery --namespace meshery --set env.PROVIDER=Meshplay`
+1. `helm install meshery khulnasoft/meshplay --namespace meshery --set env.PROVIDER=Meshplay`
 2. `kubectl create secret tls -n meshery tls-secret-meshery --cert=/etc/letsencrypt/live/playground.khulnasoft.com-0001/fullchain.pem --key=/etc/letsencrypt/live/playground.khulnasoft.com-0001/privkey.pem`  Make sure to have private and public keys generated for `playground.khulnasoft.com` in appropriate directories.
 3. kubectl apply -f contour-http-proxy.yaml 
 ## Prometheus deployment

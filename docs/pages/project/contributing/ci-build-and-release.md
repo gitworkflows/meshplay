@@ -21,9 +21,9 @@ Artifacts produced in the build processes are published and persisted in differe
 
 | Location   | Project                                         | Repository                                                                                                           |
 | ---------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Docker Hub | Meshplay                                         | [https://hub.docker.com/r/layer5/meshery](https://hub.docker.com/r/layer5/meshery)                                   |
+| Docker Hub | Meshplay                                         | [https://hub.docker.com/r/khulnasoft/meshplay](https://hub.docker.com/r/khulnasoft/meshplay)                                   |
 | GitHub     | meshplayctl                                      | [https://github.com/khulnasoft/meshplay/releases](https://github.com/khulnasoft/meshplay/releases)                         |
-| Docker Hub | Meshplay Adapter for \<service-mesh\>            | https://hub.docker.com/r/layer5/meshery-\<service-mesh\>                                                             |
+| Docker Hub | Meshplay Adapter for \<service-mesh\>            | https://hub.docker.com/r/khulnasoft/meshplay-\<service-mesh\>                                                             |
 | Docs       | Meshplay Documentation                           | [https://docs.khulnasoft.com](https://docs.khulnasoft.com)                                                                   |
 | GitHub     | [Service Mesh Performance](https://smp-spec.io) | [https://github.com/khulnasoft/service-mesh-performance](https://github.com/khulnasoft/service-mesh-performance)         |
 | Github     | Helm charts                                     | [https://github.com/khulnasoft/meshplay.io/tree/master/charts](https://github.com/khulnasoft/meshplay.io/tree/master/charts) |
@@ -196,11 +196,11 @@ The charts lint check, charts build, and charts release workflows are all trigge
 
 ### Check Helm Charts
 
-Every PR which includes changes to the files under `install/kubernetes/` directory in the `meshery/meshery` will trigger a Github Action to check for any mistakes in Helm charts using the `helm lint` command.
+Every PR which includes changes to the files under `install/kubernetes/` directory in the `khulnasoft/meshplay` will trigger a Github Action to check for any mistakes in Helm charts using the `helm lint` command.
 
 ### Release Helm Charts to Github and Artifact Hub
 
-New Meshplay Helm charts are published upon trigger of a release event in the `meshery/meshery` repo. New versions of Meshplay's Helm charts are published to [Meshplay's Helm charts release page](https://github.com/khulnasoft/meshplay.io/tree/master/charts). [Artifact Hub] (https://artifacthub.io/packages/helm/meshery/meshery) syncs with these updated Meshplay Helm charts.
+New Meshplay Helm charts are published upon trigger of a release event in the `khulnasoft/meshplay` repo. New versions of Meshplay's Helm charts are published to [Meshplay's Helm charts release page](https://github.com/khulnasoft/meshplay.io/tree/master/charts). [Artifact Hub] (https://artifacthub.io/packages/helm/khulnasoft/meshplay) syncs with these updated Meshplay Helm charts.
 
 ## Release Versioning
 
@@ -266,14 +266,14 @@ The following is an example of the release channels and the docker tags used to 
 
 **Latest Stable Image**
 
-- layer5/meshery:stable-latest
-- layer5/meshery:stable-v0.4.1
-- layer5/meshery:stable-324vdgb (sha)
+- khulnasoft/meshplay:stable-latest
+- khulnasoft/meshplay:stable-v0.4.1
+- khulnasoft/meshplay:stable-324vdgb (sha)
 
 **Older Stable Image**
 
-- layer5/meshery:stable-v0.4.0
-- layer5/meshery:stable-289d02 (sha)
+- khulnasoft/meshplay:stable-v0.4.0
+- khulnasoft/meshplay:stable-289d02 (sha)
 
 Every docker image built receives either the edge tags or the stable tags. Which set of image tags assigned is determined by whether a release tag is present or not. In other words, stable channel docker images get the “stable” tags only in the presence of a release tag (e.g. v0.4.1).
 
@@ -285,12 +285,12 @@ Stable and edge releases are both published to the same Docker Hub repository. D
 
 **Latest Edge Image**
 
-- layer5/meshery:edge-latest
-- layer5/meshery:edge-289d02 (sha)
+- khulnasoft/meshplay:edge-latest
+- khulnasoft/meshplay:edge-289d02 (sha)
 
 **Older Edge Image**
 
-- layer5/meshery:edge-324vdgb (sha)
+- khulnasoft/meshplay:edge-324vdgb (sha)
 
 ### Switching Between Meshplay Release Channels
 

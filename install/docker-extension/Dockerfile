@@ -36,10 +36,10 @@ LABEL org.opencontainers.image.title="Meshplay" \
    com.docker.extension.screenshots="[ \
       { \
         \"alt\": \"Meshplay Docker Extension\", \
-        \"url\": \"https://raw.githubusercontent.com/meshery/meshery/master/install/docker-extension/docs/img/meshmap-docker-extension-for-meshery.png\" \
+        \"url\": \"https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/meshmap-docker-extension-for-meshery.png\" \
       },{ \
         \"alt\": \"Meshplay Docker Extension\", \
-        \"url\": \"https://raw.githubusercontent.com/meshery/meshery/master/install/docker-extension/docs/img/Docker-extension-meshery.png\" \
+        \"url\": \"https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/Docker-extension-meshery.png\" \
       } \
     ]" \
   com.docker.extension.detailed-description="\
@@ -52,7 +52,7 @@ LABEL org.opencontainers.image.title="Meshplay" \
     <li><b>Save time with design patterns - </b>Turbo-charge your infrastructure with best practice cloud native design patterns from the <a href='https://khulnasoft.com/catalog'>Meshplay Catalog</a>.</li> \
     <li><b>Single-click deployment of all cloud native infrastructure -</b> Support for hundreds of different cloud native infrastructure tools right at your fingertips.</li> \
   </ul>" \
-  com.docker.desktop.extension.icon="https://raw.githubusercontent.com/meshery/meshery/master/install/docker-extension/docs/img/meshery-logo-light.svg" \
+  com.docker.desktop.extension.icon="https://raw.githubusercontent.com/khulnasoft/meshplay/master/install/docker-extension/docs/img/meshery-logo-light.svg" \
   com.docker.extension.publisher-url="https://khulnasoft.com" \
   com.docker.extension.additional-urls="[{\"title\":\"Documentation\",\"url\":\"https://docs.khulnasoft.com\"},{\"title\":\"Project\",\"url\":\"https://layer5.io/meshery\"},{\"title\":\"Slack\",\"url\":\"https://slack.khulnasoft.com\"},{\"title\":\"Discussion Forum\",\"url\":\"http://discuss.khulnasoft.com\"}]"
 COPY --from=builder /backend/bin/service /

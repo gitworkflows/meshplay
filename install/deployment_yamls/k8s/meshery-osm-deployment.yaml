@@ -22,7 +22,7 @@ spec:
     spec:
       serviceAccount: meshery-server
       containers:
-      - image: layer5/meshery-osm:stable-latest
+      - image: khulnasoft/meshplay-osm:stable-latest
         imagePullPolicy: Always
         name: meshery-osm
         ports:

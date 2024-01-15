@@ -15,7 +15,7 @@ on:
 jobs:
 
   integrations:
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     # outputs:
     #   output1: ${{ steps.step1.outputs.test }}

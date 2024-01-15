@@ -12,7 +12,7 @@ on:
 jobs:
   notify-meshmap-build:
     name: Notify Meshmap Build
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
     - name: trigger plugins for edge

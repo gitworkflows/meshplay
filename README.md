@@ -1,22 +1,22 @@
 
 <p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
- <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
-<img src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg"
+ <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
+ <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
+<img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg"
 alt="Meshplay Logo" width="70%" /></picture></a><br /><br /></p>
 <p align="center">
-<a href="https://hub.docker.com/r/layer5/meshery" alt="Docker pulls">
-  <img src="https://img.shields.io/docker/pulls/layer5/meshery.svg" /></a>
+<a href="https://hub.docker.com/r/khulnasoft/meshplay" alt="Docker pulls">
+  <img src="https://img.shields.io/docker/pulls/khulnasoft/meshplay.svg" /></a>
 <a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+org%3A+label%3A%22help+wanted%22+" alt="GitHub issues by-label">
   <img src="https://img.shields.io/github/issues/khulnasoft/meshplay/help%20wanted.svg?color=informational" /></a>
 <a href="https://github.com/khulnasoft/meshplay/blob/master/LICENSE" alt="LICENSE">
-  <img src="https://img.shields.io/github/license/meshery/meshery?color=brightgreen" /></a>
-<a href="https://artifacthub.io/packages/helm/meshery/meshery" alt="Artifact Hub Meshplay">
+  <img src="https://img.shields.io/github/license/khulnasoft/meshplay?color=brightgreen" /></a>
+<a href="https://artifacthub.io/packages/helm/khulnasoft/meshplay" alt="Artifact Hub Meshplay">
   <img src="https://img.shields.io/endpoint?color=brightgreen&label=Helm%20Chart&style=plastic&url=https%3A%2F%2Fartifacthub.io%2Fbadge%2Frepository%2Fartifact-hub" /></a>  
 <a href="https://goreportcard.com/report/github.com/khulnasoft/meshplay" alt="Go Report Card">
   <img src="https://goreportcard.com/badge/github.com/khulnasoft/meshplay" /></a>
 <a href="https://github.com/khulnasoft/meshplay/actions" alt="Build Status">
-  <img src="https://img.shields.io/github/actions/workflow/status/meshery/meshery/release-drafter.yml" /></a>
+  <img src="https://img.shields.io/github/actions/workflow/status/khulnasoft/meshplay/release-drafter.yml" /></a>
 <a href="https://bestpractices.coreinfrastructure.org/projects/3564" alt="CLI Best Practices">
   <img src="https://bestpractices.coreinfrastructure.org/projects/3564/badge" /></a>
 <a href="http://discuss.khulnasoft.com" alt="Discuss Users">
@@ -26,7 +26,7 @@ alt="Meshplay Logo" width="70%" /></picture></a><br /><br /></p>
 <a href="https://twitter.com/intent/follow?screen_name=mesheryio" alt="Twitter Follow">
   <img src="https://img.shields.io/twitter/follow/mesheryio.svg?label=Follow+Meshplay&style=social" /></a>
 <a href="https://github.com/khulnasoft/meshplay/releases" alt="Meshplay Downloads">
-  <img src="https://img.shields.io/github/downloads/meshery/meshery/total" /></a>  
+  <img src="https://img.shields.io/github/downloads/khulnasoft/meshplay/total" /></a>  
 <!-- <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery?ref=badge_shield" alt="License Scan Report">
   <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery.svg?type=shield"/></a>  
   -->
@@ -65,9 +65,9 @@ A self-service engineering platform, <a href="https://khulnasoft.com">Meshplay</
 
 <!-- <p style="clear:both;">&nbsp;</p>
 <a href="https://khulnasoft.com"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
-  <img alt="Meshplay - the Cloud Native Manager" src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg" align="left" width="45%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
+  <img alt="Meshplay - the Cloud Native Manager" src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg" align="left" width="45%">
   </picture></a> 
 <a href="https://khulnasoft.com">
 <h3 style="margin:auto;"><br /><br />
@@ -84,7 +84,7 @@ Meshplay manages the provisioning, configuration and operation of your Kubernete
 
 Using a GitOps-centric approach, visually and collaboratively design and manage your infrastructure and microservices. Use Meshplay to interoperate your various cloud native systems. With both REST and GraphQL APIs, integrating with Meshplay as an extensible platform is facilitated through NATS, CloudEvents, and gRPC.
 
-<a href="https://www.youtube.com/watch?v=034nVaQUyME"><img alt="Meshplay cloud native management" src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshmap.gif"  style="margin-left:10px; margin-bottom:10px;" width="100%" align="center" /></a>
+<a href="https://www.youtube.com/watch?v=034nVaQUyME"><img alt="Meshplay cloud native management" src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshmap.gif"  style="margin-left:10px; margin-bottom:10px;" width="100%" align="center" /></a>
 <br /><br />
 </p>
 
@@ -239,7 +239,7 @@ In an effort to produce service mesh agnostic tooling, Meshplay uses the <a href
 
 Meshplay is the cloud native utility for uniformly managing the performance of microservices and the infrastructure that run them. As an implementation of the Service Mesh Performance ([SMP](https://smp-spec.io/)), Meshplay enables you to measure the value provided by Docker, Kubernetes, or a service mesh in the context of the overhead incurred.
 
-<a href="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/smp/service-mesh-performance-example.gif"><img alt="Performance Management" src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/smp/service-mesh-performance-example.gif" style="margin-left:10px;margin-bottom:10px;" width="100%" align="center" /></a>
+<a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/smp/service-mesh-performance-example.gif"><img alt="Performance Management" src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/smp/service-mesh-performance-example.gif" style="margin-left:10px;margin-bottom:10px;" width="100%" align="center" /></a>
 <br /><br />
 
 </p>
@@ -248,7 +248,7 @@ Meshplay is the cloud native utility for uniformly managing the performance of m
 
 You may deploy Meshplay internal to your cluster or external to your cluster.
 
-<p align="center"><a href="https://raw.githubusercontent.com/meshery/meshery/master/docs/assets/img/architecture/Meshplay-client-architecture.svg"><img src="https://docs.khulnasoft.com/assets/img/readme/Meshplay-client-architecture.svg" width="90%" align="center" /></a></p>
+<p align="center"><a href="https://raw.githubusercontent.com/khulnasoft/meshplay/master/docs/assets/img/architecture/Meshplay-client-architecture.svg"><img src="https://docs.khulnasoft.com/assets/img/readme/Meshplay-client-architecture.svg" width="90%" align="center" /></a></p>
 Learn more about <a href="https://docs.khulnasoft.com/architecture">Meshplay's architecture</a>.
 
 <h2><a name="running"></a>Get Started with Meshplay</h2>
@@ -325,9 +325,9 @@ Find out more on the <a href="https://layer5.io/community#meshmate">Layer5 commu
 <div>
 <a href="https://slack.khulnasoft.com">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/slack.svg"  width="110px" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/slack.svg" width="110px" />
-  <img alt="Shows an illustrated light mode meshery logo in light color mode and a dark mode meshery logo dark color mode." src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/slack.svg" width="110px" align="left" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg"  width="110px" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg" width="110px" />
+  <img alt="Shows an illustrated light mode meshery logo in light color mode and a dark mode meshery logo dark color mode." src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/slack.svg" width="110px" align="left" />
 </picture>
 </a>
 </div>
@@ -354,7 +354,7 @@ Please do! We're a warm and welcoming community of open source contributors. Ple
   <i>If you like Meshplay, please <a href="../../stargazers">★</a> star this repository to show your support! 🤩</i>
  <br />
 <a href="../../stargazers">
- <img align="center" src="https://api.star-history.com/svg?repos=meshery/meshery&type=Date" />
+ <img align="center" src="https://api.star-history.com/svg?repos=khulnasoft/meshplay&type=Date" />
 </a></p>
 
 ### License

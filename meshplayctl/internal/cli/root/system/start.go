@@ -233,7 +233,7 @@ func start() error {
 			if err != nil {
 				// failure while adding a service to docker compose file is not a fatal error
 				// meshplayctl will continue deploying with required services (meshery, watchtower)
-				log.Infof("Encountered an error while adding `%s` service to Docker Compose file. Verify permission to write to `.meshery/meshery.yaml` file.", v)
+				log.Infof("Encountered an error while adding `%s` service to Docker Compose file. Verify permission to write to `.khulnasoft/meshplay.yaml` file.", v)
 			}
 		}
 

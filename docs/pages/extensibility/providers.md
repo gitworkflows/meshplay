@@ -340,7 +340,7 @@ If you are deploying Meshplay using Helm, you can configure the MESHPLAY_SERVER_
 - **Custom URL:** `https://k8s-staging.test.io/`
 - **Auth Endpoint:** `api/user/token` (append at the end of your custom URL)
 
-{% capture code_content %}helm install meshery meshery/meshery --namespace meshery --set env.MESHPLAY_SERVER_CALLBACK_URL=https://k8s-staging.test.io/api/user/token{% endcapture %}
+{% capture code_content %}helm install meshery khulnasoft/meshplay --namespace meshery --set env.MESHPLAY_SERVER_CALLBACK_URL=https://k8s-staging.test.io/api/user/token{% endcapture %}
 {% include code.html code=code_content %}
 
 ##### Note

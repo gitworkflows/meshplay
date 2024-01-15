@@ -11,7 +11,7 @@ on:
 jobs:
   update-rest-api-docs:
     name: Update REST API Documentation
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -47,7 +47,7 @@ jobs:
   
   update-graphql-docs:
     name: Update GraphQL API Documentation
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
@@ -84,14 +84,14 @@ jobs:
   
   docker-build-push:
     name: Docker build and push
-    if: github.repository == 'meshery/meshery' && github.event_name != 'pull_request' && success()
+    if: github.repository == 'khulnasoft/meshplay' && github.event_name != 'pull_request' && success()
     env:
       RELEASE_CHANNEL: "edge"
     runs-on: ubuntu-22.04
     steps:
       - name: Fetch latest tag
         run: |
-          echo "LATEST_TAG=$(curl --silent "https://api.github.com/repos/meshery/meshery/releases" | jq ' .[] | ."tag_name"' | sed -n 1p$'\n' | tr -d '"')" >> $GITHUB_ENV
+          echo "LATEST_TAG=$(curl --silent "https://api.github.com/repos/khulnasoft/meshplay/releases" | jq ' .[] | ."tag_name"' | sed -n 1p$'\n' | tr -d '"')" >> $GITHUB_ENV
       - name: Check out code
         uses: actions/checkout@master
         with:

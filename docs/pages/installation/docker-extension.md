@@ -101,11 +101,11 @@ If you want to remove Meshplay as a Docker extension from your system, follow th
 
    <pre class="codeblock-pre" style="padding: 0; margin-top: 2px; font-size:0px;"><div class="codeblock" style="display: block;">
     <div class="clipboardjs" style="padding: 0">
-    <span style="font-size:0;">docker rmi meshery/meshery:latest</span> 
+    <span style="font-size:0;">docker rmi khulnasoft/meshplay:latest</span> 
     </div>
     <div class="window-buttons"></div>
     <div id="termynal2" style="width:100%; height:200px; max-width:100%;" data-termynal="">
-      <span data-ty="input">docker rmi meshery/meshery:latest</span>
+      <span data-ty="input">docker rmi khulnasoft/meshplay:latest</span>
     </div>
     </div>
    </pre>

@@ -35,10 +35,10 @@ func TestGetManifestURL(t *testing.T) {
 			Typ:  "blob",
 			Path: "testdata/manifest.yaml",
 		}
-		rawManifestsURL := "https://raw.githubusercontent.com/meshery/meshery/master/meshplayctl/pkg/utils/"
+		rawManifestsURL := "https://raw.githubusercontent.com/khulnasoft/meshplay/master/meshplayctl/pkg/utils/"
 
 		manifestURL := GetManifestURL(manifest, rawManifestsURL)
-		expectedURL := "https://raw.githubusercontent.com/meshery/meshery/master/meshplayctl/pkg/utils/testdata/manifest.yaml"
+		expectedURL := "https://raw.githubusercontent.com/khulnasoft/meshplay/master/meshplayctl/pkg/utils/testdata/manifest.yaml"
 
 		if manifestURL != expectedURL {
 			t.Errorf("GetManifestURL failed: expected %s, but got %s", expectedURL, manifestURL)
@@ -48,7 +48,7 @@ func TestGetManifestURL(t *testing.T) {
 
 func TestListManifests(t *testing.T) {
 	t.Run("ListManifests with empty manifest", func(t *testing.T) {
-		url := "https://api.github.com/repos/meshery/meshery/git/trees/47c634a49e6d143a54d734437a26ad233146ddf5"
+		url := "https://api.github.com/repos/khulnasoft/meshplay/git/trees/47c634a49e6d143a54d734437a26ad233146ddf5"
 
 		_, err := ListManifests(url)
 		if err != nil {

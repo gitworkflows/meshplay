@@ -8,7 +8,7 @@ jobs:
 
   update-rest-api-docs:
     name: Update REST API Documentation
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
 
   update-graphql-docs:
     name: Update GraphQL API Documentation
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
@@ -81,7 +81,7 @@ jobs:
 
   build:
     name: Docker build and push
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     env:
       RELEASE_CHANNEL: "stable"
     runs-on: ubuntu-22.04
@@ -120,7 +120,7 @@ jobs:
       #     DOCKERHUB_REPOSITORY: ${{ secrets.IMAGE_NAME }}
   ctlrelease:
     name: Meshplayctl build & release
-    if: github.repository == 'meshery/meshery' && startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, 'patch') && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc')
+    if: github.repository == 'khulnasoft/meshplay' && startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, 'patch') && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc')
     runs-on: macos-latest
     steps:
       - name: Check out code
@@ -151,18 +151,18 @@ jobs:
       - build
       - ctlrelease
     name: Build and Release Docker Extension
-    uses: meshery/meshery/.github/workflows/build-and-release-dde.yml@master
+    uses: khulnasoft/meshplay/.github/workflows/build-and-release-dde.yml@master
     secrets: inherit
   call-helm-chart-releaser:
     needs:
       - build
     name: Release Helm Charts
-    uses: meshery/meshery/.github/workflows/helm-chart-releaser.yml@master
+    uses: khulnasoft/meshplay/.github/workflows/helm-chart-releaser.yml@master
     secrets: inherit
   # call-aks-playground-deploy-workflow:
   #   needs: build
   #   name: Deploy Meshplay Playground
-  #   uses: meshery/meshery/.github/workflows/deploy-meshery-playground.yml@master
+  #   uses: khulnasoft/meshplay/.github/workflows/deploy-meshery-playground.yml@master
   #   secrets: inherit
   email-meshery-release-notes-workflow:
     needs:
@@ -183,7 +183,7 @@ jobs:
     needs:
       - build
     name: Deploy CNCF Playground
-    uses: meshery/meshery/.github/workflows/cncf-playground-deploy-meshery.yaml@master
+    uses: khulnasoft/meshplay/.github/workflows/cncf-playground-deploy-meshery.yaml@master
     secrets: inherit
 
   email-on-failure:

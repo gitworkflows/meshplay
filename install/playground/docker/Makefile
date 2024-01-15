@@ -20,13 +20,13 @@ play-prod-run:
 	-e PLAYGROUND=true \
 	-e MESHPLAY_SERVER_CALLBACK_URL=https://playground.khulnasoft.com/api/user/token \ 
 	-p $(PROD_PLAYGROUND_PORT):8080 \
-	layer5/meshery:playground-latest ./meshery
+	khulnasoft/meshplay:playground-latest ./meshery
 	
 # docker run -d --name meshery \
 # 	-e PROVIDER_BASE_URLS=https://meshery.layer5.io \
 # 	-e PLAYGROUND=true \
 # 	-p 80:8080 \
-# 	layer5/meshery:playground-latest ./meshery
+# 	khulnasoft/meshplay:playground-latest ./meshery
 
 play-prod-stop:
 	docker rm -f meshery

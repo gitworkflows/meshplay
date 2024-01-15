@@ -12,7 +12,7 @@ list: include
 
 Meshplay is a cloud-native management plane that aims to provide a comprehensive set of tools for managing cloud-native applications and infrastructure. To achieve this, Meshplay needs a model that can represent a wide range of constructs, from simple applications to complex microservices architectures. This document describes the Meshplay Model, a set of constructs that are used to represent and manage cloud-native systems.
 
-Meshplay's internal object model is designed to provide a consistent and extensible way of capturing and characterizing the resources under Meshplay's management. Meshplay Models serve as an exportable package to define managed infrastructure and their relationships, and details specifics of how to manage them. A Meshplay Model is based on the [Model Schema](https://github.com/meshery/schemas/blob/master/openapi/schemas/meshmodels.yml) with well-defined attributes. 
+Meshplay's internal object model is designed to provide a consistent and extensible way of capturing and characterizing the resources under Meshplay's management. Meshplay Models serve as an exportable package to define managed infrastructure and their relationships, and details specifics of how to manage them. A Meshplay Model is based on the [Model Schema](https://github.com/khulnasoft/schemas/blob/master/openapi/schemas/meshmodels.yml) with well-defined attributes. 
 
 ## Design Principles
 

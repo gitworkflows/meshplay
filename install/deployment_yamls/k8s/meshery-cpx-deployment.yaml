@@ -23,7 +23,7 @@ spec:
     spec:
       serviceAccount: meshery-server
       containers:
-        - image: layer5/meshery-cpx:stable-latest
+        - image: khulnasoft/meshplay-cpx:stable-latest
           imagePullPolicy: Always
           name: meshery-cpx
           ports:

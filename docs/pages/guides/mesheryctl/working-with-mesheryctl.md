@@ -86,14 +86,14 @@ Endpoints specify the access URL for the Meshplay UI, for a deployment. Endpoint
 
 ## Advanced Installation
 
-Users can control the specific container image and tag (version) of Meshplay that they would like to run by editing their local _~/.meshery/meshery.yaml_ (a docker compose file).
-Aligned with the Meshplay container image, instead of leaving the implicit :stable-latest tag behind image: layer5/meshery, users will instead identify a specific image tag like so:
+Users can control the specific container image and tag (version) of Meshplay that they would like to run by editing their local _~/.khulnasoft/meshplay.yaml_ (a docker compose file).
+Aligned with the Meshplay container image, instead of leaving the implicit :stable-latest tag behind image: khulnasoft/meshplay, users will instead identify a specific image tag like so:
 
 {% capture code_content %}bash
 version: '3'
 services:
   meshery:
-    image: layer5/meshery:v0.5.0
+    image: khulnasoft/meshplay:v0.5.0
     labels:
       - "com.centurylinklabs.watchtower.enable=true"{% endcapture %}
 {% include code.html code=code_content %}

@@ -5,7 +5,7 @@ on:
 jobs:
     cncf-playground-rollout:
         name: Update Meshplay on CNCF playground
-        if: github.repository == 'meshery/meshery'
+        if: github.repository == 'khulnasoft/meshplay'
         runs-on: ubuntu-latest 
         steps:
         - name: Pull latest images and restart containers

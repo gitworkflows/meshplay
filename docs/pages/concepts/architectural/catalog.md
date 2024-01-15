@@ -9,7 +9,7 @@ language: en
 list: include
 ---
 
-[Meshplay Catalog](https://khulnasoft.com/catalog) functions much like a cloud marketplace, providing a user-friendly interface for browsing, discovering, and sharing configurations and patterns for cloud native infrastructure. With Meshplay Catalog, you can easily find and deploy Kubernetes-based infrastructure and tools, making it easy to streamline your cloud native development and operations processes. A Catolog is based on the Meshplay's [Catalog Schema](https://github.com/meshery/schemas/blob/master/openapi/schemas/catalog.yml) with defined attributes.
+[Meshplay Catalog](https://khulnasoft.com/catalog) functions much like a cloud marketplace, providing a user-friendly interface for browsing, discovering, and sharing configurations and patterns for cloud native infrastructure. With Meshplay Catalog, you can easily find and deploy Kubernetes-based infrastructure and tools, making it easy to streamline your cloud native development and operations processes. A Catolog is based on the Meshplay's [Catalog Schema](https://github.com/khulnasoft/schemas/blob/master/openapi/schemas/catalog.yml) with defined attributes.
 
 ### Simplify Your Cloud Native Infrastructure Deployment and Management
 

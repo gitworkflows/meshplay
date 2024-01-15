@@ -11,7 +11,7 @@ As a cloud-native management plane, Meshplay empowers you with a wide range of t
 
 The logical concepts included in Meshplay establish a set of constructs with clearly-defined boundaries, each of which is extensible. These contructs set a foundation for the project to build upon and provide a consistent way of relating between multiple components. The logical concepts are:
 
-1. Versioned (see [Schemas](https://github.com/meshery/schemas))
+1. Versioned (see [Schemas](https://github.com/khulnasoft/schemas))
 1. Extensible (see [Extension Points](/extensibility)
 1. Composable (see Patterns)
 1. Portable (see Export/Import)
@@ -26,7 +26,7 @@ The logical concepts included in Meshplay establish a set of constructs with cle
 Every construct is represented in multiple forms:
 
 - **Schema** (static) - the skeletal structure representing a logical view of the size, shape, characteristics of a construct.
-  - *Example: Component schema found in github.com/meshery/schemas*
+  - *Example: Component schema found in github.com/khulnasoft/schemas*
 - **Definition** (static) - An implementation of the Schema containing specific configuration for the construct at-hand.
   - *Example: Component definition generically describing a Kubernetes Pod*
 - **Declaration** (static) - A defined construct; A specific deof the Definition.

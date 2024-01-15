@@ -13,7 +13,7 @@ Meshplay is capable of running zero or more adapters. Meshplay offers many featu
 
 ### Modifying the default adapter deployment configuration
 
-The number of adapters, type of adapters, where they are deployed, how they are named and what port they are exposed on are all configurable deployment options. To modify the default configuration, find `~/.meshery/meshery.yaml` on your system. `~/.meshery/meshery.yaml` is a Docker Compose file.
+The number of adapters, type of adapters, where they are deployed, how they are named and what port they are exposed on are all configurable deployment options. To modify the default configuration, find `~/.khulnasoft/meshplay.yaml` on your system. `~/.khulnasoft/meshplay.yaml` is a Docker Compose file.
 
 #### Configuration: Running fewer Meshplay adapters
 
@@ -23,12 +23,12 @@ To customize which Meshplay Adapters are used in which deployments, customize yo
 Configure your meshconfig, using `meshplayctl system context` to customize which Meshplay Adapters are used in which deployments.
 
 *Alternative:*
-Alternatively, directly modify the `~/.meshery/meshery.yaml` configuration file, remove the entry(ies) of the adapter(s) you are removing from your deployment.
+Alternatively, directly modify the `~/.khulnasoft/meshplay.yaml` configuration file, remove the entry(ies) of the adapter(s) you are removing from your deployment.
 
 #### Configuration: Running more than one instance of the same Meshplay adapter
 
 The default configuration of a Meshplay deployment includes one instance of each of the Meshplay adapters (that have reached a stable version status). You may choose to run multiple instances of the same type of Meshplay adapter; e.g. two instances of the Meshplay Adapter for NGINX Service Mesh. To do so, you can use either of Meshplay's clients or to modify your Meshplay deployment:
- - Using `meshplayctl`, modify `~/.meshery/meshery.yaml` to include multiple copies of the given adapter.
+ - Using `meshplayctl`, modify `~/.khulnasoft/meshplay.yaml` to include multiple copies of the given adapter.
  - Using Meshplay UI, navigate to the Settings page and enter the host and port of your additional adapter.
 
 #### Configuration: Choosing an adapter while installing Meshplayctl

@@ -24,13 +24,13 @@ abstract: Install Meshplay on Kubernetes using Helm. Deploy Meshplay in Kubernet
 ## Install Meshplay on Your Kubernetes Cluster Using Helm
 
 {% capture code_content %}helm repo add meshery https://khulnasoft.com/charts/
-helm install meshery meshery/meshery --namespace meshery --create-namespace
+helm install meshery khulnasoft/meshplay --namespace meshery --create-namespace
 helm install meshery-operator khulnasoft/meshplay-operator{% endcapture %}
 {% include code.html code=code_content %}
 
 Optionally, Meshplay Server supports customizing the callback URL for your remote provider, like so:
 
-{% capture code_content %}helm install meshery meshery/meshery --namespace meshery --set env.MESHPLAY_SERVER_CALLBACK_URL=https://custom-host --create-namespace{% endcapture %}
+{% capture code_content %}helm install meshery khulnasoft/meshplay --namespace meshery --set env.MESHPLAY_SERVER_CALLBACK_URL=https://custom-host --create-namespace{% endcapture %}
 {% include code.html code=code_content %}
 
 ### Customizing Meshplay's Installation with values.yaml

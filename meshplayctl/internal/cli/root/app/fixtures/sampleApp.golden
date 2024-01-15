@@ -7,7 +7,7 @@ services:
       replicas: 1
       containers:
         - name: Meshplay
-          image: layer5/meshery:stable-latest
+          image: khulnasoft/meshplay:stable-latest
           ports:
             - name: http
               containerPort: 8080

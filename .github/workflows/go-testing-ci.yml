@@ -24,7 +24,7 @@ jobs:
         go: [1.21]
         os: [ubuntu-22.04]
     name: golangci-lint
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'khulnasoft/meshplay'
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/setup-go@master
@@ -53,7 +53,7 @@ jobs:
       - name: Run coverage
         run: go test --short ./... -race -coverprofile=coverage.txt -covermode=atomic
       - name: Upload coverage to Codecov
-        if: github.repository == 'meshery/meshery'
+        if: github.repository == 'khulnasoft/meshplay'
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage.txt
@@ -99,7 +99,7 @@ jobs:
           echo "Running Meshplayctl with Kubernetes completed."
           
       - name: Upload coverage to Codecov
-        if: github.repository == 'meshery/meshery'
+        if: github.repository == 'khulnasoft/meshplay'
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage.txt

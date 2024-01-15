@@ -15,7 +15,7 @@ To automate functional integration and end-to-end testing through Meshplay UI, [
 
 ## Understanding the test framework directories
 
-Clone the `meshery/meshery` repo and navigate to the [/ui/cypress/](https://github.com/khulnasoft/meshplay/tree/master/ui/cypress) directory.
+Clone the `khulnasoft/meshplay` repo and navigate to the [/ui/cypress/](https://github.com/khulnasoft/meshplay/tree/master/ui/cypress) directory.
 
 ```
 .

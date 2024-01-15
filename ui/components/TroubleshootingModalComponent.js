@@ -284,7 +284,7 @@ const TroubleshootingModal = (props) => {
                 <Typography>
                   <li className={classes.troubleshootListitem}>
                     <b>Building</b>: Ensure that <code>go.mod</code> in the{' '}
-                    <code>meshery/meshery</code> repository is identical to the <code>go.mod</code>{' '}
+                    <code>khulnasoft/meshplay</code> repository is identical to the <code>go.mod</code>{' '}
                     in the <code>layer5labs/meshery-extensions</code> repository are identical.
                   </li>
                   <li className={classes.troubleshootListitem}>

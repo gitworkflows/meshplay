@@ -60,6 +60,6 @@ No. Adapters much interface with Meshplay Server via gRPC. What language is used
 
 #### Can I run more than one instance of the same Meshplay adapter?
 
-Yes. The default configuration of a Meshplay deployment includes one instance of each of the Meshplay adapters (that have reached a stable version status). You may choose to run multiple instances of the same type of Meshplay adapter; e.g. two instances of the `meshery-istio` adapter. To do so, modify ~/.meshery/meshery.yaml to include multiple copies of the given adapter.
+Yes. The default configuration of a Meshplay deployment includes one instance of each of the Meshplay adapters (that have reached a stable version status). You may choose to run multiple instances of the same type of Meshplay adapter; e.g. two instances of the `meshery-istio` adapter. To do so, modify ~/.khulnasoft/meshplay.yaml to include multiple copies of the given adapter.
 
 See the "[Multiple Adapters]({{site.baseurl}}/guides/multiple-adapters)" guide for more information.
