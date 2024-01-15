@@ -1,16 +1,16 @@
-# meshplay-nsm
+# meshplay-cilium
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: stable-latest](https://img.shields.io/badge/AppVersion-stable--latest-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
-Meshplay Adapter for Network Service Mesh.
+Meshplay Adapter for Cilium chart.
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Layer5 Authors | <community@khulnasoft.com> |  |
 | aisuko | <urakiny@gmail.com> |  |
-| leecalcote | <lee.calcote@khulnasoft.com> |  |
+| leecalcote | <leecalcote@gmail.com> |  |
+| Khulnasoft Authors | <community@khulnasoft.com> |  |
 
 ## Values
 
@@ -18,12 +18,13 @@ Meshplay Adapter for Network Service Mesh.
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | annotations | object | `{}` |  |
+| containerPort.port | int | `10012` |  |
 | env | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"khulnasoft/meshplay-nsm:stable-latest"` |  |
+| image.repository | string | `"khulnasoft/meshplay-cilium:stable-latest"` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
+| ingress.annotations | string | `nil` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
@@ -31,14 +32,13 @@ Meshplay Adapter for Network Service Mesh.
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| ports.http | int | `10004` |  |
 | probe.livenessProbe.enabled | bool | `false` |  |
 | probe.readinessProbe.enabled | bool | `false` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | service.annotations | object | `{}` |  |
-| service.port | int | `10004` |  |
+| service.port | int | `10012` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `""` |  |

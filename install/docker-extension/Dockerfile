@@ -31,7 +31,7 @@ ARG GIT_VERSION
 ARG RELEASE_CHANNEL
 LABEL org.opencontainers.image.title="Meshplay" \
   org.opencontainers.image.description="Meshplay, the collaborative Kubernetes manager. Go multi-player as you design and operate your cloud native infrastructure with teammates." \
-  org.opencontainers.image.vendor="Layer5, Inc." \
+  org.opencontainers.image.vendor="Khulnasoft, Inc." \
   com.docker.desktop.extension.api.version=">= 0.2.0" \
    com.docker.extension.screenshots="[ \
       { \

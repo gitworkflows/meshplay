@@ -8,7 +8,7 @@ Meshplay Operator chart.
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Layer5 Authors | <community@khulnasoft.com> |  |
+| Khulnasoft Authors | <community@khulnasoft.com> |  |
 | aisuko | <urakiny@gmail.com> |  |
 | leecalcote | <leecalcote@gmail.com> |  |
 

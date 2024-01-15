@@ -58,7 +58,7 @@ To build a Docker image of Meshplay, please ensure you have `Docker` installed t
 
 #### Define and validate errors
 
-Every Golang-based project that belongs to Layer5 incorporates a utility to define and manage error messages for every error instance. This is internally done with several make commands, but one can explicitly validate with the help of the following make command. This checks and validates the errors that are present in the particular project.
+Every Golang-based project that belongs to Khulnasoft incorporates a utility to define and manage error messages for every error instance. This is internally done with several make commands, but one can explicitly validate with the help of the following make command. This checks and validates the errors that are present in the particular project.
 
 {% capture code_content %}make error{% endcapture %}
 {% include code.html code=code_content %}

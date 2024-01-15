@@ -37,7 +37,7 @@ Some portions of the workflow require secrets to accomplish their tasks. These s
 - `GO_VERSION`: As of July 21st 2021 it is 1.16
 - `IMAGE_NAME`: appropriate image name for each of the Docker container images. All are under the `khulnasoft` org.
 - `SLACK_BOT_TOKEN`: Used for notification of new GitHub stars given to the Meshplay repo.
-- `CYPRESS_RECORD_KEY`: Used for integration with the Layer5 account on Cypress.
+- `CYPRESS_RECORD_KEY`: Used for integration with the Khulnasoft account on Cypress.
 - `GLOBAL_TOKEN`: Used for securely transmitting performance test results for the None Provider.
 
 The Docker Hub user, `meshplayci`, belongs to the "ciusers" team in Docker Hub and acts as the service account under which these automated builds are being pushed. Every time a new Docker Hub repository is created we have to grant “Admin” (in order to update the README in the Docker Hub repository) permissions to the ciusers team.
@@ -184,11 +184,11 @@ The artifacts will be made available as a tar.gz archive for all the operating s
 
 #### Homebrew
 
-GoReleaser facilitates the creation of a brew formula for meshplayctl. The [homebrew-tap](https://github.com/khulnasoft/homebrew-tap) repository is the location for Layer5’s brew formulas.
+GoReleaser facilitates the creation of a brew formula for meshplayctl. The [homebrew-tap](https://github.com/khulnasoft/homebrew-tap) repository is the location for Khulnasoft’s brew formulas.
 
 #### Scoop
 
-GoReleaser facilitates the creation of a Scoop app for meshplayctl. The [scoop-bucket](https://github.com/khulnasoft/scoop-bucket) repository is the location of Layer5’s Scoop bucket.
+GoReleaser facilitates the creation of a Scoop app for meshplayctl. The [scoop-bucket](https://github.com/khulnasoft/scoop-bucket) repository is the location of Khulnasoft’s Scoop bucket.
 
 ## Helm Charts Lint Check, Build, and Release
 
@@ -310,7 +310,7 @@ Minor releases of the Meshplay project are release frequently (on a monthly basi
 
 ### Release Support
 
-General community support and commercial support from Layer5 is available. Separately, third parties and partners may offer longer-term support solutions.
+General community support and commercial support from Khulnasoft is available. Separately, third parties and partners may offer longer-term support solutions.
 
 #### Pre v1.0
 

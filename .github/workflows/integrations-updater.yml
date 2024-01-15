@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@master
         with:
           path: meshplay
-      - name: Checkout Layer5.io repo
+      - name: Checkout Khulnasoft.io repo
         uses: actions/checkout@master
         with:
           repository: khulnasoft/khulnasoft
@@ -39,7 +39,7 @@ jobs:
           path: khulnasoft.com
       - name: Run utility
         run: cd meshplay/scripts/component_updater; go build main.go; ./main "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgOXuiqbhUgtC9oNbJlz9PYpOEaFVoGNUFMIk4NZciFfQv1ewZg8ahdrWHKI79GkKK9TbmnZx8CqIe/pub?gid=0&single=true&output=csv" --system docs khulnasoft/src/collections/integrations khulnasoft.com/integrations docs/ --published-only
-      - name: Commit changes to Layer5.io repo
+      - name: Commit changes to Khulnasoft.io repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_user_name: l5io

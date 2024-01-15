@@ -1,30 +1,30 @@
-# meshplay-cilium
+# meshplay-nginx-sm
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: stable-latest](https://img.shields.io/badge/AppVersion-stable--latest-informational?style=flat-square)
 
-Meshplay Adapter for Cilium chart.
+Meshplay Adapter for NGINX Service Mesh.
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| aisuko | <urakiny@gmail.com> |  |
-| leecalcote | <leecalcote@gmail.com> |  |
-| Layer5 Authors | <community@khulnasoft.com> |  |
+| Khulnasoft Authors | <community@khulnasoft.com> |  |
+| darrenlau | <panyuenlau@gmail.com> |  |
+| leecalcote | <lee.calcote@khulnasoft.com> |  |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| annotations | object | `{}` |  |
-| containerPort.port | int | `10012` |  |
+| annotations."kompose.cmd" | string | `"kompose convert -f ../docker-compose.yaml"` |  |
+| annotations."kompose.version" | string | `"1.17.0 ()"` |  |
 | env | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"khulnasoft/meshplay-cilium:stable-latest"` |  |
+| image.repository | string | `"khulnasoft/meshplay-nginx-sm:stable-latest"` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations | string | `nil` |  |
+| ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
@@ -32,13 +32,15 @@ Meshplay Adapter for Cilium chart.
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| ports.http | int | `10010` |  |
 | probe.livenessProbe.enabled | bool | `false` |  |
 | probe.readinessProbe.enabled | bool | `false` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | service.annotations | object | `{}` |  |
-| service.port | int | `10012` |  |
+| service.port | int | `10010` |  |
+| service.targetPort | int | `10010` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `""` |  |

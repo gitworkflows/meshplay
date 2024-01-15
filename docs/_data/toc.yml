@@ -253,7 +253,7 @@
           #   url: extensions/sharing-a-design
         - title: "GitOps: Snapshots"
           url: extensions/snapshot
-        # - title: "Provider: Layer5 Cloud"
+        # - title: "Provider: Khulnasoft Cloud"
         #   url: extensions/khulnasoft-cloud
       # children:
       # - title: Building a Remote Provider

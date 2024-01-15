@@ -195,7 +195,7 @@ Using a GitOps-centric approach, visually and collaboratively design and manage 
 
 Assess your cloud native infrastructure configuration against deployment and operational best practices with Meshplay's configuration validator. Manage your workloads with confidence. Check your Kubernetes configuration for anti-patterns and avoid common pitfalls.
 
-<a href="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"><img alt="Layer5 Service Mesh Configuration Management" src="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"  style="margin-right:10px;margin-bottom:10px;" width="100%" align="center"/></a>
+<a href="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"><img alt="Khulnasoft Service Mesh Configuration Management" src="https://docs.khulnasoft.com/assets/img/readme/meshplay_lifecycle_management.png"  style="margin-right:10px;margin-bottom:10px;" width="100%" align="center"/></a>
 <br /><br />
 
 </p>
@@ -302,15 +302,15 @@ Our projects are community-built and welcome collaboration. 👍 Be sure to see 
 <a href ="https://khulnasoft.com/community"><img alt="MeshMates" src=".github/assets/images/readme/khulnasoft-community-sign.png" style="margin-right:36px; margin-bottom:7px;" width="140px" align="left" /></a>
 <h3>Find your MeshMate</h3>
 
-<p>MeshMates are experienced Layer5 community members, who will help you learn your way around, discover live projects, and expand your community network. Connect with a Meshmate today!</p>
+<p>MeshMates are experienced Khulnasoft community members, who will help you learn your way around, discover live projects, and expand your community network. Connect with a Meshmate today!</p>
 
-Find out more on the <a href="https://khulnasoft.com/community#meshmate">Layer5 community</a>. <br />
+Find out more on the <a href="https://khulnasoft.com/community#meshmate">Khulnasoft community</a>. <br />
 
 </p>
 <br /><br />
 <div style="display: flex; justify-content: center; align-items:center;">
 <div>
-<a href="https://khulnasoft.com/community"><img alt="Layer5 Cloud Native Community" src="https://docs.khulnasoft.com/assets/img/readme/community.png" width="140px" style="margin-right:36px; margin-bottom:7px;" width="140px" align="left"/></a>
+<a href="https://khulnasoft.com/community"><img alt="Khulnasoft Cloud Native Community" src="https://docs.khulnasoft.com/assets/img/readme/community.png" width="140px" style="margin-right:36px; margin-bottom:7px;" width="140px" align="left"/></a>
 </div>
 <div style="width:60%; padding-left: 16px; padding-right: 16px">
 <p>

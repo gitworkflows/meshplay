@@ -17,7 +17,7 @@ export default function Socials() {
         <Tooltip
           TransitionComponent={Fade}
           TransitionProps={{ timeout: 600 }}
-          title="Get connected with the Layer5 community"
+          title="Get connected with the Khulnasoft community"
         >
           <a href="mailto:community@khulnasoft.com">
             <MessageIcon height={45} width={45} />
@@ -37,7 +37,7 @@ export default function Socials() {
         <Tooltip
           TransitionComponent={Fade}
           TransitionProps={{ timeout: 600 }}
-          title="Follow Layer5 on Twitter"
+          title="Follow Khulnasoft on Twitter"
         >
           <a href="https://twitter.com/khulnasoft">
             <TwitterIcon height={40} width={40} />
@@ -47,7 +47,7 @@ export default function Socials() {
         <Tooltip
           TransitionComponent={Fade}
           TransitionProps={{ timeout: 600 }}
-          title="Contribute to Layer5 projects"
+          title="Contribute to Khulnasoft projects"
         >
           <a href="https://github.com/khulnasoft">
             <GithubIcon height={45} width={45} />

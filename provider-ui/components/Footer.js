@@ -37,7 +37,7 @@ export default function Footer() {
                 verticalAlign : 'top'
               }} />
               {' '}
-              by the Layer5 Community
+              by the Khulnasoft Community
             </span>
           </Typography>
         </Item>

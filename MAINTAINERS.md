@@ -11,11 +11,11 @@
 
 | Name                | GitHub                 | Affiliation |
 | ------------------- | ---------------------- | ----------- |
-| Abhishek Kumar      | Abhishek-kumar09       | Layer5      |
-| Uzair Shaikh        | MUzairS15              | Layer5      |
+| Abhishek Kumar      | Abhishek-kumar09       | Khulnasoft      |
+| Uzair Shaikh        | MUzairS15              | Khulnasoft      |
 | Nikhil Ladha        | Nikhil-Ladha           | Red Hat     |
 | Antonette Caldwell  | acald-creator          | Acquia      |
-| Aabid Sofi          | aabidsofi19            | Layer5      |
+| Aabid Sofi          | aabidsofi19            | Khulnasoft      |
 
 ### Adapter Maintainers
 
@@ -35,7 +35,7 @@
 | Name                  | GitHub             | Affiliation |
 | --------------------- | ------------------ | ----------- |
 | Ashish Tiwari         | revolyssup         | API7        |
-| Pranav Singh          | theBeginner86      | Layer5      |
+| Pranav Singh          | theBeginner86      | Khulnasoft      |
 | Mario Arriaga         | MarioArriaga92     | F5          |
 
 ### Docs Maintainers
@@ -43,8 +43,8 @@
 | Name              | GitHub          | Affiliation |
 | ----------------- | --------------- | ----------- |
 | Adithya Krishna   | adithyaakrishna | Red Hat     |
-| Lee Calcote       | leecalcote      | Layer5      |
-| Vishal Vivek      | vishalvivekm    | Layer5      |
+| Lee Calcote       | leecalcote      | Khulnasoft      |
+| Vishal Vivek      | vishalvivekm    | Khulnasoft      |
 
 
 ### Site Maintainers

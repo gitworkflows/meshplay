@@ -8,7 +8,7 @@ Meshplay Broker
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Layer5 Authors | <community@khulnasoft.com> |  |
+| Khulnasoft Authors | <community@khulnasoft.com> |  |
 | darrenlau | <panyuenlau@gmail.com> |  |
 | leecalcote | <lee.calcote@khulnasoft.com> |  |
 

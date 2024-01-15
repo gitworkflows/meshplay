@@ -705,7 +705,7 @@ class MeshplayApp extends App {
                               }}
                               className={classes.footerIcon}
                             />{' '}
-                            by the Layer5 Community
+                            by the Khulnasoft Community
                           </>
                         )}
                       </span>

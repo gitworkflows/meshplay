@@ -389,7 +389,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/df278182a4e303c4d24566dae73a59fedb33f313"
 },
 {
-"path": ".github/welcome/Layer5-celebration.png",
+"path": ".github/welcome/Khulnasoft-celebration.png",
 "mode": "100644",
 "type": "blob",
 "sha": "b23a5f0f82f6ccb7cc7ba1e2de52625057daca94",
@@ -4622,7 +4622,7 @@
 "url": "https://api.github.com/repos/khulnasoft/meshplay/git/trees/59a8053cf608fbccd60fe24bd5c1349ca9ac5e83"
 },
 {
-"path": "docs/assets/img/readme/Layer5-MeshMentors.png",
+"path": "docs/assets/img/readme/Khulnasoft-MeshMentors.png",
 "mode": "100644",
 "type": "blob",
 "sha": "2d0e63a95e4221af502a50a31574af5bc737e67d",

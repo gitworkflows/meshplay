@@ -25,7 +25,7 @@ Follow these steps and you'll be right at home.
 
 1. See the [Newcomers Guide](https://khulnasoft.com/community/newcomers) for how, where, and why to contribute.
 
-2. Sign up for a [_MeshMate_](https://khulnasoft.com/community/meshmates) to find the perfect Mentor to help you explore the Layer5 projects and find your place in the community:
+2. Sign up for a [_MeshMate_](https://khulnasoft.com/community/meshmates) to find the perfect Mentor to help you explore the Khulnasoft projects and find your place in the community:
 
 - **Familiarize** yourself with the broader set of community projects (take a look at the [Repository Overview](https://khulnasoft.com/community/handbook/repository-overview): Spend time understanding each of the initiatives through high-level overviews available in the community drive and through discussions with your MeshMate.
 - **Identify** your area of interest: Use the time with your MeshMate to familiarize yourself with the architecture and technologies used in the projects. Inform your MeshMate of your current skills and what skills you aim to develop.

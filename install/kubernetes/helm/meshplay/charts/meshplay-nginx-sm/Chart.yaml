@@ -1,9 +1,9 @@
 apiVersion: v2
-name: meshplay-nsm
-description: Meshplay Adapter for Network Service Mesh.
+name: meshplay-nginx-sm
+description: Meshplay Adapter for NGINX Service Mesh.
 icon: https://khulnasoft.com/images/logos/meshplay-logo.png
 source:
-  - https://github.com/khulnasoft/meshplay-nsm
+  - https://github.com/khulnasoft/meshplay-nginx-sm
 
 deprecated: false
 # A chart can be either an 'application' or a 'library' chart.
@@ -26,9 +26,9 @@ version: 0.7.0
 appVersion: stable-latest
 
 maintainers:
-  - name: Layer5 Authors
+  - name: Khulnasoft Authors
     email: community@khulnasoft.com
-  - name: aisuko
-    email: urakiny@gmail.com
+  - name: darrenlau
+    email: panyuenlau@gmail.com
   - name: leecalcote
     email: lee.calcote@khulnasoft.com

@@ -23,7 +23,7 @@ CRED=$CRED go run main.go 1DZHnzxYWOlJ69Oguz4LkRVTFM79kC2tuvdwizOJmeMw --system 
 
 ## Component Updater
 
-Uses a spreadsheet, which contains centralized information about MeshModel components and their metadata like color, icon, and so on. The script is used to update components metadata (svgs, icons etc) for Meshplay, Websites (Layer5.io, Meshplay.io), and Remote Provider.
+Uses a spreadsheet, which contains centralized information about MeshModel components and their metadata like color, icon, and so on. The script is used to update components metadata (svgs, icons etc) for Meshplay, Websites (Khulnasoft.io, Meshplay.io), and Remote Provider.
 
 Supported flags are:
 
