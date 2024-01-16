@@ -2,7 +2,7 @@
 name: Adapter Integration - Core
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       expected_resources:
         required: true
