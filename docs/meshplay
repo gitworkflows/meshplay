@@ -134,7 +134,7 @@ if [ "x${MESHPLAY_VERSION}" = "x" ] ; then
 fi
 
 NAME="meshplayctl-${MESHPLAY_VERSION}"
-URL="https://github.com/khulnasoft/meshplay/releases/download/${MESHPLAY_VERSION}/meshplayctl_${MESHPLAY_VERSION:1}_${OSEXT}_${OSARCHITECTURE}.zip"
+URL="https://github.com/khulnasoft/meshplay/releases/download${MESHPLAY_VERSION}/meshplayctl_${MESHPLAY_VERSION:1}_${OSEXT}_${OSARCHITECTURE}.zip"
 
 printf "\nDownloading %s for %s...\n\n" "$NAME" "$OSEXT"
 curl -L ${URL} -o ${PWD}/meshplay.zip

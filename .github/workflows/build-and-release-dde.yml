@@ -69,7 +69,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: meshplay/docker-extension-meshplay
+          images: khulnasoft/docker-extension-meshplay
           flavor: |
             latest=true
           tags: |

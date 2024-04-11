@@ -34,13 +34,13 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the clo
 
 OR
 
-You can visit the [Docker Hub](https://hub.docker.com/extensions/meshplay/docker-extension-meshplay) marketplace to directly install Meshplay extension in your Docker Desktop.
+You can visit the [Docker Hub](https://hub.docker.com/extensions/khulnasoft/docker-extension-meshplay) marketplace to directly install Meshplay extension in your Docker Desktop.
 
 #### Using `Docker CLI`
 
 Meshplay runs as a set of containers inside your Docker Desktop virtual machine.
 
-{% capture code_content %}docker extension install meshplay/docker-extension-meshplay{% endcapture %}
+{% capture code_content %}docker extension install khulnasoft/docker-extension-meshplay{% endcapture %}
 {% include code.html code=code_content %}
 
 

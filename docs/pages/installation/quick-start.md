@@ -34,7 +34,7 @@ To install and start Meshplay, begin by [installing meshplayctl]({{ site.baseurl
 
 ## Install using Docker Meshplay Extension
 
-You can find the [Docker Meshplay Extension in Docker Hub](https://hub.docker.com/extensions/meshplay/docker-extension-meshplay) marketplace or use the Extensions browser in Docker Desktop to install the Docker Meshplay Extension.
+You can find the [Docker Meshplay Extension in Docker Hub](https://hub.docker.com/extensions/khulnasoft/docker-extension-meshplay) marketplace or use the Extensions browser in Docker Desktop to install the Docker Meshplay Extension.
 
 [![Docker Meshplay Extension]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshplay-extension.png)]({{site.baseurl}}/assets/img/platforms/docker-desktop-meshplay-extension.png)
 
