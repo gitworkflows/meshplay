@@ -16,7 +16,7 @@ import (
 	"fortio.org/fortio/fgrpc"
 	"fortio.org/fortio/fhttp"
 	"fortio.org/fortio/periodic"
-	"github.com/layer5io/gowrk2/api"
+	"github.com/khulnasoft-lab/gowrk2/api"
 	"github.com/khulnasoft/meshplay/server/models"
 	"github.com/khulnasoft/meshkit/utils"
 	nighthawk_client "github.com/khulnasoft/nighthawk-go/pkg/client"

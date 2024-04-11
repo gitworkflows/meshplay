@@ -34,7 +34,7 @@ require (
 	github.com/grafana-tools/sdk v0.0.0-20220919052116-6562121319fc
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/jinzhu/copier v0.4.0
-	github.com/layer5io/gowrk2 v0.6.1
+	github.com/khulnasoft-lab/gowrk2 v0.6.1
 	github.com/lib/pq v1.10.9
 	github.com/manifoldco/promptui v0.9.0
 	github.com/nsf/termbox-go v1.1.1
