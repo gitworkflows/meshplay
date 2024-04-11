@@ -42,7 +42,7 @@ The Docker Extension for Meshplay extends Docker Desktop’s position as the clo
 
 <h3>Using <code>docker</code></h3>
 <p>Meshplay runs as a set of containers inside your Docker Desktop virtual machine.</p>
-<pre>docker extension install meshplay/docker-extension-meshplay</pre>
+<pre>docker extension install khulnasoft/docker-extension-meshplay</pre>
 <p>See the <a href="https://docs.khulnasoft.com/installation/quick-start">quick start</a> guide.</p>
 <p style="clear:both;">&nbsp;</p>
 
@@ -76,13 +76,13 @@ make extension
 Once build is complete:
 
 ```
-docker extension install meshplay/docker-extension-meshplay:edge-latest
+docker extension install khulnasoft/docker-extension-meshplay:edge-latest
 ```
 
 Or reinstall with:
 
 ```
-docker extension update meshplay/docker-extension-meshplay:edge-latest
+docker extension update khulnasoft/docker-extension-meshplay:edge-latest
 ```
 
 <p style="text-align:center; width:100%;" align="center">

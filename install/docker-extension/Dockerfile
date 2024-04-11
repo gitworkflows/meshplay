@@ -59,9 +59,9 @@ COPY --from=builder /backend/bin/service /
 COPY docker-compose.yaml .
 COPY metadata.json .
 RUN mkdir -p /meshplayctl/darwin && mkdir -p /meshplayctl/windows && mkdir -p /meshplayctl/linux
-ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz /meshplayctl/darwin/
-ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip /meshplayctl/windows/
-ADD https://github.com/khulnasoft/meshplay/releases/download/${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz /meshplayctl/linux/
+ADD https://github.com/khulnasoft/meshplay/releases/download${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz /meshplayctl/darwin/
+ADD https://github.com/khulnasoft/meshplay/releases/download${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip /meshplayctl/windows/
+ADD https://github.com/khulnasoft/meshplay/releases/download${GIT_VERSION}/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz /meshplayctl/linux/
 RUN tar -xzf /meshplayctl/darwin/meshplayctl_${GIT_STRIPPED_VERSION}_Darwin_x86_64.tar.gz -C /meshplayctl/darwin/
 RUN unzip /meshplayctl/windows/meshplayctl_${GIT_STRIPPED_VERSION}_Windows_x86_64.zip -d /meshplayctl/windows/
 RUN tar -xzf /meshplayctl/linux/meshplayctl_${GIT_STRIPPED_VERSION}_Linux_x86_64.tar.gz -C /meshplayctl/linux/
