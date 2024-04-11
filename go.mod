@@ -5,7 +5,7 @@ go 1.21
 replace (
 	github.com/docker/cli => github.com/docker/cli v23.0.6+incompatible
 	github.com/docker/docker => github.com/docker/docker v23.0.6+incompatible
-	github.com/kubernetes/kompose => github.com/khulnasoft/kompose v0.0.0
+	github.com/kubernetes/kompose => github.com/khulnasoft/kompose v1.3.0
 	k8s.io/client-go => k8s.io/client-go v0.28.3
 	k8s.io/kubectl => k8s.io/kubectl v0.28.3
 	oras.land/oras-go v1.2.4 => oras.land/oras-go v1.2.3
@@ -34,7 +34,6 @@ require (
 	github.com/grafana-tools/sdk v0.0.0-20220919052116-6562121319fc
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/jinzhu/copier v0.4.0
-	github.com/khulnasoft-lab/gowrk2 v0.6.1
 	github.com/lib/pq v1.10.9
 	github.com/manifoldco/promptui v0.9.0
 	github.com/nsf/termbox-go v1.1.1
@@ -57,7 +56,7 @@ require (
 	golang.org/x/text v0.14.0
 	gonum.org/v1/gonum v0.14.0
 	google.golang.org/grpc v1.59.0
-	google.golang.org/protobuf v1.31.0
+	google.golang.org/protobuf v1.33.0
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/gorm v1.25.5
 	k8s.io/apiextensions-apiserver v0.28.3
@@ -150,7 +149,7 @@ require (
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/btree v1.1.2 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
@@ -272,8 +271,8 @@ require (
 	gorm.io/driver/postgres v1.5.3 // indirect
 	gorm.io/driver/sqlite v1.5.4 // indirect
 	helm.sh/helm/v3 v3.13.2 // indirect
-	k8s.io/api v0.29.0 // indirect
-	k8s.io/apimachinery v0.29.0 // indirect
+	k8s.io/api v0.29.3 // indirect
+	k8s.io/apimachinery v0.29.3 // indirect
 	k8s.io/apiserver v0.28.3 // indirect
 	k8s.io/cli-runtime v0.28.3 // indirect
 	k8s.io/component-base v0.28.3 // indirect
