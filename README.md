@@ -1,9 +1,3 @@
-
-<p style="text-align:center;" align="center"><a href="https://khulnasoft.com/meshplay"><picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-light-text-side.svg">
- <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg">
-<img src="https://raw.githubusercontent.com/khulnasoft/meshplay/master/.github/assets/images/readme/meshplay-logo-dark-text-side.svg"
-alt="Meshplay Logo" width="70%" /></picture></a><br /><br /></p>
 <p align="center">
 <a href="https://hub.docker.com/r/khulnasoft/meshplay" alt="Docker pulls">
   <img src="https://img.shields.io/docker/pulls/khulnasoft/meshplay.svg" /></a>
