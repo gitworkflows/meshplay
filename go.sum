@@ -1304,8 +1304,8 @@ github.com/kevinburke/ssh_config v1.2.0 h1:x584FjTGwHzMwvHx18PXxbBVzfnxogHaAReU4
 github.com/kevinburke/ssh_config v1.2.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
 github.com/khulnasoft/gowrk2 v0.6.1 h1:MT5AQXCp/PbSpoLUALKjxbxVGB/ssQcUhf6zKjy60Cg=
 github.com/khulnasoft/gowrk2 v0.6.1/go.mod h1:157NEJGpRpWRvcJ0qdeg0n3XKpvH4c5+afPc9P54jNs=
-github.com/khulnasoft/meshkit v0.0.0-20240826042646-a90571374bb9 h1:vT3K02aVEimfUysLhpppAkUyYaadfWE/NbxSM/8OC1E=
-github.com/khulnasoft/meshkit v0.0.0-20240826042646-a90571374bb9/go.mod h1:zQ7GZdlcOLFGXsvr3F6x/bXbLMKgpwm/hWswAbJK/Ws=
+github.com/khulnasoft/meshkit v0.0.0-20240826161825-8a41a536c8b9 h1:WRSi/SreOXjx59AuLBk6LggzYuIJ1KBOKBQZ6PqYd7o=
+github.com/khulnasoft/meshkit v0.0.0-20240826161825-8a41a536c8b9/go.mod h1:2PiO9rkghjNeol+EffJ0vbVL+fibb9VQiKHy+U+1BpA=
 github.com/khulnasoft/meshplay-operator v0.0.0-20240826092109-5743f2c78cbd h1:kgQ8Pb4j2qOMbB4gYKo8+ziB2VGO0iQawzBrXU82gAg=
 github.com/khulnasoft/meshplay-operator v0.0.0-20240826092109-5743f2c78cbd/go.mod h1:R10cU4EyTXRWTpVwW2ZaxtUmL+rrb1rVvwZNqmA1ge0=
 github.com/khulnasoft/meshsync v0.7.2 h1:9m8P0QqmGi4+2LAa3Gwu9yEMYAo3TZ0MDq+NcPUS8zk=

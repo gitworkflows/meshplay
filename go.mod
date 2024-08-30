@@ -39,7 +39,7 @@ require (
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/jinzhu/copier v0.4.0
 	github.com/khulnasoft/gowrk2 v0.6.1
-	github.com/khulnasoft/meshkit v0.0.0-20240826042646-a90571374bb9
+	github.com/khulnasoft/meshkit v0.0.0-20240826161825-8a41a536c8b9
 	github.com/khulnasoft/meshplay-operator v0.0.0-20240826092109-5743f2c78cbd
 	github.com/khulnasoft/meshsync v0.7.2
 	github.com/khulnasoft/nighthawk-go v0.0.0-20240410235759-7881cdcff584
@@ -225,7 +225,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/klauspost/compress v1.17.2 // indirect
-	github.com/kubernetes/kompose v1.31.2 // indirect
+	github.com/kubernetes/kompose v1.34.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
