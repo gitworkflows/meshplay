@@ -203,7 +203,7 @@ type ComplexityRoot struct {
 		DeploymentType     func(childComplexity int) int
 		ID                 func(childComplexity int) int
 		KubernetesServerID func(childComplexity int) int
-		MeshplayInstanceID  func(childComplexity int) int
+		MeshplayInstanceID func(childComplexity int) int
 		Name               func(childComplexity int) int
 		Owner              func(childComplexity int) int
 		Server             func(childComplexity int) int
@@ -259,7 +259,7 @@ type ComplexityRoot struct {
 	MeshplayResult struct {
 		CreatedAt          func(childComplexity int) int
 		Mesh               func(childComplexity int) int
-		MeshplayID          func(childComplexity int) int
+		MeshplayID         func(childComplexity int) int
 		Name               func(childComplexity int) int
 		PerformanceProfile func(childComplexity int) int
 		RunnerResults      func(childComplexity int) int
@@ -377,15 +377,15 @@ type ComplexityRoot struct {
 	}
 
 	Subscription struct {
-		SubscribeClusterResources         func(childComplexity int, k8scontextIDs []string, namespace string) int
-		SubscribeConfiguration            func(childComplexity int, patternSelector model.PageFilter, filterSelector model.PageFilter) int
-		SubscribeEvents                   func(childComplexity int) int
-		SubscribeK8sContext               func(childComplexity int, selector model.PageFilter) int
-		SubscribeMeshModelSummary         func(childComplexity int, selector model.MeshModelSummarySelector) int
-		SubscribeMeshSyncEvents           func(childComplexity int, connectionIDs []string, eventTypes []model.MeshSyncEventType) int
+		SubscribeClusterResources          func(childComplexity int, k8scontextIDs []string, namespace string) int
+		SubscribeConfiguration             func(childComplexity int, patternSelector model.PageFilter, filterSelector model.PageFilter) int
+		SubscribeEvents                    func(childComplexity int) int
+		SubscribeK8sContext                func(childComplexity int, selector model.PageFilter) int
+		SubscribeMeshModelSummary          func(childComplexity int, selector model.MeshModelSummarySelector) int
+		SubscribeMeshSyncEvents            func(childComplexity int, connectionIDs []string, eventTypes []model.MeshSyncEventType) int
 		SubscribeMeshplayControllersStatus func(childComplexity int, connectionIDs []string) int
-		SubscribePerfProfiles             func(childComplexity int, selector model.PageFilter) int
-		SubscribePerfResults              func(childComplexity int, selector model.PageFilter, profileID string) int
+		SubscribePerfProfiles              func(childComplexity int, selector model.PageFilter) int
+		SubscribePerfResults               func(childComplexity int, selector model.PageFilter, profileID string) int
 	}
 
 	TelemetryComp struct {

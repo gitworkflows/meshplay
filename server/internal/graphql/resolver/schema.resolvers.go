@@ -11,13 +11,13 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
+	"github.com/khulnasoft/meshkit/broker"
+	"github.com/khulnasoft/meshkit/utils"
 	"github.com/khulnasoft/meshplay/server/handlers"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/generated"
 	"github.com/khulnasoft/meshplay/server/internal/graphql/model"
 	"github.com/khulnasoft/meshplay/server/machines/kubernetes"
 	"github.com/khulnasoft/meshplay/server/models"
-	"github.com/khulnasoft/meshkit/broker"
-	"github.com/khulnasoft/meshkit/utils"
 )
 
 // ChangeOperatorStatus is the resolver for the changeOperatorStatus field.

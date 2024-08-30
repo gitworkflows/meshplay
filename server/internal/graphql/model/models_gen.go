@@ -181,7 +181,7 @@ type K8sContext struct {
 	Server             string `json:"server"`
 	Owner              string `json:"owner"`
 	CreatedBy          string `json:"created_by"`
-	MeshplayInstanceID  string `json:"meshplay_instance_id"`
+	MeshplayInstanceID string `json:"meshplay_instance_id"`
 	KubernetesServerID string `json:"kubernetes_server_id"`
 	DeploymentType     string `json:"deployment_type"`
 	Version            string `json:"version"`
@@ -233,14 +233,14 @@ type MeshSyncEvent struct {
 }
 
 type MeshplayControllersStatusListItem struct {
-	ConnectionID string                  `json:"connectionID"`
+	ConnectionID string                   `json:"connectionID"`
 	Controller   MeshplayController       `json:"controller"`
 	Status       MeshplayControllerStatus `json:"status"`
-	Version      string                  `json:"version"`
+	Version      string                   `json:"version"`
 }
 
 type MeshplayResult struct {
-	MeshplayID          *string                `json:"meshplay_id,omitempty"`
+	MeshplayID         *string                `json:"meshplay_id,omitempty"`
 	Name               *string                `json:"name,omitempty"`
 	Mesh               *string                `json:"mesh,omitempty"`
 	PerformanceProfile *string                `json:"performance_profile,omitempty"`
@@ -321,9 +321,9 @@ type PerfPageProfiles struct {
 }
 
 type PerfPageResult struct {
-	Page       int              `json:"page"`
-	PageSize   int              `json:"page_size"`
-	TotalCount int              `json:"total_count"`
+	Page       int               `json:"page"`
+	PageSize   int               `json:"page_size"`
+	TotalCount int               `json:"total_count"`
 	Results    []*MeshplayResult `json:"results,omitempty"`
 }
 
